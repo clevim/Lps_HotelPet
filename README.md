@@ -10,3 +10,7 @@ O sistema será utilizado para gerenciar um hotel para pets. Permitirá o cadast
     - Feedback dos proprietários;
     - Serviços adicionais (banho, tosa);
     - Histórico de estadias por pet;
+ 
+
+# Diagrama de Casos de Uso V1.0
+![Hotel Pet2](https://github.com/clevim/Lps_HotelPet/assets/14027055/7d389610-4298-40b9-b663-0276e6f310f3)
