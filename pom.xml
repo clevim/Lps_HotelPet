@@ -11,4 +11,12 @@
         <maven.compiler.target>11</maven.compiler.target>
         <exec.mainClass>com.clevervitor.hotelpet.HotelPet</exec.mainClass>
     </properties>
+    <dependencies>
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.16</version>
+	    <type>jar</type>
+	</dependency>
+</dependencies>
 </project>

@@ -4,7 +4,7 @@
 
 package com.clevervitor.hotelpet;
 
-import view.FrLogin;
+import com.clevervitor.hotelpet.view.FrLogin;
 
 /**
  *

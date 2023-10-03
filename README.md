@@ -14,3 +14,6 @@ O sistema será utilizado para gerenciar um hotel para pets. Permitirá o cadast
 
 # Diagrama de Casos de Uso V1.0
 ![Hotel Pet2](https://github.com/clevim/Lps_HotelPet/assets/14027055/7d389610-4298-40b9-b663-0276e6f310f3)
+
+# Nesta versão foram implementadas as classes primárias juntamente com o padrão MVC
+
