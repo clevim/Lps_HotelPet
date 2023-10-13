@@ -4,6 +4,8 @@
  */
 package com.clevervitor.hotelpet.view;
 
+import view.*;
+
 /**
  *
  * @author clevs
@@ -335,6 +337,7 @@ public class FrCadProprietario extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrCadProprietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

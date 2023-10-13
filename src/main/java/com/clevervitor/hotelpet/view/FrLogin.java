@@ -4,6 +4,8 @@
  */
 package com.clevervitor.hotelpet.view;
 
+import view.*;
+
 /**
  *
  * @author clevs
@@ -39,23 +41,23 @@ public class FrLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setText("Hotel Pet");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logorzise.png"))); // NOI18N
 
         javax.swing.GroupLayout panLogoLayout = new javax.swing.GroupLayout(panLogo);
         panLogo.setLayout(panLogoLayout);
         panLogoLayout.setHorizontalGroup(
             panLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panLogoLayout.createSequentialGroup()
+                .addGap(214, 214, 214)
                 .addComponent(jLabel1)
-                .addGap(260, 260, 260))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panLogoLayout.setVerticalGroup(
             panLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panLogoLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         lblLogin.setText("Usuario:");
@@ -181,6 +183,7 @@ public class FrLogin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
