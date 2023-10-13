@@ -93,7 +93,7 @@ public class FrCadProprietario extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
-        jLabel8.setText("Usuario");
+        jLabel8.setText("E-Mail");
 
         jTextField6.setText("jTextField6");
 
