@@ -11,7 +11,7 @@ import java.util.List;
 import lombok.Data;
 import com.clevervitor.hotelpet.model.IDao;
 import com.clevervitor.hotelpet.model.entities.Pet;
-import com.clevervitor.hotelpet.factory.Persistencia;
+
 /**
  *
  * @author 14892160652
@@ -20,8 +20,8 @@ import com.clevervitor.hotelpet.factory.Persistencia;
 @Data
 public class PetDAO implements IDao {
     
-    protected Connection connection;
-    private PreparedStatement statement;
+    
+  
     private String sql;
     
     public PetDAO(){
@@ -30,31 +30,7 @@ public class PetDAO implements IDao {
     
     @Override
     public void save(Object obj){
-        Pet pet = (Pet) obj;
         
-        sql = " INSERT INTO "
-                + " pet(nome,especie,raca,idade,genero,peso,infoDeSaude,proprietario)"
-                + " VALUES(?,?,?,?,?,?,?,?) ";
-        try { 
-            connection = Persistencia.getConnection();
-            statement = connection.prepareStatement(sql);
-            
-            statement.setString(1, pet.getNome());
-            statement.setString(2, pet.getEspecie());
-            statement.setString(3, pet.getRaca());
-            statement.setInt(4, pet.getIdade());
-            statement.setString(5, pet.getGenero());
-            statement.setDouble(6, pet.getPeso());
-            statement.setString(7, pet.getInfoDeSaude());
-            statement.setString(8, pet.getProprietario().getNome());
-            
-            statement.execute();
-            statement.close();
-        }catch (SQLException u){
-            throw new RuntimeException(u);
-        }finally{
-            Persistencia.closeConnection();
-        }
     }
 
     @Override

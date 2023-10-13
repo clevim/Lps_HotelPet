@@ -19,11 +19,6 @@
 	    <type>jar</type>
 	</dependency>
         
-        <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>6.3.0.Final</version>
-        </dependency>
     
         <dependency>
             <groupId>org.hibernate</groupId>

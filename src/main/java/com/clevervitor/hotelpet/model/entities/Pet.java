@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.Data;
 
 @Data
@@ -18,7 +20,7 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @Column(nullable = false)
+    
     private String nome;
     private String especie;
     private String raca;
@@ -26,6 +28,8 @@ public class Pet {
     private String genero;
     private Double peso;
     private String infoDeSaude;
+    @ManyToOne
+    @JoinColumn(name = "Proprietario_id")
     private Proprietario Proprietario;
     
     public Pet(Integer id, String nome, String especie, String raca, Integer idade, String genero, Double peso, String infoDeSaude, Proprietario proprietario){
