@@ -15,40 +15,25 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Data;
 
-
 @Data
 @Entity
-public class Proprietario {
-    
+public class Proprietario extends Pessoa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    
-    private String nome;
-    private String endereco;
-    private String numeroTelefone;
-    private String email;
-    private String documentoIdentificacao;
+    private Integer id;
+
     @OneToMany(mappedBy = "Proprietario", cascade = CascadeType.ALL)
     private List<Pet> petsPossuidos;
 
     public Proprietario() {
-        this.nome = "";
-        this.endereco = "";
-        this.numeroTelefone = "";
-        this.email = "";
-        this.documentoIdentificacao = "";
+        super();
         this.petsPossuidos = new ArrayList<>();
     }
 
-    public Proprietario(String nome, String endereco, String numeroTelefone, String email, String documentoIdentificacao) {
-        this.nome = nome;
-        this.endereco = endereco;
-        this.numeroTelefone = numeroTelefone;
-        this.email = email;
-        this.documentoIdentificacao = documentoIdentificacao;
+    public Proprietario(String nome, String endereco, String DataNasc, String sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
+        super(nome, endereco, DataNasc, sexo, tel, email, cpf, senha, nivelAcesso);
         this.petsPossuidos = new ArrayList<>();
     }
 
 }
-
