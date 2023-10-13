@@ -4,8 +4,6 @@
  */
 package com.clevervitor.hotelpet.view;
 
-import view.*;
-
 /**
  *
  * @author clevs
