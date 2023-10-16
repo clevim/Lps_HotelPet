@@ -24,7 +24,7 @@ public class Pessoa {
 
     private String nome;
     private String endereco; // "concat cidade estado"
-    private String DataNasc; // "10-12-1997"
+    private String dataNasc; // "10-12-1997"
     private String sexo;
     private String tel;
     private String email;
@@ -39,7 +39,7 @@ public class Pessoa {
     public Pessoa(String nome, String endereco, String DataNasc, String sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
         this.nome = nome;
         this.endereco = endereco;
-        this.DataNasc = DataNasc;
+        this.dataNasc = DataNasc;
         this.sexo = sexo;
         this.tel = tel;
         this.email = email;

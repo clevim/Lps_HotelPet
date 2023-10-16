@@ -20,19 +20,28 @@ public class Funcionario extends Pessoa{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Double Salario;
+    private Double salario;
     private String turno;
     private String cargo;
 
+    public Funcionario(){
+        super();
+        this.salario = 0.0;
+        this.turno = "";
+        this.cargo = "";
+        
+        
+    }
+    
     public Funcionario(Double Salario, String turno, String cargo) {
-        this.Salario = Salario;
+        this.salario = Salario;
         this.turno = turno;
         this.cargo = cargo;
     }
 
     public Funcionario(Double Salario, String turno, String cargo, String nome, String endereco, String DataNasc, String sexo, String tel, String email, String cpf, String usuario, String senha, Integer nivelAcesso) {
         super(nome, endereco, DataNasc, sexo, tel, email, cpf, senha, nivelAcesso);
-        this.Salario = Salario;
+        this.salario = Salario;
         this.turno = turno;
         this.cargo = cargo;
     }

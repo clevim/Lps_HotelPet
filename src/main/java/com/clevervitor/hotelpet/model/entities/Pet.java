@@ -25,20 +25,19 @@ public class Pet {
     private String especie;
     private String raca;
     private Integer idade;
-    private String genero;
+    private String sexo;
     private Double peso;
     private String obs;
     @ManyToOne
     @JoinColumn(name = "Proprietario_id")
     private Proprietario Proprietario;
     
-    public Pet(Integer id, String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs, Proprietario proprietario){
-        this.id = id;
+    public Pet(String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs, Proprietario proprietario){
         this.nome = nome;
         this.especie = especie;
         this.raca = raca;
         this.idade = idade;
-        this.genero = genero;
+        this.sexo = genero;
         this.peso = peso;
         this.obs = obs;
         this.Proprietario = proprietario;
@@ -50,7 +49,7 @@ public class Pet {
         this.especie = "";
         this.raca = "";
         this.idade = 0;
-        this.genero = "";
+        this.sexo = "";
         this.peso = 0.0;
         this.obs = "";
         this.Proprietario = null;

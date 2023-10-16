@@ -31,8 +31,8 @@ public class Proprietario extends Pessoa {
         this.petsPossuidos = new ArrayList<>();
     }
 
-    public Proprietario(String nome, String endereco, String DataNasc, String sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
-        super(nome, endereco, DataNasc, sexo, tel, email, cpf, senha, nivelAcesso);
+    public Proprietario(String nome, String endereco, String dataNasc, String sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
+        super(nome, endereco, dataNasc, sexo, tel, email, cpf, senha, nivelAcesso);
         this.petsPossuidos = new ArrayList<>();
     }
 

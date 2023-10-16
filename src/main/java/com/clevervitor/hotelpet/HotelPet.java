@@ -4,6 +4,7 @@
 package com.clevervitor.hotelpet;
 
 
+import com.clevervitor.hotelpet.view.FrCadPet;
 import com.clevervitor.hotelpet.view.FrLogin;
 
 
@@ -17,7 +18,7 @@ public class HotelPet {
         
 
 
-        FrLogin login = new FrLogin();
-        login.setVisible(true);
+        FrCadPet cadPet = new FrCadPet();
+        cadPet.setVisible(true);
     }
 }

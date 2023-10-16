@@ -4,50 +4,101 @@
  */
 package com.clevervitor.hotelpet.model.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import lombok.Data;
 import com.clevervitor.hotelpet.model.IDao;
 import com.clevervitor.hotelpet.model.entities.Pet;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
  * @author 14892160652
  */
-
 @Data
 public class PetDAO implements IDao {
-    
-    
-  
-    private String sql;
-    
-    public PetDAO(){
-        this.sql = "";
+
+    EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet");
+    EntityManager entityManager = factory.createEntityManager();
+
+    public PetDAO() {
+
     }
-    
-    @Override
-    public void save(Object obj){
-        
+
+    public EntityManager getEntityManager() {
+        EntityManagerFactory factory = null;
+        EntityManager entityManager = null;
+
+        try {
+            factory = Persistence.createEntityManagerFactory("hotelPet");
+            entityManager = factory.createEntityManager();
+        } finally {
+            factory.close();
+        }
+        return entityManager;
     }
 
     @Override
-    public boolean delete(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void save(Object obj) {
+        Pet pet = (Pet) obj;
+
+        EntityManager entityManager = getEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+            if (pet.getId() == null) {
+
+                entityManager.persist(pet);
+            } else {
+                pet = entityManager.merge(pet);
+            }
+            entityManager.getTransaction().commit();
+
+        } finally {
+
+            entityManager.close();
+        }
     }
 
-    @Override
-    public Object find(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Object find(Integer id) {
+        EntityManager entityManager = getEntityManager();
+
+        Pet pet = entityManager.find(Pet.class, id);
+
+        entityManager.close();
+        factory.close();
+
+        return pet;
     }
 
     @Override
     public List<Object> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
-    
+
+    @Override
+    public boolean delete(Integer id) {
+        try {
+
+            EntityManager entityManager = getEntityManager();
+
+            Pet pet = entityManager.find(Pet.class, id);
+            
+            
+            entityManager.getTransaction().begin();
+            
+            entityManager.remove(pet);
+            
+            entityManager.getTransaction().commit();
+            
+            
+            entityManager.close();
+            factory.close();
+
+            return true;
+        } catch (UnsupportedOperationException e) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+    }
 }
