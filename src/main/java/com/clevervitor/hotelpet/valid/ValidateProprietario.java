@@ -15,9 +15,6 @@ public class ValidateProprietario {
     public Proprietario validaCamposEntrada(Proprietario validaProprietario) {
         Proprietario proprietario = new Proprietario();
 
-        
-        proprietario.setId(validaProprietario.getId());
-        
         if (validaProprietario.getNome().isEmpty()) {
             throw new ProprietarioException("Error - Campo vazio: 'nome'.");
         }
@@ -38,8 +35,6 @@ public class ValidateProprietario {
         if (validaProprietario.getSexo().isEmpty()) {
             throw new ProprietarioException("Error - Campo vazio: 'sexo'.");
         }
-        
-        proprietario.setSexo(validaProprietario.getSexo());
 
         if (validaProprietario.getTel().isEmpty()) {
             throw new ProprietarioException("Error - Campo vazio: 'telefone'");

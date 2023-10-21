@@ -32,10 +32,6 @@ public class Pet {
     private Double peso;
     private String obs;
     
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Proprietario_id")
-    private Proprietario proprietario;
-    
     public Pet(String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs, Proprietario proprietario){
         this.nome = nome;
         this.especie = especie;

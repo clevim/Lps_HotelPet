@@ -16,9 +16,6 @@ public class ValidatePet {
 
     public Pet validaCamposEntrada(Pet validaPet) {
         Pet pet = new Pet();
-        
-        pet.setId(validaPet.getId());
-
 
         if (validaPet.getNome().isEmpty()) {
             throw new PetException("Error - Campo vazio: 'nome'.");
@@ -40,14 +37,12 @@ public class ValidatePet {
         if (validaPet.getIdade() < 0) {
             throw new PetException("Error - Campo vazio: 'idade'.");
         }
-        pet.setIdade(validaPet.getIdade());
-        
-        
-        if (validaPet.getSexo().isEmpty()) {
+
+        if (validaPet.getGenero().isEmpty()) {
             throw new PetException("Error - Campo vazio: 'genero'");
         }
 
-        pet.setSexo(validaPet.getSexo());
+        pet.setGenero(validaPet.getGenero());
 
         if (validaPet.getPeso() == null) {
             throw new PetException("Error - Campo vazio: 'peso'");

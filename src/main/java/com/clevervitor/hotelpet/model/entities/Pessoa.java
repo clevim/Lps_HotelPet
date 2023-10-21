@@ -25,15 +25,15 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
 
-    protected String nome;
-    protected String endereco; // "concat cidade estado"
-    protected String dataNasc; // "10-12-1997"
-    protected String sexo;
-    protected String tel;
-    protected String email;
-    protected String cpf;
-    protected String senha;
-    protected Integer nivelAcesso;
+    private String nome;
+    private String endereco; // "concat cidade estado"
+    private String dataNasc; // "10-12-1997"
+    private String sexo;
+    private String tel;
+    private String email;
+    private String cpf;
+    private String senha;
+    private Integer nivelAcesso;
 
     public Pessoa() {
 

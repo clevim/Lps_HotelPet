@@ -30,8 +30,8 @@ public class ProprietarioDAO implements IDao {
         try {
             factory = Persistence.createEntityManagerFactory("hotelPet");
             entityManager = factory.createEntityManager();
-        } catch(Exception e){
-            System.err.print("Deu ruim");
+        } finally {
+            factory.close();
         }
         return entityManager;
     }
@@ -48,7 +48,7 @@ public class ProprietarioDAO implements IDao {
 
                 entityManager.persist(proprietario);
             } else {
-                entityManager.merge(proprietario);
+                proprietario = entityManager.merge(proprietario);
             }
             entityManager.getTransaction().commit();
 
