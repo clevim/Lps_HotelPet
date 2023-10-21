@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import lombok.Data;
 
 /**
@@ -16,21 +18,22 @@ import lombok.Data;
  */
 @Data
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    protected Integer id;
 
-    private String nome;
-    private String endereco; // "concat cidade estado"
-    private String DataNasc; // "10-12-1997"
-    private String sexo;
-    private String tel;
-    private String email;
-    private String cpf;
-    private String senha;
-    private Integer nivelAcesso;
+    protected String nome;
+    protected String endereco; // "concat cidade estado"
+    protected String dataNasc; // "10-12-1997"
+    protected String sexo;
+    protected String tel;
+    protected String email;
+    protected String cpf;
+    protected String senha;
+    protected Integer nivelAcesso;
 
     public Pessoa() {
 
@@ -39,7 +42,7 @@ public class Pessoa {
     public Pessoa(String nome, String endereco, String DataNasc, String sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
         this.nome = nome;
         this.endereco = endereco;
-        this.DataNasc = DataNasc;
+        this.dataNasc = DataNasc;
         this.sexo = sexo;
         this.tel = tel;
         this.email = email;
