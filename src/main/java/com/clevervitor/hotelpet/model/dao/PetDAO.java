@@ -33,8 +33,8 @@ public class PetDAO implements IDao {
         try {
             factory = Persistence.createEntityManagerFactory("hotelPet");
             entityManager = factory.createEntityManager();
-        } finally {
-            factory.close();
+        } catch(Exception e){
+        System.err.print("Falha ao conectar");
         }
         return entityManager;
     }
@@ -51,7 +51,7 @@ public class PetDAO implements IDao {
 
                 entityManager.persist(pet);
             } else {
-                pet = entityManager.merge(pet);
+               entityManager.merge(pet);
             }
             entityManager.getTransaction().commit();
 

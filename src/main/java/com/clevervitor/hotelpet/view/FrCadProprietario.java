@@ -8,7 +8,7 @@ package com.clevervitor.hotelpet.view;
  *
  * @author clevs
  */
-public class FrCadProprietario extends javax.swing.JFrame {
+public class FrCadProprietario extends javax.swing.JDialog {
 
     /**
      * Creates new form FrCadProprietario

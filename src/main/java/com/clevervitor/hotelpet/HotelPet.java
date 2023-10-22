@@ -22,7 +22,6 @@ public class HotelPet {
         
 
 
-        FrCadPet cadPet = new FrCadPet();
-        cadPet.setVisible(true);
+      
     }
 }

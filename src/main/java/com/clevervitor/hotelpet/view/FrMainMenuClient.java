@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author clevs
  */
-public class FrMainMenuClient extends javax.swing.JFrame {
+public class FrMainMenuClient extends javax.swing.JDialog {
 
     /**
      * Creates new form mainMenu

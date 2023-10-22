@@ -4,7 +4,7 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
-import com.mysql.cj.x.protobuf.MysqlxCursor;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import lombok.Data;
 
 @Data
@@ -31,8 +32,11 @@ public class Pet {
     private String sexo;
     private Double peso;
     private String obs;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name ="prorpietario_id")
+    private Proprietario proprietario;
     
-    public Pet(String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs, Proprietario proprietario){
+    public Pet(String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs){
         this.nome = nome;
         this.especie = especie;
         this.raca = raca;
@@ -40,7 +44,7 @@ public class Pet {
         this.sexo = genero;
         this.peso = peso;
         this.obs = obs;
-        this.proprietario = proprietario;
+
     }
     
     public Pet(){
@@ -52,6 +56,6 @@ public class Pet {
         this.sexo = "";
         this.peso = 0.0;
         this.obs = "";
-        this.proprietario = new Proprietario();
+    
     }
 }

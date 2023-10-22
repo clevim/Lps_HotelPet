@@ -8,7 +8,7 @@ package com.clevervitor.hotelpet.view;
  *
  * @author clevs
  */
-public class FrMainMenuFuncioario extends javax.swing.JFrame {
+public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
     /**
      * Creates new form mainMenu

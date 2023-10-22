@@ -5,6 +5,7 @@
 package com.clevervitor.hotelpet.controller;
 
 import com.clevervitor.hotelpet.exceptions.PetException;
+import com.clevervitor.hotelpet.exceptions.ProprietarioException;
 import com.clevervitor.hotelpet.model.dao.ProprietarioDAO;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.valid.ValidateProprietario;
@@ -24,18 +25,18 @@ public class ProprietarioController {
         repositorio = new ProprietarioDAO();
     }
 
-    public EntityManager getEntityManager() {
-        EntityManagerFactory factory = null;
-        EntityManager entityManager = null;
-
-        try {
-            factory = Persistence.createEntityManagerFactory("hotelPet");
-            entityManager = factory.createEntityManager();
-        } finally {
-            factory.close();
-        }
-        return entityManager;
-    }
+//    public EntityManager getEntityManager() {
+//        EntityManagerFactory factory = null;
+//        EntityManager entityManager = null;
+//
+//        try {
+//            factory = Persistence.createEntityManagerFactory("hotelPet");
+//            entityManager = factory.createEntityManager();
+//        } finally {
+//            factory.close();
+//        }
+//        return entityManager;
+//    }
 
     public void cadastrarProprietario(Proprietario cadProprietario) {
 
@@ -44,8 +45,8 @@ public class ProprietarioController {
 
         try {
             repositorio.save(novoProprietario);
-        } catch (PetException e) {
-            throw new PetException("Error - já existe um proprietario com este 'id'.");
+        } catch (ProprietarioException e) {
+            throw new ProprietarioException("Error - já existe um proprietario com este 'id'.");
         }
     }
 
@@ -56,8 +57,8 @@ public class ProprietarioController {
 
         try {
             repositorio.save(novoProprietario);
-        } catch (PetException e) {
-            throw new PetException("Error - já existe um proprietario com este 'id'.");
+        } catch (ProprietarioException e) {
+            throw new ProprietarioException("Error - já existe um proprietario com este 'id'.");
         }
 
     }
@@ -72,7 +73,7 @@ public class ProprietarioController {
         if (proprietario.getId() != null) {
             repositorio.delete(proprietario.getId());
         } else {
-            throw new PetException("Error - Pet inexistente.");
+            throw new ProprietarioException("Error - Pet inexistente.");
         }
     }
 /*

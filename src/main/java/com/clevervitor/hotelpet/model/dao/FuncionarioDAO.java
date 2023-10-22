@@ -31,8 +31,8 @@ EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet"
         try {
             factory = Persistence.createEntityManagerFactory("hotelPet");
             entityManager = factory.createEntityManager();
-        } finally {
-            factory.close();
+        } catch(Exception e){
+        System.err.print("Falha ao conectar");
         }
         return entityManager;
     }
@@ -49,7 +49,7 @@ EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet"
 
                 entityManager.persist(funcionario);
             } else {
-                funcionario = entityManager.merge(funcionario);
+                entityManager.merge(funcionario);
             }
             entityManager.getTransaction().commit();
 

@@ -14,6 +14,8 @@ import com.clevervitor.hotelpet.model.entities.Funcionario;
 public class ValidateFuncionario {
     public Funcionario validaCamposEntrada(Funcionario validaFuncionario){
     Funcionario funcionario = new Funcionario();
+    
+    funcionario.setId(validaFuncionario.getId());
 
         if (validaFuncionario.getNome().isEmpty()) {
             throw new FuncionarioException("Error - Campo vazio: 'nome'.");
@@ -35,6 +37,8 @@ public class ValidateFuncionario {
         if (validaFuncionario.getSexo().isEmpty()) {
             throw new FuncionarioException("Error - Campo vazio: 'sexo'.");
         }
+        
+        funcionario.setSexo(validaFuncionario.getSexo());
 
         if (validaFuncionario.getTel().isEmpty()) {
             throw new FuncionarioException("Error - Campo vazio: 'telefone'");
@@ -67,12 +71,14 @@ public class ValidateFuncionario {
         if (validaFuncionario.getTurno().isEmpty()){
             throw new FuncionarioException("Error - O Funcionario não possui turno?.");
         }
-        funcionario.setSalario(validaFuncionario.getSalario());
+        funcionario.setTurno(validaFuncionario.getTurno());
         
         if (validaFuncionario.getCargo().isEmpty()){
             throw new FuncionarioException("Error - O Funcionario precisa ter um cargo!.");
         }
         funcionario.setCargo(validaFuncionario.getCargo());
+        
+        funcionario.setNivelAcesso(validaFuncionario.getNivelAcesso());
         
         return funcionario;
     }
