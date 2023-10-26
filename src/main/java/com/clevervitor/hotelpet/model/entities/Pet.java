@@ -32,7 +32,7 @@ public class Pet {
     private String sexo;
     private Double peso;
     private String obs;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name ="prorpietario_id")
     private Proprietario proprietario;
     
