@@ -61,11 +61,14 @@ EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet"
 
     public Object find(Integer id) {
         EntityManager entityManager = getEntityManager();
-
-        Funcionario funcionario = entityManager.find(Funcionario.class, id);
-
-        entityManager.close();
-        factory.close();
+        Funcionario funcionario = new Funcionario();
+        try{
+        funcionario = entityManager.find(Funcionario.class, id);
+        }finally{
+            entityManager.close();
+        }
+        
+      
 
         return funcionario;
     }
@@ -74,18 +77,22 @@ EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet"
     
     
     public Object findByEmail(String funcEmail){
-        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+         EntityManager entityManager = getEntityManager();
+         
+         Funcionario f = new Funcionario();
         
         //Atenção para a 'tabela' Aluno, tem que ser a primeira letra MAIUSCULA pois na realidade 
         //se refere a classe Aluno!
-        jpql = " SELECT a "
-             + " FROM Aluno a ";
-
-        qry = this.entityManager.createQuery(jpql, Funcionario.class);
+//        jpql = " SELECT a "
+//             + " FROM Aluno a ";
+//
+//        qry = this.entityManager.createQuery(jpql, Funcionario.class);
+//        
+//        List lst = qry.getResultList();
+//        this.entityManager.close();
+        return f;
         
-        List lst = qry.getResultList();
-        this.entityManager.close();
-        return lst;
+        
     }
     
     
