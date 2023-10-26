@@ -33,6 +33,7 @@ public class HotelPet {
         f.setTurno("Diurno");
         
         fC.cadastrarFuncionario(f);
+        //teste
         
  
     }
