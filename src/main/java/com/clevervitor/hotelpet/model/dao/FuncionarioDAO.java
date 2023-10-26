@@ -69,6 +69,18 @@ EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet"
 
         return funcionario;
     }
+    
+    
+    
+    
+    public Object findByEmail(String funcEmail){
+        
+    
+    
+    }
+    
+    
+    
 
     @Override
     public List<Object> findAll() {
