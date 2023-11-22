@@ -47,7 +47,7 @@ EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet"
             entityManager.getTransaction().begin();
             if (funcionario.getId() == null) {
 
-                entityManager.persist(funcionario);
+                this.entityManager.persist(funcionario);
             } else {
                 entityManager.merge(funcionario);
             }

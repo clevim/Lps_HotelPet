@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
  *
  * @author clevs
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper=false)
 @Data
 @Entity
 public class Funcionario extends Pessoa{

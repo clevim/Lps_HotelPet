@@ -11,13 +11,13 @@ import com.clevervitor.hotelpet.model.entities.Pet;
  *
  * @author clevs
  */
-public class FrCadPet extends javax.swing.JDialog {
+public class DlgCadPet extends javax.swing.JDialog {
 
     PetController petController;
     int idPetEditando;
     private String edtSexo;
 
-    public FrCadPet(java.awt.Frame parent, boolean modal) {
+    public DlgCadPet(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
 
         petController = new PetController();

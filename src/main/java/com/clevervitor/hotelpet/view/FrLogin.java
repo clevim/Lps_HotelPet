@@ -4,6 +4,11 @@
  */
 package com.clevervitor.hotelpet.view;
 
+import com.clevervitor.hotelpet.model.dao.PessoaDAO;
+import com.clevervitor.hotelpet.model.entities.Pessoa;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author clevs
@@ -15,6 +20,19 @@ public class FrLogin extends javax.swing.JFrame {
      */
     public FrLogin() {
         initComponents();
+        
+        lblCriarConta.addMouseListener(new MouseAdapter(){
+            public void clique(MouseEvent e){
+                
+                System.out.println("label clicada");
+                java.awt.Frame parentFrame = (java.awt.Frame) javax.swing.SwingUtilities.windowForComponent(FrLogin.this);
+                
+                DlgCadProprietario frameCadastroProp = new DlgCadProprietario(parentFrame, true);
+                frameCadastroProp.setVisible(true);
+            }
+            
+            
+        });
     }
 
     /**
@@ -34,7 +52,7 @@ public class FrLogin extends javax.swing.JFrame {
         lblPassword = new javax.swing.JLabel();
         edtPassword = new javax.swing.JTextField();
         bntLog = new javax.swing.JButton();
-        bntCad = new javax.swing.JButton();
+        lblCriarConta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -78,12 +96,17 @@ public class FrLogin extends javax.swing.JFrame {
             }
         });
 
-        bntCad.setText("Criar Conta");
-        bntCad.setBorder(new javax.swing.border.MatteBorder(null));
-        bntCad.setBorderPainted(false);
-        bntCad.setContentAreaFilled(false);
-        bntCad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bntCad.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblCriarConta.setText("Criar Conta");
+        lblCriarConta.setBorder(new javax.swing.border.MatteBorder(null));
+        lblCriarConta.setBorderPainted(false);
+        lblCriarConta.setContentAreaFilled(false);
+        lblCriarConta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblCriarConta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblCriarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblCriarContaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panLoginLayout = new javax.swing.GroupLayout(panLogin);
         panLogin.setLayout(panLoginLayout);
@@ -99,7 +122,7 @@ public class FrLogin extends javax.swing.JFrame {
                         .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panLoginLayout.createSequentialGroup()
                                 .addGap(195, 195, 195)
-                                .addComponent(bntCad))
+                                .addComponent(lblCriarConta))
                             .addComponent(edtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                             .addComponent(edtLogin, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bntLog, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -122,7 +145,7 @@ public class FrLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bntLog)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bntCad)
+                .addComponent(lblCriarConta)
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
@@ -153,51 +176,64 @@ public class FrLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_edtLoginActionPerformed
 
     private void bntLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntLogActionPerformed
+        String login = edtLogin.getText();
+        String password = edtPassword.getText();
 
+        PessoaDAO Pdao = new PessoaDAO();
+        try {
+            Pessoa p = Pdao.findByEmail(login);
+
+            if (p != null) {
+                if (p.getEmail().equals(login) && p.getSenha().equals(password)) {
+                    int nivelAcesso = p.getNivelAcesso();
+                    switch (nivelAcesso) {
+                        case 0:
+                            FrMainMenuFuncioario adminMenu = new FrMainMenuFuncioario();
+                            adminMenu.setVisible(true);
+                            dispose();
+
+                            break;
+
+                        case 1:
+                            FrMainMenuFuncioario funcionarioMenu = new FrMainMenuFuncioario();
+                            funcionarioMenu.setVisible(true);
+                            dispose();
+
+                            break;
+
+                        case 2:
+                            FrMainMenuClient clienteMenu = new FrMainMenuClient();
+                            clienteMenu.setVisible(true);
+                            dispose();
+
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
+
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao validar o login: " + e.getMessage());
+
+        }
     }//GEN-LAST:event_bntLogActionPerformed
+    
+    private void lblCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblCriarContaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblCriarContaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrLogin().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntCad;
     private javax.swing.JButton bntLog;
     private javax.swing.JTextField edtLogin;
     private javax.swing.JTextField edtPassword;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton lblCriarConta;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JPanel panLogin;
