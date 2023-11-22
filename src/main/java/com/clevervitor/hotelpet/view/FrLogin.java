@@ -84,6 +84,11 @@ public class FrLogin extends javax.swing.JFrame {
         bntCad.setContentAreaFilled(false);
         bntCad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bntCad.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bntCad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntCadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panLoginLayout = new javax.swing.GroupLayout(panLogin);
         panLogin.setLayout(panLoginLayout);
@@ -155,6 +160,12 @@ public class FrLogin extends javax.swing.JFrame {
     private void bntLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntLogActionPerformed
 
     }//GEN-LAST:event_bntLogActionPerformed
+
+    private void bntCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadActionPerformed
+        FrCadProprietario TCadProp = new FrCadProprietario();
+        TCadProp.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_bntCadActionPerformed
 
     /**
      * @param args the command line arguments

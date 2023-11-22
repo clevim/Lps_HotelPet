@@ -37,6 +37,7 @@ public class FrCadPet extends javax.swing.JDialog {
         //  petControllet.atualizarTabela(grdPets);
     }
 
+
     public void habilitarCampos(boolean flag) {
         for (int i = 0; i < panFormulario.getComponents().length; i++) {
             panFormulario.getComponent(i).setEnabled(flag);
@@ -283,6 +284,7 @@ public class FrCadPet extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbtnMachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMachoActionPerformed
