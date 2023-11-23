@@ -7,7 +7,7 @@ package com.clevervitor.hotelpet.model.dao;
 import com.clevervitor.hotelpet.exceptions.FuncionarioException;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.vcompany.teramusique.connection.DatabaseJPA;
-import com.vcompany.teramusique.model.dao.contracts.Dao;
+import com.clevervitor.hotelpet.model.dao.contracts.Dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -58,7 +58,6 @@ public class FuncionarioDAO extends Dao<Funcionario> {
         }
     }
 
-    @Override
     public Funcionario find(int id) {
 
         if (id < 0) {

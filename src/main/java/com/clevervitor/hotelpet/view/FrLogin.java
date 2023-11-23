@@ -12,6 +12,7 @@ import java.awt.Cursor;
 import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,12 +67,11 @@ public class FrLogin extends javax.swing.JFrame {
             .addGroup(panLogoLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lblLogin.setText("Usuario:");
 
-        edtLogin.setText("Login");
         edtLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtLoginActionPerformed(evt);
@@ -79,8 +79,6 @@ public class FrLogin extends javax.swing.JFrame {
         });
 
         lblPassword.setText("Senha:");
-
-        edtPassword.setText("Password");
 
         bntLog.setText("Entrar");
         bntLog.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -214,7 +212,7 @@ public class FrLogin extends javax.swing.JFrame {
                             break;
 
                         case 2:
-                            FrMainMenuClient clienteMenu = new FrMainMenuClient((Proprietario) p);
+                            FrMainMenuClient clienteMenu = new FrMainMenuClient(p);
                             clienteMenu.setVisible(true);
                             dispose();
 
@@ -223,6 +221,8 @@ public class FrLogin extends javax.swing.JFrame {
                             throw new AssertionError();
                     }
 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Credenciais incorretas! Tente novamente.");
                 }
             }
         } catch (Exception e) {

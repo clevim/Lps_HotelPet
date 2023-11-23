@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.vcompany.teramusique.model.dao.contracts;
+package com.clevervitor.hotelpet.model.dao.contracts;
 
 import com.vcompany.teramusique.connection.DatabaseJPA;
 import javax.persistence.EntityManager;

@@ -40,7 +40,7 @@ public class Pet {
     @JoinColumn(name ="pet_id")
     private Agendamento agendamentoMarcado;
     
-    public Pet(String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs){
+    public Pet(String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs, Proprietario dono){
         this.nome = nome;
         this.especie = especie;
         this.raca = raca;
@@ -48,6 +48,7 @@ public class Pet {
         this.sexo = genero;
         this.peso = peso;
         this.obs = obs;
+        this.proprietario = dono;
 
     }
     
@@ -60,6 +61,7 @@ public class Pet {
         this.sexo = "";
         this.peso = 0.0;
         this.obs = "";
+        this.proprietario = new Proprietario();
     
     }
 }

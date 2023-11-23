@@ -8,7 +8,7 @@ import com.clevervitor.hotelpet.exceptions.ProprietarioException;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.vcompany.teramusique.connection.DatabaseJPA;
-import com.vcompany.teramusique.model.dao.contracts.Dao;
+import com.clevervitor.hotelpet.model.dao.contracts.Dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -62,7 +62,6 @@ public class PessoaDAO extends Dao<Pessoa>{
         }
     }
 
-    @Override
     public Pessoa find(int id) {
 
         if (id < 0) {

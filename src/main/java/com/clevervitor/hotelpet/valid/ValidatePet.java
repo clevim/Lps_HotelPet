@@ -42,7 +42,7 @@ public class ValidatePet {
         pet.setIdade(validaPet.getIdade());
 
         if (validaPet.getSexo().isEmpty()) {
-            throw new PetException("Error - Campo vazio: 'genero'");
+            throw new PetException("Error - Campo vazio: 'sexo'");
         }
 
         pet.setSexo(validaPet.getSexo());

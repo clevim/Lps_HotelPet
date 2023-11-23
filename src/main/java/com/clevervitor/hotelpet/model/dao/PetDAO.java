@@ -9,7 +9,7 @@ import java.util.List;
 import lombok.Data;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.vcompany.teramusique.connection.DatabaseJPA;
-import com.vcompany.teramusique.model.dao.contracts.Dao;
+import com.clevervitor.hotelpet.model.dao.contracts.Dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

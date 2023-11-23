@@ -6,6 +6,7 @@ package com.clevervitor.hotelpet.view.dialogs;
 
 import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.model.entities.Pet;
+import com.clevervitor.hotelpet.model.entities.Proprietario;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,13 +19,15 @@ public class DlgCadPet extends javax.swing.JDialog {
     int idPetEditando;
     private String edtSexo;
     Pet petSendoEditado;
+    Proprietario proprietarioLogado;
 
-    public DlgCadPet(java.awt.Frame parent, boolean modal) {
+    public DlgCadPet(java.awt.Frame parent, boolean modal, Proprietario proprietario) {
         super(parent, modal);
 
         petController = new PetController();
         idPetEditando = -1;
-
+        proprietarioLogado = proprietario;
+        
         initComponents();
 
         this.habilitarCampos(true);
@@ -39,6 +42,8 @@ public class DlgCadPet extends javax.swing.JDialog {
         petController = new PetController();
         idPetEditando = -1;
         petSendoEditado = pet;
+        proprietarioLogado = pet.getProprietario();
+        
         initComponents();
 
         this.habilitarCampos(true);
@@ -164,6 +169,11 @@ public class DlgCadPet extends javax.swing.JDialog {
         });
 
         rbtnFemea.setText("Femea");
+        rbtnFemea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnFemeaActionPerformed(evt);
+            }
+        });
 
         lblRaca.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblRaca.setText("Raça:");
@@ -339,19 +349,19 @@ public class DlgCadPet extends javax.swing.JDialog {
     private void btnSalvarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPetActionPerformed
         // TODO add your handling code here:
 
-        String sexo;
+        String sexo = null;
 
-        if (rbtnMacho.isSelected() == true) {
+        if (rbtnMacho.isSelected()) {
+            rbtnFemea.setEnabled(false);
             sexo = "Macho";
-        } else if (rbtnFemea.isSelected() == true) {
+        } else if (rbtnFemea.isSelected()) {
+            rbtnMacho.setEnabled(false);
             sexo = "Femea";
-        } else {
+        } else if(!rbtnFemea.isSelected() && !rbtnMacho.isSelected()) {
             JOptionPane.showMessageDialog(null, "Selecione o sexo do pet!");
         }
-        // Dúvida sobre como passsar proprietário de edtProprietario (String) para o parametro Proprietario (Proprietario)...
 
-        Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), edtSexo, Double.parseDouble(edtPeso.getText()), edtObs.getText());
-        JOptionPane.showMessageDialog(null, "Pet salvo com sucesso!");
+        Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText()), edtObs.getText(), proprietarioLogado);
         
         if (idPetEditando > 0) {
             petController.atualizarPet(novoPet);
@@ -359,11 +369,13 @@ public class DlgCadPet extends javax.swing.JDialog {
             petController.cadastrarPet(novoPet);
         }
         
+        JOptionPane.showMessageDialog(null, "Pet salvo com sucesso!");
         dispose();
     }//GEN-LAST:event_btnSalvarPetActionPerformed
 
     private void rbtnMachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMachoActionPerformed
         // TODO add your handling code here:
+        rbtnFemea.setSelected(false);
     }//GEN-LAST:event_rbtnMachoActionPerformed
 
     private void edtPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtPesoActionPerformed
@@ -377,6 +389,11 @@ public class DlgCadPet extends javax.swing.JDialog {
     private void edtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtNomeActionPerformed
+
+    private void rbtnFemeaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFemeaActionPerformed
+        // TODO add your handling code here:
+        rbtnMacho.setSelected(false);
+    }//GEN-LAST:event_rbtnFemeaActionPerformed
 
     /**
      * @param args the command line arguments
