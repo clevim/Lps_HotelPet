@@ -104,6 +104,8 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         menuAdicionarPet = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
 
@@ -195,13 +197,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             .addGroup(pnlAgendamentosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlAgendamentosLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())
+                    .addComponent(jScrollPane2)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblAgendar)
-                        .addContainerGap())))
+                        .addComponent(lblAgendar)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAgendarEstadia)
@@ -349,6 +349,15 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         jMenu5.setText("Relatorios");
         jMenu3.add(jMenu5);
+        jMenu3.add(jSeparator1);
+
+        jMenuItem1.setText("Logout");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
 
         jMenuBar1.add(jMenu3);
 
@@ -380,18 +389,20 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private void menuAdicionarPetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAdicionarPetMouseClicked
         // TODO add your handling code here:
         DlgCadPet telaCadPet = new DlgCadPet(new Frame(), true, proprietarioLogado);
+        telaCadPet.setTitle("Cadastro Pet");
         telaCadPet.setVisible(true);
     }//GEN-LAST:event_menuAdicionarPetMouseClicked
 
     private void menuAdicionarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAdicionarPetActionPerformed
         // TODO add your handling code here:
         DlgCadPet telaCadPet = new DlgCadPet(new Frame(), true, proprietarioLogado);
+        telaCadPet.setTitle("Cadastro Pet");
         telaCadPet.setVisible(true);
 
         proprietarioLogado = propController.buscarProprietario(proprietarioLogado.getId());
         propController.atualizarTabelaDePets(grdPets, proprietarioLogado.getPetsPossuidos(), (Pet) getObjetoSelecionadoNaGridDePets());
-        
-        
+
+
     }//GEN-LAST:event_menuAdicionarPetActionPerformed
 
     private Object getObjetoSelecionadoNaGridDePets() {
@@ -402,7 +413,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         }
         return obj;
     }
-    
+
     private Object getObjetoSelecionadoNaGridDeAgendamentos() {
         int rowCliked = grdAgendamentos.getSelectedRow();
         Object obj = null;
@@ -411,10 +422,10 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         }
         return obj;
     }
-    
+
     private void btnAgendarEstadiaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaMouseEntered
         // TODO add your handling code here:
-                btnAgendarEstadia.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnAgendarEstadia.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 
     }//GEN-LAST:event_btnAgendarEstadiaMouseEntered
@@ -439,6 +450,13 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         btnAgendarEstadia.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_btnAgendarEstadiaMouseExited
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        FrLogin TLogin = new FrLogin();
+        TLogin.setTitle("Login");
+        TLogin.setVisible(true);
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -454,9 +472,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblAgendar;
     private javax.swing.JLabel lblContato;
     private javax.swing.JLabel lblContatoCliente;

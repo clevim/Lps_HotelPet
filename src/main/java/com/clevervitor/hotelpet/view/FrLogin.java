@@ -8,6 +8,7 @@ import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import static com.clevervitor.hotelpet.valid.ValidateUtils.descriptografiaBase64Decode;
 import java.awt.Cursor;
 import java.awt.Frame;
 import java.awt.Image;
@@ -57,10 +58,10 @@ public class FrLogin extends javax.swing.JFrame {
         panLogin = new javax.swing.JPanel();
         lblLogin = new javax.swing.JLabel();
         edtLogin = new javax.swing.JTextField();
-        lblPassword = new javax.swing.JLabel();
-        edtPassword = new javax.swing.JTextField();
+        edtPassword = new javax.swing.JLabel();
         bntLog = new javax.swing.JButton();
         lblCriarConta = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -92,7 +93,7 @@ public class FrLogin extends javax.swing.JFrame {
             }
         });
 
-        lblPassword.setText("Senha:");
+        edtPassword.setText("Senha:");
 
         bntLog.setText("Entrar");
         bntLog.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,6 +133,12 @@ public class FrLogin extends javax.swing.JFrame {
             }
         });
 
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panLoginLayout = new javax.swing.GroupLayout(panLogin);
         panLogin.setLayout(panLoginLayout);
         panLoginLayout.setHorizontalGroup(
@@ -145,14 +152,14 @@ public class FrLogin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
                         .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panLoginLayout.createSequentialGroup()
-                                .addGap(195, 195, 195)
+                                .addGap(195, 243, Short.MAX_VALUE)
                                 .addComponent(lblCriarConta))
-                            .addComponent(edtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                             .addComponent(edtLogin, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bntLog, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panLoginLayout.createSequentialGroup()
-                                .addComponent(lblPassword)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(edtPassword)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jPasswordField1))
                         .addGap(122, 122, 122))))
         );
         panLoginLayout.setVerticalGroup(
@@ -163,9 +170,9 @@ public class FrLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblPassword)
+                .addComponent(edtPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bntLog)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -205,14 +212,16 @@ public class FrLogin extends javax.swing.JFrame {
 
         PessoaDAO Pdao = new PessoaDAO();
         try {
-            Pessoa p = (Pessoa) Pdao.findByEmail(login);
+            Pessoa p = Pdao.findByEmail(login);
+            String senhaBD = descriptografiaBase64Decode(p.getSenha());
 
             if (p != null) {
-                if (p.getEmail().equals(login) && p.getSenha().equals(password)) {
+                if (p.getEmail().equals(login) && senhaBD.equals(password)) {
                     int nivelAcesso = p.getNivelAcesso();
                     switch (nivelAcesso) {
                         case 0:
                             FrMainMenuFuncioario adminMenu = new FrMainMenuFuncioario();
+                            adminMenu.setTitle("ADMIN");
                             adminMenu.setVisible(true);
                             dispose();
 
@@ -220,6 +229,7 @@ public class FrLogin extends javax.swing.JFrame {
 
                         case 1:
                             FrMainMenuFuncioario funcionarioMenu = new FrMainMenuFuncioario();
+                            funcionarioMenu.setTitle("Funcionario");
                             funcionarioMenu.setVisible(true);
                             dispose();
 
@@ -227,6 +237,7 @@ public class FrLogin extends javax.swing.JFrame {
 
                         case 2:
                             FrMainMenuClient clienteMenu = new FrMainMenuClient(p);
+                            clienteMenu.setTitle("Cliente");
                             clienteMenu.setVisible(true);
                             dispose();
 
@@ -278,6 +289,10 @@ public class FrLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bntLogMouseExited
 
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -285,11 +300,11 @@ public class FrLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntLog;
     private javax.swing.JTextField edtLogin;
-    private javax.swing.JTextField edtPassword;
+    private javax.swing.JLabel edtPassword;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton lblCriarConta;
     private javax.swing.JLabel lblLogin;
-    private javax.swing.JLabel lblPassword;
     private javax.swing.JPanel panLogin;
     private javax.swing.JPanel panLogo;
     // End of variables declaration//GEN-END:variables

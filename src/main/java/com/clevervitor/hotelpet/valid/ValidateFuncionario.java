@@ -4,8 +4,10 @@
  */
 package com.clevervitor.hotelpet.valid;
 
+//import br.com.caelum.stella.validation.CPFValidator;
 import com.clevervitor.hotelpet.exceptions.FuncionarioException;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
+import static com.clevervitor.hotelpet.valid.ValidateUtils.criptografiaBase64Encoder;
 
 /**
  *
@@ -14,6 +16,7 @@ import com.clevervitor.hotelpet.model.entities.Funcionario;
 public class ValidateFuncionario {
     public Funcionario validaCamposEntrada(Funcionario validaFuncionario){
     Funcionario funcionario = new Funcionario();
+    //CPFValidator validator = new CPFValidator(); //CPF VALIDATOR
     
     funcionario.setId(validaFuncionario.getId());
 
@@ -61,7 +64,7 @@ public class ValidateFuncionario {
         if (validaFuncionario.getSenha().isEmpty()) {
             throw new FuncionarioException("Error - Campo vazio: 'senha'");
         }
-        funcionario.setSenha(validaFuncionario.getSenha());
+        funcionario.setSenha(criptografiaBase64Encoder(validaFuncionario.getSenha()));
         
         if (validaFuncionario.getSalario() <= 0.0){
             throw new FuncionarioException("Error - O Funcionario não possui salario?.");

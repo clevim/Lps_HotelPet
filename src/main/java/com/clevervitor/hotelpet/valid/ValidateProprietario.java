@@ -6,6 +6,7 @@ package com.clevervitor.hotelpet.valid;
 
 import com.clevervitor.hotelpet.exceptions.ProprietarioException;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import static com.clevervitor.hotelpet.valid.ValidateUtils.criptografiaBase64Encoder;
 
 /**
  *
@@ -13,12 +14,11 @@ import com.clevervitor.hotelpet.model.entities.Proprietario;
  */
 public class ValidateProprietario {
 
-        Proprietario proprietario;
- 
-        public Proprietario validaCamposEntrada(Proprietario validaProprietario) {
-            
-            this.proprietario = validaProprietario;
-            
+    public Proprietario validaCamposEntrada(Proprietario validaProprietario) {
+        Proprietario proprietario = new Proprietario();
+
+        proprietario.setId(validaProprietario.getId());
+
         if (validaProprietario.getNome().isEmpty()) {
             throw new ProprietarioException("Error - Campo vazio: 'nome'.");
         }
@@ -63,7 +63,7 @@ public class ValidateProprietario {
         if (validaProprietario.getSenha().isEmpty()) {
             throw new ProprietarioException("Error - Campo vazio: 'senha'");
         }
-        proprietario.setSenha(validaProprietario.getSenha());
+        proprietario.setSenha(criptografiaBase64Encoder(validaProprietario.getSenha()));
 
         if (validaProprietario.getPetsPossuidos() == null) {
             throw new ProprietarioException("Error - O proprietário não possui pets cadastrados.");
