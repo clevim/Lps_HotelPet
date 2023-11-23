@@ -10,6 +10,7 @@ import lombok.Data;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.vcompany.teramusique.connection.DatabaseJPA;
 import com.clevervitor.hotelpet.model.dao.contracts.Dao;
+import com.clevervitor.hotelpet.model.entities.Proprietario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -27,6 +28,8 @@ public class PetDAO extends Dao<Pet> {
     public PetDAO() {
 
     }
+    
+    
 
     public Object findByEmail(String email) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();

@@ -27,7 +27,6 @@ com\clevervitor\hotelpet\model\entities\Proprietario.class
 com\clevervitor\hotelpet\model\entities\Funcionario.class
 com\clevervitor\hotelpet\view\dialogs\DlgCadProprietario$4.class
 com\clevervitor\hotelpet\controller\ProprietarioController.class
-com\clevervitor\hotelpet\view\FrLogin.class
 com\clevervitor\hotelpet\view\FrLogin$1.class
 com\clevervitor\hotelpet\exceptions\ProprietarioException.class
 com\clevervitor\hotelpet\view\dialogs\DlgCadPet$5.class

@@ -5,6 +5,7 @@
 package com.clevervitor.hotelpet.view.dialogs;
 
 import com.clevervitor.hotelpet.controller.PetController;
+import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import javax.swing.JOptionPane;
@@ -14,7 +15,8 @@ import javax.swing.JOptionPane;
  * @author clevs
  */
 public class DlgCadPet extends javax.swing.JDialog {
-
+    
+    ProprietarioController propCont;
     PetController petController;
     int idPetEditando;
     private String edtSexo;
@@ -27,7 +29,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         petController = new PetController();
         idPetEditando = -1;
         proprietarioLogado = proprietario;
-        
+        propCont = new ProprietarioController();
         initComponents();
 
         this.habilitarCampos(true);
@@ -43,7 +45,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         idPetEditando = -1;
         petSendoEditado = pet;
         proprietarioLogado = pet.getProprietario();
-        
+        propCont = new ProprietarioController();
         initComponents();
 
         this.habilitarCampos(true);
@@ -350,7 +352,8 @@ public class DlgCadPet extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         String sexo = null;
-
+        proprietarioLogado = propCont.buscarProprietario(proprietarioLogado.getId());
+        
         if (rbtnMacho.isSelected()) {
             rbtnFemea.setEnabled(false);
             sexo = "Macho";

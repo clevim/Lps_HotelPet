@@ -60,7 +60,8 @@ public class TMPet extends AbstractTableModel {
                 case COL_SEXO:
                     return aux.getSexo();
                 case COL_EDITAR:
-                    return new ImageIcon(getClass().getResource("/imagens/edit.png"));
+                    return new ImageIcon(getClass().getResource("/Imagens/iconEdit.png"));
+              
                 default:
                     break;
             }

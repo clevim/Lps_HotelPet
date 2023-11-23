@@ -329,6 +329,9 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         // TODO add your handling code here:
         DlgCadPet telaCadPet = new DlgCadPet(new Frame(), true, proprietarioLogado);
         telaCadPet.setVisible(true);
+        
+        proprietarioLogado = propController.buscarProprietario(proprietarioLogado.getId());
+        propController.atualizarTabelaDePets(grdPets, proprietarioLogado.getPetsPossuidos());
     }//GEN-LAST:event_menuAdicionarPetActionPerformed
 
     /**
