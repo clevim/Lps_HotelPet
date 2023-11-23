@@ -52,11 +52,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         edtEmail = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         edtSenha = new javax.swing.JTextField();
-        formPets = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblInfoProprietario = new javax.swing.JTable();
-        btnAddPet = new javax.swing.JButton();
-        btnRemoverPet = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
@@ -68,32 +63,20 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel1.setText("Nome:");
 
-        edtNome.setText("jTextField1");
-
         jLabel2.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel2.setText("Documento:");
-
-        edtCpf.setText("jTextField2");
 
         jLabel3.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel3.setText("Data de Nascimento:");
 
-        edtDataNascimento.setText("jFormattedTextField1");
-
         jLabel4.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel4.setText("Cidade:");
-
-        edtCidade.setText("jTextField3");
 
         jLabel5.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel5.setText("Estado:");
 
-        edtEstado.setText("jTextField4");
-
         jLabel6.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel6.setText("Telefone:");
-
-        edtTelefone.setText("jTextField5");
 
         jLabel7.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel7.setText("Sexo:");
@@ -103,12 +86,9 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel8.setText("E-Mail");
 
-        edtEmail.setText("jTextField6");
-
         jLabel9.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel9.setText("Senha");
 
-        edtSenha.setText("jTextField7");
         edtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtSenhaActionPerformed(evt);
@@ -120,9 +100,9 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         formCadProprietarioLayout.setHorizontalGroup(
             formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(formCadProprietarioLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formCadProprietarioLayout.createSequentialGroup()
@@ -152,19 +132,23 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                                 .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel7)
                                     .addComponent(edtDataNascimento)
-                                    .addComponent(cbxSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(formCadProprietarioLayout.createSequentialGroup()
-                        .addGap(283, 283, 283)
-                        .addComponent(jLabel8))
-                    .addGroup(formCadProprietarioLayout.createSequentialGroup()
-                        .addGap(287, 287, 287)
-                        .addComponent(jLabel9))
-                    .addGroup(formCadProprietarioLayout.createSequentialGroup()
-                        .addGap(218, 218, 218)
+                                    .addComponent(cbxSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formCadProprietarioLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formCadProprietarioLayout.createSequentialGroup()
+                                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(221, 221, 221))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formCadProprietarioLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(289, 289, 289))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formCadProprietarioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(289, 289, 289))
         );
         formCadProprietarioLayout.setVerticalGroup(
             formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,52 +186,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        formPets.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pets", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(255, 204, 0))); // NOI18N
-
-        tblInfoProprietario.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3"
-            }
-        ));
-        jScrollPane1.setViewportView(tblInfoProprietario);
-
-        btnAddPet.setText("Add Pet");
-        btnAddPet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddPetActionPerformed(evt);
-            }
-        });
-
-        btnRemoverPet.setText("Remover Pet");
-
-        javax.swing.GroupLayout formPetsLayout = new javax.swing.GroupLayout(formPets);
-        formPets.setLayout(formPetsLayout);
-        formPetsLayout.setHorizontalGroup(
-            formPetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(formPetsLayout.createSequentialGroup()
-                .addComponent(btnAddPet)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRemoverPet)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        formPetsLayout.setVerticalGroup(
-            formPetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formPetsLayout.createSequentialGroup()
-                .addGroup(formPetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddPet)
-                    .addComponent(btnRemoverPet))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,17 +206,17 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formCadProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(formPets, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(formCadProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(formCadProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formPets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -291,10 +229,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     private void edtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtSenhaActionPerformed
-
-    private void btnAddPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddPetActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
@@ -322,9 +256,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddPet;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnRemoverPet;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cbxSexo;
     private javax.swing.JTextField edtCidade;
@@ -336,7 +268,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     private javax.swing.JTextField edtSenha;
     private javax.swing.JTextField edtTelefone;
     private javax.swing.JPanel formCadProprietario;
-    private javax.swing.JPanel formPets;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -347,7 +278,5 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblInfoProprietario;
     // End of variables declaration//GEN-END:variables
 }
