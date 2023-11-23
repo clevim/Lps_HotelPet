@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,10 +23,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 @Data
 @Entity
-public class Proprietario extends Pessoa {
+@SequenceGenerator(name = "proprietario_id_seq", sequenceName = "proprietario_id_seq", allocationSize = 1)
+public class Proprietario extends Pessoa implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator ="proprietario_id_seq")
     private Integer id;
 
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
