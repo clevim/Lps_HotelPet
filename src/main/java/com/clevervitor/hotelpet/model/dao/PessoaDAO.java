@@ -24,7 +24,7 @@ public class PessoaDAO extends Dao<Pessoa>{
       private Query qry;
     private String jpql;
 
-    public Object findByEmail(String email) {
+    public Pessoa findByEmail(String email) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
         String jpql = " SELECT f "
@@ -36,8 +36,12 @@ public class PessoaDAO extends Dao<Pessoa>{
         List<Pessoa> lst = qry.getResultList();
         this.entityManager.close();
 
-        return lst;
-
+        if(lst.isEmpty()){
+            return null;
+        } else {
+            return lst.get(0);
+        }
+        
     }
 
     public List<Pessoa> findAll() {
@@ -80,4 +84,20 @@ public class PessoaDAO extends Dao<Pessoa>{
 
     }
 
+    public List<Pessoa> filterByName(String nome) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+
+        String jpql = " SELECT m "
+                + " FROM Pessoa m "
+                + " WHERE m.nome LIKE :nome ";
+        TypedQuery qry = this.entityManager.createQuery(jpql, Pessoa.class);
+        qry.setParameter("nome", nome);
+
+        List<Pessoa> lst = qry.getResultList();
+        this.entityManager.close();
+
+        return lst;
+
+    }
+    
 }

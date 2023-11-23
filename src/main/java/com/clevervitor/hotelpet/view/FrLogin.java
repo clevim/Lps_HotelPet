@@ -227,7 +227,7 @@ public class FrLogin extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             System.out.println("Erro ao validar o login: " + e.getMessage());
-
+            e.printStackTrace();
         }
     }//GEN-LAST:event_bntLogActionPerformed
 
