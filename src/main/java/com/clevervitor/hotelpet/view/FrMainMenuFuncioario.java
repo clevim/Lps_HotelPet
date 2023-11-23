@@ -4,6 +4,12 @@
  */
 package com.clevervitor.hotelpet.view;
 
+import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author clevs
@@ -15,6 +21,15 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
      */
     public FrMainMenuFuncioario() {
         initComponents();
+        
+        Image iconeTitulo = null;
+        try {
+            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        setIconImage(iconeTitulo);
     }
 
     /**

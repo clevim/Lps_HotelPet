@@ -64,4 +64,11 @@ public class Pet {
         this.proprietario = new Proprietario();
     
     }
+    
+    @Override
+    public String toString() {
+        String txt = getNome();
+
+        return txt;
+    }
 }

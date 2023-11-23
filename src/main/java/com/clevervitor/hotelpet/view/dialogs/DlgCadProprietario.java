@@ -7,6 +7,12 @@ package com.clevervitor.hotelpet.view.dialogs;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.view.FrLogin;
+import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -20,6 +26,15 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     public DlgCadProprietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        Image iconeTitulo = null;
+        try {
+            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        setIconImage(iconeTitulo);
+        
 
         proprietarioCont = new ProprietarioController();
     }
@@ -118,21 +133,18 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                                 .addComponent(jLabel5)))
                         .addGap(18, 18, 18)
                         .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(formCadProprietarioLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(96, 96, 96)
-                                .addComponent(jLabel3))
-                            .addGroup(formCadProprietarioLayout.createSequentialGroup()
-                                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(edtTelefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                        .addComponent(edtCpf, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel7)
-                                    .addComponent(edtDataNascimento)
-                                    .addComponent(cbxSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(edtTelefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                .addComponent(edtCpf, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel7)
+                                .addComponent(edtDataNascimento)
+                                .addComponent(cbxSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formCadProprietarioLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)

@@ -5,8 +5,12 @@
 package com.clevervitor.hotelpet.controller.tableModel;
 
 import com.clevervitor.hotelpet.model.entities.Pet;
+import com.clevervitor.hotelpet.view.UI.JButtonPersonalizado;
+import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
+import java.awt.Frame;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -16,14 +20,21 @@ import javax.swing.table.AbstractTableModel;
 public class TMPet extends AbstractTableModel {
 
     private List lista;
-
+    private Pet petDaLista;
+    
+    private JButtonPersonalizado btnEditar = new JButtonPersonalizado();
     private final int COL_ID = 0;
-    private final int COL_RACA = 1;
-    private final int COL_IDADE = 2;
-    private final int COL_SEXO = 3;
-    private final int COL_PESO = 4;
-    private final int COL_EDITAR = 5;
+    private final int COL_NOME = 1;
+    private final int COL_RACA = 2;
+    private final int COL_IDADE = 3;
+    private final int COL_SEXO = 4;
+    private final int COL_PESO = 5;
+    private final int COL_EDITAR = 6;
 
+    public TMPet(List lstPets, Pet pet) {
+        this.lista = lstPets;
+        this.petDaLista = pet;
+    }
     public TMPet(List lstPets) {
         this.lista = lstPets;
     }
@@ -35,12 +46,13 @@ public class TMPet extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return 7;
     }
-
-    @Override
+    
+    
     public Object getValueAt(int rowIndex, int columnIndex) {
         Pet aux = new Pet();
+        
         if (lista.isEmpty()) {
             return aux;
         } else {
@@ -51,6 +63,8 @@ public class TMPet extends AbstractTableModel {
                     return aux;
                 case COL_ID:
                     return aux.getId();
+                case COL_NOME:
+                    return aux.getNome();
                 case COL_IDADE:
                     return aux.getIdade();
                 case COL_PESO:
@@ -60,8 +74,9 @@ public class TMPet extends AbstractTableModel {
                 case COL_SEXO:
                     return aux.getSexo();
                 case COL_EDITAR:
-                    return new ImageIcon(getClass().getResource("/Imagens/iconEdit.png"));
-              
+                    btnEditar.setPetEditavel(aux);
+                    
+                    
                 default:
                     break;
             }
@@ -77,6 +92,8 @@ public class TMPet extends AbstractTableModel {
 
             case COL_ID:
                 return "Id";
+            case COL_NOME:
+                return "Nome";
             case COL_IDADE:
                 return "Idade";
             case COL_PESO:

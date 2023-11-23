@@ -40,4 +40,10 @@ public class Proprietario extends Pessoa {
         this.petsPossuidos = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        String txt = getNome();
+
+        return txt;
+    }
 }

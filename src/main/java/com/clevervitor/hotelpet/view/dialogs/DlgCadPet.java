@@ -8,6 +8,12 @@ import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.view.FrLogin;
+import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,6 +37,15 @@ public class DlgCadPet extends javax.swing.JDialog {
         proprietarioLogado = proprietario;
         propCont = new ProprietarioController();
         initComponents();
+        
+        Image iconeTitulo = null;
+        try {
+            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        setIconImage(iconeTitulo);
 
         this.habilitarCampos(true);
         this.limparCampos();
@@ -43,16 +58,50 @@ public class DlgCadPet extends javax.swing.JDialog {
 
         petController = new PetController();
         idPetEditando = -1;
-        petSendoEditado = pet;
         proprietarioLogado = pet.getProprietario();
         propCont = new ProprietarioController();
         initComponents();
 
+        Image iconeTitulo = null;
+        try {
+            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        setIconImage(iconeTitulo);
+        
         this.habilitarCampos(true);
         this.limparCampos();
 
         //  petControllet.atualizarTabela(grdPets);
     }
+    
+    public DlgCadPet(java.awt.Frame parent, boolean modal, Pet pet, Integer petEditando) {
+        super(parent, modal);
+
+        petController = new PetController();
+        idPetEditando = petEditando;
+        proprietarioLogado = pet.getProprietario();
+        propCont = new ProprietarioController();
+        initComponents();
+
+        Image iconeTitulo = null;
+        try {
+            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        setIconImage(iconeTitulo);
+        
+        this.habilitarCampos(true);
+        this.limparCampos();
+        this.preencherCampos();
+
+        //  petControllet.atualizarTabela(grdPets);
+    }
+    
 
     public void preencherCampos() {
 
@@ -372,6 +421,7 @@ public class DlgCadPet extends javax.swing.JDialog {
             petController.cadastrarPet(novoPet);
         }
         
+        idPetEditando = -1;
         JOptionPane.showMessageDialog(null, "Pet salvo com sucesso!");
         dispose();
     }//GEN-LAST:event_btnSalvarPetActionPerformed

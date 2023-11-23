@@ -10,8 +10,13 @@ import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import java.awt.Cursor;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +31,15 @@ public class FrLogin extends javax.swing.JFrame {
     public FrLogin() {
         initComponents();
 
+        Image iconeTitulo = null;
+        try {
+            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        setIconImage(iconeTitulo);
+        
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
