@@ -80,7 +80,7 @@ public class ProprietarioController {
 
     public void excluirPet(Proprietario proprietario) {
         if (proprietario.getId() != null) {
-            repositorio.delete(proprietario.getId());
+            repositorio.delete(proprietario);
         } else {
             throw new ProprietarioException("Error - Pet inexistente.");
         }

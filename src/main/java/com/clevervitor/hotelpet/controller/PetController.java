@@ -68,7 +68,7 @@ public class PetController {
     
     public void excluirPet(Pet pet){
         if(pet.getId() != null){
-            repositorio.delete(pet.getId());
+            repositorio.delete(pet);
         }else {
             throw new PetException ("Error - Pet inexistente.");
         }

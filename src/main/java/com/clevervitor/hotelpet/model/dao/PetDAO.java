@@ -4,119 +4,83 @@
  */
 package com.clevervitor.hotelpet.model.dao;
 
+import com.clevervitor.hotelpet.exceptions.PetException;
 import java.util.List;
 import lombok.Data;
-import com.clevervitor.hotelpet.model.IDao;
 import com.clevervitor.hotelpet.model.entities.Pet;
+import com.vcompany.teramusique.connection.DatabaseJPA;
+import com.vcompany.teramusique.model.dao.contracts.Dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import lombok.EqualsAndHashCode;
 
 /**
  *
  * @author 14892160652
  */
 @Data
-public class PetDAO implements IDao {
-
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet");
-    EntityManager entityManager = factory.createEntityManager();
+@EqualsAndHashCode(callSuper = false)
+public class PetDAO extends Dao<Pet> {
 
     public PetDAO() {
 
     }
 
-    public EntityManager getEntityManager() {
-        EntityManagerFactory factory = null;
-        EntityManager entityManager = null;
+    public Object findByEmail(String email) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        try {
-            factory = Persistence.createEntityManagerFactory("hotelPet");
-            entityManager = factory.createEntityManager();
-        } catch(Exception e){
-        System.err.print("Falha ao conectar");
-        }
-        return entityManager;
+        String jpql = " SELECT f "
+                + "FROM Pet f"
+                + " WHERE f.email LIKE :email ";
+        TypedQuery qry = this.entityManager.createQuery(jpql, Pet.class);
+        qry.setParameter("email", email);
+
+        List<Pet> lst = qry.getResultList();
+        this.entityManager.close();
+
+        return lst;
+
     }
 
-    @Override
-    public void save(Object obj) {
-        Pet pet = (Pet) obj;
-
-        EntityManager entityManager = getEntityManager();
-
+    public List<Pet> findAll() {
         try {
-            entityManager.getTransaction().begin();
-          
+            super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-                entityManager.persist(pet);
-           
-            
-            entityManager.getTransaction().commit();
+            jpql = " SELECT f "
+                    + " FROM Pet f ";
 
+            qry = super.entityManager.createQuery(jpql, Pet.class);
+
+            List lstPets = qry.getResultList();
+            return lstPets;
+        } catch (PetException msg) {
+            throw new PetException("Erro ao retornar lista de Pets.");
         } finally {
-
-            entityManager.close();
+            super.entityManager.close();
         }
-    }
-    public void update(Object obj) {
-        Pet pet = (Pet) obj;
-
-        EntityManager entityManager = getEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-          
-
-               entityManager.merge(pet);
-           
-            
-            entityManager.getTransaction().commit();
-
-        } finally {
-
-            entityManager.close();
-        }
-    }
-
-    public Object find(Integer id) {
-        EntityManager entityManager = getEntityManager();
-
-        Pet pet = entityManager.find(Pet.class, id);
-
-        entityManager.close();
-        factory.close();
-
-        return pet;
     }
 
     @Override
-    public List<Object> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public Pet find(int id) {
 
-    @Override
-    public boolean delete(Integer id) {
-        try {
+        if (id < 0) {
+            throw new PetException("Este Pet não existe.");
+        } else {
 
-            EntityManager entityManager = getEntityManager();
+            try {
+                super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-            Pet pet = entityManager.find(Pet.class, id);
-            
-            
-            entityManager.getTransaction().begin();
-            
-            entityManager.remove(pet);
-            
-            entityManager.getTransaction().commit();
-            
-            
-            entityManager.close();
-            factory.close();
+                Pet m = entityManager.find(Pet.class, id);
 
-            return true;
-        } catch (UnsupportedOperationException e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                return m;
+            } catch (PetException e) {
+                throw new PetException("Pet não encontrado");
+            } finally {
+                entityManager.close();
+            }
         }
+
     }
 }

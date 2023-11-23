@@ -4,144 +4,79 @@
  */
 package com.clevervitor.hotelpet.model.dao;
 
-import com.clevervitor.hotelpet.model.IDao;
+import com.clevervitor.hotelpet.exceptions.FuncionarioException;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
+import com.vcompany.teramusique.connection.DatabaseJPA;
+import com.vcompany.teramusique.model.dao.contracts.Dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author vitor
  */
-public class FuncionarioDAO implements IDao{
-    
-EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet");
-    EntityManager entityManager = factory.createEntityManager();
+public class FuncionarioDAO extends Dao<Funcionario> {
 
     public FuncionarioDAO() {
 
     }
 
-    public EntityManager getEntityManager() {
-        EntityManagerFactory factory = null;
-        EntityManager entityManager = null;
+    public Object findByEmail(String email) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        try {
-            factory = Persistence.createEntityManagerFactory("hotelPet");
-            entityManager = factory.createEntityManager();
-        } catch(Exception e){
-        System.err.print("Falha ao conectar");
-        }
-        return entityManager;
+        String jpql = " SELECT f "
+                + "FROM Funcionario f"
+                + " WHERE f.email LIKE :email ";
+        TypedQuery qry = this.entityManager.createQuery(jpql, Funcionario.class);
+        qry.setParameter("email", email);
+
+        List<Funcionario> lst = qry.getResultList();
+        this.entityManager.close();
+
+        return lst;
+
     }
 
-    @Override
-    public void save(Object obj) {
-        Funcionario funcionario = (Funcionario) obj;
-
-        EntityManager entityManager = getEntityManager();
-
+    public List<Funcionario> findAll() {
         try {
-            entityManager.getTransaction().begin();
+            super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-                this.entityManager.persist(funcionario);
-            
-            entityManager.getTransaction().commit();
+            jpql = " SELECT f "
+                    + " FROM Funcionario f ";
 
+            qry = super.entityManager.createQuery(jpql, Funcionario.class);
+
+            List lstFuncionarios = qry.getResultList();
+            return lstFuncionarios;
+        } catch (FuncionarioException msg) {
+            throw new FuncionarioException("Erro ao retornar lista de funcionarios.");
         } finally {
-
-            entityManager.close();
+            super.entityManager.close();
         }
-    }
-    
-    @Override
-    public void update(Object obj) {
-        Funcionario funcionario = (Funcionario) obj;
-
-        EntityManager entityManager = getEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-            
-
-                entityManager.merge(funcionario);
-            
-            entityManager.getTransaction().commit();
-
-        } finally {
-
-            entityManager.close();
-        }
-    }
-
-    public Object find(Integer id) {
-        EntityManager entityManager = getEntityManager();
-        Funcionario funcionario = new Funcionario();
-        try{
-        funcionario = entityManager.find(Funcionario.class, id);
-        }finally{
-            entityManager.close();
-        }
-        
-      
-
-        return funcionario;
-    }
-    
-    
-    
-    
-    public Object findByEmail(String funcEmail){
-         EntityManager entityManager = getEntityManager();
-         
-         Funcionario f = new Funcionario();
-        
-        //Atenção para a 'tabela' Aluno, tem que ser a primeira letra MAIUSCULA pois na realidade 
-        //se refere a classe Aluno!
-//        jpql = " SELECT a "
-//             + " FROM Aluno a ";
-//
-//        qry = this.entityManager.createQuery(jpql, Funcionario.class);
-//        
-//        List lst = qry.getResultList();
-//        this.entityManager.close();
-        return f;
-        
-        
-    }
-    
-    
-    
-
-    @Override
-    public List<Object> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(Integer id) {
-        try {
+    public Funcionario find(int id) {
 
-            EntityManager entityManager = getEntityManager();
+        if (id < 0) {
+            throw new FuncionarioException("Este Funcionario não existe.");
+        } else {
 
-            Funcionario funcionario = entityManager.find(Funcionario.class, id);
-            
-            
-            entityManager.getTransaction().begin();
-            
-            entityManager.remove(funcionario);
-            
-            entityManager.getTransaction().commit();
-            
-            
-            entityManager.close();
-            factory.close();
+            try {
+                super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-            return true;
-        } catch (UnsupportedOperationException e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                Funcionario m = entityManager.find(Funcionario.class, id);
+
+                return m;
+            } catch (FuncionarioException e) {
+                throw new FuncionarioException("Funcionarionão encontrado");
+            } finally {
+                entityManager.close();
+            }
         }
+
     }
 }

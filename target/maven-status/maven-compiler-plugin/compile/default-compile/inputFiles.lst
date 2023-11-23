@@ -4,13 +4,16 @@ C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\cleverv
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\controller\ProprietarioController.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\exceptions\ProprietarioException.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\controller\tableModel\TMPet.java
+C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\connection\DatabaseJPA.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\model\entities\Proprietario.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\model\dao\ProprietarioDAO.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\audio\Audio.java
+C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\model\dao\contracts\Dao.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\valid\ValidateFuncionario.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\controller\tableModel\TMAgendamentos.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\valid\ValidateUtils.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\controller\PetController.java
+C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\model\dao\contracts\IDao.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\model\entities\Pet.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\model\entities\Funcionario.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\valid\ValidatePet.java
@@ -23,7 +26,6 @@ C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\cleverv
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\controller\FuncionarioController.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\view\FrLogin.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\model\dao\PessoaDAO.java
-C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\model\IDao.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\HotelPet.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\exceptions\FuncionarioException.java
 C:\Users\vitor\Documents\NetBeansProjects\Lps_HotelPet\src\main\java\com\clevervitor\hotelpet\model\entities\Agendamento.java

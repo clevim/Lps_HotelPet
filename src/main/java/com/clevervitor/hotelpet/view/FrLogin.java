@@ -193,7 +193,7 @@ public class FrLogin extends javax.swing.JFrame {
 
         PessoaDAO Pdao = new PessoaDAO();
         try {
-            Pessoa p = Pdao.findByEmail(login);
+            Pessoa p = (Pessoa) Pdao.findByEmail(login);
 
             if (p != null) {
                 if (p.getEmail().equals(login) && p.getSenha().equals(password)) {

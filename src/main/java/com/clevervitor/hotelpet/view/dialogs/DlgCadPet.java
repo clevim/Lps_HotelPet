@@ -355,6 +355,8 @@ public class DlgCadPet extends javax.swing.JDialog {
         
         if (idPetEditando > 0) {
             petController.atualizarPet(novoPet);
+        } else {
+            petController.cadastrarPet(novoPet);
         }
         
         dispose();

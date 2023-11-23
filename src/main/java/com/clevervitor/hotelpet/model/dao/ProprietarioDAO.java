@@ -4,116 +4,79 @@
  */
 package com.clevervitor.hotelpet.model.dao;
 
-import com.clevervitor.hotelpet.model.IDao;
+import com.clevervitor.hotelpet.exceptions.ProprietarioException;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.vcompany.teramusique.connection.DatabaseJPA;
+import com.vcompany.teramusique.model.dao.contracts.Dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author 14892160652
  */
-public class ProprietarioDAO implements IDao {
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet");
-    EntityManager entityManager = factory.createEntityManager();
+public class ProprietarioDAO extends Dao<Proprietario> {
 
     public ProprietarioDAO() {
 
     }
 
-    public EntityManager getEntityManager() {
-        EntityManagerFactory factory = null;
-        EntityManager entityManager = null;
+    public Object findByEmail(String email) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        try {
-            factory = Persistence.createEntityManagerFactory("hotelPet");
-            entityManager = factory.createEntityManager();
-        } catch(Exception e){
-        System.err.print("Falha ao conectar");
-        }
-        return entityManager;
+        String jpql = " SELECT f "
+                + "FROM Proprietario f"
+                + " WHERE f.email LIKE :email ";
+        TypedQuery qry = this.entityManager.createQuery(jpql, Proprietario.class);
+        qry.setParameter("email", email);
+
+        List<Proprietario> lst = qry.getResultList();
+        this.entityManager.close();
+
+        return lst;
+
     }
 
-    @Override
-    public void save(Object obj) {
-        Proprietario proprietario = (Proprietario) obj;
-
-        EntityManager entityManager = getEntityManager();
-
+    public List<Proprietario> findAll() {
         try {
-            entityManager.getTransaction().begin();
+            super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-                entityManager.persist(proprietario);
-            
-            entityManager.getTransaction().commit();
+            jpql = " SELECT f "
+                    + " FROM Proprietario f ";
 
+            qry = super.entityManager.createQuery(jpql, Proprietario.class);
+
+            List lstProprietarios = qry.getResultList();
+            return lstProprietarios;
+        } catch (ProprietarioException msg) {
+            throw new ProprietarioException("Erro ao retornar lista de Proprietarios.");
         } finally {
-
-            entityManager.close();
-        }
-    }
-    
-    @Override
-    public void update(Object obj) {
-        Proprietario proprietario = (Proprietario) obj;
-
-        EntityManager entityManager = getEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-
-                entityManager.merge(proprietario);
-            
-            entityManager.getTransaction().commit();
-
-        } finally {
-
-            entityManager.close();
+            super.entityManager.close();
         }
     }
 
-    public Object find(Integer id) {
-        EntityManager entityManager = getEntityManager();
-
-        Proprietario proprietario = entityManager.find(Proprietario.class, id);
-
-        entityManager.close();
-        factory.close();
-
-        return proprietario;
-    }
-
     @Override
-    public List<Object> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public Proprietario find(int id) {
 
-    @Override
-    public boolean delete(Integer id) {
-        try {
+        if (id < 0) {
+            throw new ProprietarioException("Este Proprietario não existe.");
+        } else {
 
-            EntityManager entityManager = getEntityManager();
+            try {
+                super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-            Proprietario proprietario = entityManager.find(Proprietario.class, id);
-            
-            
-            entityManager.getTransaction().begin();
-            
-            entityManager.remove(proprietario);
-            
-            entityManager.getTransaction().commit();
-            
-            
-            entityManager.close();
-            factory.close();
+                Proprietario m = entityManager.find(Proprietario.class, id);
 
-            return true;
-        } catch (UnsupportedOperationException e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                return m;
+            } catch (ProprietarioException e) {
+                throw new ProprietarioException("Proprietario não encontrado");
+            } finally {
+                entityManager.close();
+            }
         }
+
     }
 }
-
-

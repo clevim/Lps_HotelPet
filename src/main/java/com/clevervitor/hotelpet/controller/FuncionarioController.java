@@ -70,7 +70,7 @@ public class FuncionarioController {
 
     public void excluirFuncionario(Funcionario funcionario) {
         if (funcionario.getId() != null) {
-            repositorio.delete(funcionario.getId());
+            repositorio.delete(funcionario);
         } else {
             throw new FuncionarioException("Error - Funcionario inexistente.");
         }

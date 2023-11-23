@@ -4,78 +4,80 @@
  */
 package com.clevervitor.hotelpet.model.dao;
 
-import com.clevervitor.hotelpet.model.IDao;
+import com.clevervitor.hotelpet.exceptions.ProprietarioException;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
+import com.clevervitor.hotelpet.model.entities.Pessoa;
+import com.vcompany.teramusique.connection.DatabaseJPA;
+import com.vcompany.teramusique.model.dao.contracts.Dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author clevs
  */
-public class PessoaDAO implements IDao{
+public class PessoaDAO extends Dao<Pessoa>{
       private Query qry;
     private String jpql;
 
-    public EntityManager getEntityManager() {
-        EntityManagerFactory factory = null;
-        EntityManager entityManager = null;
+    public Object findByEmail(String email) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        try {
-            factory = Persistence.createEntityManagerFactory("hotelPet");
-            entityManager = factory.createEntityManager();
-        } catch (Exception e) {
-            System.err.print("Falha ao conectar");
-        }
-        return entityManager;
-    }
-
-    public Pessoa findByEmail(String email) {
-        EntityManager entityManager = getEntityManager();
-
-        String jpql = "SELECT p "
-                + "FROM Pessoa p "
-                + "WHERE p.email LIKE :email";
-        Query qry = entityManager.createQuery(jpql);
+        String jpql = " SELECT f "
+                + "FROM Pessoa f"
+                + " WHERE f.email LIKE :email ";
+        TypedQuery qry = this.entityManager.createQuery(jpql, Pessoa.class);
         qry.setParameter("email", email);
 
-        List<Pessoa> pessoas = qry.getResultList();
+        List<Pessoa> lst = qry.getResultList();
+        this.entityManager.close();
 
-        entityManager.close();
+        return lst;
 
-        if (pessoas.isEmpty()) {
-            return null;
-        } else {
-            return pessoas.get(0);
+    }
+
+    public List<Pessoa> findAll() {
+        try {
+            super.entityManager = DatabaseJPA.getInstance().getEntityManager();
+
+            jpql = " SELECT f "
+                    + " FROM Pessoa f ";
+
+            qry = super.entityManager.createQuery(jpql, Pessoa.class);
+
+            List lstPessoas = qry.getResultList();
+            return lstPessoas;
+        } catch (ProprietarioException msg) {
+            throw new ProprietarioException("Erro ao retornar lista de Pessoas.");
+        } finally {
+            super.entityManager.close();
         }
     }
 
     @Override
-    public void save(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public void update(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public Pessoa find(int id) {
 
-    @Override
-    public boolean delete(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        if (id < 0) {
+            throw new ProprietarioException("Este Pessoa não existe.");
+        } else {
 
-    @Override
-    public Object find(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+            try {
+                super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-    @Override
-    public List<Object> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                Pessoa m = entityManager.find(Pessoa.class, id);
+
+                return m;
+            } catch (ProprietarioException e) {
+                throw new ProprietarioException("Pessoa não encontrado");
+            } finally {
+                entityManager.close();
+            }
+        }
+
     }
 
 }
