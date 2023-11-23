@@ -13,11 +13,12 @@ import com.clevervitor.hotelpet.model.entities.Proprietario;
  */
 public class ValidateProprietario {
 
-    public Proprietario validaCamposEntrada(Proprietario validaProprietario) {
-        Proprietario proprietario = new Proprietario();
-
-        proprietario.setId(validaProprietario.getId());
-
+        Proprietario proprietario;
+ 
+        public Proprietario validaCamposEntrada(Proprietario validaProprietario) {
+            
+            this.proprietario = validaProprietario;
+            
         if (validaProprietario.getNome().isEmpty()) {
             throw new ProprietarioException("Error - Campo vazio: 'nome'.");
         }

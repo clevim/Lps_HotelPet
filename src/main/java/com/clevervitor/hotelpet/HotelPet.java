@@ -6,7 +6,7 @@ package com.clevervitor.hotelpet;
 
 import com.clevervitor.hotelpet.controller.FuncionarioController;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
-import com.clevervitor.hotelpet.view.DlgCadPet;
+import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
 import com.clevervitor.hotelpet.view.FrLogin;
 import com.clevervitor.hotelpet.view.FrMainMenuClient;
 
@@ -21,7 +21,6 @@ public class HotelPet {
          FuncionarioController fC = new FuncionarioController();
         Funcionario f = new Funcionario();
         
-        // FAZER CADASTRO
         FrLogin Tl = new FrLogin();
         Tl.setVisible(true);
  

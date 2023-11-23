@@ -45,12 +45,29 @@ EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotelPet"
 
         try {
             entityManager.getTransaction().begin();
-            if (funcionario.getId() == null) {
 
                 this.entityManager.persist(funcionario);
-            } else {
+            
+            entityManager.getTransaction().commit();
+
+        } finally {
+
+            entityManager.close();
+        }
+    }
+    
+    @Override
+    public void update(Object obj) {
+        Funcionario funcionario = (Funcionario) obj;
+
+        EntityManager entityManager = getEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+            
+
                 entityManager.merge(funcionario);
-            }
+            
             entityManager.getTransaction().commit();
 
         } finally {

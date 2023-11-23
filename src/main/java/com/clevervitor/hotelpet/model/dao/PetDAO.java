@@ -47,12 +47,30 @@ public class PetDAO implements IDao {
 
         try {
             entityManager.getTransaction().begin();
-            if (pet.getId() == null) {
+          
 
                 entityManager.persist(pet);
-            } else {
+           
+            
+            entityManager.getTransaction().commit();
+
+        } finally {
+
+            entityManager.close();
+        }
+    }
+    public void update(Object obj) {
+        Pet pet = (Pet) obj;
+
+        EntityManager entityManager = getEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+          
+
                entityManager.merge(pet);
-            }
+           
+            
             entityManager.getTransaction().commit();
 
         } finally {

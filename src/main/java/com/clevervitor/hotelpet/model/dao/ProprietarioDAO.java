@@ -44,12 +44,28 @@ public class ProprietarioDAO implements IDao {
 
         try {
             entityManager.getTransaction().begin();
-            if (proprietario.getId() == null) {
 
                 entityManager.persist(proprietario);
-            } else {
+            
+            entityManager.getTransaction().commit();
+
+        } finally {
+
+            entityManager.close();
+        }
+    }
+    
+    @Override
+    public void update(Object obj) {
+        Proprietario proprietario = (Proprietario) obj;
+
+        EntityManager entityManager = getEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+
                 entityManager.merge(proprietario);
-            }
+            
             entityManager.getTransaction().commit();
 
         } finally {

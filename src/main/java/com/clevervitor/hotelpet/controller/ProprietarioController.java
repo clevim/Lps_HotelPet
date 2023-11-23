@@ -4,14 +4,18 @@
  */
 package com.clevervitor.hotelpet.controller;
 
+import com.clevervitor.hotelpet.controller.tableModel.TMPet;
 import com.clevervitor.hotelpet.exceptions.PetException;
 import com.clevervitor.hotelpet.exceptions.ProprietarioException;
 import com.clevervitor.hotelpet.model.dao.ProprietarioDAO;
+import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.valid.ValidateProprietario;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JTable;
 
 /**
  *
@@ -38,6 +42,11 @@ public class ProprietarioController {
 //        return entityManager;
 //    }
 
+    public void atualizarTabelaDePets(JTable grd, List<Pet> lst){
+        TMPet tableModel = new TMPet(lst);
+        grd.setModel(tableModel);
+    }
+    
     public void cadastrarProprietario(Proprietario cadProprietario) {
 
         ValidateProprietario check = new ValidateProprietario();

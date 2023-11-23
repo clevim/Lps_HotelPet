@@ -8,6 +8,8 @@ public interface IDao {
     
     public void save(Object obj);
     
+    public void update(Object obj);
+    
     public boolean delete(Integer id);
                 
     public Object find(Integer id);

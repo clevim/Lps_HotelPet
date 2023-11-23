@@ -4,8 +4,12 @@
  */
 package com.clevervitor.hotelpet.view;
 
+import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
+import com.clevervitor.hotelpet.model.entities.Proprietario;
+import java.awt.Cursor;
+import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -20,19 +24,8 @@ public class FrLogin extends javax.swing.JFrame {
      */
     public FrLogin() {
         initComponents();
-        
-        lblCriarConta.addMouseListener(new MouseAdapter(){
-            public void clique(MouseEvent e){
-                
-                System.out.println("label clicada");
-                java.awt.Frame parentFrame = (java.awt.Frame) javax.swing.SwingUtilities.windowForComponent(FrLogin.this);
-                
-                DlgCadProprietario frameCadastroProp = new DlgCadProprietario(parentFrame, true);
-                frameCadastroProp.setVisible(true);
-            }
-            
-            
-        });
+
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -54,7 +47,7 @@ public class FrLogin extends javax.swing.JFrame {
         bntLog = new javax.swing.JButton();
         lblCriarConta = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logorzise.png"))); // NOI18N
@@ -90,6 +83,14 @@ public class FrLogin extends javax.swing.JFrame {
         edtPassword.setText("Password");
 
         bntLog.setText("Entrar");
+        bntLog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bntLogMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bntLogMouseExited(evt);
+            }
+        });
         bntLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntLogActionPerformed(evt);
@@ -102,6 +103,17 @@ public class FrLogin extends javax.swing.JFrame {
         lblCriarConta.setContentAreaFilled(false);
         lblCriarConta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblCriarConta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblCriarConta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCriarContaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCriarContaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCriarContaMouseExited(evt);
+            }
+        });
         lblCriarConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lblCriarContaActionPerformed(evt);
@@ -202,7 +214,7 @@ public class FrLogin extends javax.swing.JFrame {
                             break;
 
                         case 2:
-                            FrMainMenuClient clienteMenu = new FrMainMenuClient();
+                            FrMainMenuClient clienteMenu = new FrMainMenuClient((Proprietario) p);
                             clienteMenu.setVisible(true);
                             dispose();
 
@@ -218,15 +230,43 @@ public class FrLogin extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_bntLogActionPerformed
-    
+
     private void lblCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblCriarContaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lblCriarContaActionPerformed
 
+    private void lblCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseClicked
+        // TODO add your handling code here:
+        DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame(), true);
+        cadastroProp.setVisible(true);
+    }//GEN-LAST:event_lblCriarContaMouseClicked
+
+    private void lblCriarContaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseEntered
+        // TODO add your handling code here:
+        lblCriarConta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_lblCriarContaMouseEntered
+
+    private void lblCriarContaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseExited
+        // TODO add your handling code here:
+        lblCriarConta.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+    }//GEN-LAST:event_lblCriarContaMouseExited
+
+    private void bntLogMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntLogMouseEntered
+        // TODO add your handling code here:
+                lblCriarConta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+    }//GEN-LAST:event_bntLogMouseEntered
+
+    private void bntLogMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntLogMouseExited
+        // TODO add your handling code here:
+                lblCriarConta.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+    }//GEN-LAST:event_bntLogMouseExited
+
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntLog;
