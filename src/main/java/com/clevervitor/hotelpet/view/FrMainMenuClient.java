@@ -40,7 +40,10 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         lblDocumeto.setForeground(Color.WHITE);
         lblContato.setForeground(Color.WHITE);
         lblAgendar.setForeground(Color.WHITE);
-
+        
+        scrollPets.getViewport().setBackground(new Color(250,250,250));
+        scrollAgendamentos.getViewport().setBackground(new Color(250,250,250));
+        
         Image iconeTitulo = null;
         try {
             iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
@@ -92,12 +95,12 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         lblEndereco = new javax.swing.JLabel();
         lblEnderecoCliente = new javax.swing.JLabel();
         pnlAgendamentos = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrollAgendamentos = new javax.swing.JScrollPane();
         grdAgendamentos = new javax.swing.JTable();
         lblAgendar = new javax.swing.JLabel();
         btnAgendarEstadia = new javax.swing.JButton();
         pnlPetsCliente = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPets = new javax.swing.JScrollPane();
         grdPets = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
@@ -146,9 +149,9 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         pnlAgendamentos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus agendamentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(204, 204, 204))); // NOI18N
         pnlAgendamentos.setForeground(new java.awt.Color(204, 204, 204));
 
-        jScrollPane2.setBackground(new java.awt.Color(51, 51, 51));
-        jScrollPane2.setBorder(null);
-        jScrollPane2.setForeground(new java.awt.Color(51, 51, 51));
+        scrollAgendamentos.setBackground(new java.awt.Color(51, 51, 51));
+        scrollAgendamentos.setBorder(null);
+        scrollAgendamentos.setForeground(new java.awt.Color(51, 51, 51));
 
         grdAgendamentos.setForeground(new java.awt.Color(51, 51, 51));
         grdAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
@@ -159,7 +162,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
             }
         ));
-        jScrollPane2.setViewportView(grdAgendamentos);
+        scrollAgendamentos.setViewportView(grdAgendamentos);
 
         lblAgendar.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
         lblAgendar.setText("Novo agendamento");
@@ -197,7 +200,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             .addGroup(pnlAgendamentosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(scrollAgendamentos)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblAgendar)))
@@ -215,14 +218,14 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollAgendamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pnlPetsCliente.setBackground(new java.awt.Color(51, 51, 51));
         pnlPetsCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus pets", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(255, 204, 0))); // NOI18N
 
-        jScrollPane1.setBorder(null);
+        scrollPets.setBorder(null);
 
         grdPets.setAutoCreateRowSorter(true);
         grdPets.setForeground(new java.awt.Color(51, 51, 51));
@@ -239,7 +242,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         ));
         grdPets.setCellSelectionEnabled(true);
         grdPets.setShowGrid(true);
-        jScrollPane1.setViewportView(grdPets);
+        scrollPets.setViewportView(grdPets);
         grdPets.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout pnlPetsClienteLayout = new javax.swing.GroupLayout(pnlPetsCliente);
@@ -250,7 +253,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             .addGroup(pnlPetsClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlPetsClienteLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                    .addComponent(scrollPets, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         pnlPetsClienteLayout.setVerticalGroup(
@@ -259,7 +262,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             .addGroup(pnlPetsClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlPetsClienteLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollPets, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -474,8 +477,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblAgendar;
     private javax.swing.JLabel lblContato;
@@ -490,5 +491,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private javax.swing.JPanel pnlAgendamentos;
     private javax.swing.JPanel pnlCliente;
     private javax.swing.JPanel pnlPetsCliente;
+    private javax.swing.JScrollPane scrollAgendamentos;
+    private javax.swing.JScrollPane scrollPets;
     // End of variables declaration//GEN-END:variables
 }
