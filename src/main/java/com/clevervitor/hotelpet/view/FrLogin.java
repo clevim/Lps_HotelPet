@@ -35,10 +35,11 @@ public class FrLogin extends javax.swing.JFrame {
         
         lblLogin.setForeground(Color.white);
         lblPassword.setForeground(Color.white);
+        lblCriarConta.setForeground(Color.white);
 
         Image iconeTitulo = null;
         try {
-            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+            iconeTitulo = ImageIO.read(getClass().getResource("/Imagens/pawprint.png"));
         } catch (IOException ex) {
             Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,7 +67,7 @@ public class FrLogin extends javax.swing.JFrame {
         edtPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
         setResizable(false);
 
@@ -229,7 +230,7 @@ public class FrLogin extends javax.swing.JFrame {
                             break;
 
                         case 2:
-                            FrMainMenuClient clienteMenu = new FrMainMenuClient(p);
+                            FrMainMenuClient clienteMenu = new FrMainMenuClient((Proprietario) p);
                             clienteMenu.setTitle("Cliente");
                             clienteMenu.setVisible(true);
                             dispose();

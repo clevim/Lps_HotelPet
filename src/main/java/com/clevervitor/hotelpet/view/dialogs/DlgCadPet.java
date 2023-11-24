@@ -40,7 +40,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         
         Image iconeTitulo = null;
         try {
-            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+            iconeTitulo = ImageIO.read(getClass().getResource("/Imagens/pawprint.png"));
         } catch (IOException ex) {
             Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -345,7 +345,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
         jLabel1.setText("Cadastro de Pet");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pawprint.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pawprint.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

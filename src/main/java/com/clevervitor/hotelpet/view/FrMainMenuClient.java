@@ -9,6 +9,8 @@ import com.clevervitor.hotelpet.controller.tableModel.TMAgendamentos;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.view.UI.JButtonUI;
+import com.clevervitor.hotelpet.view.UI.TableActionCellRender;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -18,6 +20,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
+import javax.swing.JLayer;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,8 +36,14 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     ProprietarioController propController;
     Proprietario proprietarioLogado;
 
-    public FrMainMenuClient(Pessoa proprietario) {
+    public FrMainMenuClient(Proprietario proprietario) {
         initComponents();
+        
+        propController = new ProprietarioController();
+        
+        propController.atualizarTabelaDePets(grdPets, proprietario.getPetsPossuidos());
+        grdPets.getColumnModel().getColumn(6).setCellRenderer(new TableActionCellRender());
+        System.out.println(grdPets.getColumnModel().getColumn(6).toString());
 
         lblNome.setForeground(Color.WHITE);
         lblEndereco.setForeground(Color.WHITE);
@@ -41,12 +51,14 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         lblContato.setForeground(Color.WHITE);
         lblAgendar.setForeground(Color.WHITE);
         
-        scrollPets.getViewport().setBackground(new Color(250,250,250));
+        scrollPets.getViewport().setBackground(new Color(51,51,51));
         scrollAgendamentos.getViewport().setBackground(new Color(250,250,250));
+        
+        
         
         Image iconeTitulo = null;
         try {
-            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+            iconeTitulo = ImageIO.read(getClass().getResource("/Imagens/pawprint.png"));
         } catch (IOException ex) {
             Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,6 +71,8 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         habilitarCampos(true);
 
     }
+    
+   
 
     public void habilitarCampos(boolean flag) {
         lblNomeCliente.setText(proprietarioLogado.getNome());
@@ -176,7 +190,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         });
 
         btnAgendarEstadia.setBackground(new java.awt.Color(51, 51, 51));
-        btnAgendarEstadia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/iconAgendarEstadia32.png"))); // NOI18N
+        btnAgendarEstadia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/iconAgendarEstadia32.png"))); // NOI18N
         btnAgendarEstadia.setBorder(null);
         btnAgendarEstadia.setBorderPainted(false);
         btnAgendarEstadia.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -241,6 +255,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             }
         ));
         grdPets.setCellSelectionEnabled(true);
+        grdPets.setRowHeight(40);
         grdPets.setShowGrid(true);
         scrollPets.setViewportView(grdPets);
         grdPets.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -289,7 +304,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                         .addGap(277, 277, 277))
                     .addGroup(pnlClienteLayout.createSequentialGroup()
                         .addComponent(lblContato)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
                         .addComponent(lblContatoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(320, 320, 320))
                     .addGroup(pnlClienteLayout.createSequentialGroup()
@@ -325,7 +340,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                             .addComponent(lblContatoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlAgendamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlPetsCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
         );
@@ -382,7 +397,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 51, Short.MAX_VALUE))
         );
 
         pack();
@@ -403,7 +418,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         telaCadPet.setVisible(true);
 
         proprietarioLogado = propController.buscarProprietario(proprietarioLogado.getId());
-        propController.atualizarTabelaDePets(grdPets, proprietarioLogado.getPetsPossuidos(), (Pet) getObjetoSelecionadoNaGridDePets());
+        propController.atualizarTabelaDePets(grdPets, proprietarioLogado.getPetsPossuidos());
 
 
     }//GEN-LAST:event_menuAdicionarPetActionPerformed

@@ -42,8 +42,8 @@ public class ProprietarioController {
 //        return entityManager;
 //    }
 
-    public void atualizarTabelaDePets(JTable grd, List<Pet> lst, Pet pet){
-        TMPet tableModel = new TMPet(lst, pet);
+    public void atualizarTabelaDePets(JTable grd, List<Pet> lst){
+        TMPet tableModel = new TMPet(lst);
         grd.setModel(tableModel);
     }
     

@@ -6,12 +6,14 @@ package com.clevervitor.hotelpet.controller.tableModel;
 
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.view.UI.JButtonUI;
+import com.clevervitor.hotelpet.view.UI.TableActionCellRender;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
 import java.awt.Frame;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.text.TableView;
 
 /**
  *
@@ -30,11 +32,7 @@ public class TMPet extends AbstractTableModel {
     private final int COL_SEXO = 4;
     private final int COL_PESO = 5;
     private final int COL_EDITAR = 6;
-
-    public TMPet(List lstPets, Pet pet) {
-        this.lista = lstPets;
-        this.petDaLista = pet;
-    }
+    
     public TMPet(List lstPets) {
         this.lista = lstPets;
     }
@@ -74,7 +72,7 @@ public class TMPet extends AbstractTableModel {
                 case COL_SEXO:
                     return aux.getSexo();
                 case COL_EDITAR:
-                    
+                    return new TableActionCellRender();
                     
                 default:
                     break;
