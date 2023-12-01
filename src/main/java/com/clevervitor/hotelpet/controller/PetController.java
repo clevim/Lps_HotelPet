@@ -4,8 +4,10 @@
  */
 package com.clevervitor.hotelpet.controller;
 
+import com.clevervitor.hotelpet.controller.tableModel.TMPet;
 import com.clevervitor.hotelpet.exceptions.PetException;
 import com.clevervitor.hotelpet.model.dao.PetDAO;
+import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.valid.ValidatePet;
@@ -55,10 +57,23 @@ public class PetController {
      
     }
     
+    public void atualizarTabelaDePets(JTable grd, List<Pet> lst){
+        TMPet tableModel = new TMPet(lst);
+        grd.setModel(tableModel);
+    }
+    
+    
     public Pet buscarPet(Integer id) {
         return (Pet) this.repositorio.find(id);
     }
     
+    public Pet buscarAgendamento(Integer id) {
+        return (Pet) this.repositorio.find(id);
+    }
+    
+    public List<Pet> buscarTodosOsPets() {
+        return (List<Pet>) this.repositorio.findAll();
+    }
     /*public void atualizarTabela(JTable grd) {
         List<Object> lst = repositorio.findAll();
         

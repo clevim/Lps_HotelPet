@@ -18,7 +18,7 @@ public class TableActionCellRender extends DefaultTableCellRenderer {
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         PanelAction pnlAction = new PanelAction();
-        
+        pnlAction.setBackground(comp.getBackground());
         return pnlAction;
     }
     

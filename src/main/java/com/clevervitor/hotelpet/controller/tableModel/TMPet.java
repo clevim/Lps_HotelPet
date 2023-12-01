@@ -72,7 +72,7 @@ public class TMPet extends AbstractTableModel {
                 case COL_SEXO:
                     return aux.getSexo();
                 case COL_EDITAR:
-                    return new TableActionCellRender();
+                    return "Editar";
                     
                 default:
                     break;

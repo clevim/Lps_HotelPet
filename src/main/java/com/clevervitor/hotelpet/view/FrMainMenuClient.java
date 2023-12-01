@@ -41,10 +41,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         
         propController = new ProprietarioController();
         
-        propController.atualizarTabelaDePets(grdPets, proprietario.getPetsPossuidos());
+        propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietario.getLstPetsPossuidos());
         grdPets.getColumnModel().getColumn(6).setCellRenderer(new TableActionCellRender());
-        System.out.println(grdPets.getColumnModel().getColumn(6).toString());
 
+        
+       //com.clevervitor.hotelpet.view.UI.TableActionCellRender[Table.cellRenderer,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=javax.swing.border.EmptyBorder@61a30083,flags=25165832,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=,verticalAlignment=CENTER,verticalTextPosition=CENTER]
         lblNome.setForeground(Color.WHITE);
         lblEndereco.setForeground(Color.WHITE);
         lblDocumeto.setForeground(Color.WHITE);
@@ -84,7 +85,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         lblContatoCliente.setText(proprietarioLogado.getTel());
         lblContatoCliente.setForeground(Color.WHITE);
 
-        propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietarioLogado.getPetsPossuidos());
+        propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietarioLogado.getLstPetsPossuidos());
 
     }
 
@@ -418,7 +419,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         telaCadPet.setVisible(true);
 
         proprietarioLogado = propController.buscarProprietario(proprietarioLogado.getId());
-        propController.atualizarTabelaDePets(grdPets, proprietarioLogado.getPetsPossuidos());
+        propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietarioLogado.getLstPetsPossuidos());
 
 
     }//GEN-LAST:event_menuAdicionarPetActionPerformed
@@ -450,6 +451,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
     private void btnAgendarEstadiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaActionPerformed
         // TODO add your handling code here:
+        
 
     }//GEN-LAST:event_btnAgendarEstadiaActionPerformed
 

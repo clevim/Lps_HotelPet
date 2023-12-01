@@ -26,6 +26,7 @@ com\clevervitor\hotelpet\valid\ValidateProprietario.class
 com\clevervitor\hotelpet\view\FrLogin$2.class
 com\clevervitor\hotelpet\view\dialogs\DlgCadPet$4.class
 com\clevervitor\hotelpet\view\UI\TableActionCellRender.class
+com\clevervitor\hotelpet\controller\tableModel\TMProprietario.class
 com\clevervitor\hotelpet\view\UI\PanelAction.class
 com\clevervitor\hotelpet\controller\tableModel\TMPet.class
 com\clevervitor\hotelpet\model\entities\Proprietario.class
@@ -33,12 +34,17 @@ com\clevervitor\hotelpet\model\entities\Funcionario.class
 com\clevervitor\hotelpet\view\FrMainMenuClient$6.class
 com\clevervitor\hotelpet\controller\ProprietarioController.class
 com\clevervitor\hotelpet\view\FrLogin.class
+com\clevervitor\hotelpet\controller\tableModel\TMFucionario.class
+com\clevervitor\hotelpet\exceptions\AgendamentoException.class
 com\clevervitor\hotelpet\valid\ValidateUtils.class
+com\clevervitor\hotelpet\valid\ValidateAgendamento.class
 com\clevervitor\hotelpet\view\FrMainMenuClient$3.class
+com\clevervitor\hotelpet\controller\AgendamentoController.class
 com\clevervitor\hotelpet\model\dao\PessoaDAO.class
 com\clevervitor\hotelpet\view\FrLogin$1.class
 com\clevervitor\hotelpet\exceptions\ProprietarioException.class
 com\clevervitor\hotelpet\view\dialogs\DlgCadPet$5.class
+com\clevervitor\hotelpet\model\dao\AgendamentoDAO.class
 com\clevervitor\hotelpet\controller\FuncionarioController.class
 com\clevervitor\hotelpet\view\dialogs\DlgCadProprietario$3.class
 com\clevervitor\hotelpet\model\dao\contracts\IDao.class

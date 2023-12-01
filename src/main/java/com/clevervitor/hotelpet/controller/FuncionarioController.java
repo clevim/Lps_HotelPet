@@ -4,13 +4,20 @@
  */
 package com.clevervitor.hotelpet.controller;
 
+import com.clevervitor.hotelpet.controller.tableModel.TMPet;
+import com.clevervitor.hotelpet.controller.tableModel.TMProprietario;
 import com.clevervitor.hotelpet.exceptions.FuncionarioException;
 import com.clevervitor.hotelpet.model.dao.FuncionarioDAO;
+import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
+import com.clevervitor.hotelpet.model.entities.Pet;
+import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.valid.ValidateFuncionario;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JTable;
 
 /**
  *
@@ -48,6 +55,11 @@ public class FuncionarioController {
             throw new FuncionarioException("Error - já existe um Funcionario com este 'id'.");
         }
     }
+    
+    public List<Funcionario> buscarTodosOsFuncionarios() {
+        return (List<Funcionario>) this.repositorio.findAll();
+    }
+    
 
     public void atualizarFuncionario(Funcionario editFuncionario) {
 

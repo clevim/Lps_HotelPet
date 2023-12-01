@@ -37,7 +37,7 @@ public class Pet {
     private Proprietario proprietario;
     
     @ManyToOne
-    @JoinColumn(name ="pet_id")
+    @JoinColumn(name ="agendamentoMarcado_id")
     private Agendamento agendamentoMarcado;
     
     public Pet(String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs, Proprietario dono){

@@ -31,6 +31,11 @@ public class Agendamento {
     private String dataCheckOut;
     private String servicosAdicionais;
     
+    @OneToOne
+    @JoinColumn(name = "proprietarioResp_id")
+    private Proprietario proprietarioResp;
+    
+    
     
     @OneToOne(mappedBy = "agendamentoMarcado")
     @JoinColumn(name = "agendamento_id")

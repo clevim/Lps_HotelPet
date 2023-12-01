@@ -5,9 +5,11 @@
 package com.clevervitor.hotelpet.controller;
 
 import com.clevervitor.hotelpet.controller.tableModel.TMPet;
+import com.clevervitor.hotelpet.controller.tableModel.TMProprietario;
 import com.clevervitor.hotelpet.exceptions.PetException;
 import com.clevervitor.hotelpet.exceptions.ProprietarioException;
 import com.clevervitor.hotelpet.model.dao.ProprietarioDAO;
+import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.valid.ValidateProprietario;
@@ -42,8 +44,10 @@ public class ProprietarioController {
 //        return entityManager;
 //    }
 
-    public void atualizarTabelaDePets(JTable grd, List<Pet> lst){
-        TMPet tableModel = new TMPet(lst);
+    
+    
+    public void atualizarTabelaDeProprietarios(JTable grd, List<Proprietario> lst){
+        TMProprietario tableModel = new TMProprietario(lst);
         grd.setModel(tableModel);
     }
     
@@ -80,8 +84,10 @@ public class ProprietarioController {
     public Proprietario buscarProprietario(Integer id) {
         return (Proprietario) this.repositorio.find(id);
     }
-
     
+    public List<Proprietario> buscarTodosOsProprietarios() {
+        return (List<Proprietario>) this.repositorio.findAll();
+    }
 
     public void excluirPet(Proprietario proprietario) {
         if (proprietario.getId() != null) {

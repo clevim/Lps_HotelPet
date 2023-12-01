@@ -6,6 +6,7 @@ package com.clevervitor.hotelpet.view;
 
 import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
+import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import static com.clevervitor.hotelpet.valid.ValidateUtils.descriptografiaBase64Decode;
@@ -214,7 +215,7 @@ public class FrLogin extends javax.swing.JFrame {
                     int nivelAcesso = p.getNivelAcesso();
                     switch (nivelAcesso) {
                         case 0:
-                            FrMainMenuFuncioario adminMenu = new FrMainMenuFuncioario();
+                            FrMainMenuFuncioario adminMenu = new FrMainMenuFuncioario((Funcionario) p);
                             adminMenu.setTitle("ADMIN");
                             adminMenu.setVisible(true);
                             dispose();
@@ -222,7 +223,7 @@ public class FrLogin extends javax.swing.JFrame {
                             break;
 
                         case 1:
-                            FrMainMenuFuncioario funcionarioMenu = new FrMainMenuFuncioario();
+                            FrMainMenuFuncioario funcionarioMenu = new FrMainMenuFuncioario((Funcionario) p);
                             funcionarioMenu.setTitle("Funcionario");
                             funcionarioMenu.setVisible(true);
                             dispose();

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Fetch;
 
 
 @EqualsAndHashCode(callSuper=false)
@@ -28,16 +29,18 @@ public class Proprietario extends Pessoa {
     private Integer id;
 
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Pet> petsPossuidos;
+    private List<Pet> lstPetsPossuidos;
 
+    @OneToMany (mappedBy = "proprietarioResp", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+        @Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
+
+    private List<Agendamento> lstAgendamentos;
     public Proprietario() {
         super();
-        this.petsPossuidos = new ArrayList<>();
     }
 
     public Proprietario(String nome, String endereco, String dataNasc, String sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
         super(nome, endereco, dataNasc, sexo, tel, email, cpf, senha, nivelAcesso);
-        this.petsPossuidos = new ArrayList<>();
     }
 
     @Override
