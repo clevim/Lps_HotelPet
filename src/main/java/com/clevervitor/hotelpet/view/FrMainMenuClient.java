@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.view;
 
+import com.clevervitor.hotelPet.view.dialogs.DlgCadAgendamento;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.controller.tableModel.TMAgendamentos;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
@@ -39,6 +40,8 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     public FrMainMenuClient(Proprietario proprietario) {
         initComponents();
         
+      
+
         propController = new ProprietarioController();
         
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietario.getLstPetsPossuidos());
@@ -76,7 +79,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
    
 
     public void habilitarCampos(boolean flag) {
-        lblNomeCliente.setText(proprietarioLogado.getNome());
+        lblNomeCliente.setText(proprietarioLogado.getNome() + "!");
         lblNomeCliente.setForeground(Color.WHITE);
         lblEnderecoCliente.setText(proprietarioLogado.getEndereco());
         lblEnderecoCliente.setForeground(Color.WHITE);
@@ -86,6 +89,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         lblContatoCliente.setForeground(Color.WHITE);
 
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietarioLogado.getLstPetsPossuidos());
+        propController.atualizarTabelaDeAgendamentos(grdAgendamentos, proprietarioLogado.getLstAgendamentos());
 
     }
 
@@ -152,13 +156,24 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
 
-        lblNome.setText("Nome:");
+        lblNomeCliente.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 24)); // NOI18N
+        lblNomeCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        lblContatoCliente.setFont(new java.awt.Font("Microsoft YaHei UI Light", 1, 14)); // NOI18N
+
+        lblNome.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 24)); // NOI18N
+        lblNome.setText("Seja bem-vindo novamente,");
+
+        lblDocumeto.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblDocumeto.setText("Doc.:");
 
+        lblContato.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblContato.setText("Contato:");
 
+        lblEndereco.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblEndereco.setText("Endereço:");
+
+        lblEnderecoCliente.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
 
         pnlAgendamentos.setBackground(new java.awt.Color(51, 51, 51));
         pnlAgendamentos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus agendamentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(204, 204, 204))); // NOI18N
@@ -180,7 +195,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         scrollAgendamentos.setViewportView(grdAgendamentos);
 
         lblAgendar.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        lblAgendar.setText("Novo agendamento");
+        lblAgendar.setText("Agendar");
         lblAgendar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblAgendarMouseEntered(evt);
@@ -215,24 +230,27 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             .addGroup(pnlAgendamentosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollAgendamentos)
+                    .addGroup(pnlAgendamentosLayout.createSequentialGroup()
+                        .addComponent(scrollAgendamentos)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblAgendar)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgendarEstadia)
-                .addGap(50, 50, 50))
+                        .addGap(0, 928, Short.MAX_VALUE)
+                        .addGroup(pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
+                                .addComponent(btnAgendarEstadia)
+                                .addGap(37, 37, 37))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
+                                .addComponent(lblAgendar)
+                                .addGap(23, 23, 23))))))
         );
         pnlAgendamentosLayout.setVerticalGroup(
             pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAgendarEstadia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(scrollAgendamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -256,7 +274,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             }
         ));
         grdPets.setCellSelectionEnabled(true);
-        grdPets.setRowHeight(40);
         grdPets.setShowGrid(true);
         scrollPets.setViewportView(grdPets);
         grdPets.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -299,20 +316,21 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                         .addComponent(lblEnderecoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(261, 261, 261))
                     .addGroup(pnlClienteLayout.createSequentialGroup()
-                        .addComponent(lblNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(277, 277, 277))
-                    .addGroup(pnlClienteLayout.createSequentialGroup()
-                        .addComponent(lblContato)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
-                        .addComponent(lblContatoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(320, 320, 320))
-                    .addGroup(pnlClienteLayout.createSequentialGroup()
                         .addComponent(lblDocumeto)
                         .addGap(5, 5, 5)
                         .addComponent(lblDocCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnlClienteLayout.createSequentialGroup()
+                        .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlClienteLayout.createSequentialGroup()
+                                .addComponent(lblNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlClienteLayout.createSequentialGroup()
+                                .addComponent(lblContato)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblContatoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pnlClienteLayout.setVerticalGroup(
             pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +345,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                         .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblDocumeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblDocCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -451,6 +469,10 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
     private void btnAgendarEstadiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaActionPerformed
         // TODO add your handling code here:
+        DlgCadAgendamento telaAgendamento = new DlgCadAgendamento(new Frame(), true, proprietarioLogado);
+        telaAgendamento.setVisible(true);
+        
+        propController.atualizarTabelaDeAgendamentos(grdAgendamentos, proprietarioLogado.getLstAgendamentos());
         
 
     }//GEN-LAST:event_btnAgendarEstadiaActionPerformed

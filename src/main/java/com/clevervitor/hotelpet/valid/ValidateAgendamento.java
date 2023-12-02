@@ -44,11 +44,11 @@ public class ValidateAgendamento {
 
         agendamento.setProprietarioResp(validaAgendamento.getProprietarioResp());
         
-        if (validaAgendamento.getPetAgendado() == null) {
+        if (validaAgendamento.getLstPetsAgendados()== null) {
             throw new AgendamentoException("Error - Nenhum animal agendado");
         }
 
-        agendamento.setPetAgendado(validaAgendamento.getPetAgendado());
+        agendamento.setLstPetsAgendados(validaAgendamento.getLstPetsAgendados());
 
         
         

@@ -4,6 +4,8 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,23 +39,32 @@ public class Agendamento {
     
     
     
-    @OneToOne(mappedBy = "agendamentoMarcado")
-    @JoinColumn(name = "agendamento_id")
-    private Pet petAgendado;
+    @OneToMany(mappedBy = "agendamentoMarcado", fetch = FetchType.EAGER)
+    private List<Pet> lstPetsAgendados;
     
-    public Agendamento (String dataCheckIn, String dataCheckOut, String servicosAdicionais, Pet petAgendado){
+    public Agendamento (String dataCheckIn, String dataCheckOut, String servicosAdicionais,Proprietario proprietario, List<Pet> pets){
         this.dataCheckIn = dataCheckIn;
         this.dataCheckOut = dataCheckOut;
         this.servicosAdicionais = servicosAdicionais;
-        this.petAgendado = petAgendado;
+        this.proprietarioResp = proprietario;
+        this.lstPetsAgendados = pets;
     }
     
     public Agendamento (){
         this.dataCheckIn = "";
         this.dataCheckOut = "";
         this.servicosAdicionais = "";
-        this.petAgendado = new Pet();
+        this.proprietarioResp = new Proprietario();
+        this.lstPetsAgendados = new ArrayList<>();
     }
     
+    
+    public String toStringLst(List<Pet> lst) {
+        String txt = "";
+        for (Pet pet : lst) {
+            txt += pet.getNome() + " | " + pet.getRaca();
+        }
+        return txt;
+    }
     
 }

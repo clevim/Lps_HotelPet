@@ -4,7 +4,7 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
-
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,11 +20,11 @@ import lombok.Data;
 @Data
 @Entity
 public class Pet {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    
+
     private String nome;
     private String especie;
     private String raca;
@@ -33,14 +33,14 @@ public class Pet {
     private Double peso;
     private String obs;
     @ManyToOne
-    @JoinColumn(name ="prorpietario_id")
+    @JoinColumn(name = "prorpietario_id")
     private Proprietario proprietario;
-    
+
     @ManyToOne
-    @JoinColumn(name ="agendamentoMarcado_id")
+    @JoinColumn(name = "lstPetsAgendados_id")
     private Agendamento agendamentoMarcado;
-    
-    public Pet(String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs, Proprietario dono){
+
+    public Pet(String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs, Proprietario dono) {
         this.nome = nome;
         this.especie = especie;
         this.raca = raca;
@@ -51,8 +51,8 @@ public class Pet {
         this.proprietario = dono;
 
     }
-    
-    public Pet(){
+
+    public Pet() {
         this.id = -1;
         this.nome = "";
         this.especie = "";
@@ -62,13 +62,21 @@ public class Pet {
         this.peso = 0.0;
         this.obs = "";
         this.proprietario = new Proprietario();
-    
+
     }
-    
+
     @Override
     public String toString() {
         String txt = getNome();
 
+        return txt;
+    }
+
+    public String toStringLst(List<Pet> lst) {
+        String txt = "";
+        for (Pet pet : lst) {
+            txt += pet.getNome() + " | " + pet.getRaca();
+        }
         return txt;
     }
 }

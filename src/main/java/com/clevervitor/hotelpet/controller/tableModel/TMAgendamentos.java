@@ -19,10 +19,9 @@ public class TMAgendamentos extends AbstractTableModel {
 
     private final int COL_ID = 0;
     private final int COL_NOME = 1;
-    private final int COL_RACA = 2;
-    private final int COL_DATA_CHECKIN = 3;
-    private final int COL_DATA_CHECKOUT = 4;
-    private final int COL_SERVICOS_ADICIONAIS = 5;
+    private final int COL_DATA_CHECKIN = 2;
+    private final int COL_DATA_CHECKOUT = 3;
+    private final int COL_SERVICOS_ADICIONAIS = 4;
 
     public TMAgendamentos(List lstAgendamentos) {
         this.lista = lstAgendamentos;
@@ -35,7 +34,7 @@ public class TMAgendamentos extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return 5;
     }
 
     @Override
@@ -52,9 +51,7 @@ public class TMAgendamentos extends AbstractTableModel {
                 case COL_ID:
                     return aux.getId();
                 case COL_NOME:
-                    return aux.getPetAgendado().getNome();
-                case COL_RACA:
-                    return aux.getPetAgendado().getRaca();
+                    return aux.toStringLst(aux.getLstPetsAgendados());
                 case COL_DATA_CHECKIN:
                     return aux.getDataCheckIn();
                 case COL_DATA_CHECKOUT:
@@ -77,9 +74,7 @@ public class TMAgendamentos extends AbstractTableModel {
                 case COL_ID:
                     return "Id do agendamento";
                 case COL_NOME:
-                    return "Nome do pet";
-                case COL_RACA:
-                    return "Raca";
+                    return "Pet";
                 case COL_DATA_CHECKIN:
                     return "Data check-in";
                 case COL_DATA_CHECKOUT:

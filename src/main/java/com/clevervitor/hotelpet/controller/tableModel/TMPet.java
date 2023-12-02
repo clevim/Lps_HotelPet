@@ -35,6 +35,7 @@ public class TMPet extends AbstractTableModel {
     
     public TMPet(List lstPets) {
         this.lista = lstPets;
+        
     }
 
     @Override
@@ -60,7 +61,7 @@ public class TMPet extends AbstractTableModel {
                 case -1:
                     return aux;
                 case COL_ID:
-                    return aux.getId();
+                    return  aux.getId();
                 case COL_NOME:
                     return aux.getNome();
                 case COL_IDADE:

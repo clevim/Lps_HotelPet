@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.controller;
 
+import com.clevervitor.hotelpet.controller.tableModel.TMAgendamentos;
 import com.clevervitor.hotelpet.controller.tableModel.TMPet;
 import com.clevervitor.hotelpet.controller.tableModel.TMProprietario;
 import com.clevervitor.hotelpet.exceptions.PetException;
@@ -48,6 +49,11 @@ public class ProprietarioController {
     
     public void atualizarTabelaDeProprietarios(JTable grd, List<Proprietario> lst){
         TMProprietario tableModel = new TMProprietario(lst);
+        grd.setModel(tableModel);
+    }
+    
+    public void atualizarTabelaDeAgendamentos(JTable grd, List<Agendamento> lst){
+        TMAgendamentos tableModel = new TMAgendamentos(lst);
         grd.setModel(tableModel);
     }
     
