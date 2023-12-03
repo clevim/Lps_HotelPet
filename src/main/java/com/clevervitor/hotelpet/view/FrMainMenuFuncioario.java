@@ -4,6 +4,8 @@
  */
 package com.clevervitor.hotelpet.view;
 
+import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
+import java.awt.Frame;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -55,6 +57,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         jMenu3 = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
 
@@ -157,6 +160,14 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         });
         jMenu3.add(jMenuItem1);
 
+        jMenuItem2.setText("Cadastrar Cliente|Funcionario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
         jMenuBar1.add(jMenu3);
 
         jMenu2.setText("File");
@@ -189,6 +200,11 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         this.dispose();    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame(), true);
+        cadastroProp.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -208,6 +224,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables

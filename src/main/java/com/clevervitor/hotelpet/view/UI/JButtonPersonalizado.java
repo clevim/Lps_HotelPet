@@ -25,7 +25,7 @@ public class JButtonPersonalizado extends javax.swing.JButton {
     public JButtonPersonalizado() {
 
 
-        btnEditarPet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/iconAgendarEstadia32.png"))); // NOI18N
+        //btnEditarPet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/iconAgendarEstadia32.png"))); // NOI18N
         btnEditarPet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEditarPetMouseEntered(evt);

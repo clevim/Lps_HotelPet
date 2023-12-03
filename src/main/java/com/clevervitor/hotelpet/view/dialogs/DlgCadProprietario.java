@@ -4,7 +4,9 @@
  */
 package com.clevervitor.hotelpet.view.dialogs;
 
+import com.clevervitor.hotelpet.controller.FuncionarioController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
+import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.view.FrLogin;
@@ -13,6 +15,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -22,7 +27,15 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
     ProprietarioController proprietarioCont;
     int proprietarioEditando = -1;
+    FuncionarioController fucionarioCont;
+    int funcionarioEditando = -1;
 
+    /**
+     *
+     * @param parent
+     * @param modal
+     * @param funcioario
+     */
     public DlgCadProprietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -34,9 +47,20 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         }
 
         setIconImage(iconeTitulo);
-        
+
+        String TName = parent.getTitle();
+        jPanelFunc.setVisible(false);
+        jRadioClient.setSelected(true);
+
+        if (!"Login".equals(TName)) {
+            JPanelAdmin.setVisible(true);
+        } else {
+            JPanelAdmin.setVisible(false);
+        }
 
         proprietarioCont = new ProprietarioController();
+        fucionarioCont = new FuncionarioController();
+
     }
 
     /**
@@ -52,34 +76,44 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         edtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        edtCpf = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        edtDataNascimento = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         edtCidade = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         edtEstado = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        edtTelefone = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         cbxSexo = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        edtEmail = new javax.swing.JTextField();
+        edtEmail = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         edtSenha = new javax.swing.JTextField();
+        JPanelAdmin = new javax.swing.JPanel();
+        jRadioClient = new javax.swing.JRadioButton();
+        jRadioFuncionario = new javax.swing.JRadioButton();
+        jPanelFunc = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        edtTurno = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        edtCargo = new javax.swing.JTextField();
+        edtSalario = new javax.swing.JFormattedTextField();
+        edtCpf = new javax.swing.JFormattedTextField();
+        edtDataNascimento = new javax.swing.JFormattedTextField();
+        edtTelefone = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        formCadProprietario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24))); // NOI18N
+        formCadProprietario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel1.setText("Nome:");
 
         jLabel2.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
-        jLabel2.setText("Documento:");
+        jLabel2.setText("CPF:");
 
         jLabel3.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel3.setText("Data de Nascimento:");
@@ -101,6 +135,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel8.setText("E-Mail");
 
+        edtEmail.setText("jFormattedTextField2");
+
         jLabel9.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel9.setText("Senha");
 
@@ -110,92 +146,208 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             }
         });
 
+        jRadioClient.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jRadioClient.setText("Cliente");
+        jRadioClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioClientActionPerformed(evt);
+            }
+        });
+
+        jRadioFuncionario.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jRadioFuncionario.setText("Funcionario");
+        jRadioFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioFuncionarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JPanelAdminLayout = new javax.swing.GroupLayout(JPanelAdmin);
+        JPanelAdmin.setLayout(JPanelAdminLayout);
+        JPanelAdminLayout.setHorizontalGroup(
+            JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jRadioClient)
+            .addComponent(jRadioFuncionario)
+        );
+        JPanelAdminLayout.setVerticalGroup(
+            JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioClient)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioFuncionario)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel10.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel10.setText("Salario :");
+
+        jLabel11.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel11.setText("Turno :");
+
+        edtTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtTurnoActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel12.setText("Cargo :");
+
+        edtSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+
+        javax.swing.GroupLayout jPanelFuncLayout = new javax.swing.GroupLayout(jPanelFunc);
+        jPanelFunc.setLayout(jPanelFuncLayout);
+        jPanelFuncLayout.setHorizontalGroup(
+            jPanelFuncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFuncLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelFuncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelFuncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(edtCargo)
+                    .addComponent(edtTurno, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                    .addComponent(edtSalario))
+                .addContainerGap())
+        );
+        jPanelFuncLayout.setVerticalGroup(
+            jPanelFuncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFuncLayout.createSequentialGroup()
+                .addGroup(jPanelFuncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(edtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelFuncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(edtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelFuncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(edtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        try {
+            edtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            edtDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            edtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout formCadProprietarioLayout = new javax.swing.GroupLayout(formCadProprietario);
         formCadProprietario.setLayout(formCadProprietarioLayout);
         formCadProprietarioLayout.setHorizontalGroup(
             formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formCadProprietarioLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(formCadProprietarioLayout.createSequentialGroup()
-                        .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formCadProprietarioLayout.createSequentialGroup()
-                                    .addComponent(edtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(edtEstado))
-                                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)))
-                            .addGroup(formCadProprietarioLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(99, 99, 99)
-                                .addComponent(jLabel5)))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1)
+                        .addGap(264, 264, 264)
+                        .addComponent(jLabel2)
+                        .addGap(143, 143, 143)
+                        .addComponent(jLabel3))
+                    .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel4)
+                        .addGap(99, 99, 99)
+                        .addComponent(jLabel5)
+                        .addGap(115, 115, 115)
+                        .addComponent(jLabel6)
+                        .addGap(111, 111, 111)
+                        .addComponent(jLabel7))
+                    .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(edtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(edtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(edtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(JPanelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(edtTelefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                .addComponent(edtCpf, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel7)
-                                .addComponent(edtDataNascimento)
-                                .addComponent(cbxSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formCadProprietarioLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formCadProprietarioLayout.createSequentialGroup()
-                                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(221, 221, 221))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formCadProprietarioLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(289, 289, 289))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formCadProprietarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                                .addGap(145, 145, 145)
+                                .addComponent(jLabel9))
+                            .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(edtSenha)
+                                    .addComponent(edtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))))
+                        .addGap(26, 26, 26)
+                        .addComponent(jPanelFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 10, Short.MAX_VALUE))
+            .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(edtDataNascimento)
+                .addContainerGap())
+            .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                .addGap(274, 274, 274)
                 .addComponent(jLabel8)
-                .addGap(289, 289, 289))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         formCadProprietarioLayout.setVerticalGroup(
             formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formCadProprietarioLayout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(6, 6, 6)
+                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(6, 6, 6)
+                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(edtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(edtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(2, 2, 2)
+                .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelFunc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(formCadProprietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JPanelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(formCadProprietarioLayout.createSequentialGroup()
+                                .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel9)
+                                .addGap(6, 6, 6)
+                                .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
 
         btnCancelar.setText("Cancelar");
@@ -228,11 +380,13 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(formCadProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(formCadProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        formCadProprietario.getAccessibleContext().setAccessibleName("Cadastro");
 
         pack();
         setLocationRelativeTo(null);
@@ -243,14 +397,33 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     }//GEN-LAST:event_edtSenhaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        FrLogin TLogin = new FrLogin();
+        TLogin.setTitle("Login");
+        TLogin.setVisible(true);
+        this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         String endereco = edtCidade.getText() + ", " + edtEstado.getText();
-        Proprietario prop = new Proprietario(edtNome.getText(), endereco, edtDataNascimento.getText(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
         
+        
+        if(jRadioFuncionario.isSelected()){
+            Double Salario = Double.valueOf(edtSalario.getText());
+           
+            Funcionario func = new Funcionario(Salario, edtTurno.getText(), edtCargo.getText(), edtNome.getText(), endereco, edtDataNascimento.getText(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 1);
+        if (funcionarioEditando > 0) {
+            fucionarioCont.atualizarFuncionario(func);
+        } else {
+            fucionarioCont.cadastrarFuncionario(func);
+        }
+
+        this.funcionarioEditando = -1;
+        dispose();
+        
+        }else if(jRadioClient.isSelected()){
+        
+        Proprietario prop = new Proprietario(edtNome.getText(), endereco, edtDataNascimento.getText(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
 
         if (proprietarioEditando > 0) {
             proprietarioCont.atualizarProprietario(prop);
@@ -260,27 +433,49 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         this.proprietarioEditando = -1;
         dispose();
+        }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void jRadioClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioClientActionPerformed
+        jRadioFuncionario.setSelected(false); 
+        jPanelFunc.setVisible(false);// TODO add your handling code here:
+    }//GEN-LAST:event_jRadioClientActionPerformed
+
+    private void jRadioFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioFuncionarioActionPerformed
+        jRadioClient.setSelected(false); 
+        jPanelFunc.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jRadioFuncionarioActionPerformed
+
+    private void edtTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtTurnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtTurnoActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JPanelAdmin;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cbxSexo;
+    private javax.swing.JTextField edtCargo;
     private javax.swing.JTextField edtCidade;
-    private javax.swing.JTextField edtCpf;
+    private javax.swing.JFormattedTextField edtCpf;
     private javax.swing.JFormattedTextField edtDataNascimento;
-    private javax.swing.JTextField edtEmail;
+    private javax.swing.JFormattedTextField edtEmail;
     private javax.swing.JTextField edtEstado;
     private javax.swing.JTextField edtNome;
+    private javax.swing.JFormattedTextField edtSalario;
     private javax.swing.JTextField edtSenha;
-    private javax.swing.JTextField edtTelefone;
+    private javax.swing.JFormattedTextField edtTelefone;
+    private javax.swing.JTextField edtTurno;
     private javax.swing.JPanel formCadProprietario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -290,5 +485,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanelFunc;
+    private javax.swing.JRadioButton jRadioClient;
+    private javax.swing.JRadioButton jRadioFuncionario;
     // End of variables declaration//GEN-END:variables
 }

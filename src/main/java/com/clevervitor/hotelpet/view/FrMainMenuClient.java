@@ -95,7 +95,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         grdAgendamentos = new javax.swing.JTable();
         lblAgendar = new javax.swing.JLabel();
-        btnAgendarEstadia = new javax.swing.JButton();
         pnlPetsCliente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         grdPets = new javax.swing.JTable();
@@ -172,24 +171,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             }
         });
 
-        btnAgendarEstadia.setBackground(new java.awt.Color(51, 51, 51));
-        btnAgendarEstadia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/iconAgendarEstadia32.png"))); // NOI18N
-        btnAgendarEstadia.setBorder(null);
-        btnAgendarEstadia.setBorderPainted(false);
-        btnAgendarEstadia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgendarEstadiaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAgendarEstadiaMouseExited(evt);
-            }
-        });
-        btnAgendarEstadia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgendarEstadiaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlAgendamentosLayout = new javax.swing.GroupLayout(pnlAgendamentos);
         pnlAgendamentos.setLayout(pnlAgendamentosLayout);
         pnlAgendamentosLayout.setHorizontalGroup(
@@ -202,17 +183,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblAgendar)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgendarEstadia)
-                .addGap(50, 50, 50))
         );
         pnlAgendamentosLayout.setVerticalGroup(
             pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAgendarEstadia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(lblAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -423,18 +398,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         return obj;
     }
 
-    private void btnAgendarEstadiaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaMouseEntered
-        // TODO add your handling code here:
-        btnAgendarEstadia.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-
-    }//GEN-LAST:event_btnAgendarEstadiaMouseEntered
-
-    private void btnAgendarEstadiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btnAgendarEstadiaActionPerformed
-
     private void lblAgendarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAgendarMouseEntered
         // TODO add your handling code here:
         lblAgendar.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -444,11 +407,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         // TODO add your handling code here:
         lblAgendar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_lblAgendarMouseExited
-
-    private void btnAgendarEstadiaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaMouseExited
-        // TODO add your handling code here:
-        btnAgendarEstadia.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_btnAgendarEstadiaMouseExited
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         FrLogin TLogin = new FrLogin();
@@ -462,7 +420,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgendarEstadia;
     private javax.swing.JTable grdAgendamentos;
     private javax.swing.JTable grdPets;
     private javax.swing.JButton jButton1;

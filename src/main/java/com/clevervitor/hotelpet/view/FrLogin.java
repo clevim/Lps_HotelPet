@@ -87,6 +87,7 @@ public class FrLogin extends javax.swing.JFrame {
 
         lblLogin.setText("Usuario:");
 
+        edtLogin.setText("c@c.com");
         edtLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtLoginActionPerformed(evt);
@@ -133,6 +134,7 @@ public class FrLogin extends javax.swing.JFrame {
             }
         });
 
+        edtPassword.setText("655321");
         edtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtPasswordActionPerformed(evt);
@@ -263,7 +265,7 @@ public class FrLogin extends javax.swing.JFrame {
 
     private void lblCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseClicked
         // TODO add your handling code here:
-        DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame(), true);
+        DlgCadProprietario cadastroProp = new DlgCadProprietario(this, true);
         cadastroProp.setVisible(true);
     }//GEN-LAST:event_lblCriarContaMouseClicked
 
