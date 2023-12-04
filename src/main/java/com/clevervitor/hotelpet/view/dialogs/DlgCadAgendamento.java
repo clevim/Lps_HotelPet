@@ -146,6 +146,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         panFormulario.setBackground(new java.awt.Color(51, 51, 51));
 
         lblCheckIn.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblCheckIn.setForeground(new java.awt.Color(242, 242, 242));
         lblCheckIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCheckIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/check-in (1).png"))); // NOI18N
         lblCheckIn.setText("Check-in:");
@@ -153,11 +154,13 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         lblCheckIn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblCheckOut.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblCheckOut.setForeground(new java.awt.Color(242, 242, 242));
         lblCheckOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/check-out (1).png"))); // NOI18N
         lblCheckOut.setText("Check-out:");
         lblCheckOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblServicos.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblServicos.setForeground(new java.awt.Color(242, 242, 242));
         lblServicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dog.png"))); // NOI18N
         lblServicos.setText("Serviços adicionais");
         lblServicos.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -258,6 +261,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
         jLabel1.setText("Agendar hospedagem");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -290,9 +294,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
             .addGroup(panFormularioLayout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panFormularioLayout.createSequentialGroup()
-                        .addComponent(lblCheckOut)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCheckOut)
                     .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(dateCheckOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(dateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))

@@ -155,6 +155,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         jButton1.setDefaultCapable(false);
         jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         lblNomeCliente.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 24)); // NOI18N
         lblNomeCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -162,15 +167,19 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         lblContatoCliente.setFont(new java.awt.Font("Microsoft YaHei UI Light", 1, 14)); // NOI18N
 
         lblNome.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 24)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(242, 242, 242));
         lblNome.setText("Seja bem-vindo novamente,");
 
         lblDocumeto.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        lblDocumeto.setForeground(new java.awt.Color(242, 242, 242));
         lblDocumeto.setText("Doc.:");
 
         lblContato.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        lblContato.setForeground(new java.awt.Color(242, 242, 242));
         lblContato.setText("Contato:");
 
         lblEndereco.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        lblEndereco.setForeground(new java.awt.Color(242, 242, 242));
         lblEndereco.setText("Endereço:");
 
         lblEnderecoCliente.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
@@ -195,6 +204,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         scrollAgendamentos.setViewportView(grdAgendamentos);
 
         lblAgendar.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        lblAgendar.setForeground(new java.awt.Color(242, 242, 242));
         lblAgendar.setText("Agendar");
         lblAgendar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -337,10 +347,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             .addGroup(pnlClienteLayout.createSequentialGroup()
                 .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlClienteLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlClienteLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -356,7 +362,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblContato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblContatoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblContatoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlClienteLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlAgendamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -364,8 +374,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                 .addGap(12, 12, 12))
         );
 
+        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
         jMenuBar1.setBorder(null);
+        jMenuBar1.setToolTipText("");
 
+        jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Menu");
 
         menuAdicionarPet.setText("Adicionar pet");
@@ -414,9 +427,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 51, Short.MAX_VALUE))
+            .addComponent(pnlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -498,6 +509,10 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         TLogin.setVisible(true);
         this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

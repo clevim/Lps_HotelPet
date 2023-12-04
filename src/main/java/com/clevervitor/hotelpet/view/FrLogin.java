@@ -74,6 +74,7 @@ public class FrLogin extends javax.swing.JFrame {
 
         panLogin.setBackground(new java.awt.Color(51, 51, 51));
 
+        lblLogin.setForeground(new java.awt.Color(242, 242, 242));
         lblLogin.setText("Usuario:");
 
         edtLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +83,7 @@ public class FrLogin extends javax.swing.JFrame {
             }
         });
 
+        lblPassword.setForeground(new java.awt.Color(242, 242, 242));
         lblPassword.setText("Senha:");
 
         bntLog.setText("Entrar");
@@ -99,6 +101,7 @@ public class FrLogin extends javax.swing.JFrame {
             }
         });
 
+        lblCriarConta.setForeground(new java.awt.Color(242, 242, 242));
         lblCriarConta.setText("Criar Conta");
         lblCriarConta.setBorder(new javax.swing.border.MatteBorder(null));
         lblCriarConta.setBorderPainted(false);
@@ -190,11 +193,12 @@ public class FrLogin extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(panLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void edtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtLoginActionPerformed
@@ -258,6 +262,7 @@ public class FrLogin extends javax.swing.JFrame {
     private void lblCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseClicked
         // TODO add your handling code here:
         DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame(), true);
+        cadastroProp.setTitle("Cadastro");
         cadastroProp.setVisible(true);
     }//GEN-LAST:event_lblCriarContaMouseClicked
 

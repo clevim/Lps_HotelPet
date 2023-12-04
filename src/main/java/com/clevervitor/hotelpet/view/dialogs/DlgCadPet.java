@@ -182,7 +182,12 @@ public class DlgCadPet extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
+        setBackground(new java.awt.Color(51, 51, 51));
+
+        panFormulario.setBackground(new java.awt.Color(51, 51, 51));
+
         lblNome.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(242, 242, 242));
         lblNome.setText("Nome:");
 
         edtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +197,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         });
 
         lblIdade.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblIdade.setForeground(new java.awt.Color(242, 242, 242));
         lblIdade.setText("Idade:");
 
         edtIdade.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +207,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         });
 
         lblEspecie.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblEspecie.setForeground(new java.awt.Color(242, 242, 242));
         lblEspecie.setText("Especie:");
 
         edtPeso.addActionListener(new java.awt.event.ActionListener() {
@@ -210,8 +217,10 @@ public class DlgCadPet extends javax.swing.JDialog {
         });
 
         lblPeso.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblPeso.setForeground(new java.awt.Color(242, 242, 242));
         lblPeso.setText("Peso:");
 
+        rbtnMacho.setForeground(new java.awt.Color(242, 242, 242));
         rbtnMacho.setText("Macho");
         rbtnMacho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,6 +228,7 @@ public class DlgCadPet extends javax.swing.JDialog {
             }
         });
 
+        rbtnFemea.setForeground(new java.awt.Color(242, 242, 242));
         rbtnFemea.setText("Femea");
         rbtnFemea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,9 +237,11 @@ public class DlgCadPet extends javax.swing.JDialog {
         });
 
         lblRaca.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblRaca.setForeground(new java.awt.Color(242, 242, 242));
         lblRaca.setText("Raça:");
 
         lblSexo.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblSexo.setForeground(new java.awt.Color(242, 242, 242));
         lblSexo.setText("Sexo:");
 
         btnSalvarPet.setText("Salvar");
@@ -241,6 +253,7 @@ public class DlgCadPet extends javax.swing.JDialog {
 
         btnCancelarPet.setText("Cancelar");
 
+        pnlDescricaoPet.setBackground(new java.awt.Color(51, 51, 51));
         pnlDescricaoPet.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descreva seu pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(153, 255, 153))); // NOI18N
 
         javax.swing.GroupLayout pnlDescricaoPetLayout = new javax.swing.GroupLayout(pnlDescricaoPet);
@@ -335,14 +348,17 @@ public class DlgCadPet extends javax.swing.JDialog {
                     .addComponent(lblPeso))
                 .addGap(18, 18, 18)
                 .addComponent(pnlDescricaoPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 24, Short.MAX_VALUE)
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvarPet)
                     .addComponent(btnCancelarPet))
                 .addContainerGap())
         );
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
         jLabel1.setText("Cadastro de Pet");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pawprint.png"))); // NOI18N
@@ -361,12 +377,12 @@ public class DlgCadPet extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -378,19 +394,15 @@ public class DlgCadPet extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addComponent(panFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panFormulario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(panFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();

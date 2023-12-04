@@ -73,35 +73,46 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        formCadProprietario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24))); // NOI18N
+        formCadProprietario.setBackground(new java.awt.Color(51, 51, 51));
+        formCadProprietario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(242, 242, 242))); // NOI18N
+        formCadProprietario.setForeground(new java.awt.Color(242, 242, 242));
 
         jLabel1.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
         jLabel1.setText("Nome:");
 
         jLabel2.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(242, 242, 242));
         jLabel2.setText("Documento:");
 
         jLabel3.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(242, 242, 242));
         jLabel3.setText("Data de Nascimento:");
 
         jLabel4.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(242, 242, 242));
         jLabel4.setText("Cidade:");
 
         jLabel5.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(242, 242, 242));
         jLabel5.setText("Estado:");
 
         jLabel6.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(242, 242, 242));
         jLabel6.setText("Telefone:");
 
         jLabel7.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(242, 242, 242));
         jLabel7.setText("Sexo:");
 
         cbxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M", "Outro" }));
 
         jLabel8.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(242, 242, 242));
         jLabel8.setText("E-Mail");
 
         jLabel9.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(242, 242, 242));
         jLabel9.setText("Senha");
 
         edtSenha.addActionListener(new java.awt.event.ActionListener() {
@@ -198,6 +209,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,18 +233,17 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formCadProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(formCadProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(0, 0, 0)
                 .addComponent(formCadProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

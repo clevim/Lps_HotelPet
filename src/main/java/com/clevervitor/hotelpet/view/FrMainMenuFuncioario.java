@@ -89,7 +89,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         setResizable(false);
 
         pnlInfo.setBackground(new java.awt.Color(51, 51, 51));
-        pnlInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Painel de Funcionário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft PhagsPa", 1, 24))); // NOI18N
+        pnlInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Painel de Funcionário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft PhagsPa", 1, 24), new java.awt.Color(242, 242, 242))); // NOI18N
         pnlInfo.setForeground(new java.awt.Color(51, 153, 255));
 
         jButton1.setText("Foto");
@@ -100,21 +100,27 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         jButton1.setFocusable(false);
 
         lblNome.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(242, 242, 242));
         lblNome.setText("Nome");
 
         lblContato.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblContato.setForeground(new java.awt.Color(242, 242, 242));
         lblContato.setText("Contato");
 
         lblEmail.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(242, 242, 242));
         lblEmail.setText("Email");
 
         lblDocumento.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblDocumento.setForeground(new java.awt.Color(242, 242, 242));
         lblDocumento.setText("Doc.");
 
         lblBemVindo.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        lblBemVindo.setForeground(new java.awt.Color(242, 242, 242));
         lblBemVindo.setText("Seja bem-vindo de volta,");
 
         lblCargo.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
+        lblCargo.setForeground(new java.awt.Color(242, 242, 242));
         lblCargo.setText("Cargo");
 
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
@@ -159,10 +165,9 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         );
 
         pnlControleGeral.setBackground(new java.awt.Color(51, 51, 51));
-        pnlControleGeral.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controle", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Nuport", 1, 18))); // NOI18N
+        pnlControleGeral.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controle", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Nuport", 1, 18), new java.awt.Color(242, 242, 242))); // NOI18N
 
         pnlComAbas.setBackground(new java.awt.Color(204, 204, 204));
-        pnlComAbas.setForeground(new java.awt.Color(0, 0, 0));
         pnlComAbas.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
 
         abaAgendamentos.setBackground(new java.awt.Color(51, 51, 51));
