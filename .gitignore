@@ -25,3 +25,5 @@ replay_pid*
 /Hotel_Pet/target/
 /target/
 /target/classes/META-INF/persistence.xml
+/src/main/resources/META-INF/persistence.xml
+pom.xml
