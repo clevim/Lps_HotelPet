@@ -3,6 +3,7 @@ com/clevervitor/hotelpet/valid/ValidatePet.class
 com/clevervitor/hotelpet/exceptions/ProprietarioException.class
 com/clevervitor/hotelpet/view/FrMainMenuClient$1.class
 com/clevervitor/hotelPet/view/dialogs/DlgCadAgendamento$5.class
+com/clevervitor/hotelpet/view/FrMainMenuFuncioario$2.class
 com/clevervitor/hotelpet/HotelPet.class
 com/clevervitor/hotelpet/controller/tableModel/TMFucionario.class
 com/clevervitor/hotelpet/valid/ValidateFuncionario.class
@@ -39,6 +40,7 @@ com/clevervitor/hotelpet/exceptions/AgendamentoException.class
 com/clevervitor/hotelPet/view/dialogs/DlgCadAgendamento.class
 com/clevervitor/hotelpet/model/entities/Funcionario.class
 com/clevervitor/hotelpet/model/dao/PessoaDAO.class
+com/clevervitor/hotelpet/view/dialogs/DlgCadProprietario$4.class
 com/clevervitor/hotelpet/view/FrLogin$1.class
 com/clevervitor/hotelpet/exceptions/FuncionarioException.class
 com/clevervitor/hotelpet/view/FrMainMenuClient$3.class
@@ -54,6 +56,7 @@ com/clevervitor/hotelpet/view/FrMainMenuFuncioario$1.class
 com/clevervitor/hotelpet/view/UI/TableActionCellRender.class
 com/clevervitor/hotelpet/model/dao/PetDAO.class
 com/clevervitor/hotelpet/view/FrLogin.class
+com/clevervitor/hotelpet/view/dialogs/DlgCadProprietario$5.class
 com/clevervitor/hotelpet/controller/tableModel/TMPet.class
 com/clevervitor/hotelPet/view/dialogs/DlgCadAgendamento$4.class
 com/clevervitor/hotelpet/view/dialogs/DlgCadPet$4.class

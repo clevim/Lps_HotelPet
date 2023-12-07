@@ -25,13 +25,14 @@ public class TMPet extends AbstractTableModel {
     private Pet petDaLista;
     
     private JButtonUI btnEditar = new JButtonUI();
-    private final int COL_ID = 0;
-    private final int COL_NOME = 1;
-    private final int COL_RACA = 2;
-    private final int COL_IDADE = 3;
-    private final int COL_SEXO = 4;
-    private final int COL_PESO = 5;
-    private final int COL_EDITAR = 6;
+     private final int COL_NOME = 0;
+    private final int COL_RACA = 1;
+    private final int COL_IDADE = 2;
+    private final int COL_SEXO = 3;
+    private final int COL_PESO = 4;
+    private final int COL_EDITAR = 5;
+
+
     
     public TMPet(List lstPets) {
         this.lista = lstPets;
@@ -45,7 +46,7 @@ public class TMPet extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 6;
     }
     
     
@@ -60,8 +61,6 @@ public class TMPet extends AbstractTableModel {
             switch (columnIndex) {
                 case -1:
                     return aux;
-                case COL_ID:
-                    return  aux.getId();
                 case COL_NOME:
                     return aux.getNome();
                 case COL_IDADE:
@@ -88,8 +87,6 @@ public class TMPet extends AbstractTableModel {
 
         switch (column) {
 
-            case COL_ID:
-                return "Id";
             case COL_NOME:
                 return "Nome";
             case COL_IDADE:

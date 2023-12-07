@@ -17,7 +17,6 @@ public class TMFucionario extends AbstractTableModel {
 
     private List lista;
 
-    private final int COL_ID = 0;
     private final int COL_NOME = 1;
     private final int COL_CPF = 2;
     private final int COL_CARGO = 3;
@@ -37,7 +36,7 @@ public class TMFucionario extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 8;
+        return 7;
     }
 
     @Override
@@ -51,8 +50,6 @@ public class TMFucionario extends AbstractTableModel {
             switch (columnIndex) {
                 case -1:
                     return aux;
-                case COL_ID:
-                    return aux.getId();
                 case COL_NOME:
                     return aux.getNome();
                 case COL_CPF:
@@ -80,8 +77,6 @@ public class TMFucionario extends AbstractTableModel {
         
         switch (column) {
             
-                case COL_ID:
-                    return "Id do Funcionario";
                 case COL_NOME:
                     return "Nome do pet";
                 case COL_CPF:

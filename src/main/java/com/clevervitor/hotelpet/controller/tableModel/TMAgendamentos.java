@@ -17,7 +17,6 @@ public class TMAgendamentos extends AbstractTableModel {
 
     private List lista;
 
-    private final int COL_ID = 0;
     private final int COL_NOME = 1;
     private final int COL_DATA_CHECKIN = 2;
     private final int COL_DATA_CHECKOUT = 3;
@@ -34,7 +33,7 @@ public class TMAgendamentos extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 4;
     }
 
     @Override
@@ -48,8 +47,6 @@ public class TMAgendamentos extends AbstractTableModel {
             switch (columnIndex) {
                 case -1:
                     return aux;
-                case COL_ID:
-                    return aux.getId();
                 case COL_NOME:
                     return aux.toStringLst(aux.getLstPetsAgendados());
                 case COL_DATA_CHECKIN:
@@ -71,8 +68,6 @@ public class TMAgendamentos extends AbstractTableModel {
         
         switch (column) {
             
-                case COL_ID:
-                    return "Id do agendamento";
                 case COL_NOME:
                     return "Pet";
                 case COL_DATA_CHECKIN:

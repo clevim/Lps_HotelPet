@@ -17,7 +17,6 @@ public class TMProprietario extends AbstractTableModel {
 
     private List lista;
 
-    private final int COL_ID = 0;
     private final int COL_NOME = 1;
     private final int COL_CPF = 2;
     private final int COL_EMAIL = 3;
@@ -34,7 +33,7 @@ public class TMProprietario extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 4;
     }
 
     @Override
@@ -48,8 +47,6 @@ public class TMProprietario extends AbstractTableModel {
             switch (columnIndex) {
                 case -1:
                     return aux;
-                case COL_ID:
-                    return aux.getId();
                 case COL_NOME:
                     return aux.getNome();
                 case COL_CPF:
@@ -71,8 +68,6 @@ public class TMProprietario extends AbstractTableModel {
         
         switch (column) {
             
-                case COL_ID:
-                    return "Id do Proprietario";
                 case COL_NOME:
                     return "Nome do pet";
                 case COL_CPF:

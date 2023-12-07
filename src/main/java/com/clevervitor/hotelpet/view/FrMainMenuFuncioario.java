@@ -9,7 +9,9 @@ import com.clevervitor.hotelpet.controller.FuncionarioController;
 import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
+import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -80,6 +82,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         tblPets = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -216,7 +219,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             abaProprietariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(abaProprietariosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrProprietarios, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                .addComponent(scrProprietarios, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -250,7 +253,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             abaPetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(abaPetsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrPets, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                .addComponent(scrPets, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
         );
 
         pnlComAbas.addTab("Pets", abaPets);
@@ -268,13 +271,21 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             pnlControleGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlControleGeralLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(pnlComAbas, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(pnlComAbas, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jMenu3.setText("Edit");
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
         jMenu3.add(jSeparator1);
 
         jMenuItem1.setText("Logout");
@@ -306,12 +317,12 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(pnlInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 183, Short.MAX_VALUE)
+                    .addGap(0, 168, Short.MAX_VALUE)
                     .addComponent(pnlControleGeral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -351,6 +362,14 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         this.dispose();    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame(), true);
+        cadastroProp.setTitle("Cadastro");
+        cadastroProp.setVisible(true);        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -365,6 +384,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblCargo;

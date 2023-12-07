@@ -65,9 +65,9 @@ public class ValidateProprietario {
         }
         proprietario.setSenha(criptografiaBase64Encoder(validaProprietario.getSenha()));
 
-        if (validaProprietario.getLstPetsPossuidos() == null) {
-            throw new ProprietarioException("Error - O proprietário não possui pets cadastrados.");
-        }
+//        if (validaProprietario.getLstPetsPossuidos() == null) {
+//            throw new ProprietarioException("Error - O proprietário não possui pets cadastrados.");
+//        }
         proprietario.setLstPetsPossuidos(validaProprietario.getLstPetsPossuidos());
         
         //Proprietário pode ser cadastrado sem nenhuma hospedagem marcada

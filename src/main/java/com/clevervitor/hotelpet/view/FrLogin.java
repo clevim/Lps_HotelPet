@@ -261,7 +261,7 @@ public class FrLogin extends javax.swing.JFrame {
 
     private void lblCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseClicked
         // TODO add your handling code here:
-        DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame(), true);
+        DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame("Login"), true);
         cadastroProp.setTitle("Cadastro");
         cadastroProp.setVisible(true);
     }//GEN-LAST:event_lblCriarContaMouseClicked
