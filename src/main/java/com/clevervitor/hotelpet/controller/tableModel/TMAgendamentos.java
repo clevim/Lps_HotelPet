@@ -17,10 +17,10 @@ public class TMAgendamentos extends AbstractTableModel {
 
     private List lista;
 
-    private final int COL_NOME = 1;
-    private final int COL_DATA_CHECKIN = 2;
-    private final int COL_DATA_CHECKOUT = 3;
-    private final int COL_SERVICOS_ADICIONAIS = 4;
+    private final int COL_NOME = 0;
+    private final int COL_DATA_CHECKIN = 1;
+    private final int COL_DATA_CHECKOUT = 2;
+    private final int COL_SERVICOS_ADICIONAIS = 3;
 
     public TMAgendamentos(List lstAgendamentos) {
         this.lista = lstAgendamentos;

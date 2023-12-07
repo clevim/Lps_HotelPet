@@ -45,15 +45,28 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAdicionarPetActionPerformed"/>
               </Events>
             </MenuItem>
-            <Menu class="javax.swing.JMenu" name="jMenu4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Reservas"/>
-              </Properties>
-            </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Relatorios"/>
               </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Hospedagem"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Pets"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
             </Menu>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>

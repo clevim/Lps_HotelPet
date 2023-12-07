@@ -13,17 +13,39 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
+            <Property name="text" type="java.lang.String" value="Menu"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem2"/>
+                <Property name="text" type="java.lang.String" value="Cadastro Pessoa"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
               </Events>
             </MenuItem>
+            <Menu class="javax.swing.JMenu" name="jMenu4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Relatorios"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Pets"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Reservas"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Proprietarios"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
@@ -201,7 +223,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f2" green="f2" red="f2" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Contato"/>
+            <Property name="text" type="java.lang.String" value="Contato:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmail">
@@ -212,7 +234,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f2" green="f2" red="f2" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Email"/>
+            <Property name="text" type="java.lang.String" value="Email:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDocumento">
@@ -223,7 +245,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f2" green="f2" red="f2" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Doc."/>
+            <Property name="text" type="java.lang.String" value="Doc. :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblBemVindo">
@@ -245,7 +267,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f2" green="f2" red="f2" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cargo"/>
+            <Property name="text" type="java.lang.String" value="Cargo:"/>
           </Properties>
         </Component>
       </SubComponents>

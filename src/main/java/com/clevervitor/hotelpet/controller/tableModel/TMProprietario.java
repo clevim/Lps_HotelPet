@@ -17,10 +17,10 @@ public class TMProprietario extends AbstractTableModel {
 
     private List lista;
 
-    private final int COL_NOME = 1;
-    private final int COL_CPF = 2;
-    private final int COL_EMAIL = 3;
-    private final int COL_ENDERECO = 4;
+    private final int COL_NOME = 0;
+    private final int COL_CPF = 1;
+    private final int COL_EMAIL = 2;
+    private final int COL_ENDERECO = 3;
 
     public TMProprietario(List lstProprietarios) {
         this.lista = lstProprietarios;

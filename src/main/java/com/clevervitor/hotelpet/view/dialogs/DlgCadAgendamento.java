@@ -9,10 +9,13 @@ import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +47,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         petSelcionado = new Pet();
         lstPetsSelecionados = new ArrayList<>();
         initComponents();
-        setBackground(new Color(51,51,51));
+        setBackground(new Color(51, 51, 51));
 
         Image iconeTitulo = null;
         try {
@@ -72,8 +75,8 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         initComponents();
 
-        setBackground(new Color(51,51,51));
-        
+        setBackground(new Color(51, 51, 51));
+
         Image iconeTitulo = null;
         try {
             iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
@@ -87,11 +90,50 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         this.limparCampos();
         this.preencherCampos();
 
+        Calendar c = Calendar.getInstance();
+
+        Date minCheckIN = c.getTime();
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        Date minCheckout = c.getTime();
+        c.add(Calendar.DAY_OF_YEAR, 29);
+        Date maxCheckout = c.getTime();
+
+        dateCheckIn.setMinSelectableDate(minCheckIN);
+        dateCheckOut.setMinSelectableDate(minCheckout);
+        dateCheckOut.setMaxSelectableDate(maxCheckout);
+
+        dateCheckIn.getDateEditor().setDate(minCheckIN);
+        dateCheckOut.getDateEditor().setDate(minCheckout);
+
         //  AgendamentoControllet.atualizarTabela(grdAgendamentos);
     }
 
     public void preencherCampos() {
 
+    }
+
+    public Date getMinCheckIn() {
+        Calendar c = Calendar.getInstance();
+
+        Date minCheckin = c.getTime();
+
+        return minCheckin;
+    }
+
+    public Date getMinCheckOut() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        Date minCheckout = c.getTime();
+
+        return minCheckout;
+    }
+
+    public Date getMaxCheckOut() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_YEAR, 30);
+        Date maxCheckout = c.getTime();
+
+        return maxCheckout;
     }
 
     public void habilitarCampos(boolean flag) {
@@ -104,8 +146,8 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     }
 
     public void limparCampos() {
-        dateCheckIn.setDate(null);
-        dateCheckOut.setDate(null);
+//        dateCheckIn.setDate(null);
+//        dateCheckOut.setDate(null);
         cbxServicos.setSelectedIndex(0);
 
     }
@@ -250,6 +292,16 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        dateCheckIn.setDate(getMinCheckIn());
+        dateCheckIn.setDateFormatString("dd/MM/yyyy");
+        dateCheckIn.setMaxSelectableDate(new java.util.Date(253370779270000L));
+        dateCheckIn.setMinSelectableDate(getMinCheckIn());
+
+        dateCheckOut.setDate(getMinCheckOut());
+        dateCheckOut.setDateFormatString("dd/MM/yyyy");
+        dateCheckOut.setMaxSelectableDate(getMaxCheckOut());
+        dateCheckOut.setMinSelectableDate(getMinCheckOut());
+
         cbxServicos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Nenhum --", "Banho", "Tosa", "Massagem", "Banho + Tosa", "Banho + Massagem", "Tosa + Massagem", "Todos" }));
         cbxServicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,7 +418,9 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         petSelcionado = (Pet) getObjetoSelecionadoNaGrid();
 
         if (petSelcionado == null) {
-            JOptionPane.showMessageDialog(null, "Primeiro, selecione um pet para ser hospedado");
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Primeiro, selecione um pet para ser hospedado");
+            DialMsg.setVisible(true);
+
         }
 
         Agendamento novoAgendamento = new Agendamento(dateCheckIn.getDate().toString(), dateCheckOut.getDate().toString(), cbxServicos.getSelectedItem().toString(), proprietarioLogado, lstPetsSelecionados);
@@ -393,9 +447,13 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         // TODO add your handling code here:
         petSelcionado = (Pet) getObjetoSelecionadoNaGrid();
         if (petSelcionado == null) {
-            JOptionPane.showMessageDialog(null, "Primeiro, selecione um pet da tabela");
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Primeiro, selecione um pet da tabela");
+            DialMsg.setVisible(true);
+      
         } else if (lstPetsSelecionados.contains(petSelcionado)) {
-            JOptionPane.showMessageDialog(null, "Este pet já foi selecionado.");
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Este pet já foi selecionado.");
+            DialMsg.setVisible(true);
+            
         } else {
             lstPetsSelecionados.add(petSelcionado);
         }
@@ -412,7 +470,9 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     private void btnRemovePetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemovePetActionPerformed
         // TODO add your handling code here:
         if (lstPetsSelecionados.size() <= 0) {
-            JOptionPane.showMessageDialog(null, "Nenhum pet para remover");
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Nenhum pet para remover");
+            DialMsg.setVisible(true);
+           
         } else {
             lstPetsSelecionados.remove(lstPetsSelecionados.size() - 1);
         }

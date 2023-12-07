@@ -38,4 +38,5 @@
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/model/dao/contracts/Dao.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/controller/ProprietarioController.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/view/UI/PanelAction.java
+/home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/view/UI/ShowMessageDialog.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/controller/tableModel/TMFucionario.java

@@ -83,6 +83,10 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -108,15 +112,15 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         lblContato.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblContato.setForeground(new java.awt.Color(242, 242, 242));
-        lblContato.setText("Contato");
+        lblContato.setText("Contato:");
 
         lblEmail.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(242, 242, 242));
-        lblEmail.setText("Email");
+        lblEmail.setText("Email:");
 
         lblDocumento.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblDocumento.setForeground(new java.awt.Color(242, 242, 242));
-        lblDocumento.setText("Doc.");
+        lblDocumento.setText("Doc. :");
 
         lblBemVindo.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
         lblBemVindo.setForeground(new java.awt.Color(242, 242, 242));
@@ -124,7 +128,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         lblCargo.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblCargo.setForeground(new java.awt.Color(242, 242, 242));
-        lblCargo.setText("Cargo");
+        lblCargo.setText("Cargo:");
 
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
         pnlInfo.setLayout(pnlInfoLayout);
@@ -277,15 +281,28 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jMenu3.setText("Edit");
+        jMenu3.setText("Menu");
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("Cadastro Pessoa");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
         jMenu3.add(jMenuItem2);
+
+        jMenu4.setText("Relatorios");
+
+        jMenuItem3.setText("Pets");
+        jMenu4.add(jMenuItem3);
+
+        jMenuItem4.setText("Reservas");
+        jMenu4.add(jMenuItem4);
+
+        jMenuItem5.setText("Proprietarios");
+        jMenu4.add(jMenuItem5);
+
+        jMenu3.add(jMenu4);
         jMenu3.add(jSeparator1);
 
         jMenuItem1.setText("Logout");
@@ -382,9 +399,13 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblCargo;

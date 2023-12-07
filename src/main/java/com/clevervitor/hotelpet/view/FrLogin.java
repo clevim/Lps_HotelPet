@@ -10,6 +10,7 @@ import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import static com.clevervitor.hotelpet.valid.ValidateUtils.descriptografiaBase64Decode;
+import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
@@ -33,7 +34,7 @@ public class FrLogin extends javax.swing.JFrame {
      */
     public FrLogin() {
         initComponents();
-        
+
         lblLogin.setForeground(Color.white);
         lblPassword.setForeground(Color.white);
         lblCriarConta.setForeground(Color.white);
@@ -46,7 +47,7 @@ public class FrLogin extends javax.swing.JFrame {
         }
 
         setIconImage(iconeTitulo);
-        
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -242,16 +243,18 @@ public class FrLogin extends javax.swing.JFrame {
 
                             break;
                         default:
-                            throw new AssertionError();
+                            ShowMessageDialog DialMsg = new ShowMessageDialog( "ERRO", "Nivel de Acesso inexistente");
+                            DialMsg.setVisible(true);
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Credenciais incorretas! Tente novamente.");
+                    ShowMessageDialog DialMsg = new ShowMessageDialog( "Incorreto", "Senha incorreta! Tente novamente.");
+                    DialMsg.setVisible(true);
                 }
             }
         } catch (Exception e) {
-            System.out.println("Erro ao validar o login: " + e.getMessage());
-            e.printStackTrace();
+            ShowMessageDialog DialMsg = new ShowMessageDialog( "Incorreto", "Email incorreto! Tente novamente.");
+            DialMsg.setVisible(true);
         }
     }//GEN-LAST:event_bntLogActionPerformed
 
@@ -279,13 +282,13 @@ public class FrLogin extends javax.swing.JFrame {
 
     private void bntLogMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntLogMouseEntered
         // TODO add your handling code here:
-                lblCriarConta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblCriarConta.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
     }//GEN-LAST:event_bntLogMouseEntered
 
     private void bntLogMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntLogMouseExited
         // TODO add your handling code here:
-                lblCriarConta.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        lblCriarConta.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
     }//GEN-LAST:event_bntLogMouseExited
 

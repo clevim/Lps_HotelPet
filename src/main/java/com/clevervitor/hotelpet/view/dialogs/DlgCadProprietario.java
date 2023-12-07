@@ -10,8 +10,11 @@ import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.view.FrLogin;
+import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -52,6 +55,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         proprietarioCont = new ProprietarioController();
         fucionarioCont = new FuncionarioController();
+
     }
 
     /**
@@ -220,7 +224,12 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         formCadProprietario.add(edtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 160, -1));
-        formCadProprietario.add(edtDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
+
+        edtDataNascimento.setDateFormatString("dd/MM/yyyy");
+        edtDataNascimento.setFont(new java.awt.Font("Fira Sans", 0, 12)); // NOI18N
+        edtDataNascimento.setMaxSelectableDate(new java.util.Date(1230778915000L));
+        edtDataNascimento.setMinSelectableDate(new java.util.Date(-1483214285000L));
+        formCadProprietario.add(edtDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 130, -1));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -279,9 +288,24 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
             Funcionario func = new Funcionario(Salario, edtTurno.getText(), edtCargo.getText(), edtNome.getText(), endereco, edtDataNascimento.getDate().toString(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 1);
             if (funcionarioEditando > 0) {
-                fucionarioCont.atualizarFuncionario(func);
+                try {
+                    fucionarioCont.atualizarFuncionario(func);
+                    ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Funcioario Atualizado com sucesso!!");
+                    DialMsg.setVisible(true);
+                } catch (Exception e) {
+                    ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao atualizar!!!");
+                    DialMsg.setVisible(true);
+                }
             } else {
-                fucionarioCont.cadastrarFuncionario(func);
+
+                try {
+                    fucionarioCont.cadastrarFuncionario(func);
+                    ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Funcioario Cadastrado com sucesso!!");
+                    DialMsg.setVisible(true);
+                } catch (Exception e) {
+                    ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
+                    DialMsg.setVisible(true);
+                }
             }
 
             this.funcionarioEditando = -1;
@@ -292,9 +316,23 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             Proprietario prop = new Proprietario(edtNome.getText(), endereco, edtDataNascimento.getDate().toString(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
 
             if (proprietarioEditando > 0) {
-                proprietarioCont.atualizarProprietario(prop);
+                try {
+                    proprietarioCont.atualizarProprietario(prop);
+                    ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Proprietario Atualizado com sucesso!!");
+                    DialMsg.setVisible(true);
+                } catch (Exception e) {
+                    ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
+                    DialMsg.setVisible(true);
+                }
             } else {
-                proprietarioCont.cadastrarProprietario(prop);
+                try {
+                    proprietarioCont.cadastrarProprietario(prop);
+                    ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Proprietario Cadastrado com sucesso!!");
+                    DialMsg.setVisible(true);
+                } catch (Exception e) {
+                    ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
+                    DialMsg.setVisible(true);
+                }
             }
 
             this.proprietarioEditando = -1;

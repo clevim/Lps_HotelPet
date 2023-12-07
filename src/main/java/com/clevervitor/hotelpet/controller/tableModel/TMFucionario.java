@@ -17,13 +17,13 @@ public class TMFucionario extends AbstractTableModel {
 
     private List lista;
 
-    private final int COL_NOME = 1;
-    private final int COL_CPF = 2;
-    private final int COL_CARGO = 3;
-    private final int COL_TURNO = 4;
-    private final int COL_EMAIL = 5;
-    private final int COL_ENDERECO = 6;
-    private final int COL_SALARIO = 7;
+    private final int COL_NOME = 0;
+    private final int COL_CPF = 1;
+    private final int COL_CARGO = 2;
+    private final int COL_TURNO = 3;
+    private final int COL_EMAIL = 4;
+    private final int COL_ENDERECO = 5;
+    private final int COL_SALARIO = 6;
 
     public TMFucionario(List lstFuncionarios) {
         this.lista = lstFuncionarios;

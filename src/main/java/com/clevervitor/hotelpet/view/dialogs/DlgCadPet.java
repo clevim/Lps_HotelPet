@@ -9,6 +9,7 @@ import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.view.FrLogin;
+import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -21,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author clevs
  */
 public class DlgCadPet extends javax.swing.JDialog {
-    
+
     ProprietarioController propCont;
     PetController petController;
     int idPetEditando;
@@ -37,7 +38,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         proprietarioLogado = proprietario;
         propCont = new ProprietarioController();
         initComponents();
-        
+
         Image iconeTitulo = null;
         try {
             iconeTitulo = ImageIO.read(getClass().getResource("/Imagens/pawprint.png"));
@@ -70,13 +71,13 @@ public class DlgCadPet extends javax.swing.JDialog {
         }
 
         setIconImage(iconeTitulo);
-        
+
         this.habilitarCampos(true);
         this.limparCampos();
 
         //  petControllet.atualizarTabela(grdPets);
     }
-    
+
     public DlgCadPet(java.awt.Frame parent, boolean modal, Pet pet, Integer petEditando) {
         super(parent, modal);
 
@@ -94,14 +95,13 @@ public class DlgCadPet extends javax.swing.JDialog {
         }
 
         setIconImage(iconeTitulo);
-        
+
         this.habilitarCampos(true);
         this.limparCampos();
         this.preencherCampos();
 
         //  petControllet.atualizarTabela(grdPets);
     }
-    
 
     public void preencherCampos() {
 
@@ -220,6 +220,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         lblPeso.setForeground(new java.awt.Color(242, 242, 242));
         lblPeso.setText("Peso:");
 
+        rbtnMacho.setBackground(new java.awt.Color(51, 51, 51));
         rbtnMacho.setForeground(new java.awt.Color(242, 242, 242));
         rbtnMacho.setText("Macho");
         rbtnMacho.addActionListener(new java.awt.event.ActionListener() {
@@ -228,6 +229,7 @@ public class DlgCadPet extends javax.swing.JDialog {
             }
         });
 
+        rbtnFemea.setBackground(new java.awt.Color(51, 51, 51));
         rbtnFemea.setForeground(new java.awt.Color(242, 242, 242));
         rbtnFemea.setText("Femea");
         rbtnFemea.addActionListener(new java.awt.event.ActionListener() {
@@ -252,6 +254,11 @@ public class DlgCadPet extends javax.swing.JDialog {
         });
 
         btnCancelarPet.setText("Cancelar");
+        btnCancelarPet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarPetActionPerformed(evt);
+            }
+        });
 
         pnlDescricaoPet.setBackground(new java.awt.Color(51, 51, 51));
         pnlDescricaoPet.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descreva seu pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(153, 255, 153))); // NOI18N
@@ -300,14 +307,11 @@ public class DlgCadPet extends javax.swing.JDialog {
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edtRaca, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(rbtnMacho)
-                        .addComponent(lblSexo))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
-                        .addComponent(rbtnFemea)
-                        .addGap(2, 2, 2)))
+                    .addComponent(rbtnMacho)
+                    .addComponent(lblSexo)
+                    .addComponent(rbtnFemea))
                 .addGap(93, 93, 93))
             .addGroup(panFormularioLayout.createSequentialGroup()
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,27 +418,30 @@ public class DlgCadPet extends javax.swing.JDialog {
 
         String sexo = null;
         proprietarioLogado = propCont.buscarProprietario(proprietarioLogado.getId());
-        
+
         if (rbtnMacho.isSelected()) {
             rbtnFemea.setEnabled(false);
             sexo = "Macho";
         } else if (rbtnFemea.isSelected()) {
             rbtnMacho.setEnabled(false);
             sexo = "Femea";
-        } else if(!rbtnFemea.isSelected() && !rbtnMacho.isSelected()) {
-            JOptionPane.showMessageDialog(null, "Selecione o sexo do pet!");
+        } else if (!rbtnFemea.isSelected() && !rbtnMacho.isSelected()) {
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Selecione o sexo do pet!");
+            DialMsg.setVisible(true);
         }
 
         Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText()), edtObs.getText(), proprietarioLogado);
-        
+
         if (idPetEditando > 0) {
             petController.atualizarPet(novoPet);
         } else {
             petController.cadastrarPet(novoPet);
         }
-        
+
         idPetEditando = -1;
-        JOptionPane.showMessageDialog(null, "Pet salvo com sucesso!");
+        ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Pet salvo com sucesso!");
+        DialMsg.setVisible(true);
+
         dispose();
     }//GEN-LAST:event_btnSalvarPetActionPerformed
 
@@ -459,6 +466,11 @@ public class DlgCadPet extends javax.swing.JDialog {
         // TODO add your handling code here:
         rbtnMacho.setSelected(false);
     }//GEN-LAST:event_rbtnFemeaActionPerformed
+
+    private void btnCancelarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPetActionPerformed
+        limparCampos();
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarPetActionPerformed
 
     /**
      * @param args the command line arguments

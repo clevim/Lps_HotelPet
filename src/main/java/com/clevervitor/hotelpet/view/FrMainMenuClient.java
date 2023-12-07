@@ -45,7 +45,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         propController = new ProprietarioController();
         
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietario.getLstPetsPossuidos());
-        grdPets.getColumnModel().getColumn(6).setCellRenderer(new TableActionCellRender());
+        grdPets.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender());
 
         
        //com.clevervitor.hotelpet.view.UI.TableActionCellRender[Table.cellRenderer,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=javax.swing.border.EmptyBorder@61a30083,flags=25165832,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=,verticalAlignment=CENTER,verticalTextPosition=CENTER]
@@ -124,8 +124,9 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         menuAdicionarPet = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -394,10 +395,24 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         });
         jMenu3.add(menuAdicionarPet);
 
-        jMenu4.setText("Reservas");
-        jMenu3.add(jMenu4);
-
         jMenu5.setText("Relatorios");
+
+        jMenuItem2.setText("Hospedagem");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem2);
+
+        jMenuItem3.setText("Pets");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem3);
+
         jMenu3.add(jMenu5);
         jMenu3.add(jSeparator1);
 
@@ -514,6 +529,14 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -526,10 +549,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblAgendar;
