@@ -18,8 +18,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Fetch;
 
-
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Entity
 public class Proprietario extends Pessoa {
@@ -31,10 +30,11 @@ public class Proprietario extends Pessoa {
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pet> lstPetsPossuidos;
 
-    @OneToMany (mappedBy = "proprietarioResp", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-        @Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "proprietarioResp", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 
     private List<Agendamento> lstAgendamentos;
+
     public Proprietario() {
         super();
     }

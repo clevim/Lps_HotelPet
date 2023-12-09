@@ -253,6 +253,7 @@ public class FrLogin extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
+            System.out.print(e);
             ShowMessageDialog DialMsg = new ShowMessageDialog( "Incorreto", "Email incorreto! Tente novamente.");
             DialMsg.setVisible(true);
         }

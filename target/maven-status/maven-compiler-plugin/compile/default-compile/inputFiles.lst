@@ -20,6 +20,7 @@
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/view/UI/TableActionCellRender.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/controller/tableModel/TMPet.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/model/dao/FuncionarioDAO.java
+/home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/utils/emailBodys.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/valid/ValidateFuncionario.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/view/FrMainMenuFuncioario.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/valid/ValidateUtils.java
@@ -32,11 +33,13 @@
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/exceptions/ProprietarioException.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/controller/AgendamentoController.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/valid/ValidateAgendamento.java
+/home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/connection/GEmailSender.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/model/dao/ProprietarioDAO.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/model/entities/Proprietario.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/controller/tableModel/TMAgendamentos.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/model/dao/contracts/Dao.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/controller/ProprietarioController.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/view/UI/PanelAction.java
+/home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/utils/utils.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/view/UI/ShowMessageDialog.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/controller/tableModel/TMFucionario.java

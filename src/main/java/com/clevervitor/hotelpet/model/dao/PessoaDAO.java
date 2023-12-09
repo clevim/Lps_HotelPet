@@ -20,8 +20,9 @@ import javax.persistence.TypedQuery;
  *
  * @author clevs
  */
-public class PessoaDAO extends Dao<Pessoa>{
-      private Query qry;
+public class PessoaDAO extends Dao<Pessoa> {
+
+    private Query qry;
     private String jpql;
 
     public Pessoa findByEmail(String email) {
@@ -36,12 +37,12 @@ public class PessoaDAO extends Dao<Pessoa>{
         List<Pessoa> lst = qry.getResultList();
         this.entityManager.close();
 
-        if(lst.isEmpty()){
+        if (lst.isEmpty()) {
             return null;
         } else {
             return lst.get(0);
         }
-        
+
     }
 
     public List<Pessoa> findAll() {
@@ -98,5 +99,30 @@ public class PessoaDAO extends Dao<Pessoa>{
         return lst;
 
     }
-    
+
+    public void updateAvatar(int id, byte[] imgProfile) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        if (id < 0) {
+            throw new ProprietarioException("Este Pessoa não existe.");
+        } else {
+
+            try {
+                super.entityManager = DatabaseJPA.getInstance().getEntityManager();
+
+                Pessoa p = entityManager.find(Pessoa.class, id);
+
+                p.setAvatar(imgProfile);
+
+                this.entityManager.getTransaction().begin();
+                this.entityManager.merge(p);
+                this.entityManager.getTransaction().commit();
+            } catch (ProprietarioException e) {
+                throw new ProprietarioException("Pessoa não encontrado");
+            } finally {
+                entityManager.close();
+            }
+        }
+
+    }
+
 }

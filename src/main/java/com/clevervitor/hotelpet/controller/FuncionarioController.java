@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.controller;
 
+import com.clevervitor.hotelpet.connection.GEmailSender;
 import com.clevervitor.hotelpet.controller.tableModel.TMPet;
 import com.clevervitor.hotelpet.controller.tableModel.TMProprietario;
 import com.clevervitor.hotelpet.exceptions.FuncionarioException;
@@ -12,6 +13,7 @@ import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.utils.emailBodys;
 import com.clevervitor.hotelpet.valid.ValidateFuncionario;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -26,6 +28,9 @@ import javax.swing.JTable;
 public class FuncionarioController {
     
     private FuncionarioDAO repositorio;
+    GEmailSender emailConf = new GEmailSender();
+    emailBodys emBd = new emailBodys();
+
 
     public FuncionarioController() {
         repositorio = new FuncionarioDAO();
@@ -48,9 +53,12 @@ public class FuncionarioController {
 
         ValidateFuncionario check = new ValidateFuncionario();
         Funcionario novoFuncionario = check.validaCamposEntrada(cadFuncionario);
+        
 
         try {
             repositorio.save(novoFuncionario);
+            emailConf.sendEmail(novoFuncionario.getEmail(), "Cadastro Hotel Pet", emBd.emailDog1("Bem vindo ao Hotel Pet"));
+            
         } catch (FuncionarioException e) {
             throw new FuncionarioException("Error - já existe um Funcionario com este 'id'.");
         }
@@ -67,7 +75,8 @@ public class FuncionarioController {
         Funcionario novoFuncionario = check.validaCamposEntrada(editFuncionario);
 
         try {
-            repositorio.save(novoFuncionario);
+            repositorio.update(novoFuncionario);
+            emailConf.sendEmail(novoFuncionario.getEmail(), "Atualização Hotel Pet", emBd.emailDog2("Sua conta foi atualizada."));
         } catch (FuncionarioException e) {
             throw new FuncionarioException("Error - já existe um Funcionario com este 'id'.");
         }
@@ -77,12 +86,15 @@ public class FuncionarioController {
     public Funcionario buscarFuncionario(Integer id) {
         return (Funcionario) this.repositorio.find(id);
     }
+    
+    
 
     
 
     public void excluirFuncionario(Funcionario funcionario) {
         if (funcionario.getId() != null) {
             repositorio.delete(funcionario);
+            emailConf.sendEmail(funcionario.getEmail(), "Adeus Hotel Pet", emBd.emailCat("Sua conta foi deletada."));
         } else {
             throw new FuncionarioException("Error - Funcionario inexistente.");
         }

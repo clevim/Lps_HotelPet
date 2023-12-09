@@ -7,20 +7,31 @@ package com.clevervitor.hotelpet.view;
 import com.clevervitor.hotelPet.view.dialogs.DlgCadAgendamento;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.controller.tableModel.TMAgendamentos;
+import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.JButtonUI;
+import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import com.clevervitor.hotelpet.view.UI.TableActionCellRender;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.Frame;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JLayer;
 import javax.swing.JOptionPane;
@@ -36,30 +47,29 @@ public class FrMainMenuClient extends javax.swing.JDialog {
      */
     ProprietarioController propController;
     Proprietario proprietarioLogado;
+    utils utils;
+    byte[] imgProfile = null;
+    ImageIcon imgIcon=null;
 
     public FrMainMenuClient(Proprietario proprietario) {
         initComponents();
-        
-      
 
         propController = new ProprietarioController();
-        
+        utils = new utils();
+
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietario.getLstPetsPossuidos());
         grdPets.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender());
 
-        
-       //com.clevervitor.hotelpet.view.UI.TableActionCellRender[Table.cellRenderer,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=javax.swing.border.EmptyBorder@61a30083,flags=25165832,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=,verticalAlignment=CENTER,verticalTextPosition=CENTER]
+        //com.clevervitor.hotelpet.view.UI.TableActionCellRender[Table.cellRenderer,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=javax.swing.border.EmptyBorder@61a30083,flags=25165832,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=,verticalAlignment=CENTER,verticalTextPosition=CENTER]
         lblNome.setForeground(Color.WHITE);
         lblEndereco.setForeground(Color.WHITE);
         lblDocumeto.setForeground(Color.WHITE);
         lblContato.setForeground(Color.WHITE);
         lblAgendar.setForeground(Color.WHITE);
-        
-        scrollPets.getViewport().setBackground(new Color(51,51,51));
-        scrollAgendamentos.getViewport().setBackground(new Color(250,250,250));
-        
-        
-        
+
+        scrollPets.getViewport().setBackground(new Color(51, 51, 51));
+        scrollAgendamentos.getViewport().setBackground(new Color(250, 250, 250));
+
         Image iconeTitulo = null;
         try {
             iconeTitulo = ImageIO.read(getClass().getResource("/Imagens/pawprint.png"));
@@ -71,12 +81,18 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         this.proprietarioLogado = (Proprietario) proprietario;
         this.propController = new ProprietarioController();
+        
+        imgProfile = proprietarioLogado.getAvatar();
+        if (imgProfile != null) {
+            imgIcon = new ImageIcon(new ImageIcon(imgProfile).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
+            if (imgIcon != null) {
+                lbl_img.setText(null);
+            }
+        }
 
         habilitarCampos(true);
 
     }
-    
-   
 
     public void habilitarCampos(boolean flag) {
         lblNomeCliente.setText(proprietarioLogado.getNome() + "!");
@@ -87,6 +103,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         lblDocCliente.setForeground(Color.WHITE);
         lblContatoCliente.setText(proprietarioLogado.getTel());
         lblContatoCliente.setForeground(Color.WHITE);
+        lbl_img.setIcon(imgIcon);
 
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietarioLogado.getLstPetsPossuidos());
         propController.atualizarTabelaDeAgendamentos(grdAgendamentos, proprietarioLogado.getLstAgendamentos());
@@ -104,7 +121,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         pnlCliente = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         lblNomeCliente = new javax.swing.JLabel();
         lblContatoCliente = new javax.swing.JLabel();
         lblDocCliente = new javax.swing.JLabel();
@@ -121,6 +137,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         pnlPetsCliente = new javax.swing.JPanel();
         scrollPets = new javax.swing.JScrollPane();
         grdPets = new javax.swing.JTable();
+        lbl_img = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         menuAdicionarPet = new javax.swing.JMenuItem();
@@ -149,18 +166,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         setResizable(false);
 
         pnlCliente.setBackground(new java.awt.Color(51, 51, 51));
-
-        jButton1.setText("Foto");
-        jButton1.setBorder(new javax.swing.border.MatteBorder(null));
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setDefaultCapable(false);
-        jButton1.setFocusPainted(false);
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         lblNomeCliente.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 24)); // NOI18N
         lblNomeCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -310,6 +315,16 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        lbl_img.setForeground(new java.awt.Color(242, 242, 242));
+        lbl_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_img.setText("Update Avatar");
+        lbl_img.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbl_img.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_imgMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlClienteLayout = new javax.swing.GroupLayout(pnlCliente);
         pnlCliente.setLayout(pnlClienteLayout);
         pnlClienteLayout.setHorizontalGroup(
@@ -317,9 +332,9 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             .addComponent(pnlAgendamentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlPetsCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlClienteLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(17, 17, 17)
+                .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlClienteLayout.createSequentialGroup()
                         .addComponent(lblEndereco)
@@ -346,9 +361,9 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         pnlClienteLayout.setVerticalGroup(
             pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlClienteLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlClienteLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -364,11 +379,8 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                         .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblContato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblContatoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlClienteLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlAgendamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlPetsCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -497,9 +509,9 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         // TODO add your handling code here:
         DlgCadAgendamento telaAgendamento = new DlgCadAgendamento(new Frame(), true, proprietarioLogado);
         telaAgendamento.setVisible(true);
-        
+
         propController.atualizarTabelaDeAgendamentos(grdAgendamentos, proprietarioLogado.getLstAgendamentos());
-        
+
 
     }//GEN-LAST:event_btnAgendarEstadiaActionPerformed
 
@@ -525,10 +537,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -536,6 +544,20 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
+        
+        String file = utils.uploadAvatar(proprietarioLogado.getId(), imgProfile, imgIcon);
+        
+        if(!file.isEmpty()){
+            
+        lbl_img.setText(null);
+        imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
+        lbl_img.setIcon(imgIcon);
+        ShowMessageDialog DialMsg = new ShowMessageDialog( "Sucesso", "Avatar atualizado!");
+            DialMsg.setVisible(true);
+}
+    }//GEN-LAST:event_lbl_imgMouseClicked
 
     /**
      * @param args the command line arguments
@@ -545,7 +567,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private javax.swing.JButton btnAgendarEstadia;
     private javax.swing.JTable grdAgendamentos;
     private javax.swing.JTable grdPets;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -565,6 +586,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private javax.swing.JLabel lblEnderecoCliente;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNomeCliente;
+    private javax.swing.JLabel lbl_img;
     private javax.swing.JMenuItem menuAdicionarPet;
     private javax.swing.JPanel pnlAgendamentos;
     private javax.swing.JPanel pnlCliente;

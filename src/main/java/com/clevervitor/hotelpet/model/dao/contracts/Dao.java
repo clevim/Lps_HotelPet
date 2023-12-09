@@ -35,7 +35,7 @@ public abstract class Dao<T> implements IDao<T> {
     public void update(T obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
-        obj = this.entityManager.merge(obj);
+        this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
         this.entityManager.close();
     }

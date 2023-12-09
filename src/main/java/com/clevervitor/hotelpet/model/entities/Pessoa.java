@@ -4,12 +4,16 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 import lombok.Data;
 
 /**
@@ -34,6 +38,9 @@ public class Pessoa {
     private String cpf;
     private String senha;
     private Integer nivelAcesso;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB",nullable = true)
+    private byte[] avatar;
 
     public Pessoa() {
 
@@ -49,5 +56,11 @@ public class Pessoa {
         this.cpf = cpf;
         this.senha = senha;
         this.nivelAcesso = nivelAcesso;
+        this.avatar = null;
     }
+
+    public byte[] getImage() {
+        return avatar;
+    }
+
 }
