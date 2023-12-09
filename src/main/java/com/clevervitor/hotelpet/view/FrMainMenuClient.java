@@ -4,7 +4,7 @@
  */
 package com.clevervitor.hotelpet.view;
 
-import com.clevervitor.hotelPet.view.dialogs.DlgCadAgendamento;
+import com.clevervitor.hotelpet.view.dialogs.DlgCadAgendamento;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.controller.tableModel.TMAgendamentos;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
@@ -196,9 +196,9 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         pnlAgendamentos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus agendamentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(204, 204, 204))); // NOI18N
         pnlAgendamentos.setForeground(new java.awt.Color(204, 204, 204));
 
-        scrollAgendamentos.setBackground(new java.awt.Color(51, 51, 51));
+        scrollAgendamentos.setBackground(new java.awt.Color(160, 160, 160));
         scrollAgendamentos.setBorder(null);
-        scrollAgendamentos.setForeground(new java.awt.Color(51, 51, 51));
+        scrollAgendamentos.setForeground(new java.awt.Color(255, 255, 255));
 
         grdAgendamentos.setForeground(new java.awt.Color(51, 51, 51));
         grdAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
@@ -279,7 +279,8 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         scrollPets.setBorder(null);
 
         grdPets.setAutoCreateRowSorter(true);
-        grdPets.setForeground(new java.awt.Color(51, 51, 51));
+        grdPets.setBackground(new java.awt.Color(160, 160, 160));
+        grdPets.setForeground(new java.awt.Color(255, 255, 255));
         grdPets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -317,10 +318,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        lbl_img.setBackground(new java.awt.Color(160, 160, 160));
         lbl_img.setForeground(new java.awt.Color(242, 242, 242));
         lbl_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_img.setText("Update Avatar");
-        lbl_img.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbl_img.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         lbl_img.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_imgMouseClicked(evt);
@@ -389,7 +391,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
                 .addGap(12, 12, 12))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuBar1.setBackground(new java.awt.Color(160, 160, 160));
         jMenuBar1.setBorder(null);
         jMenuBar1.setToolTipText("");
 

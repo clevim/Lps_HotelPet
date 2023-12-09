@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import lombok.Data;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -31,18 +33,20 @@ public class Agendamento {
     
     private String dataCheckIn;
     private String dataCheckOut;
-    private String servicosAdicionais;
     
     @OneToOne
     @JoinColumn(name = "proprietarioResp_id")
     private Proprietario proprietarioResp;
-    
-    
-    
-    @OneToMany(mappedBy = "agendamentoMarcado", fetch = FetchType.EAGER)
+  
+    @OneToMany(mappedBy = "agendamentoMarcado")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Pet> lstPetsAgendados;
     
-    public Agendamento (String dataCheckIn, String dataCheckOut, String servicosAdicionais,Proprietario proprietario, List<Pet> pets){
+    @OneToMany(mappedBy = "agendamentoMarcadoServices")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Servicos> servicosAdicionais;
+    
+    public Agendamento (String dataCheckIn, String dataCheckOut, List<Servicos> servicosAdicionais,Proprietario proprietario, List<Pet> pets){
         this.dataCheckIn = dataCheckIn;
         this.dataCheckOut = dataCheckOut;
         this.servicosAdicionais = servicosAdicionais;
@@ -53,9 +57,10 @@ public class Agendamento {
     public Agendamento (){
         this.dataCheckIn = "";
         this.dataCheckOut = "";
-        this.servicosAdicionais = "";
+        this.servicosAdicionais = new ArrayList<>();
         this.proprietarioResp = new Proprietario();
         this.lstPetsAgendados = new ArrayList<>();
+        
     }
     
     

@@ -62,7 +62,7 @@ public class AgendamentoController {
         Agendamento novoAgendamento = check.validaCamposEntrada(editAgendamento);
 
         try {
-            repositorio.save(novoAgendamento);
+            repositorio.update(novoAgendamento);
         } catch (AgendamentoException e) {
             throw new AgendamentoException("Error - já existe um Agendamento com este 'id'.");
         }

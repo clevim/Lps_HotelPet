@@ -78,6 +78,9 @@ public class FrLogin extends javax.swing.JFrame {
         lblLogin.setForeground(new java.awt.Color(242, 242, 242));
         lblLogin.setText("Usuario:");
 
+        edtLogin.setBackground(new java.awt.Color(160, 160, 160));
+        edtLogin.setForeground(new java.awt.Color(255, 255, 255));
+        edtLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
         edtLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtLoginActionPerformed(evt);
@@ -126,6 +129,9 @@ public class FrLogin extends javax.swing.JFrame {
             }
         });
 
+        edtPassword.setBackground(new java.awt.Color(160, 160, 160));
+        edtPassword.setForeground(new java.awt.Color(255, 255, 255));
+        edtPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
         edtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtPasswordActionPerformed(evt);
@@ -170,8 +176,8 @@ public class FrLogin extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(lblLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(edtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

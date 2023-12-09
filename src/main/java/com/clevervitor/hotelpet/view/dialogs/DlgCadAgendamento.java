@@ -2,17 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.clevervitor.hotelPet.view.dialogs;
+package com.clevervitor.hotelpet.view.dialogs;
 
 import com.clevervitor.hotelpet.controller.AgendamentoController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
+import com.clevervitor.hotelpet.controller.ServicosController;
+import com.clevervitor.hotelpet.model.dao.ServicosDAO;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.entities.Servicos;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,20 +38,26 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     Agendamento AgendamentoSendoEditado;
     Pet petSelcionado;
     List<Pet> lstPetsSelecionados;
+    List<Servicos> lstServ;
+    List<Servicos> lstSelectServi;
+    ServicosDAO servicoDAO;
     int idAgendamentoEditando;
     private String edtSexo;
 
     public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Proprietario proprietario) {
         super(parent, modal);
-
+        initComponents();
         AgendamentoController = new AgendamentoController();
         idAgendamentoEditando = -1;
         proprietarioLogado = proprietario;
         propCont = new ProprietarioController();
         petSelcionado = new Pet();
         lstPetsSelecionados = new ArrayList<>();
-        initComponents();
+        lstSelectServi = new ArrayList<>();
+        servicoDAO = new ServicosDAO();
         setBackground(new Color(51, 51, 51));
+
+        lstServ = servicoDAO.findAll();
 
         Image iconeTitulo = null;
         try {
@@ -61,20 +71,34 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         this.habilitarCampos(true);
         this.limparCampos();
 
+        Calendar c = Calendar.getInstance();
+
+        Date minCheckIN = c.getTime();
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        Date minCheckout = c.getTime();
+        c.add(Calendar.DAY_OF_YEAR, 29);
+        Date maxCheckout = c.getTime();
+
+        dateCheckIn.setMinSelectableDate(minCheckIN);
+        dateCheckOut.setMinSelectableDate(minCheckout);
+        dateCheckOut.setMaxSelectableDate(maxCheckout);
+
+        dateCheckIn.getDateEditor().setDate(minCheckIN);
+        dateCheckOut.getDateEditor().setDate(minCheckout);
         //  AgendamentoControllet.atualizarTabela(grdAgendamentos);
     }
 
     public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Agendamento agendamento) {
         super(parent, modal);
-
+        initComponents();
         AgendamentoController = new AgendamentoController();
         idAgendamentoEditando = agendamento.getId();
         proprietarioLogado = agendamento.getProprietarioResp();
         propCont = new ProprietarioController();
         petSelcionado = new Pet();
+        lstSelectServi = new ArrayList<>();
 
-        initComponents();
-
+        lstServ = servicoDAO.findAll();
         setBackground(new Color(51, 51, 51));
 
         Image iconeTitulo = null;
@@ -88,7 +112,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         this.habilitarCampos(true);
         this.limparCampos();
-        this.preencherCampos();
 
         Calendar c = Calendar.getInstance();
 
@@ -106,10 +129,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         dateCheckOut.getDateEditor().setDate(minCheckout);
 
         //  AgendamentoControllet.atualizarTabela(grdAgendamentos);
-    }
-
-    public void preencherCampos() {
-
     }
 
     public Date getMinCheckIn() {
@@ -148,7 +167,29 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     public void limparCampos() {
 //        dateCheckIn.setDate(null);
 //        dateCheckOut.setDate(null);
-        cbxServicos.setSelectedIndex(0);
+        CBBanho.setSelected(false);
+        CBTosa.setSelected(false);
+        CBMassagem.setSelected(false);
+
+    }
+
+    public List<Servicos> verifServicos() {
+
+        
+        if(CBBanho.isSelected()){
+            lstSelectServi.add(servicoDAO.findByName(CBBanho.getText()));
+        }
+        
+         if(CBTosa.isSelected()){
+             lstSelectServi.add(servicoDAO.findByName(CBTosa.getText()));
+        }
+         
+          if(CBMassagem.isSelected()){
+              lstSelectServi.add(servicoDAO.findByName(CBMassagem.getText()));
+        }
+        
+        
+        return lstSelectServi;
 
     }
 
@@ -162,6 +203,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jCheckBox1 = new javax.swing.JCheckBox();
         panFormulario = new javax.swing.JPanel();
         lblCheckIn = new javax.swing.JLabel();
         lblCheckOut = new javax.swing.JLabel();
@@ -177,10 +219,15 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         btnRemovePet = new javax.swing.JButton();
         dateCheckIn = new com.toedter.calendar.JDateChooser();
         dateCheckOut = new com.toedter.calendar.JDateChooser();
-        cbxServicos = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        CBBanho = new javax.swing.JCheckBox();
+        CBTosa = new javax.swing.JCheckBox();
+        CBMassagem = new javax.swing.JCheckBox();
+
+        jCheckBox1.setText("jCheckBox1");
 
         setBackground(new java.awt.Color(51, 51, 51));
         setForeground(new java.awt.Color(51, 51, 51));
@@ -225,6 +272,9 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         pnlDescricaoPet.setBackground(new java.awt.Color(51, 51, 51));
         pnlDescricaoPet.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selecione o pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(153, 255, 153))); // NOI18N
 
+        scrPets.setBackground(new java.awt.Color(160, 160, 160));
+        scrPets.setForeground(new java.awt.Color(255, 255, 255));
+
         tblPets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -239,6 +289,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         scrPets.setViewportView(tblPets);
 
         txtPetsSelecionados.setColumns(20);
+        txtPetsSelecionados.setLineWrap(true);
         txtPetsSelecionados.setRows(5);
         jScrollPane1.setViewportView(txtPetsSelecionados);
 
@@ -292,6 +343,8 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        dateCheckIn.setBackground(new java.awt.Color(160, 160, 160));
+        dateCheckIn.setForeground(new java.awt.Color(255, 255, 255));
         dateCheckIn.setDate(getMinCheckIn());
         dateCheckIn.setDateFormatString("dd/MM/yyyy");
         dateCheckIn.setMaxSelectableDate(new java.util.Date(253370779270000L));
@@ -301,13 +354,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         dateCheckOut.setDateFormatString("dd/MM/yyyy");
         dateCheckOut.setMaxSelectableDate(getMaxCheckOut());
         dateCheckOut.setMinSelectableDate(getMinCheckOut());
-
-        cbxServicos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Nenhum --", "Banho", "Tosa", "Massagem", "Banho + Tosa", "Banho + Massagem", "Tosa + Massagem", "Todos" }));
-        cbxServicos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxServicosActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -339,6 +385,58 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+        CBBanho.setBackground(new java.awt.Color(51, 51, 51));
+        CBBanho.setForeground(new java.awt.Color(255, 255, 255));
+        CBBanho.setText("Banho");
+        CBBanho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBBanhoActionPerformed(evt);
+            }
+        });
+
+        CBTosa.setBackground(new java.awt.Color(51, 51, 51));
+        CBTosa.setForeground(new java.awt.Color(255, 255, 255));
+        CBTosa.setText("Tosa");
+        CBTosa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBTosaActionPerformed(evt);
+            }
+        });
+
+        CBMassagem.setBackground(new java.awt.Color(51, 51, 51));
+        CBMassagem.setForeground(new java.awt.Color(255, 255, 255));
+        CBMassagem.setText("Massagem");
+        CBMassagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBMassagemActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CBBanho)
+                    .addComponent(CBTosa)
+                    .addComponent(CBMassagem)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CBBanho)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CBTosa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CBMassagem)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panFormularioLayout = new javax.swing.GroupLayout(panFormulario);
         panFormulario.setLayout(panFormularioLayout);
         panFormularioLayout.setHorizontalGroup(
@@ -353,9 +451,12 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                     .addComponent(lblCheckIn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblServicos)
-                    .addComponent(cbxServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(91, 91, 91))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
+                        .addComponent(lblServicos)
+                        .addGap(121, 121, 121))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(147, 147, 147))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlDescricaoPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,12 +483,13 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                     .addComponent(lblServicos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxServicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lblCheckOut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panFormularioLayout.createSequentialGroup()
+                        .addComponent(dateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblCheckOut)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlDescricaoPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -416,6 +518,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         petSelcionado = (Pet) getObjetoSelecionadoNaGrid();
+        verifServicos();
 
         if (petSelcionado == null) {
             ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Primeiro, selecione um pet para ser hospedado");
@@ -423,7 +526,10 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         }
 
-        Agendamento novoAgendamento = new Agendamento(dateCheckIn.getDate().toString(), dateCheckOut.getDate().toString(), cbxServicos.getSelectedItem().toString(), proprietarioLogado, lstPetsSelecionados);
+        String dCheckIn = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckIn.getDate());
+        String dCheckOut = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckOut.getDate());
+
+        Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut, verifServicos(), proprietarioLogado, lstPetsSelecionados);
 
         AgendamentoController.cadastrarAgendamento(novoAgendamento);
 
@@ -439,21 +545,17 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         return obj;
     }
 
-    private void cbxServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxServicosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxServicosActionPerformed
-
     private void btnAddPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPetActionPerformed
         // TODO add your handling code here:
         petSelcionado = (Pet) getObjetoSelecionadoNaGrid();
         if (petSelcionado == null) {
             ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Primeiro, selecione um pet da tabela");
             DialMsg.setVisible(true);
-      
+
         } else if (lstPetsSelecionados.contains(petSelcionado)) {
             ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Este pet já foi selecionado.");
             DialMsg.setVisible(true);
-            
+
         } else {
             lstPetsSelecionados.add(petSelcionado);
         }
@@ -472,28 +574,45 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         if (lstPetsSelecionados.size() <= 0) {
             ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Nenhum pet para remover");
             DialMsg.setVisible(true);
-           
+
         } else {
             lstPetsSelecionados.remove(lstPetsSelecionados.size() - 1);
         }
         txtPetsSelecionados.setText(lstPetsSelecionados.toString());
     }//GEN-LAST:event_btnRemovePetActionPerformed
 
+    private void CBBanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBBanhoActionPerformed
+
+
+    }//GEN-LAST:event_CBBanhoActionPerformed
+
+    private void CBTosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBTosaActionPerformed
+
+    }//GEN-LAST:event_CBTosaActionPerformed
+
+    private void CBMassagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBMassagemActionPerformed
+
+    }//GEN-LAST:event_CBMassagemActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox CBBanho;
+    private javax.swing.JCheckBox CBMassagem;
+    private javax.swing.JCheckBox CBTosa;
     private javax.swing.JButton btnAddPet;
     private javax.swing.JButton btnCancelarPet;
     private javax.swing.JButton btnRemovePet;
     private javax.swing.JButton btnSalvarPet;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cbxServicos;
     private com.toedter.calendar.JDateChooser dateCheckIn;
     private com.toedter.calendar.JDateChooser dateCheckOut;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCheckIn;

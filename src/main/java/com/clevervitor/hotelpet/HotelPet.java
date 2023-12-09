@@ -6,6 +6,7 @@ package com.clevervitor.hotelpet;
 
 import com.clevervitor.hotelpet.connection.GEmailSender;
 import com.clevervitor.hotelpet.controller.FuncionarioController;
+import com.clevervitor.hotelpet.controller.ServicosController;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
@@ -31,6 +32,8 @@ public class HotelPet {
          PessoaDAO pDao = new PessoaDAO();
         Funcionario f = new Funcionario();
         Pessoa p = new Pessoa();
+        ServicosController sC = new ServicosController();
+        
         
         //Create Func Admin
        f.setCargo("Admin");
@@ -60,7 +63,7 @@ public class HotelPet {
             GEmailSender sendertest = new GEmailSender();
             
             emailBodys emBd = new emailBodys();
-            
+            sC.initServicos();
             
             //sendertest.sendEmail("vitorpereiroli@gmail.com", "Hotel pet html 1", emBd.emailCat("TESTE GATO"));
 //            sendertest.sendEmail("vitorpereiroli@gmail.com", "Hotel pet html 2", emBd.emailDog1("TESTE DOG 1"));

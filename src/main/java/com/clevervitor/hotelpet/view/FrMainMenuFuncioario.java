@@ -12,6 +12,7 @@ import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
+import com.clevervitor.hotelpet.view.dialogs.DlgCadServicos;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Image;
@@ -106,6 +107,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setResizable(false);
@@ -160,12 +162,14 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         pnlControleGeral.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controle", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Nuport", 1, 18), new java.awt.Color(242, 242, 242))); // NOI18N
         pnlControleGeral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlComAbas.setBackground(new java.awt.Color(204, 204, 204));
+        pnlComAbas.setBackground(new java.awt.Color(160, 160, 160));
+        pnlComAbas.setForeground(new java.awt.Color(255, 255, 255));
         pnlComAbas.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
 
-        abaAgendamentos.setBackground(new java.awt.Color(51, 51, 51));
+        abaAgendamentos.setBackground(new java.awt.Color(160, 160, 160));
 
-        tblAgendamentos.setBackground(new java.awt.Color(51, 51, 51));
+        tblAgendamentos.setBackground(new java.awt.Color(160, 160, 160));
+        tblAgendamentos.setForeground(new java.awt.Color(255, 255, 255));
         tblAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -289,7 +293,16 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         jMenu2.setText("File");
         jMenuBar1.add(jMenu2);
 
-        jMenu1.setText("jMenu1");
+        jMenu1.setText("Configurações");
+
+        jMenuItem6.setText("Atualizar Valores");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -371,6 +384,12 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_lbl_imgMouseClicked
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        DlgCadServicos cadastroServicos = new DlgCadServicos(new Frame(), true);
+        cadastroServicos.setTitle("Cadastro");
+        cadastroServicos.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -389,6 +408,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblCargo;

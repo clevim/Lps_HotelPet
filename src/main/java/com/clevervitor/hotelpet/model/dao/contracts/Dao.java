@@ -4,7 +4,8 @@
  */
 package com.clevervitor.hotelpet.model.dao.contracts;
 
-import com.vcompany.teramusique.connection.DatabaseJPA;
+
+import com.clevervitor.hotelpet.connection.DatabaseJPA;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 

@@ -49,6 +49,7 @@ public class ValidateAgendamento {
         }
 
         agendamento.setLstPetsAgendados(validaAgendamento.getLstPetsAgendados());
+        agendamento.setServicosAdicionais(validaAgendamento.getServicosAdicionais());
 
         
         

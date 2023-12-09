@@ -4,12 +4,13 @@
  */
 package com.clevervitor.hotelpet.model.dao;
 
+import com.clevervitor.hotelpet.connection.DatabaseJPA;
 import com.clevervitor.hotelpet.exceptions.AgendamentoException;
 import com.clevervitor.hotelpet.model.dao.contracts.Dao;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
-import com.vcompany.teramusique.connection.DatabaseJPA;
+
 import java.util.List;
 import javax.persistence.TypedQuery;
 

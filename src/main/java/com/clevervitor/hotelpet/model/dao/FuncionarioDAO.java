@@ -4,9 +4,10 @@
  */
 package com.clevervitor.hotelpet.model.dao;
 
+import com.clevervitor.hotelpet.connection.DatabaseJPA;
 import com.clevervitor.hotelpet.exceptions.FuncionarioException;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
-import com.vcompany.teramusique.connection.DatabaseJPA;
+
 import com.clevervitor.hotelpet.model.dao.contracts.Dao;
 import java.util.List;
 import javax.persistence.EntityManager;
