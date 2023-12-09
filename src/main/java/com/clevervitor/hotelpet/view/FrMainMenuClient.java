@@ -16,6 +16,8 @@ import com.clevervitor.hotelpet.view.UI.JButtonUI;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import com.clevervitor.hotelpet.view.UI.TableActionCellRender;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
+import com.clevervitor.hotelpet.view.dialogs.DlgContato;
+import com.clevervitor.hotelpet.view.dialogs.DlgSobre;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
@@ -146,8 +148,8 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        menuContato = new javax.swing.JMenu();
+        menuSobre = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -438,11 +440,23 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu2.setText("Contato");
-        jMenuBar1.add(jMenu2);
+        menuContato.setForeground(new java.awt.Color(255, 255, 255));
+        menuContato.setText("Contato");
+        menuContato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuContatoMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuContato);
 
-        jMenu1.setText("Sobre");
-        jMenuBar1.add(jMenu1);
+        menuSobre.setForeground(new java.awt.Color(255, 255, 255));
+        menuSobre.setText("Sobre");
+        menuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSobreMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuSobre);
 
         setJMenuBar(jMenuBar1);
 
@@ -559,6 +573,18 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 }
     }//GEN-LAST:event_lbl_imgMouseClicked
 
+    private void menuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSobreMouseClicked
+        // TODO add your handling code here:
+        
+        DlgSobre sobre = new DlgSobre(new Frame(), true);
+        sobre.setVisible(true);
+    }//GEN-LAST:event_menuSobreMouseClicked
+
+    private void menuContatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuContatoMouseClicked
+        DlgContato contato = new DlgContato( proprietarioLogado.getEmail());
+        contato.setVisible(true);
+    }//GEN-LAST:event_menuContatoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -567,8 +593,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private javax.swing.JButton btnAgendarEstadia;
     private javax.swing.JTable grdAgendamentos;
     private javax.swing.JTable grdPets;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
@@ -588,6 +612,8 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private javax.swing.JLabel lblNomeCliente;
     private javax.swing.JLabel lbl_img;
     private javax.swing.JMenuItem menuAdicionarPet;
+    private javax.swing.JMenu menuContato;
+    private javax.swing.JMenu menuSobre;
     private javax.swing.JPanel pnlAgendamentos;
     private javax.swing.JPanel pnlCliente;
     private javax.swing.JPanel pnlPetsCliente;

@@ -9,6 +9,7 @@ import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.FrLogin;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import com.toedter.calendar.JDateChooser;
@@ -29,6 +30,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     int proprietarioEditando = -1;
     FuncionarioController fucionarioCont;
     int funcionarioEditando = -1;
+    utils utils;
 
     public DlgCadProprietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -55,8 +57,10 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         proprietarioCont = new ProprietarioController();
         fucionarioCont = new FuncionarioController();
+        utils = new utils();
 
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -282,61 +286,86 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         String endereco = edtCidade.getText() + ", " + edtEstado.getText();
+        boolean isValidEmail = utils.isValidEmailAddress(edtEmail.getText());
+        boolean isValidCpf = utils.isValidCpf(edtCpf.getText());
+        boolean isValidPass = utils.isValidPassword(edtSenha.getText());
+        
+        
 
-        if (jRadioFuncionario.isSelected()) {
-            Double Salario = Double.valueOf(edtSalario.getText());
+        if (isValidCpf && isValidEmail && isValidPass ) {
 
-            Funcionario func = new Funcionario(Salario, edtTurno.getText(), edtCargo.getText(), edtNome.getText(), endereco, edtDataNascimento.getDate().toString(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 1);
-            if (funcionarioEditando > 0) {
-                try {
-                    fucionarioCont.atualizarFuncionario(func);
-                    ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Funcioario Atualizado com sucesso!!");
-                    DialMsg.setVisible(true);
-                } catch (Exception e) {
-                    ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao atualizar!!!");
-                    DialMsg.setVisible(true);
+            if (jRadioFuncionario.isSelected()) {
+                Double Salario = Double.valueOf(edtSalario.getText());
+
+                Funcionario func = new Funcionario(Salario, edtTurno.getText(), edtCargo.getText(), edtNome.getText(), endereco, edtDataNascimento.getDate().toString(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 1);
+                if (funcionarioEditando > 0) {
+                    try {
+                        fucionarioCont.atualizarFuncionario(func);
+                        ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Funcioario Atualizado com sucesso!!");
+                        DialMsg.setVisible(true);
+                        dispose();
+                    } catch (Exception e) {
+                        ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao atualizar!!!");
+                        DialMsg.setVisible(true);
+                    }
+                } else {
+
+                    try {
+                        fucionarioCont.cadastrarFuncionario(func);
+                        ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Funcioario Cadastrado com sucesso!!");
+                        DialMsg.setVisible(true);
+                        dispose();
+                    } catch (Exception e) {
+                        ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
+                        DialMsg.setVisible(true);
+                    }
                 }
-            } else {
 
-                try {
-                    fucionarioCont.cadastrarFuncionario(func);
-                    ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Funcioario Cadastrado com sucesso!!");
-                    DialMsg.setVisible(true);
-                } catch (Exception e) {
-                    ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
-                    DialMsg.setVisible(true);
+                this.funcionarioEditando = -1;
+                
+
+            } else if (jRadioClient.isSelected()) {
+                
+                Proprietario prop = new Proprietario(edtNome.getText(), endereco, edtDataNascimento.getDate().toString(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
+                     
+                                       
+                if (proprietarioEditando > 0) {
+                    try {
+                        proprietarioCont.atualizarProprietario(prop);
+                        ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Proprietario Atualizado com sucesso!!");
+                        DialMsg.setVisible(true);
+                        dispose();
+                    } catch (Exception e) {
+                        ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
+                        DialMsg.setVisible(true);
+                    }
+                } else {
+                    try {
+                        proprietarioCont.cadastrarProprietario(prop);
+                        ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Proprietario Cadastrado com sucesso!!");
+                        DialMsg.setVisible(true);
+                        dispose();
+                    } catch (Exception e) {
+                        ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
+                        DialMsg.setVisible(true);
+                    }
                 }
+
+                this.proprietarioEditando = -1;
+                
             }
-
-            this.funcionarioEditando = -1;
-            dispose();
-
-        } else if (jRadioClient.isSelected()) {
-
-            Proprietario prop = new Proprietario(edtNome.getText(), endereco, edtDataNascimento.getDate().toString(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
-
-            if (proprietarioEditando > 0) {
-                try {
-                    proprietarioCont.atualizarProprietario(prop);
-                    ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Proprietario Atualizado com sucesso!!");
-                    DialMsg.setVisible(true);
-                } catch (Exception e) {
-                    ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
-                    DialMsg.setVisible(true);
-                }
-            } else {
-                try {
-                    proprietarioCont.cadastrarProprietario(prop);
-                    ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Proprietario Cadastrado com sucesso!!");
-                    DialMsg.setVisible(true);
-                } catch (Exception e) {
-                    ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
-                    DialMsg.setVisible(true);
-                }
-            }
-
-            this.proprietarioEditando = -1;
-            dispose();
+        } else if(!isValidEmail) {
+            edtEmail.setText(null);
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Email Invalido");
+            DialMsg.setVisible(true);           
+        }else if(!isValidPass) {
+            edtSenha.setText(null);
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Senha Invalida");
+            DialMsg.setVisible(true);           
+        }else if(!isValidCpf) {
+            edtCpf.setText(null);
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Cpf Invalido");
+            DialMsg.setVisible(true);           
         }
 
 

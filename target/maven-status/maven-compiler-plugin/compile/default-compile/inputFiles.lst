@@ -14,6 +14,7 @@
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/view/dialogs/DlgCadProprietario.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/view/FrMainMenuClient.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/exceptions/PetException.java
+/home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/view/dialogs/DlgSobre.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/exceptions/FuncionarioException.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/valid/ValidateProprietario.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/controller/tableModel/TMProprietario.java
@@ -35,6 +36,7 @@
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/valid/ValidateAgendamento.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/connection/GEmailSender.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/model/dao/ProprietarioDAO.java
+/home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/view/dialogs/DlgContato.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/model/entities/Proprietario.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/controller/tableModel/TMAgendamentos.java
 /home/clevs/Documentos/Faculdade/LPS/Lps_HotelPet/src/main/java/com/clevervitor/hotelpet/model/dao/contracts/Dao.java
