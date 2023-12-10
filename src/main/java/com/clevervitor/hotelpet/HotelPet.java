@@ -11,6 +11,7 @@ import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.utils.emailBodys;
+import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.valid.ValidateUtils;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
 import com.clevervitor.hotelpet.view.FrLogin;
@@ -64,6 +65,9 @@ public class HotelPet {
             
             emailBodys emBd = new emailBodys();
             sC.initServicos();
+            
+            //emBd.emailComprovante(null);
+            //sendertest.sendEmail("vitorpereiroli@gmail.com", "Hotel pet Comprovante de Reserva", emBd.emailComprovante(null));
             
             //sendertest.sendEmail("vitorpereiroli@gmail.com", "Hotel pet html 1", emBd.emailCat("TESTE GATO"));
 //            sendertest.sendEmail("vitorpereiroli@gmail.com", "Hotel pet html 2", emBd.emailDog1("TESTE DOG 1"));

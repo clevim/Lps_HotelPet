@@ -12,6 +12,7 @@
         <exec.mainClass>com.clevervitor.hotelpet.HotelPet</exec.mainClass>
     </properties>
     <dependencies>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

@@ -6,7 +6,9 @@ package com.clevervitor.hotelpet.utils;
 
 import br.com.caelum.stella.validation.CPFValidator;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
+import com.clevervitor.hotelpet.model.dao.ServicosDAO;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
+import com.clevervitor.hotelpet.model.entities.Servicos;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
@@ -17,6 +19,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
@@ -80,7 +83,7 @@ public class utils {
     public static boolean isValidPassword(String password) {
 
         // Regex to check valid password.
-        String regex ="(?=\\S+$).{5,20}$";
+        String regex = "(?=\\S+$).{5,20}$";
 
         Pattern p = Pattern.compile(regex);
 
@@ -92,7 +95,42 @@ public class utils {
 
         return m.matches();
     }
-    
 
+    public static Servicos getServico(List<Servicos> lstServ,String nomeServico) {
+        Servicos serv = new Servicos("", 0.0);
+        
+        
+
+        for (Servicos s : lstServ) {
+            switch (s.getNomeServico()) {
+                case "Diaria":
+                    if (nomeServico == "Diaria") {
+                        serv = s;
+                    }
+
+                    break;
+                case "Banho":
+                    if (nomeServico == "Banho") {
+                        serv = s;
+                    }
+                    break;
+                case "Tosa":
+                    if (nomeServico == "Tosa") {
+                        serv = s;
+                    }
+                    break;
+                case "Massagem":
+                    if (nomeServico == "Massagem") {
+                        serv = s;
+                    }
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+
+        }
+
+        return serv;
+    }
 
 }
