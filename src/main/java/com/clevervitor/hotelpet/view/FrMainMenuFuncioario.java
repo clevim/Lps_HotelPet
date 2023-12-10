@@ -8,11 +8,13 @@ import com.clevervitor.hotelpet.controller.AgendamentoController;
 import com.clevervitor.hotelpet.controller.FuncionarioController;
 import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
+import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadServicos;
+import com.clevervitor.hotelpet.view.dialogs.DlgInfoAgendamento;
 import com.clevervitor.hotelpet.view.dialogs.DlgSobre;
 import java.awt.Color;
 import java.awt.Frame;
@@ -184,6 +186,11 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             }
         ));
         tblAgendamentos.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tblAgendamentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAgendamentosMouseClicked(evt);
+            }
+        });
         abaAgendamentos.setViewportView(tblAgendamentos);
 
         pnlComAbas.addTab("Agendamentos", abaAgendamentos);
@@ -414,6 +421,23 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         sobre.setVisible(true);
     }//GEN-LAST:event_menuSobreMouseClicked
 
+    private void tblAgendamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAgendamentosMouseClicked
+        // TODO add your handling code here: 
+        Agendamento agendamentoSelecionado = (Agendamento) getObjetoSelecionadoNaGrid();
+        
+        if(evt.getClickCount() == 2){
+            DlgInfoAgendamento telaInfoAgendamento = new DlgInfoAgendamento(new Frame(), true, agendamentoSelecionado);
+        }
+    }//GEN-LAST:event_tblAgendamentosMouseClicked
+
+    private Object getObjetoSelecionadoNaGrid() {
+        int rowCliked = tblAgendamentos.getSelectedRow();
+        Object obj = null;
+        if (rowCliked >= 0) {
+            obj = tblAgendamentos.getModel().getValueAt(rowCliked, -1);
+        }
+        return obj;
+    }
     /**
      * @param args the command line arguments
      */

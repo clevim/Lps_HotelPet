@@ -16,6 +16,7 @@ import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,7 +40,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     ProprietarioController propCont;
     Proprietario proprietarioLogado;
     AgendamentoController AgendamentoController;
-    Agendamento AgendamentoSendoEditado;
+    Agendamento agendamentoSendoEditado;
     Pet petSelcionado;
     List<Pet> lstPetsSelecionados;
     List<Servicos> lstServ;
@@ -93,10 +94,11 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         //  AgendamentoControllet.atualizarTabela(grdAgendamentos);
     }
 
-    public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Agendamento agendamento) {
+    public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Agendamento agendamento) throws ParseException {
         super(parent, modal);
         ToolTipManager.sharedInstance().setInitialDelay(0);
         initComponents();
+        agendamentoSendoEditado = agendamento;
         AgendamentoController = new AgendamentoController();
         idAgendamentoEditando = agendamento.getId();
         proprietarioLogado = agendamento.getProprietarioResp();
@@ -117,7 +119,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         setIconImage(iconeTitulo);
 
         this.habilitarCampos(true);
-        this.limparCampos();
+        this.preencherCampos();
 
         Calendar c = Calendar.getInstance();
 
@@ -137,6 +139,33 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         //AgendamentoControllet.atualizarTabela(grdAgendamentos);
     }
 
+    public void preencherCampos() throws ParseException{
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+        Date dCheckIn = formatter.parse(agendamentoSendoEditado.getDataCheckIn());
+        Date dCheckOut = formatter.parse(agendamentoSendoEditado.getDataCheckOut());
+        
+        dateCheckIn.setDate(dCheckIn);
+        dateCheckOut.setDate(dCheckOut);
+        
+        for(Object obj : agendamentoSendoEditado.getServicosAdicionais()){
+            
+            String servico = (String) obj;
+            
+            if("Banho".equals(servico)){
+             CBBanho.setSelected(true);
+            }else if("Massagem".equals(servico)){
+            CBMassagem.setSelected(true);
+            }else if("Tosa".equals(servico)){
+                CBTosa.setSelected(true);
+            }
+        }
+        
+        txtPetsSelecionados.setText(agendamentoSendoEditado.getLstPetsAgendados().toString());
+        propCont.atualizarTabelaDePetsInicioFrame(tblPets, proprietarioLogado.getLstPetsPossuidos());
+        
+    }
+    
     public Date getMinCheckIn() {
         Calendar c = Calendar.getInstance();
 
@@ -265,6 +294,8 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         CBBanho = new javax.swing.JCheckBox();
         CBTosa = new javax.swing.JCheckBox();
         CBMassagem = new javax.swing.JCheckBox();
+        lblValor = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -413,7 +444,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(jLabel1)))
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -481,30 +512,14 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        lblValor.setText("jLabel2");
+
+        jLabel2.setText("Valor:");
+
         javax.swing.GroupLayout panFormularioLayout = new javax.swing.GroupLayout(panFormulario);
         panFormulario.setLayout(panFormularioLayout);
         panFormularioLayout.setHorizontalGroup(
             panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panFormularioLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCheckOut)
-                    .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(dateCheckOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblCheckIn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
-                        .addComponent(lblServicos)
-                        .addGap(121, 121, 121))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
-                        .addComponent(pnlServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(147, 147, 147))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlDescricaoPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
             .addGroup(panFormularioLayout.createSequentialGroup()
                 .addGap(240, 240, 240)
                 .addComponent(btnSalvarPet)
@@ -515,6 +530,27 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlDescricaoPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCheckOut)
+                    .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(dateCheckOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCheckIn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panFormularioLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblServicos))
+                .addGap(121, 121, 121))
         );
         panFormularioLayout.setVerticalGroup(
             panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,6 +570,10 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnlServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblValor)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(pnlDescricaoPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -572,7 +612,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         String dCheckIn = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckIn.getDate());
         String dCheckOut = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckOut.getDate());
 
-        Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut, verifServicos(), proprietarioLogado, lstPetsSelecionados);
+        Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut, verifServicos(), proprietarioLogado, lstPetsSelecionados, 0.0);
 
         AgendamentoController.cadastrarAgendamento(novoAgendamento);
 
@@ -662,12 +702,14 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser dateCheckOut;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCheckIn;
     private javax.swing.JLabel lblCheckOut;
     private javax.swing.JLabel lblServicos;
+    private javax.swing.JLabel lblValor;
     private javax.swing.JPanel panFormulario;
     private javax.swing.JPanel pnlDescricaoPet;
     private javax.swing.JPanel pnlServices;
