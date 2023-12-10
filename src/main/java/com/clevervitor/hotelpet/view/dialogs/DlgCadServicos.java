@@ -79,24 +79,16 @@ public class DlgCadServicos extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Serviços", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Fira Sans", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        edtDiaria.setBackground(new java.awt.Color(160, 160, 160));
         edtDiaria.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
-        edtDiaria.setForeground(new java.awt.Color(255, 255, 255));
         edtDiaria.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
-        edtBanho.setBackground(new java.awt.Color(160, 160, 160));
         edtBanho.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
-        edtBanho.setForeground(new java.awt.Color(255, 255, 255));
         edtBanho.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
-        edtTosa.setBackground(new java.awt.Color(160, 160, 160));
         edtTosa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
-        edtTosa.setForeground(new java.awt.Color(255, 255, 255));
         edtTosa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
-        edtMassagem.setBackground(new java.awt.Color(160, 160, 160));
         edtMassagem.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
-        edtMassagem.setForeground(new java.awt.Color(255, 255, 255));
         edtMassagem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         jLabel1.setFont(new java.awt.Font("Fira Sans", 1, 18)); // NOI18N
@@ -215,7 +207,7 @@ public class DlgCadServicos extends javax.swing.JDialog {
             }
         }
 
-
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

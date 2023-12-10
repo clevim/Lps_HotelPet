@@ -190,8 +190,6 @@ public class DlgCadPet extends javax.swing.JDialog {
         lblNome.setForeground(new java.awt.Color(242, 242, 242));
         lblNome.setText("Nome:");
 
-        edtNome.setBackground(new java.awt.Color(160, 160, 160));
-        edtNome.setForeground(new java.awt.Color(255, 255, 255));
         edtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtNomeActionPerformed(evt);
@@ -202,8 +200,6 @@ public class DlgCadPet extends javax.swing.JDialog {
         lblIdade.setForeground(new java.awt.Color(242, 242, 242));
         lblIdade.setText("Idade:");
 
-        edtIdade.setBackground(new java.awt.Color(160, 160, 160));
-        edtIdade.setForeground(new java.awt.Color(255, 255, 255));
         edtIdade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtIdadeActionPerformed(evt);
@@ -214,11 +210,6 @@ public class DlgCadPet extends javax.swing.JDialog {
         lblEspecie.setForeground(new java.awt.Color(242, 242, 242));
         lblEspecie.setText("Especie:");
 
-        edtEspecie.setBackground(new java.awt.Color(160, 160, 160));
-        edtEspecie.setForeground(new java.awt.Color(255, 255, 255));
-
-        edtPeso.setBackground(new java.awt.Color(160, 160, 160));
-        edtPeso.setForeground(new java.awt.Color(255, 255, 255));
         edtPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtPesoActionPerformed(evt);
@@ -251,9 +242,6 @@ public class DlgCadPet extends javax.swing.JDialog {
         lblRaca.setForeground(new java.awt.Color(242, 242, 242));
         lblRaca.setText("Raça:");
 
-        edtRaca.setBackground(new java.awt.Color(160, 160, 160));
-        edtRaca.setForeground(new java.awt.Color(255, 255, 255));
-
         lblSexo.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblSexo.setForeground(new java.awt.Color(242, 242, 242));
         lblSexo.setText("Sexo:");
@@ -275,8 +263,6 @@ public class DlgCadPet extends javax.swing.JDialog {
         pnlDescricaoPet.setBackground(new java.awt.Color(51, 51, 51));
         pnlDescricaoPet.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descreva seu pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(153, 255, 153))); // NOI18N
 
-        edtObs.setBackground(new java.awt.Color(160, 160, 160));
-        edtObs.setForeground(new java.awt.Color(255, 255, 255));
         edtObs.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
 
         javax.swing.GroupLayout pnlDescricaoPetLayout = new javax.swing.GroupLayout(pnlDescricaoPet);

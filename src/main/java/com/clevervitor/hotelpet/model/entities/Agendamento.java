@@ -62,6 +62,13 @@ public class Agendamento {
         this.lstPetsAgendados = new ArrayList<>();
         
     }
+
+    public String getStringServices(){
+    
+    return getServicosAdicionais().toString().replace("[", "").replace("]", "");
+    
+    }
+
     
     
     public String toStringLst(List<Pet> lst) {

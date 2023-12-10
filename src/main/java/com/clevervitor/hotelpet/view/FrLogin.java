@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import javax.swing.ToolTipManager;
 
 /**
  *
@@ -34,7 +35,7 @@ public class FrLogin extends javax.swing.JFrame {
      */
     public FrLogin() {
         initComponents();
-
+        
         lblLogin.setForeground(Color.white);
         lblPassword.setForeground(Color.white);
         lblCriarConta.setForeground(Color.white);
@@ -49,6 +50,7 @@ public class FrLogin extends javax.swing.JFrame {
         setIconImage(iconeTitulo);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
     }
 
     /**

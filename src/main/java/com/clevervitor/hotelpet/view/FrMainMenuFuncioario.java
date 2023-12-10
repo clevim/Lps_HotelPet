@@ -13,6 +13,7 @@ import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadServicos;
+import com.clevervitor.hotelpet.view.dialogs.DlgSobre;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Image;
@@ -105,9 +106,9 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         jMenuItem5 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        menuSobre = new javax.swing.JMenu();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setResizable(false);
@@ -167,6 +168,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         pnlComAbas.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
 
         abaAgendamentos.setBackground(new java.awt.Color(160, 160, 160));
+        abaAgendamentos.setToolTipText("");
 
         tblAgendamentos.setBackground(new java.awt.Color(160, 160, 160));
         tblAgendamentos.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,15 +183,20 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblAgendamentos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         abaAgendamentos.setViewportView(tblAgendamentos);
 
         pnlComAbas.addTab("Agendamentos", abaAgendamentos);
 
-        abaProprietarios.setBackground(new java.awt.Color(51, 51, 51));
+        abaProprietarios.setBackground(new java.awt.Color(160, 160, 160));
+        abaProprietarios.setForeground(new java.awt.Color(255, 255, 255));
+        abaProprietarios.setDoubleBuffered(false);
 
-        scrProprietarios.setBackground(new java.awt.Color(51, 51, 51));
+        scrProprietarios.setBackground(new java.awt.Color(160, 160, 160));
+        scrProprietarios.setForeground(new java.awt.Color(255, 255, 255));
 
-        tblProprietarios.setBackground(new java.awt.Color(51, 51, 51));
+        tblProprietarios.setBackground(new java.awt.Color(160, 160, 160));
+        tblProprietarios.setForeground(new java.awt.Color(255, 255, 255));
         tblProprietarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -201,6 +208,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblProprietarios.setSelectionForeground(new java.awt.Color(255, 255, 255));
         scrProprietarios.setViewportView(tblProprietarios);
 
         javax.swing.GroupLayout abaProprietariosLayout = new javax.swing.GroupLayout(abaProprietarios);
@@ -221,9 +229,11 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         abaPets.setBackground(new java.awt.Color(51, 51, 51));
 
-        scrPets.setBackground(new java.awt.Color(51, 51, 51));
+        scrPets.setBackground(new java.awt.Color(160, 160, 160));
+        scrPets.setForeground(new java.awt.Color(255, 255, 255));
 
-        tblPets.setBackground(new java.awt.Color(51, 51, 51));
+        tblPets.setBackground(new java.awt.Color(160, 160, 160));
+        tblPets.setForeground(new java.awt.Color(255, 255, 255));
         tblPets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -235,6 +245,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPets.setSelectionForeground(new java.awt.Color(255, 255, 255));
         scrPets.setViewportView(tblPets);
 
         javax.swing.GroupLayout abaPetsLayout = new javax.swing.GroupLayout(abaPets);
@@ -290,9 +301,6 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu2.setText("File");
-        jMenuBar1.add(jMenu2);
-
         jMenu1.setText("Configurações");
 
         jMenuItem6.setText("Atualizar Valores");
@@ -304,6 +312,15 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
+
+        menuSobre.setForeground(new java.awt.Color(255, 255, 255));
+        menuSobre.setText("Sobre");
+        menuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSobreMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuSobre);
 
         setJMenuBar(jMenuBar1);
 
@@ -390,6 +407,13 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         cadastroServicos.setVisible(true); 
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void menuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSobreMouseClicked
+        // TODO add your handling code here:
+
+        DlgSobre sobre = new DlgSobre(new Frame(), true);
+        sobre.setVisible(true);
+    }//GEN-LAST:event_menuSobreMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -399,7 +423,6 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JPanel abaPets;
     private javax.swing.JPanel abaProprietarios;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
@@ -417,6 +440,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lbl_img;
+    private javax.swing.JMenu menuSobre;
     private javax.swing.JTabbedPane pnlComAbas;
     private javax.swing.JPanel pnlControleGeral;
     private javax.swing.JPanel pnlInfo;

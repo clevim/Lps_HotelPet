@@ -54,7 +54,7 @@ public class TMAgendamentos extends AbstractTableModel {
                 case COL_DATA_CHECKOUT:
                     return aux.getDataCheckOut();
                 case COL_SERVICOS_ADICIONAIS:
-                    return aux.getServicosAdicionais();
+                    return aux.getStringServices();
                 default:
                     break;
             }

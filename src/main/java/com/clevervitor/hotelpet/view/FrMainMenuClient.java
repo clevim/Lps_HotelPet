@@ -60,7 +60,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         utils = new utils();
 
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietario.getLstPetsPossuidos());
-        grdPets.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender());
+        grdPets.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
 
         //com.clevervitor.hotelpet.view.UI.TableActionCellRender[Table.cellRenderer,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=javax.swing.border.EmptyBorder@61a30083,flags=25165832,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=,verticalAlignment=CENTER,verticalTextPosition=CENTER]
         lblNome.setForeground(Color.WHITE);
@@ -200,7 +200,8 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         scrollAgendamentos.setBorder(null);
         scrollAgendamentos.setForeground(new java.awt.Color(255, 255, 255));
 
-        grdAgendamentos.setForeground(new java.awt.Color(51, 51, 51));
+        grdAgendamentos.setBackground(new java.awt.Color(160, 160, 160));
+        grdAgendamentos.setForeground(new java.awt.Color(255, 255, 255));
         grdAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -209,6 +210,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
             }
         ));
+        grdAgendamentos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         scrollAgendamentos.setViewportView(grdAgendamentos);
 
         lblAgendar.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
@@ -278,7 +280,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         scrollPets.setBorder(null);
 
-        grdPets.setAutoCreateRowSorter(true);
         grdPets.setBackground(new java.awt.Color(160, 160, 160));
         grdPets.setForeground(new java.awt.Color(255, 255, 255));
         grdPets.setModel(new javax.swing.table.DefaultTableModel(

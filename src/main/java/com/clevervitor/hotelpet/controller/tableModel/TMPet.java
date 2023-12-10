@@ -30,7 +30,7 @@ public class TMPet extends AbstractTableModel {
     private final int COL_IDADE = 2;
     private final int COL_SEXO = 3;
     private final int COL_PESO = 4;
-    private final int COL_EDITAR = 5;
+
 
 
     
@@ -46,7 +46,7 @@ public class TMPet extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return 5;
     }
     
     
@@ -71,8 +71,6 @@ public class TMPet extends AbstractTableModel {
                     return aux.getRaca();
                 case COL_SEXO:
                     return aux.getSexo();
-                case COL_EDITAR:
-                    return "Editar";
                     
                 default:
                     break;
@@ -97,8 +95,7 @@ public class TMPet extends AbstractTableModel {
                 return "Raca";
             case COL_SEXO:
                 return "Sexo";
-            case COL_EDITAR:
-                return "Editar";
+
             default:
                 break;
         }

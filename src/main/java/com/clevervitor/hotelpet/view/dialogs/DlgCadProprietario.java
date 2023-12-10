@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ToolTipManager;
 
 /**
  *
@@ -35,6 +36,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     public DlgCadProprietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ToolTipManager.sharedInstance().setInitialDelay(0);
         Image iconeTitulo = null;
         try {
             iconeTitulo = ImageIO.read(getClass().getResource("/Imagens/pawprint.png"));
@@ -58,6 +60,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         proprietarioCont = new ProprietarioController();
         fucionarioCont = new FuncionarioController();
         utils = new utils();
+        edtSenha.setToolTipText("Minimo de 6 caracteres!");
 
     }
 
@@ -115,9 +118,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(242, 242, 242));
         jLabel1.setText("Nome:");
         formCadProprietario.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 55, -1, -1));
-
-        edtNome.setBackground(new java.awt.Color(160, 160, 160));
-        edtNome.setForeground(new java.awt.Color(255, 255, 255));
         formCadProprietario.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 78, 284, -1));
 
         jLabel2.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
@@ -134,18 +134,12 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(242, 242, 242));
         jLabel4.setText("Cidade:");
         formCadProprietario.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 107, -1, -1));
-
-        edtCidade.setBackground(new java.awt.Color(160, 160, 160));
-        edtCidade.setForeground(new java.awt.Color(255, 255, 255));
         formCadProprietario.add(edtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 130, 128, -1));
 
         jLabel5.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(242, 242, 242));
         jLabel5.setText("Estado:");
         formCadProprietario.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 107, -1, -1));
-
-        edtEstado.setBackground(new java.awt.Color(160, 160, 160));
-        edtEstado.setForeground(new java.awt.Color(255, 255, 255));
         formCadProprietario.add(edtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 130, 138, -1));
 
         jLabel6.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
@@ -158,8 +152,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel7.setText("Sexo:");
         formCadProprietario.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 107, -1, -1));
 
-        cbxSexo.setBackground(new java.awt.Color(160, 160, 160));
-        cbxSexo.setForeground(new java.awt.Color(255, 255, 255));
         cbxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M", "Outro" }));
         formCadProprietario.add(cbxSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 130, -1, -1));
 
@@ -167,9 +159,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel8.setForeground(new java.awt.Color(242, 242, 242));
         jLabel8.setText("E-Mail");
         formCadProprietario.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, -1));
-
-        edtEmail.setBackground(new java.awt.Color(160, 160, 160));
-        edtEmail.setForeground(new java.awt.Color(255, 255, 255));
         formCadProprietario.add(edtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 169, -1));
 
         jLabel9.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
@@ -177,8 +166,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel9.setText("Senha");
         formCadProprietario.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, -1, -1));
 
-        edtSenha.setBackground(new java.awt.Color(160, 160, 160));
-        edtSenha.setForeground(new java.awt.Color(255, 255, 255));
         edtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtSenhaActionPerformed(evt);
@@ -213,17 +200,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         jPanelFunc.setBackground(new java.awt.Color(51, 51, 51));
         jPanelFunc.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        edtTurno.setBackground(new java.awt.Color(160, 160, 160));
-        edtTurno.setForeground(new java.awt.Color(255, 255, 255));
         jPanelFunc.add(edtTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 0, 85, -1));
-
-        edtCargo.setBackground(new java.awt.Color(160, 160, 160));
-        edtCargo.setForeground(new java.awt.Color(255, 255, 255));
         jPanelFunc.add(edtCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 28, 85, -1));
-
-        edtSalario.setBackground(new java.awt.Color(160, 160, 160));
-        edtSalario.setForeground(new java.awt.Color(255, 255, 255));
         jPanelFunc.add(edtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 56, 85, -1));
 
         jLabel10.setForeground(new java.awt.Color(242, 242, 242));
@@ -240,8 +218,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         formCadProprietario.add(jPanelFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, -1, -1));
 
-        edtCpf.setBackground(new java.awt.Color(160, 160, 160));
-        edtCpf.setForeground(new java.awt.Color(255, 255, 255));
         try {
             edtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -249,8 +225,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         }
         formCadProprietario.add(edtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 160, -1));
 
-        edtTelefone.setBackground(new java.awt.Color(160, 160, 160));
-        edtTelefone.setForeground(new java.awt.Color(255, 255, 255));
         try {
             edtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
         } catch (java.text.ParseException ex) {

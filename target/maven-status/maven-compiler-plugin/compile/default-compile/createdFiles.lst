@@ -42,6 +42,7 @@ com/clevervitor/hotelpet/view/FrMainMenuClient$4.class
 com/clevervitor/hotelpet/exceptions/ServicosException.class
 com/clevervitor/hotelpet/valid/ValidateProprietario.class
 com/clevervitor/hotelpet/model/dao/contracts/IDao.class
+com/clevervitor/hotelpet/view/FrMainMenuFuncioario$5.class
 com/clevervitor/hotelpet/controller/tableModel/TMAgendamentos.class
 com/clevervitor/hotelpet/view/dialogs/DlgCadAgendamento$3.class
 com/clevervitor/hotelpet/view/FrMainMenuClient$8.class
@@ -73,6 +74,7 @@ com/clevervitor/hotelpet/model/entities/Funcionario.class
 com/clevervitor/hotelpet/utils/emailBodys.class
 com/clevervitor/hotelpet/view/dialogs/DlgCadAgendamento$2.class
 com/clevervitor/hotelpet/view/dialogs/DlgContato$1.class
+com/clevervitor/hotelpet/view/dialogs/DlgCadAgendamento$8.class
 com/clevervitor/hotelpet/view/UI/JButtonUI.class
 com/clevervitor/hotelpet/view/dialogs/DlgCadProprietario$1.class
 com/clevervitor/hotelpet/view/FrMainMenuClient$11.class

@@ -705,7 +705,7 @@ public class emailBodys {
 
         String dataAtual = formatoDMYHM.format(d);
         String nomeProp = reserva.getProprietarioResp().getNome();
-        String nomePet = "";
+        String nomePet = reserva.getLstPetsAgendados().get(0).getNome();
         String dateCheckIn = reserva.getDataCheckIn();
         String dateCheckOut = reserva.getDataCheckOut();
 //            String nomeProp = "Vitor";

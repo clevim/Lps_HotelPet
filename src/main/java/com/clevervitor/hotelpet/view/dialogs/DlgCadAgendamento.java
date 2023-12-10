@@ -24,7 +24,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
+import javax.swing.ToolTipManager;
 
 /**
  *
@@ -46,6 +50,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
     public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Proprietario proprietario) {
         super(parent, modal);
+        ToolTipManager.sharedInstance().setInitialDelay(0);
         initComponents();
         AgendamentoController = new AgendamentoController();
         idAgendamentoEditando = -1;
@@ -90,6 +95,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
     public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Agendamento agendamento) {
         super(parent, modal);
+        ToolTipManager.sharedInstance().setInitialDelay(0);
         initComponents();
         AgendamentoController = new AgendamentoController();
         idAgendamentoEditando = agendamento.getId();
@@ -128,7 +134,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         dateCheckIn.getDateEditor().setDate(minCheckIN);
         dateCheckOut.getDateEditor().setDate(minCheckout);
 
-        //  AgendamentoControllet.atualizarTabela(grdAgendamentos);
+        //AgendamentoControllet.atualizarTabela(grdAgendamentos);
     }
 
     public Date getMinCheckIn() {
@@ -156,11 +162,46 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     }
 
     public void habilitarCampos(boolean flag) {
+        String valD;
+        String valB = null;
+        String valT = null;
+        String valM = null;
         lblCheckIn.setForeground(new Color(187, 187, 187));
         lblCheckOut.setForeground(new Color(187, 187, 187));
         lblServicos.setForeground(new Color(187, 187, 187));
 
         propCont.atualizarTabelaDePetsInicioFrame(tblPets, proprietarioLogado.getLstPetsPossuidos());
+
+        for (Servicos s : lstServ) {
+            switch (s.getNomeServico()) {
+                case "Diaria":
+                    valD = s.getValorServico().toString();
+                    break;
+                case "Banho":
+                    valB = s.getValorServico().toString();
+                    break;
+                case "Tosa":
+                    valT = s.getValorServico().toString();
+                    break;
+                case "Massagem":
+                    valM = s.getValorServico().toString();
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+
+        }
+
+        pnlServices.setToolTipText("<html>"
+                + "<h4>Valores:</h4>"
+                + "Banho: R$" + valB + ""
+                + "<br>"
+                + "Tosa: R$" + valT + ""
+                + "<br>"
+                + "Massagem: R$" + valM + ""
+                + "</html>");
+        
+        
 
     }
 
@@ -175,20 +216,18 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
     public List<Servicos> verifServicos() {
 
-        
-        if(CBBanho.isSelected()){
+        if (CBBanho.isSelected()) {
             lstSelectServi.add(servicoDAO.findByName(CBBanho.getText()));
         }
-        
-         if(CBTosa.isSelected()){
-             lstSelectServi.add(servicoDAO.findByName(CBTosa.getText()));
+
+        if (CBTosa.isSelected()) {
+            lstSelectServi.add(servicoDAO.findByName(CBTosa.getText()));
         }
-         
-          if(CBMassagem.isSelected()){
-              lstSelectServi.add(servicoDAO.findByName(CBMassagem.getText()));
+
+        if (CBMassagem.isSelected()) {
+            lstSelectServi.add(servicoDAO.findByName(CBMassagem.getText()));
         }
-        
-        
+
         return lstSelectServi;
 
     }
@@ -222,7 +261,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jPanel2 = new javax.swing.JPanel();
+        pnlServices = new javax.swing.JPanel();
         CBBanho = new javax.swing.JCheckBox();
         CBTosa = new javax.swing.JCheckBox();
         CBMassagem = new javax.swing.JCheckBox();
@@ -385,7 +424,12 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        pnlServices.setBackground(new java.awt.Color(51, 51, 51));
+        pnlServices.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pnlServicesMouseEntered(evt);
+            }
+        });
 
         CBBanho.setBackground(new java.awt.Color(51, 51, 51));
         CBBanho.setForeground(new java.awt.Color(255, 255, 255));
@@ -414,20 +458,20 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlServicesLayout = new javax.swing.GroupLayout(pnlServices);
+        pnlServices.setLayout(pnlServicesLayout);
+        pnlServicesLayout.setHorizontalGroup(
+            pnlServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlServicesLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CBBanho)
                     .addComponent(CBTosa)
                     .addComponent(CBMassagem)))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlServicesLayout.setVerticalGroup(
+            pnlServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlServicesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(CBBanho)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -455,7 +499,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                         .addComponent(lblServicos)
                         .addGap(121, 121, 121))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(147, 147, 147))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -489,7 +533,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                         .addComponent(lblCheckOut)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlDescricaoPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -518,7 +562,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         petSelcionado = (Pet) getObjetoSelecionadoNaGrid();
-        verifServicos();
 
         if (petSelcionado == null) {
             ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Primeiro, selecione um pet para ser hospedado");
@@ -560,7 +603,9 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
             lstPetsSelecionados.add(petSelcionado);
         }
 
-        txtPetsSelecionados.setText(lstPetsSelecionados.toString());
+        txtPetsSelecionados.setText(lstPetsSelecionados.toString().replace("[", "").replace("]", ""));
+        scrPets.setEnabled(false);
+        btnAddPet.setEnabled(false);
     }//GEN-LAST:event_btnAddPetActionPerformed
 
     private void btnCancelarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPetActionPerformed
@@ -578,7 +623,9 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         } else {
             lstPetsSelecionados.remove(lstPetsSelecionados.size() - 1);
         }
-        txtPetsSelecionados.setText(lstPetsSelecionados.toString());
+        txtPetsSelecionados.setText(lstPetsSelecionados.toString().replace("[", "").replace("]", ""));
+        scrPets.setEnabled(true);
+        btnAddPet.setEnabled(true);
     }//GEN-LAST:event_btnRemovePetActionPerformed
 
     private void CBBanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBBanhoActionPerformed
@@ -593,6 +640,10 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     private void CBMassagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBMassagemActionPerformed
 
     }//GEN-LAST:event_CBMassagemActionPerformed
+
+    private void pnlServicesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServicesMouseEntered
+
+    }//GEN-LAST:event_pnlServicesMouseEntered
 
     /**
      * @param args the command line arguments
@@ -612,7 +663,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCheckIn;
@@ -620,6 +670,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     private javax.swing.JLabel lblServicos;
     private javax.swing.JPanel panFormulario;
     private javax.swing.JPanel pnlDescricaoPet;
+    private javax.swing.JPanel pnlServices;
     private javax.swing.JScrollPane scrPets;
     private javax.swing.JTable tblPets;
     private javax.swing.JTextArea txtPetsSelecionados;

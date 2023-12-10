@@ -54,6 +54,9 @@ public class ServicosController {
     }
     
     public void initServicos(){
+        Servicos s = (buscarServico(1));
+       if(s == null) {
+        
     Servicos Diaria = new Servicos("Diaria", 0.0);
     Servicos Banho = new Servicos("Banho", 0.0);
     Servicos Tosa = new Servicos("Tosa", 0.0);
@@ -66,7 +69,7 @@ public class ServicosController {
             repositorio.save(Massagem);
         } catch (Exception e) {
         }
-    
+       }
     
     }
 }
