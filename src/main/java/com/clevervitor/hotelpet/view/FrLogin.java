@@ -66,10 +66,10 @@ public class FrLogin extends javax.swing.JFrame {
         lblLogin = new javax.swing.JLabel();
         edtLogin = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
-        bntLog = new javax.swing.JButton();
         lblCriarConta = new javax.swing.JButton();
         edtPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+        botaoPersonalizado1 = new com.clevervitor.hotelpet.view.UI.BotaoPersonalizado();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -91,21 +91,6 @@ public class FrLogin extends javax.swing.JFrame {
 
         lblPassword.setForeground(new java.awt.Color(242, 242, 242));
         lblPassword.setText("Senha:");
-
-        bntLog.setText("Entrar");
-        bntLog.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bntLogMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bntLogMouseExited(evt);
-            }
-        });
-        bntLog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntLogActionPerformed(evt);
-            }
-        });
 
         lblCriarConta.setForeground(new java.awt.Color(242, 242, 242));
         lblCriarConta.setText("Criar Conta");
@@ -142,6 +127,14 @@ public class FrLogin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/logoBranca.png"))); // NOI18N
 
+        botaoPersonalizado1.setForeground(new java.awt.Color(51, 51, 51));
+        botaoPersonalizado1.setText("Entrar");
+        botaoPersonalizado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPersonalizado1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panLoginLayout = new javax.swing.GroupLayout(panLogin);
         panLogin.setLayout(panLoginLayout);
         panLoginLayout.setHorizontalGroup(
@@ -155,9 +148,7 @@ public class FrLogin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
                         .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panLoginLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                                .addComponent(bntLog, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblCriarConta))
                             .addComponent(edtLogin, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panLoginLayout.createSequentialGroup()
@@ -166,9 +157,14 @@ public class FrLogin extends javax.swing.JFrame {
                             .addComponent(edtPassword))
                         .addGap(122, 122, 122))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(216, 216, 216))
+                .addGap(30, 216, Short.MAX_VALUE)
+                .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(216, 216, 216))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
+                        .addComponent(botaoPersonalizado1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(221, 221, 221))))
         );
         panLoginLayout.setVerticalGroup(
             panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,14 +179,11 @@ public class FrLogin extends javax.swing.JFrame {
                 .addComponent(lblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panLoginLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(bntLog))
-                    .addGroup(panLoginLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(lblCriarConta)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(2, 2, 2)
+                .addComponent(lblCriarConta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoPersonalizado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,7 +207,34 @@ public class FrLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_edtLoginActionPerformed
 
-    private void bntLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntLogActionPerformed
+    private void lblCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblCriarContaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblCriarContaActionPerformed
+
+    private void lblCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseClicked
+        // TODO add your handling code here:
+        DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame("Login"), true);
+        cadastroProp.setTitle("Cadastro");
+        cadastroProp.setVisible(true);
+    }//GEN-LAST:event_lblCriarContaMouseClicked
+
+    private void lblCriarContaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseEntered
+        // TODO add your handling code here:
+        lblCriarConta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_lblCriarContaMouseEntered
+
+    private void lblCriarContaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseExited
+        // TODO add your handling code here:
+        lblCriarConta.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+    }//GEN-LAST:event_lblCriarContaMouseExited
+
+    private void edtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtPasswordActionPerformed
+
+    private void botaoPersonalizado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPersonalizado1ActionPerformed
+        // TODO add your handling code here:
         String login = edtLogin.getText();
         String password = edtPassword.getText();
 
@@ -265,52 +285,14 @@ public class FrLogin extends javax.swing.JFrame {
             ShowMessageDialog DialMsg = new ShowMessageDialog( "Incorreto", "Email incorreto! Tente novamente.");
             DialMsg.setVisible(true);
         }
-    }//GEN-LAST:event_bntLogActionPerformed
-
-    private void lblCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblCriarContaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblCriarContaActionPerformed
-
-    private void lblCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseClicked
-        // TODO add your handling code here:
-        DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame("Login"), true);
-        cadastroProp.setTitle("Cadastro");
-        cadastroProp.setVisible(true);
-    }//GEN-LAST:event_lblCriarContaMouseClicked
-
-    private void lblCriarContaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseEntered
-        // TODO add your handling code here:
-        lblCriarConta.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_lblCriarContaMouseEntered
-
-    private void lblCriarContaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseExited
-        // TODO add your handling code here:
-        lblCriarConta.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-
-    }//GEN-LAST:event_lblCriarContaMouseExited
-
-    private void bntLogMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntLogMouseEntered
-        // TODO add your handling code here:
-        lblCriarConta.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-    }//GEN-LAST:event_bntLogMouseEntered
-
-    private void bntLogMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntLogMouseExited
-        // TODO add your handling code here:
-        lblCriarConta.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-
-    }//GEN-LAST:event_bntLogMouseExited
-
-    private void edtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edtPasswordActionPerformed
+    }//GEN-LAST:event_botaoPersonalizado1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntLog;
+    private com.clevervitor.hotelpet.view.UI.BotaoPersonalizado botaoPersonalizado1;
     private javax.swing.JTextField edtLogin;
     private javax.swing.JPasswordField edtPassword;
     private javax.swing.JLabel jLabel1;
