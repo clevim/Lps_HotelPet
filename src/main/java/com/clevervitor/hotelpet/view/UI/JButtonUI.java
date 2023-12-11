@@ -13,11 +13,9 @@ import javax.swing.JButton;
  */
 public class JButtonUI extends JButton {
 
-
     public JButtonUI() {
         setContentAreaFilled(false);
         setBorder(new EmptyBorder(3, 3, 3, 3));
     }
 
-    
 }

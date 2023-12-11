@@ -51,7 +51,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     Proprietario proprietarioLogado;
     utils utils;
     byte[] imgProfile = null;
-    ImageIcon imgIcon=null;
+    ImageIcon imgIcon = null;
 
     public FrMainMenuClient(Proprietario proprietario) {
         initComponents();
@@ -83,7 +83,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         this.proprietarioLogado = (Proprietario) proprietario;
         this.propController = new ProprietarioController();
-        
+
         imgProfile = proprietarioLogado.getAvatar();
         if (imgProfile != null) {
             imgIcon = new ImageIcon(new ImageIcon(imgProfile).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
@@ -563,28 +563,28 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
-        
+
         String file = utils.uploadAvatar(proprietarioLogado.getId(), imgProfile, imgIcon);
-        
-        if(!file.isEmpty()){
-            
-        lbl_img.setText(null);
-        imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
-        lbl_img.setIcon(imgIcon);
-        ShowMessageDialog DialMsg = new ShowMessageDialog( "Sucesso", "Avatar atualizado!");
+
+        if (!file.isEmpty()) {
+
+            lbl_img.setText(null);
+            imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
+            lbl_img.setIcon(imgIcon);
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Avatar atualizado!");
             DialMsg.setVisible(true);
-}
+        }
     }//GEN-LAST:event_lbl_imgMouseClicked
 
     private void menuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSobreMouseClicked
         // TODO add your handling code here:
-        
+
         DlgSobre sobre = new DlgSobre(new Frame(), true);
         sobre.setVisible(true);
     }//GEN-LAST:event_menuSobreMouseClicked
 
     private void menuContatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuContatoMouseClicked
-        DlgContato contato = new DlgContato( proprietarioLogado.getEmail());
+        DlgContato contato = new DlgContato(proprietarioLogado.getEmail());
         contato.setVisible(true);
     }//GEN-LAST:event_menuContatoMouseClicked
 

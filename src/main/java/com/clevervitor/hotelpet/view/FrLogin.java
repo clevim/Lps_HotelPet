@@ -35,7 +35,7 @@ public class FrLogin extends javax.swing.JFrame {
      */
     public FrLogin() {
         initComponents();
-        
+
         lblLogin.setForeground(Color.white);
         lblPassword.setForeground(Color.white);
         lblCriarConta.setForeground(Color.white);
@@ -50,7 +50,7 @@ public class FrLogin extends javax.swing.JFrame {
         setIconImage(iconeTitulo);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+
     }
 
     /**
@@ -271,18 +271,18 @@ public class FrLogin extends javax.swing.JFrame {
 
                             break;
                         default:
-                            ShowMessageDialog DialMsg = new ShowMessageDialog( "ERRO", "Nivel de Acesso inexistente");
+                            ShowMessageDialog DialMsg = new ShowMessageDialog("ERRO", "Nivel de Acesso inexistente");
                             DialMsg.setVisible(true);
                     }
 
                 } else {
-                    ShowMessageDialog DialMsg = new ShowMessageDialog( "Incorreto", "Senha incorreta! Tente novamente.");
+                    ShowMessageDialog DialMsg = new ShowMessageDialog("Incorreto", "Senha incorreta! Tente novamente.");
                     DialMsg.setVisible(true);
                 }
             }
         } catch (Exception e) {
             System.out.print(e);
-            ShowMessageDialog DialMsg = new ShowMessageDialog( "Incorreto", "Email incorreto! Tente novamente.");
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Incorreto", "Email incorreto! Tente novamente.");
             DialMsg.setVisible(true);
         }
     }//GEN-LAST:event_botaoPersonalizado1ActionPerformed

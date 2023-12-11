@@ -13,42 +13,38 @@ import static com.clevervitor.hotelpet.valid.ValidateUtils.criptografiaBase64Enc
  * @author vitor
  */
 public class ValidateAgendamento {
-    
-    public Agendamento validaCamposEntrada(Agendamento validaAgendamento){
-    Agendamento agendamento = new Agendamento();
-    //CPFValidator validator = new CPFValidator(); //CPF VALIDATOR
-    
-    agendamento.setId(validaAgendamento.getId());
+
+    public Agendamento validaCamposEntrada(Agendamento validaAgendamento) {
+        Agendamento agendamento = new Agendamento();
+
+
+        agendamento.setId(validaAgendamento.getId());
 
         if (validaAgendamento.getDataCheckIn().isEmpty()) {
             throw new AgendamentoException("Error - Campo vazio: 'Data check-in'.");
         }
         agendamento.setDataCheckIn(validaAgendamento.getDataCheckIn());
-        
-        
+
         if (validaAgendamento.getDataCheckOut().isEmpty()) {
             throw new AgendamentoException("Error - Campo vazio: 'Data check-Out'.");
         }
         agendamento.setDataCheckOut(validaAgendamento.getDataCheckOut());
-        
-        
+
         if (validaAgendamento.getProprietarioResp() == null) {
             throw new AgendamentoException("Error - Sem responsável pelo agendamento");
         }
 
         agendamento.setProprietarioResp(validaAgendamento.getProprietarioResp());
-        
-        if (validaAgendamento.getPetAgendado()== null) {
+
+        if (validaAgendamento.getPetAgendado() == null) {
             throw new AgendamentoException("Error - Nenhum animal agendado");
         }
 
         agendamento.setPetAgendado(validaAgendamento.getPetAgendado());
         agendamento.setServicosAdicionais(validaAgendamento.getServicosAdicionais());
         agendamento.setStatus(validaAgendamento.getStatus());
+        agendamento.setValor(validaAgendamento.getValor());
 
-        
-        
         return agendamento;
     }
-}  
-
+}

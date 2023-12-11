@@ -24,15 +24,15 @@ public class DatabaseJPA {
         }
         return INSTANCE;
     }
-    
+
     private DatabaseJPA() {
-        factory = Persistence.createEntityManagerFactory("hotelPet");        
+        factory = Persistence.createEntityManagerFactory("hotelPet");
     }
-    
-    public EntityManager getEntityManager(){
+
+    public EntityManager getEntityManager() {
         return factory.createEntityManager();
     }
-    
+
     public void closeFactory() {
         this.factory.close();
     }

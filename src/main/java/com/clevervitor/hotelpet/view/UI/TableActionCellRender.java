@@ -21,6 +21,5 @@ public class TableActionCellRender extends DefaultTableCellRenderer {
         pnlAction.setBackground(comp.getBackground());
         return pnlAction;
     }
-    
-    
+
 }

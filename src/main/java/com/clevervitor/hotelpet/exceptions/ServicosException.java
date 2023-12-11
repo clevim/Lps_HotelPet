@@ -8,9 +8,10 @@ package com.clevervitor.hotelpet.exceptions;
  *
  * @author clevs
  */
-public class ServicosException extends RuntimeException{
+public class ServicosException extends RuntimeException {
+
     public ServicosException(String msg) {
         super(msg);
     }
-    
+
 }

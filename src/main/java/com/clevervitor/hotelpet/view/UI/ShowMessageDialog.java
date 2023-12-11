@@ -14,26 +14,24 @@ public class ShowMessageDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form ShowMessageDialog
+     *
      * @param parent
      * @param modal
      * @param title
      * @param msg
      */
-    public ShowMessageDialog(String title,String msg) {
-       
+    public ShowMessageDialog(String title, String msg) {
+
         this.setTitle(title);
-        
-       
+
         initComponents();
         edtMsg.setText(msg);
         edtMsg.setHorizontalAlignment(SwingConstants.CENTER);
         edtMsg.setHorizontalTextPosition(SwingConstants.CENTER);
         jButton1.setHorizontalAlignment(SwingConstants.CENTER);
         jButton1.setHorizontalTextPosition(SwingConstants.CENTER);
-        
+
     }
-    
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,7 +80,6 @@ public class ShowMessageDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel edtMsg;

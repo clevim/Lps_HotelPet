@@ -28,67 +28,61 @@ public class PetController {
     }
 
     public void cadastrarPet(Pet cadPet) {
-        
-        
+
         ValidatePet check = new ValidatePet();
         Pet novoPet = check.validaCamposEntrada(cadPet);
-   
-        
+
         try {
             repositorio.save(novoPet);
-        } catch(PetException e) {
+        } catch (PetException e) {
             throw new PetException("Error - já existe um pet com este 'id'.");
         }
-        
-     
+
     }
 
     public void atualizarPet(Pet editPet) {
-        
+
         ValidatePet check = new ValidatePet();
         Pet novoPet = check.validaCamposEntrada(editPet);
-   
+
         try {
             repositorio.save(novoPet);
-        } catch(PetException e) {
+        } catch (PetException e) {
             throw new PetException("Error - já existe um pet com este 'id'.");
         }
-        
-     
+
     }
-    
-    public void atualizarTabelaDePets(JTable grd, List<Pet> lst){
+
+    public void atualizarTabelaDePets(JTable grd, List<Pet> lst) {
         TMPet tableModel = new TMPet(lst);
         grd.setModel(tableModel);
     }
-    
-    
+
     public Pet buscarPet(Integer id) {
         return (Pet) this.repositorio.find(id);
     }
-    
+
     public Pet buscarAgendamento(Integer id) {
         return (Pet) this.repositorio.find(id);
     }
-    
+
     public List<Pet> buscarTodosOsPets() {
         return (List<Pet>) this.repositorio.findAll();
     }
+
     /*public void atualizarTabela(JTable grd) {
         List<Object> lst = repositorio.findAll();
         
         TMCadPet tmPet = new TMCadPet(lst);
         grd.setModel(tmPet);
     }*/
-    
-    public void excluirPet(Pet pet){
-        if(pet.getId() != null){
+
+    public void excluirPet(Pet pet) {
+        if (pet.getId() != null) {
             repositorio.delete(pet);
-        }else {
-            throw new PetException ("Error - Pet inexistente.");
+        } else {
+            throw new PetException("Error - Pet inexistente.");
         }
     }
-    
+
 }
-
-

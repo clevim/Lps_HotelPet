@@ -9,7 +9,6 @@ package com.clevervitor.hotelpet.model.enums;
  * @author clevs
  */
 public enum Status {
-       NULL,AGENDADO,ATIVO,FINALIZADO;
-       
-     
+    NULL, AGENDADO, ATIVO, FINALIZADO;
+
 }

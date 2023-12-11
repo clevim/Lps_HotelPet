@@ -53,8 +53,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     ServicosDAO servicoDAO;
     int idAgendamentoEditando;
     private String edtSexo;
-    
-    
 
     public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Proprietario proprietario) {
         super(parent, modal);
@@ -249,7 +247,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     }
 
     public List<Servicos> verifServicos() {
-
+        lstSelectServi.add(servicoDAO.findByName(Services.DIARIA));
         if (CBBanho.isSelected()) {
             lstSelectServi.add(servicoDAO.findByName(Services.BANHO));
         }
@@ -605,7 +603,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
     private void btnSalvarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPetActionPerformed
         // TODO add your handling code here:
-        
+
         petSelcionado = (Pet) getObjetoSelecionadoNaGrid();
 
         if (petSelcionado == null) {
@@ -618,11 +616,14 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         String dCheckOut = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckOut.getDate());
         Status status = utils.checkStatus(dateCheckIn.getDate(), dateCheckOut.getDate());
 
-        
         Set<Servicos> servs = new HashSet<>(verifServicos());
 
         Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut, servs, proprietarioLogado, lstPetsSelecionados, 0.0, status);
-
+        try {
+            novoAgendamento.setValor(utils.calcTotalAgendamento(novoAgendamento));
+        } catch (ParseException ex) {
+            Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
         AgendamentoController.cadastrarAgendamento(novoAgendamento);
 
         dispose();

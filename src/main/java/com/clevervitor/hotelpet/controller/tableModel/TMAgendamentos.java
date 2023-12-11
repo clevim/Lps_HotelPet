@@ -72,42 +72,38 @@ public class TMAgendamentos extends AbstractTableModel {
     }
 
     @Override
-        public String getColumnName(int column) {
-        
+    public String getColumnName(int column) {
+
         switch (column) {
-            
-                case COL_NOME:
-                    return "Pet";
-                case COL_DATA_CHECKIN:
-                    return "Data check-in";
-                case COL_DATA_CHECKOUT:
-                    return "Data check-out";
-                case COL_SERVICOS_ADICIONAIS:
-                    return "Serviços";
-                case COL_STATUS:
-                    return "Status";
-                default:
-                    break;
-            }
-        
+
+            case COL_NOME:
+                return "Pet";
+            case COL_DATA_CHECKIN:
+                return "Data check-in";
+            case COL_DATA_CHECKOUT:
+                return "Data check-out";
+            case COL_SERVICOS_ADICIONAIS:
+                return "Serviços";
+            case COL_STATUS:
+                return "Status";
+            default:
+                break;
+        }
+
         return "";
     }
-        
-      public String ToStringServiceName(Set<Servicos> lstServ){
-      StringBuilder result = new StringBuilder();
-          for(Servicos s : lstServ){
-          result.append(utils.ServicesToString(s.getNomeServico())).append(",");
-          }
 
-       
+    public String ToStringServiceName(Set<Servicos> lstServ) {
+        StringBuilder result = new StringBuilder();
+        for (Servicos s : lstServ) {
+            result.append(utils.ServicesToString(s.getNomeServico())).append(",");
+        }
 
-      if (result.length() > 0) {
+        if (result.length() > 0) {
             result.setLength(result.length() - 1);
         }
-      
-      
-      
-      return result.toString();
-      }
-    
+
+        return result.toString();
+    }
+
 }

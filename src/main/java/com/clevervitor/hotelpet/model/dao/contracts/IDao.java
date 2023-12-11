@@ -11,9 +11,14 @@ import java.util.List;
  * @author vitor
  */
 public interface IDao<T> {
+
     void save(T obj);
+
     void update(T obj);
+
     boolean delete(T obj);
-    T find (int id);
+
+    T find(int id);
+
     List<T> findAll();
 }

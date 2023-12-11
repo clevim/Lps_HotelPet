@@ -35,6 +35,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -114,29 +115,28 @@ public class utils {
         return m.matches();
     }
 
-    public static Servicos getServico(List<Servicos> lstServ, String nomeServico) {
+    public static Servicos getServico(List<Servicos> lstServ, Services nomeServico) {
         Servicos serv = new Servicos(Services.NULL, 0.0);
 
         for (Servicos s : lstServ) {
             switch (s.getNomeServico()) {
                 case DIARIA:
-                    if (nomeServico == "Diaria") {
+                    if (nomeServico == Services.DIARIA) {
                         serv = s;
                     }
-
                     break;
                 case BANHO:
-                    if (nomeServico == "Banho") {
+                    if (nomeServico == Services.BANHO) {
                         serv = s;
                     }
                     break;
                 case TOSA:
-                    if (nomeServico == "Tosa") {
+                    if (nomeServico == Services.TOSA) {
                         serv = s;
                     }
                     break;
                 case MASSAGEM:
-                    if (nomeServico == "Massagem") {
+                    if (nomeServico == Services.MASSAGEM) {
                         serv = s;
                     }
                     break;
@@ -154,7 +154,7 @@ public class utils {
         SimpleDateFormat formatoDMY = new SimpleDateFormat("dd/MM/yyyy");
         Calendar cIn = Calendar.getInstance();
         Calendar cOut = Calendar.getInstance();
-        List<Servicos> servs = (List<Servicos>) agend.getServicosAdicionais();
+        List<Servicos> servs = new ArrayList<Servicos>(agend.getServicosAdicionais());
 
         String dateCheckIn = agend.getDataCheckIn();
         String dateCheckOut = agend.getDataCheckOut();
@@ -166,10 +166,10 @@ public class utils {
         int qtdTosa = dias < 30 ? 1 : (dias / 30);
         int qtdMassagem = dias < 14 ? 1 : (dias / 14);
 
-        Double valDiaria = utils.getServico(servs, "Diaria").getValorServico() * dias;
-        Double valBanho = utils.getServico(servs, "Banho").getValorServico() * qtdBanho;
-        Double valTosa = utils.getServico(servs, "Tosa").getValorServico() * qtdTosa;
-        Double valMassagem = utils.getServico(servs, "Massagem").getValorServico() * qtdMassagem;
+        Double valDiaria = utils.getServico(servs, Services.DIARIA).getValorServico() * dias;
+        Double valBanho = utils.getServico(servs, Services.BANHO).getValorServico() * qtdBanho;
+        Double valTosa = utils.getServico(servs, Services.TOSA).getValorServico() * qtdTosa;
+        Double valMassagem = utils.getServico(servs, Services.MASSAGEM).getValorServico() * qtdMassagem;
         valTotal = (valDiaria + valBanho + valMassagem + valTosa);
 
         return valTotal;
@@ -245,25 +245,22 @@ public class utils {
         }
 
     }
-    
-    
-    public static void VerificaAniversario(){
-    SimpleDateFormat formatoDMY = new SimpleDateFormat("dd/MM/yyyy");
-    Date d = new Date();
-    GEmailSender sendertest = new GEmailSender();
-    String dataAtual = formatoDMY.format(d);
-        
+
+    public static void VerificaAniversario() {
+        SimpleDateFormat formatoDMY = new SimpleDateFormat("dd/MM/yyyy");
+        Date d = new Date();
+        GEmailSender sendertest = new GEmailSender();
+        String dataAtual = formatoDMY.format(d);
+
         List<Pessoa> lstPessoas = new PessoaDAO().findAll();
-        
-        
-        for(Pessoa p : lstPessoas){
-        if(dataAtual.equals(p.getDataNasc())){
-        sendertest.sendEmail(p.getEmail(), "Feliz Aniversario!!", new emailBodys().emailCat("Feliz Aniversario!! Te desejamos tudo de bom nesse dia especial!!"));
-            
+
+        for (Pessoa p : lstPessoas) {
+            if (dataAtual.equals(p.getDataNasc())) {
+                sendertest.sendEmail(p.getEmail(), "Feliz Aniversario!!", new emailBodys().emailCat("Feliz Aniversario!! Te desejamos tudo de bom nesse dia especial!!"));
+
+            }
+
         }
-        
-        
-        }
-    
+
     }
 }

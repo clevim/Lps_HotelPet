@@ -44,24 +44,21 @@ public class ProprietarioController {
 //        }
 //        return entityManager;
 //    }
-
-    
-    
-    public void atualizarTabelaDeProprietarios(JTable grd, List<Proprietario> lst){
+    public void atualizarTabelaDeProprietarios(JTable grd, List<Proprietario> lst) {
         TMProprietario tableModel = new TMProprietario(lst);
         grd.setModel(tableModel);
     }
-    
-    public void atualizarTabelaDeAgendamentos(JTable grd, List<Agendamento> lst){
+
+    public void atualizarTabelaDeAgendamentos(JTable grd, List<Agendamento> lst) {
         TMAgendamentos tableModel = new TMAgendamentos(lst);
         grd.setModel(tableModel);
     }
-    
-    public void atualizarTabelaDePetsInicioFrame(JTable grd, List<Pet> lst){
+
+    public void atualizarTabelaDePetsInicioFrame(JTable grd, List<Pet> lst) {
         TMPet tableModel = new TMPet(lst);
         grd.setModel(tableModel);
     }
-    
+
     public void cadastrarProprietario(Proprietario cadProprietario) {
 
         ValidateProprietario check = new ValidateProprietario();
@@ -90,7 +87,7 @@ public class ProprietarioController {
     public Proprietario buscarProprietario(Integer id) {
         return (Proprietario) this.repositorio.find(id);
     }
-    
+
     public List<Proprietario> buscarTodosOsProprietarios() {
         return (List<Proprietario>) this.repositorio.findAll();
     }
@@ -102,12 +99,12 @@ public class ProprietarioController {
             throw new ProprietarioException("Error - Pet inexistente.");
         }
     }
-/*
+    /*
     public void atualizarTabela(JTable grd) {
         List<Object> lst = repositorio.findAll();
 
         TMCadPet tmPet = new TMCadPet(lst);
         grd.setModel(tmPet);
     }
-    */
+     */
 }

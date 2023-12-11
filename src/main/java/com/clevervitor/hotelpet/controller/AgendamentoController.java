@@ -24,7 +24,7 @@ import javax.swing.JTable;
  * @author vitor
  */
 public class AgendamentoController {
-    
+
     private AgendamentoDAO repositorio;
 
     public AgendamentoController() {
@@ -72,20 +72,20 @@ public class AgendamentoController {
     public Agendamento buscarAgendamento(Integer id) {
         return (Agendamento) this.repositorio.find(id);
     }
-    
+
     public List<Agendamento> buscarTodosOsAgendamentos() {
         return (List<Agendamento>) this.repositorio.findAll();
     }
-    
+
     public Agendamento buscarAgendamentoPorProprietario(Proprietario proprietario) {
         return (Agendamento) this.repositorio.findByProprietario(proprietario);
     }
-    
+
     public Agendamento buscarAgendamentoPorPet(Pet pet) {
         return (Agendamento) this.repositorio.findByPet(pet);
     }
-    
-    public void atualizarTabelaDeAgendamentos(JTable grd, List<Agendamento> lst){
+
+    public void atualizarTabelaDeAgendamentos(JTable grd, List<Agendamento> lst) {
         TMAgendamentos tableModel = new TMAgendamentos(lst);
         grd.setModel(tableModel);
     }
@@ -97,6 +97,5 @@ public class AgendamentoController {
             throw new AgendamentoException("Error - Agendamento inexistente.");
         }
     }
-    
-}
 
+}

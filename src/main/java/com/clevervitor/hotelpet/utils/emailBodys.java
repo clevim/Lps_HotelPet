@@ -7,6 +7,7 @@ package com.clevervitor.hotelpet.utils;
 import com.clevervitor.hotelpet.model.dao.ServicosDAO;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Servicos;
+import com.clevervitor.hotelpet.model.enums.Services;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Period;
@@ -720,10 +721,10 @@ public class emailBodys {
         int qtdTosa = dias < 30 ? 1 : (dias / 30);
         int qtdMassagem = dias < 14 ? 1 : (dias / 14);
 
-        Double valDiaria = utils.getServico(servs, "Diaria").getValorServico() * dias;
-        Double valBanho = utils.getServico(servs, "Banho").getValorServico() * qtdBanho;
-        Double valTosa = utils.getServico(servs, "Tosa").getValorServico() * qtdTosa;
-        Double valMassagem = utils.getServico(servs, "Massagem").getValorServico() * qtdMassagem;
+        Double valDiaria = utils.getServico(servs, Services.DIARIA).getValorServico() * dias;
+        Double valBanho = utils.getServico(servs, Services.BANHO).getValorServico() * qtdBanho;
+        Double valTosa = utils.getServico(servs, Services.TOSA).getValorServico() * qtdTosa;
+        Double valMassagem = utils.getServico(servs, Services.MASSAGEM).getValorServico() * qtdMassagem;
         Double valTotal = (valDiaria + valBanho + valMassagem + valTosa);
 
         if (valBanho == 0.0) {

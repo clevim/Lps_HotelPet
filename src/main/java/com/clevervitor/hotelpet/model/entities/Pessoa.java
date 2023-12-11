@@ -39,7 +39,7 @@ public class Pessoa {
     private String senha;
     private Integer nivelAcesso;
     @Lob
-    @Column(columnDefinition = "LONGBLOB",nullable = true)
+    @Column(columnDefinition = "LONGBLOB", nullable = true)
     private byte[] avatar;
 
     public Pessoa() {

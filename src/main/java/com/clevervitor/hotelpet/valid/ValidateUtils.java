@@ -13,11 +13,12 @@ import java.util.Base64;
  * @author ifmaker
  */
 public class ValidateUtils {
+
     public boolean validateLogin(String email, String senha) throws Exception {
         PessoaDAO Pdao = new PessoaDAO();
         try {
             Pessoa p = Pdao.findByEmail(email);
-            
+
             String senhaBD = descriptografiaBase64Decode(p.getSenha());
 
             if (p != null) {
@@ -33,21 +34,25 @@ public class ValidateUtils {
         return false;
 
     }
-    
-    /** Criptografando
+
+    /**
+     * Criptografando
+     *
      * @param pValor
-     * @return  */
-public static String criptografiaBase64Encoder(String pValor) {
-    return new String(Base64.getEncoder().encode(pValor.getBytes()));
-}
+     * @return
+     */
+    public static String criptografiaBase64Encoder(String pValor) {
+        return new String(Base64.getEncoder().encode(pValor.getBytes()));
+    }
 
-
-/** Realizando o inverso
+    /**
+     * Realizando o inverso
+     *
      * @param pValor
-     * @return  */
-public static String descriptografiaBase64Decode(String pValor) {
-    return new String(Base64.getDecoder().decode(pValor.getBytes()));
-}
+     * @return
+     */
+    public static String descriptografiaBase64Decode(String pValor) {
+        return new String(Base64.getDecoder().decode(pValor.getBytes()));
+    }
 
-    
 }

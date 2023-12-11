@@ -64,7 +64,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
     }
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -292,10 +291,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         boolean isValidEmail = utils.isValidEmailAddress(edtEmail.getText());
         boolean isValidCpf = utils.isValidCpf(edtCpf.getText());
         boolean isValidPass = utils.isValidPassword(edtSenha.getText());
-        
-        
 
-        if (isValidCpf && isValidEmail && isValidPass ) {
+        if (isValidCpf && isValidEmail && isValidPass) {
 
             if (jRadioFuncionario.isSelected()) {
                 Double Salario = Double.valueOf(edtSalario.getText());
@@ -325,13 +322,11 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                 }
 
                 this.funcionarioEditando = -1;
-                
 
             } else if (jRadioClient.isSelected()) {
-                
+
                 Proprietario prop = new Proprietario(edtNome.getText(), endereco, edtDataNascimento.getDate().toString(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
-                     
-                                       
+
                 if (proprietarioEditando > 0) {
                     try {
                         proprietarioCont.atualizarProprietario(prop);
@@ -355,20 +350,20 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                 }
 
                 this.proprietarioEditando = -1;
-                
+
             }
-        } else if(!isValidEmail) {
+        } else if (!isValidEmail) {
             edtEmail.setText(null);
             ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Email Invalido");
-            DialMsg.setVisible(true);           
-        }else if(!isValidPass) {
+            DialMsg.setVisible(true);
+        } else if (!isValidPass) {
             edtSenha.setText(null);
             ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Senha Invalida");
-            DialMsg.setVisible(true);           
-        }else if(!isValidCpf) {
+            DialMsg.setVisible(true);
+        } else if (!isValidCpf) {
             edtCpf.setText(null);
             ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Cpf Invalido");
-            DialMsg.setVisible(true);           
+            DialMsg.setVisible(true);
         }
 
 

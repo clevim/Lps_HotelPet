@@ -23,7 +23,7 @@ public class AgendamentoDAO extends Dao<Agendamento> {
 
     public AgendamentoDAO() {
     }
-    
+
     public Object findByProprietario(Proprietario proprietarioResp) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
@@ -39,6 +39,7 @@ public class AgendamentoDAO extends Dao<Agendamento> {
         return lst;
 
     }
+
     public Object findByPet(Pet pet) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
@@ -63,7 +64,6 @@ public class AgendamentoDAO extends Dao<Agendamento> {
                     + " FROM Agendamento f LEFT JOIN FETCH f.servicosAdicionais  ";
 
             qry = super.entityManager.createQuery(jpql, Agendamento.class);
-            
 
             List lstAgendamentos = qry.getResultList();
             return lstAgendamentos;

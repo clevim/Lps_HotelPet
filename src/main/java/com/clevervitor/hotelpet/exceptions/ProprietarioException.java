@@ -13,5 +13,5 @@ public class ProprietarioException extends RuntimeException {
     public ProprietarioException(String msg) {
         super(msg);
     }
-    
+
 }

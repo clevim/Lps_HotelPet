@@ -15,10 +15,11 @@ import lombok.EqualsAndHashCode;
  *
  * @author clevs
  */
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Entity
-public class Funcionario extends Pessoa{
+public class Funcionario extends Pessoa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -26,15 +27,14 @@ public class Funcionario extends Pessoa{
     private String turno;
     private String cargo;
 
-    public Funcionario(){
+    public Funcionario() {
         super();
         this.salario = 0.0;
         this.turno = "";
         this.cargo = "";
-        
-        
+
     }
-    
+
     public Funcionario(Double Salario, String turno, String cargo) {
         this.salario = Salario;
         this.turno = turno;
@@ -47,11 +47,5 @@ public class Funcionario extends Pessoa{
         this.turno = turno;
         this.cargo = cargo;
     }
-    
-    
-    
 
-  
-    
-    
 }

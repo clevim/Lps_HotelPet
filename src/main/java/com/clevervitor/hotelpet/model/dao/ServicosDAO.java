@@ -58,7 +58,7 @@ public class ServicosDAO extends Dao<Servicos> {
                 super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
                 Servicos s = entityManager.find(Servicos.class, id);
-                
+
                 return s;
             } catch (ServicosException e) {
                 throw new ServicosException("Servico não encontrado");
@@ -86,8 +86,8 @@ public class ServicosDAO extends Dao<Servicos> {
             super.entityManager.close();
         }
     }
-    
-     public Set<Servicos> findAllSet() {
+
+    public Set<Servicos> findAllSet() {
         try {
             super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
@@ -96,7 +96,7 @@ public class ServicosDAO extends Dao<Servicos> {
 
             qry = super.entityManager.createQuery(jpql, Servicos.class);
 
-            return new HashSet<>( qry.getResultList());
+            return new HashSet<>(qry.getResultList());
         } catch (ServicosException msg) {
             throw new ServicosException("Erro ao retornar lista de Servico.");
         } finally {

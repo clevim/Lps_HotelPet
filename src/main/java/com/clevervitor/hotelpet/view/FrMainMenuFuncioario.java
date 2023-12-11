@@ -402,7 +402,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             lbl_img.setText(null);
             imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
             lbl_img.setIcon(imgIcon);
-            ShowMessageDialog DialMsg = new ShowMessageDialog( "Sucesso", "Avatar atualizado!");
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Avatar atualizado!");
             DialMsg.setVisible(true);
         }
     }//GEN-LAST:event_lbl_imgMouseClicked
@@ -410,7 +410,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         DlgCadServicos cadastroServicos = new DlgCadServicos(new Frame(), true);
         cadastroServicos.setTitle("Cadastro");
-        cadastroServicos.setVisible(true); 
+        cadastroServicos.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void menuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSobreMouseClicked
@@ -423,8 +423,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private void tblAgendamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAgendamentosMouseClicked
         // TODO add your handling code here: 
         Agendamento agendamentoSelecionado = (Agendamento) getObjetoSelecionadoNaGrid();
-        
-        if(evt.getClickCount() == 2){
+
+        if (evt.getClickCount() == 2) {
             DlgInfoAgendamento telaInfoAgendamento = new DlgInfoAgendamento(new Frame(), true, agendamentoSelecionado);
         }
     }//GEN-LAST:event_tblAgendamentosMouseClicked

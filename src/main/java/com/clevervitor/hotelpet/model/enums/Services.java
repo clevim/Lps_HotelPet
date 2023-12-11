@@ -11,5 +11,4 @@ package com.clevervitor.hotelpet.model.enums;
 public enum Services {
     NULL, DIARIA, BANHO, TOSA, MASSAGEM;
 
-    
 }

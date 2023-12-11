@@ -64,23 +64,23 @@ public class TMProprietario extends AbstractTableModel {
     }
 
     @Override
-        public String getColumnName(int column) {
-        
+    public String getColumnName(int column) {
+
         switch (column) {
-            
-                case COL_NOME:
-                    return "Nome do pet";
-                case COL_CPF:
-                    return "CPF";
-                case COL_EMAIL:
-                    return "Email";
-                case COL_ENDERECO:
-                    return "Endereço";
-                default:
-                    break;
-            }
-        
+
+            case COL_NOME:
+                return "Nome do pet";
+            case COL_CPF:
+                return "CPF";
+            case COL_EMAIL:
+                return "Email";
+            case COL_ENDERECO:
+                return "Endereço";
+            default:
+                break;
+        }
+
         return "";
     }
-    
+
 }

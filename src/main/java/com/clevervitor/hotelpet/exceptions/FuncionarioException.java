@@ -8,8 +8,8 @@ package com.clevervitor.hotelpet.exceptions;
  *
  * @author vitor
  */
-public class FuncionarioException extends RuntimeException{
-    
+public class FuncionarioException extends RuntimeException {
+
     public FuncionarioException(String msg) {
         super(msg);
     }

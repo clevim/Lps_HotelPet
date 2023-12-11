@@ -29,8 +29,6 @@ public class PetDAO extends Dao<Pet> {
     public PetDAO() {
 
     }
-    
-    
 
     public Object findByEmail(String email) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();

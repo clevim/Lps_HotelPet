@@ -47,16 +47,17 @@ public class Agendamento {
     @OneToOne
     @JoinColumn(name = "proprietarioResp_id")
     private Proprietario proprietarioResp;
-    
+
     @ManyToOne
     @JoinColumn(name = "pet_id", referencedColumnName = "id")
     private Pet PetAgendado;
 
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(name = "agendamento_servicos",joinColumns = @JoinColumn(name="idAgendamento",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name = "idServicos",referencedColumnName = "id"))
-    @EqualsAndHashCode.Exclude private Set<Servicos> servicosAdicionais;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "agendamento_servicos", joinColumns = @JoinColumn(name = "idAgendamento", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "idServicos", referencedColumnName = "id"))
+    @EqualsAndHashCode.Exclude
+    private Set<Servicos> servicosAdicionais;
 
-    public Agendamento(String dataCheckIn, String dataCheckOut, Set<Servicos> servicosAdicionais, Proprietario proprietario, Pet pets, double valor,Status status) {
+    public Agendamento(String dataCheckIn, String dataCheckOut, Set<Servicos> servicosAdicionais, Proprietario proprietario, Pet pets, double valor, Status status) {
         this.dataCheckIn = dataCheckIn;
         this.dataCheckOut = dataCheckOut;
         this.servicosAdicionais = servicosAdicionais;
@@ -76,8 +77,6 @@ public class Agendamento {
         this.status = Status.NULL;
 
     }
-
-
 
     public String toStringLst(List<Pet> lst) {
         String txt = "";

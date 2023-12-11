@@ -14,11 +14,11 @@ import static com.clevervitor.hotelpet.valid.ValidateUtils.criptografiaBase64Enc
  * @author vitor
  */
 public class ValidateFuncionario {
-    public Funcionario validaCamposEntrada(Funcionario validaFuncionario){
-    Funcionario funcionario = new Funcionario();
-    //CPFValidator validator = new CPFValidator(); //CPF VALIDATOR
-    
-    funcionario.setId(validaFuncionario.getId());
+
+    public Funcionario validaCamposEntrada(Funcionario validaFuncionario) {
+        Funcionario funcionario = new Funcionario();
+
+        funcionario.setId(validaFuncionario.getId());
 
         if (validaFuncionario.getNome().isEmpty()) {
             throw new FuncionarioException("Error - Campo vazio: 'nome'.");
@@ -40,7 +40,7 @@ public class ValidateFuncionario {
         if (validaFuncionario.getSexo().isEmpty()) {
             throw new FuncionarioException("Error - Campo vazio: 'sexo'.");
         }
-        
+
         funcionario.setSexo(validaFuncionario.getSexo());
 
         if (validaFuncionario.getTel().isEmpty()) {
@@ -65,24 +65,24 @@ public class ValidateFuncionario {
             throw new FuncionarioException("Error - Campo vazio: 'senha'");
         }
         funcionario.setSenha(criptografiaBase64Encoder(validaFuncionario.getSenha()));
-        
-        if (validaFuncionario.getSalario() <= 0.0){
+
+        if (validaFuncionario.getSalario() <= 0.0) {
             throw new FuncionarioException("Error - O Funcionario não possui salario?.");
         }
         funcionario.setSalario(validaFuncionario.getSalario());
-        
-        if (validaFuncionario.getTurno().isEmpty()){
+
+        if (validaFuncionario.getTurno().isEmpty()) {
             throw new FuncionarioException("Error - O Funcionario não possui turno?.");
         }
         funcionario.setTurno(validaFuncionario.getTurno());
-        
-        if (validaFuncionario.getCargo().isEmpty()){
+
+        if (validaFuncionario.getCargo().isEmpty()) {
             throw new FuncionarioException("Error - O Funcionario precisa ter um cargo!.");
         }
         funcionario.setCargo(validaFuncionario.getCargo());
-        
+
         funcionario.setNivelAcesso(validaFuncionario.getNivelAcesso());
-        
+
         return funcionario;
     }
 }

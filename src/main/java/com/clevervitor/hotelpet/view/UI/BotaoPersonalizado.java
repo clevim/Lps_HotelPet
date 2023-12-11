@@ -46,8 +46,8 @@ public class BotaoPersonalizado extends JButton {
                 Graphics2D g2 = img.createGraphics();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 //  Create Gradient Color
-                float f[] = new float[]{0f,0.5f, 1f};
-                Color colors[] = new Color[]{new Color(12, 192, 108), new Color(255, 230, 25),  new Color(255, 250, 210)};
+                float f[] = new float[]{0f, 0.5f, 1f};
+                Color colors[] = new Color[]{new Color(12, 192, 108), new Color(255, 230, 25), new Color(255, 250, 210)};
                 LinearGradientPaint gra = new LinearGradientPaint(0, 0, width, height, f, colors, MultipleGradientPaint.CycleMethod.REFLECT);
                 Shape out = new Rectangle(0, 0, width, height);
                 Shape in = new Rectangle(tamBorda, tamBorda, width - tamBorda * 2, height - tamBorda * 2);

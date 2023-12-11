@@ -26,11 +26,10 @@ import javax.swing.JTable;
  * @author vitor
  */
 public class FuncionarioController {
-    
+
     private FuncionarioDAO repositorio;
     GEmailSender emailConf = new GEmailSender();
     emailBodys emBd = new emailBodys();
-
 
     public FuncionarioController() {
         repositorio = new FuncionarioDAO();
@@ -53,21 +52,19 @@ public class FuncionarioController {
 
         ValidateFuncionario check = new ValidateFuncionario();
         Funcionario novoFuncionario = check.validaCamposEntrada(cadFuncionario);
-        
 
         try {
             repositorio.save(novoFuncionario);
             //emailConf.sendEmail(novoFuncionario.getEmail(), "Cadastro Hotel Pet", emBd.emailDog1("Bem vindo ao Hotel Pet"));
-            
+
         } catch (FuncionarioException e) {
             throw new FuncionarioException("Error - já existe um Funcionario com este 'id'.");
         }
     }
-    
+
     public List<Funcionario> buscarTodosOsFuncionarios() {
         return (List<Funcionario>) this.repositorio.findAll();
     }
-    
 
     public void atualizarFuncionario(Funcionario editFuncionario) {
 
@@ -86,10 +83,6 @@ public class FuncionarioController {
     public Funcionario buscarFuncionario(Integer id) {
         return (Funcionario) this.repositorio.find(id);
     }
-    
-    
-
-    
 
     public void excluirFuncionario(Funcionario funcionario) {
         if (funcionario.getId() != null) {
@@ -99,5 +92,5 @@ public class FuncionarioController {
             throw new FuncionarioException("Error - Funcionario inexistente.");
         }
     }
-    
+
 }

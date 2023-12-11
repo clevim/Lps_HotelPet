@@ -18,13 +18,14 @@ import javax.persistence.Persistence;
  * @author clevs
  */
 public class ServicosController {
+
     private ServicosDAO repositorio;
-    
+
     public ServicosController() {
         repositorio = new ServicosDAO();
     }
-    
-     public EntityManager getEntityManager() {
+
+    public EntityManager getEntityManager() {
         EntityManagerFactory factory = null;
         EntityManager entityManager = null;
 
@@ -36,15 +37,15 @@ public class ServicosController {
         }
         return entityManager;
     }
-     
-     public Servicos buscarServico(Integer id){
-     return (Servicos) this.repositorio.find(id);
-     }
-     
+
+    public Servicos buscarServico(Integer id) {
+        return (Servicos) this.repositorio.find(id);
+    }
+
     public List<Servicos> buscarTodosbuscarServico() {
         return (List<Servicos>) this.repositorio.findAll();
     }
-    
+
     public void atualizarAgendamento(Servicos editServicos) {
         try {
             repositorio.update(editServicos);
@@ -53,24 +54,24 @@ public class ServicosController {
         }
 
     }
-    
-    public void initServicos(){
+
+    public void initServicos() {
         Servicos s = (buscarServico(1));
-       if(s == null) {
-        
-    Servicos Diaria = new Servicos(Services.DIARIA, 0.0);
-    Servicos Banho = new Servicos(Services.BANHO, 0.0);
-    Servicos Tosa = new Servicos(Services.TOSA, 0.0);
-    Servicos Massagem = new Servicos(Services.MASSAGEM, 0.0);
-    
-        try {
-            repositorio.save(Diaria);
-            repositorio.save(Banho);
-            repositorio.save(Tosa);
-            repositorio.save(Massagem);
-        } catch (Exception e) {
+        if (s == null) {
+
+            Servicos Diaria = new Servicos(Services.DIARIA, 0.0);
+            Servicos Banho = new Servicos(Services.BANHO, 0.0);
+            Servicos Tosa = new Servicos(Services.TOSA, 0.0);
+            Servicos Massagem = new Servicos(Services.MASSAGEM, 0.0);
+
+            try {
+                repositorio.save(Diaria);
+                repositorio.save(Banho);
+                repositorio.save(Tosa);
+                repositorio.save(Massagem);
+            } catch (Exception e) {
+            }
         }
-       }
-    
+
     }
 }

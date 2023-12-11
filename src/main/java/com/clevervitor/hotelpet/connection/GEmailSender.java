@@ -19,11 +19,10 @@ import java.util.Properties;
  * @author clevs
  */
 public class GEmailSender {
-    
-     public boolean sendEmail(String to, String subject, String text) {
+
+    public boolean sendEmail(String to, String subject, String text) {
         boolean flag = false;
         String from = "hotelpetlps@gmail.com";
-        
 
         //logic
         //smtp properties
@@ -35,7 +34,6 @@ public class GEmailSender {
 
         String username = "hotelpetlps@gmail.com";
         String password = "hdck kzdr saez fmaw";
-
 
         //session
         Session session = Session.getInstance(properties, new Authenticator() {
@@ -58,13 +56,11 @@ public class GEmailSender {
             e.printStackTrace();
         }
 
-
         return flag;
     }
-     
-     public boolean sendEmailContato(String from, String subject, String text) {
-        boolean flag = false;        
-        
+
+    public boolean sendEmailContato(String from, String subject, String text) {
+        boolean flag = false;
 
         //logic
         //smtp properties
@@ -76,7 +72,6 @@ public class GEmailSender {
 
         String username = "hotelpetlps@gmail.com";
         String password = "hdck kzdr saez fmaw";
-
 
         //session
         Session session = Session.getInstance(properties, new Authenticator() {
@@ -99,11 +94,7 @@ public class GEmailSender {
             e.printStackTrace();
         }
 
-
         return flag;
     }
-     
-    
-     
-    
+
 }

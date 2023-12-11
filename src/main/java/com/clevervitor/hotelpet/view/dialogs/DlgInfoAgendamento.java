@@ -21,28 +21,28 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
      * Creates new form NewJDialog
      */
     Agendamento agendamento;
-    
+
     public DlgInfoAgendamento(java.awt.Frame parent, boolean modal, Agendamento agend) {
         super(parent, modal);
         initComponents();
-        
+
         this.agendamento = agend;
         preencherLabels();
     }
 
-    public void preencherLabels(){
-        lblAgendamentoMarcado.setForeground(new Color(187,187,187));
-        lblPet.setForeground(new Color(187,187,187));
+    public void preencherLabels() {
+        lblAgendamentoMarcado.setForeground(new Color(187, 187, 187));
+        lblPet.setForeground(new Color(187, 187, 187));
         lblPet.setText(agendamento.getPetAgendado().toString());
-        lblAgendamentoMarcado1.setForeground(new Color(187,187,187));
-        lblDeDono.setForeground(new Color(187,187,187));
+        lblAgendamentoMarcado1.setForeground(new Color(187, 187, 187));
+        lblDeDono.setForeground(new Color(187, 187, 187));
         lblDono.setText(agendamento.getProprietarioResp().toString());
-        lblDataCheckIn.setForeground(new Color(187,187,187));
+        lblDataCheckIn.setForeground(new Color(187, 187, 187));
         lblDataCheckIn.setText(agendamento.getDataCheckIn());
-        lblDataCheckOut.setForeground(new Color(187,187,187));
+        lblDataCheckOut.setForeground(new Color(187, 187, 187));
         lblDataCheckOut.setText(agendamento.getDataCheckOut());
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,15 +118,15 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator1)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblAgendamentoMarcado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPet, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblDeDono)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblDono, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(lblAgendamentoMarcado)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblPet, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblDeDono)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblDono, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(lblServicosContratados)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -154,11 +154,12 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(lblEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAgendamentoMarcado)
-                    .addComponent(lblDeDono)
-                    .addComponent(lblDono, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPet, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPet, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblAgendamentoMarcado)
+                        .addComponent(lblDeDono)
+                        .addComponent(lblDono, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -203,7 +204,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
         DlgCadAgendamento telaEditarAgendamento;
         try {
             telaEditarAgendamento = new DlgCadAgendamento(new Frame(), true, agendamento);
-        telaEditarAgendamento.setVisible(true);
+            telaEditarAgendamento.setVisible(true);
         } catch (ParseException ex) {
             Logger.getLogger(DlgInfoAgendamento.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -212,7 +213,6 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

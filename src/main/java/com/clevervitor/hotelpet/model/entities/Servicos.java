@@ -23,7 +23,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-
 /**
  *
  * @author clevs
@@ -32,30 +31,28 @@ import lombok.ToString;
 @Data
 
 public class Servicos implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     private Services nomeServico;
-    
+
     private Double valorServico;
-    
-   @ManyToMany(mappedBy = "servicosAdicionais")
-   @ToString.Exclude private Set<Agendamento> agendamentoMarcadoServices = new HashSet<Agendamento>();
+
+    @ManyToMany(mappedBy = "servicosAdicionais")
+    @ToString.Exclude
+    private Set<Agendamento> agendamentoMarcadoServices = new HashSet<Agendamento>();
 
     public Servicos() {
         this.nomeServico = Services.NULL;
         this.valorServico = 0.0;
-        
+
     }
 
     public Servicos(Services nomeServico, Double valorServico) {
         this.nomeServico = nomeServico;
         this.valorServico = valorServico;
     }
-    
-    
-    
-    
+
 }

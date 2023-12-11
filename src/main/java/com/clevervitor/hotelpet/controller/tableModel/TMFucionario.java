@@ -73,29 +73,29 @@ public class TMFucionario extends AbstractTableModel {
     }
 
     @Override
-        public String getColumnName(int column) {
-        
+    public String getColumnName(int column) {
+
         switch (column) {
-            
-                case COL_NOME:
-                    return "Nome do pet";
-                case COL_CPF:
-                    return "CPF";
-                case COL_EMAIL:
-                    return "Email";
-                case COL_ENDERECO:
-                    return "Endereço";
-                case COL_CARGO:
-                    return "Cargo";
-                case COL_TURNO:
-                    return "Truno";
-                case COL_SALARIO:
-                    return "Salario(R$)";
-                default:
-                    break;
-            }
-        
+
+            case COL_NOME:
+                return "Nome do pet";
+            case COL_CPF:
+                return "CPF";
+            case COL_EMAIL:
+                return "Email";
+            case COL_ENDERECO:
+                return "Endereço";
+            case COL_CARGO:
+                return "Cargo";
+            case COL_TURNO:
+                return "Truno";
+            case COL_SALARIO:
+                return "Salario(R$)";
+            default:
+                break;
+        }
+
         return "";
     }
-    
+
 }
