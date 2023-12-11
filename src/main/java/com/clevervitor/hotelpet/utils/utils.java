@@ -5,6 +5,8 @@
 package com.clevervitor.hotelpet.utils;
 
 import br.com.caelum.stella.validation.CPFValidator;
+import com.clevervitor.hotelpet.connection.GEmailSender;
+import com.clevervitor.hotelpet.controller.AgendamentoController;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.dao.ServicosDAO;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
@@ -49,8 +51,6 @@ import javax.swing.JPanel;
  * @author clevs
  */
 public class utils {
-
-    SimpleDateFormat formatoDMY = new SimpleDateFormat("dd/MM/yyyy");
 
     public String uploadAvatar(int id, byte[] imgProfile, ImageIcon imgIcon) {
         JFileChooser chooser = new JFileChooser();
@@ -181,20 +181,20 @@ public class utils {
         if (d.before(ckIn)) {
             return Status.AGENDADO;
         }
-        
-        if(d.after(ckOut)){
-        return Status.FINALIZADO;
+
+        if (d.after(ckOut)) {
+            return Status.FINALIZADO;
         }
-        
-        if(d.after(ckIn) && d.before(ckOut)){
-        return Status.ATIVO;
+
+        if (d.after(ckIn) && d.before(ckOut)) {
+            return Status.ATIVO;
         }
 
         return Status.NULL;
 
     }
-    
-      public static String StatusToString(Status s) {
+
+    public static String StatusToString(Status s) {
 
         switch (s) {
             case NULL:
@@ -206,14 +206,13 @@ public class utils {
             case FINALIZADO:
                 return "Finalizado";
 
-
             default:
                 throw new AssertionError();
         }
 
     }
-      
-      public static String ServicesToString(Services s) {
+
+    public static String ServicesToString(Services s) {
 
         switch (s) {
             case NULL:
@@ -231,5 +230,40 @@ public class utils {
                 throw new AssertionError();
         }
 
+    }
+
+    public static void updateStatusAgendamento() throws ParseException {
+        Date d = new Date();
+        SimpleDateFormat formatoDMY = new SimpleDateFormat("dd/MM/yyyy");
+        List<Agendamento> lstAgendamentos = new AgendamentoController().buscarTodosOsAgendamentos();
+
+        for (Agendamento a : lstAgendamentos) {
+            Date chkIn = formatoDMY.parse(a.getDataCheckIn());
+            Date chkOut = formatoDMY.parse(a.getDataCheckOut());
+            a.setStatus(checkStatus(chkIn, chkOut));
+
+        }
+
+    }
+    
+    
+    public static void VerificaAniversario(){
+    SimpleDateFormat formatoDMY = new SimpleDateFormat("dd/MM/yyyy");
+    Date d = new Date();
+    GEmailSender sendertest = new GEmailSender();
+    String dataAtual = formatoDMY.format(d);
+        
+        List<Pessoa> lstPessoas = new PessoaDAO().findAll();
+        
+        
+        for(Pessoa p : lstPessoas){
+        if(dataAtual.equals(p.getDataNasc())){
+        sendertest.sendEmail(p.getEmail(), "Feliz Aniversario!!", new emailBodys().emailCat("Feliz Aniversario!! Te desejamos tudo de bom nesse dia especial!!"));
+            
+        }
+        
+        
+        }
+    
     }
 }
