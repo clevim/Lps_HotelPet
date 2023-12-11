@@ -44,6 +44,7 @@ public class ValidateAgendamento {
 
         agendamento.setPetAgendado(validaAgendamento.getPetAgendado());
         agendamento.setServicosAdicionais(validaAgendamento.getServicosAdicionais());
+        agendamento.setStatus(validaAgendamento.getStatus());
 
         
         

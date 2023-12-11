@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
+import com.clevervitor.hotelpet.model.enums.Services;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -36,7 +37,7 @@ public class Servicos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    private String nomeServico;
+    private Services nomeServico;
     
     private Double valorServico;
     
@@ -44,12 +45,12 @@ public class Servicos implements Serializable {
    @ToString.Exclude private Set<Agendamento> agendamentoMarcadoServices = new HashSet<Agendamento>();
 
     public Servicos() {
-        this.nomeServico = "";
+        this.nomeServico = Services.NULL;
         this.valorServico = 0.0;
         
     }
 
-    public Servicos(String nomeServico, Double valorServico) {
+    public Servicos(Services nomeServico, Double valorServico) {
         this.nomeServico = nomeServico;
         this.valorServico = valorServico;
     }

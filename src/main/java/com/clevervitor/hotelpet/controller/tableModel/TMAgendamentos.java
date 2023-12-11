@@ -7,6 +7,7 @@ package com.clevervitor.hotelpet.controller.tableModel;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Servicos;
+import com.clevervitor.hotelpet.utils.utils;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -25,6 +26,7 @@ public class TMAgendamentos extends AbstractTableModel {
     private final int COL_DATA_CHECKIN = 1;
     private final int COL_DATA_CHECKOUT = 2;
     private final int COL_SERVICOS_ADICIONAIS = 3;
+    private final int COL_STATUS = 4;
 
     public TMAgendamentos(List lstAgendamentos) {
         this.lista = lstAgendamentos;
@@ -37,7 +39,7 @@ public class TMAgendamentos extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -58,7 +60,9 @@ public class TMAgendamentos extends AbstractTableModel {
                 case COL_DATA_CHECKOUT:
                     return aux.getDataCheckOut();
                 case COL_SERVICOS_ADICIONAIS:
-                    return ToStringServiceName(aux.getStringServices());
+                    return ToStringServiceName(aux.getServicosAdicionais());
+                case COL_STATUS:
+                    return utils.StatusToString(aux.getStatus());
                 default:
                     break;
             }
@@ -80,6 +84,8 @@ public class TMAgendamentos extends AbstractTableModel {
                     return "Data check-out";
                 case COL_SERVICOS_ADICIONAIS:
                     return "Serviços";
+                case COL_STATUS:
+                    return "Status";
                 default:
                     break;
             }
@@ -87,15 +93,14 @@ public class TMAgendamentos extends AbstractTableModel {
         return "";
     }
         
-      public String ToStringServiceName(String lstServ){
-      
-      Pattern pattern = Pattern.compile("nomeServico=([^,]+)");
-       Matcher matcher = pattern.matcher(lstServ);
-       StringBuilder result = new StringBuilder();
+      public String ToStringServiceName(Set<Servicos> lstServ){
+      StringBuilder result = new StringBuilder();
+          for(Servicos s : lstServ){
+          result.append(utils.ServicesToString(s.getNomeServico())).append(",");
+          }
+
        
-       while (matcher.find()) {
-            result.append(matcher.group(1)).append(",");
-        }
+
       if (result.length() > 0) {
             result.setLength(result.length() - 1);
         }

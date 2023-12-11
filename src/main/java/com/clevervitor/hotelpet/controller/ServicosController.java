@@ -7,6 +7,7 @@ package com.clevervitor.hotelpet.controller;
 import com.clevervitor.hotelpet.exceptions.ServicosException;
 import com.clevervitor.hotelpet.model.dao.ServicosDAO;
 import com.clevervitor.hotelpet.model.entities.Servicos;
+import com.clevervitor.hotelpet.model.enums.Services;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -57,10 +58,10 @@ public class ServicosController {
         Servicos s = (buscarServico(1));
        if(s == null) {
         
-    Servicos Diaria = new Servicos("Diaria", 0.0);
-    Servicos Banho = new Servicos("Banho", 0.0);
-    Servicos Tosa = new Servicos("Tosa", 0.0);
-    Servicos Massagem = new Servicos("Massagem", 0.0);
+    Servicos Diaria = new Servicos(Services.DIARIA, 0.0);
+    Servicos Banho = new Servicos(Services.BANHO, 0.0);
+    Servicos Tosa = new Servicos(Services.TOSA, 0.0);
+    Servicos Massagem = new Servicos(Services.MASSAGEM, 0.0);
     
         try {
             repositorio.save(Diaria);

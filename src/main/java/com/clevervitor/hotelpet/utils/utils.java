@@ -10,6 +10,17 @@ import com.clevervitor.hotelpet.model.dao.ServicosDAO;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Servicos;
+import com.clevervitor.hotelpet.model.enums.Services;
+import static com.clevervitor.hotelpet.model.enums.Services.BANHO;
+import static com.clevervitor.hotelpet.model.enums.Services.DIARIA;
+import static com.clevervitor.hotelpet.model.enums.Services.MASSAGEM;
+import static com.clevervitor.hotelpet.model.enums.Services.NULL;
+import static com.clevervitor.hotelpet.model.enums.Services.TOSA;
+import com.clevervitor.hotelpet.model.enums.Status;
+import static com.clevervitor.hotelpet.model.enums.Status.AGENDADO;
+import static com.clevervitor.hotelpet.model.enums.Status.ATIVO;
+import static com.clevervitor.hotelpet.model.enums.Status.FINALIZADO;
+import static com.clevervitor.hotelpet.model.enums.Status.NULL;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
@@ -38,6 +49,8 @@ import javax.swing.JPanel;
  * @author clevs
  */
 public class utils {
+
+    SimpleDateFormat formatoDMY = new SimpleDateFormat("dd/MM/yyyy");
 
     public String uploadAvatar(int id, byte[] imgProfile, ImageIcon imgIcon) {
         JFileChooser chooser = new JFileChooser();
@@ -102,27 +115,27 @@ public class utils {
     }
 
     public static Servicos getServico(List<Servicos> lstServ, String nomeServico) {
-        Servicos serv = new Servicos("", 0.0);
+        Servicos serv = new Servicos(Services.NULL, 0.0);
 
         for (Servicos s : lstServ) {
             switch (s.getNomeServico()) {
-                case "Diaria":
+                case DIARIA:
                     if (nomeServico == "Diaria") {
                         serv = s;
                     }
 
                     break;
-                case "Banho":
+                case BANHO:
                     if (nomeServico == "Banho") {
                         serv = s;
                     }
                     break;
-                case "Tosa":
+                case TOSA:
                     if (nomeServico == "Tosa") {
                         serv = s;
                     }
                     break;
-                case "Massagem":
+                case MASSAGEM:
                     if (nomeServico == "Massagem") {
                         serv = s;
                     }
@@ -162,4 +175,61 @@ public class utils {
         return valTotal;
     }
 
+    public static Status checkStatus(Date ckIn, Date ckOut) {
+        Date d = new Date();
+
+        if (d.before(ckIn)) {
+            return Status.AGENDADO;
+        }
+        
+        if(d.after(ckOut)){
+        return Status.FINALIZADO;
+        }
+        
+        if(d.after(ckIn) && d.before(ckOut)){
+        return Status.ATIVO;
+        }
+
+        return Status.NULL;
+
+    }
+    
+      public static String StatusToString(Status s) {
+
+        switch (s) {
+            case NULL:
+                return "";
+            case AGENDADO:
+                return "Agendado";
+            case ATIVO:
+                return "Ativo";
+            case FINALIZADO:
+                return "Finalizado";
+
+
+            default:
+                throw new AssertionError();
+        }
+
+    }
+      
+      public static String ServicesToString(Services s) {
+
+        switch (s) {
+            case NULL:
+                return "";
+            case DIARIA:
+                return "Diaria";
+            case BANHO:
+                return "Banho";
+            case TOSA:
+                return "Tosa";
+            case MASSAGEM:
+                return "Massagem";
+
+            default:
+                throw new AssertionError();
+        }
+
+    }
 }

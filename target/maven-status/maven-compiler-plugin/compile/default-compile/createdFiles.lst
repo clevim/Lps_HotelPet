@@ -1,4 +1,5 @@
 com/clevervitor/hotelpet/view/dialogs/DlgCadPet$5.class
+com/clevervitor/hotelpet/model/enums/Services.class
 com/clevervitor/hotelpet/valid/ValidatePet.class
 com/clevervitor/hotelpet/exceptions/ProprietarioException.class
 com/clevervitor/hotelpet/view/FrMainMenuClient$1.class
@@ -14,12 +15,15 @@ com/clevervitor/hotelpet/view/dialogs/DlgCadPet$2.class
 com/clevervitor/hotelpet/model/dao/AgendamentoDAO.class
 com/clevervitor/hotelpet/view/dialogs/DlgCadProprietario$3.class
 com/clevervitor/hotelpet/model/dao/ProprietarioDAO.class
+com/clevervitor/hotelpet/view/dialogs/DlgCadServicos$2.class
+com/clevervitor/hotelpet/model/enums/Status.class
 com/clevervitor/hotelpet/model/entities/Pet.class
 com/clevervitor/hotelpet/controller/ProprietarioController.class
 com/clevervitor/hotelpet/audio/Audio.class
 com/clevervitor/hotelpet/view/FrMainMenuClient$9.class
 com/clevervitor/hotelpet/controller/FuncionarioController.class
 com/clevervitor/hotelpet/valid/ValidateAgendamento.class
+com/clevervitor/hotelpet/utils/utils$1.class
 com/clevervitor/hotelpet/connection/GEmailSender.class
 com/clevervitor/hotelpet/view/dialogs/DlgInfoAgendamento.class
 com/clevervitor/hotelpet/view/FrMainMenuClient.class
@@ -66,6 +70,7 @@ com/clevervitor/hotelpet/view/dialogs/DlgCadProprietario.class
 com/clevervitor/hotelpet/view/UI/BotaoPersonalizado.class
 com/clevervitor/hotelpet/model/dao/FuncionarioDAO.class
 com/clevervitor/hotelpet/view/FrMainMenuClient$5.class
+com/clevervitor/hotelpet/view/dialogs/DlgCadAgendamento$9.class
 com/clevervitor/hotelpet/view/dialogs/DlgCadPet$3.class
 com/clevervitor/hotelpet/view/dialogs/DlgCadPet$6.class
 com/clevervitor/hotelpet/view/FrMainMenuFuncioario.class

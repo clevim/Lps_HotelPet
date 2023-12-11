@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
+import com.clevervitor.hotelpet.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -41,6 +42,7 @@ public class Agendamento {
     private String dataCheckIn;
     private String dataCheckOut;
     private double valor;
+    private Status status;
 
     @OneToOne
     @JoinColumn(name = "proprietarioResp_id")
@@ -54,13 +56,14 @@ public class Agendamento {
     @JoinTable(name = "agendamento_servicos",joinColumns = @JoinColumn(name="idAgendamento",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name = "idServicos",referencedColumnName = "id"))
     @EqualsAndHashCode.Exclude private Set<Servicos> servicosAdicionais;
 
-    public Agendamento(String dataCheckIn, String dataCheckOut, Set<Servicos> servicosAdicionais, Proprietario proprietario, Pet pets, double valor) {
+    public Agendamento(String dataCheckIn, String dataCheckOut, Set<Servicos> servicosAdicionais, Proprietario proprietario, Pet pets, double valor,Status status) {
         this.dataCheckIn = dataCheckIn;
         this.dataCheckOut = dataCheckOut;
         this.servicosAdicionais = servicosAdicionais;
         this.proprietarioResp = proprietario;
         this.PetAgendado = pets;
         this.valor = valor;
+        this.status = status;
     }
 
     public Agendamento() {
@@ -70,14 +73,11 @@ public class Agendamento {
         this.servicosAdicionais = new HashSet<Servicos>();
         this.proprietarioResp = new Proprietario();
         this.PetAgendado = new Pet();
+        this.status = Status.NULL;
 
     }
 
-    public String getStringServices() {
 
-        return getServicosAdicionais().toString().replace("[", "").replace("]", "");
-
-    }
 
     public String toStringLst(List<Pet> lst) {
         String txt = "";

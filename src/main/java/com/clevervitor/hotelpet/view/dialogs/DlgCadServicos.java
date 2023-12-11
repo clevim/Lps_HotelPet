@@ -32,16 +32,16 @@ public class DlgCadServicos extends javax.swing.JDialog {
 
         for (Servicos s : lstServ) {
             switch (s.getNomeServico()) {
-                case "Diaria":
+                case DIARIA:
                     edtDiaria.setText(s.getValorServico().toString());
                     break;
-                case "Banho":
+                case BANHO:
                     edtBanho.setText(s.getValorServico().toString());
                     break;
-                case "Tosa":
+                case TOSA:
                     edtTosa.setText(s.getValorServico().toString());
                     break;
-                case "Massagem":
+                case MASSAGEM:
                     edtMassagem.setText(s.getValorServico().toString());
                     break;
                 default:
@@ -186,19 +186,19 @@ public class DlgCadServicos extends javax.swing.JDialog {
 
         for (Servicos s : lstServ) {
             switch (s.getNomeServico()) {
-                case "Diaria":
+                case DIARIA:
                     s.setValorServico(Double.valueOf(edtDiaria.getText().replace(",", ".")));
                     servicoDAO.update(s);
                     break;
-                case "Banho":
+                case BANHO:
                     s.setValorServico(Double.valueOf(edtBanho.getText().replace(",", ".")));
                     servicoDAO.update(s);
                     break;
-                case "Tosa":
+                case TOSA:
                     s.setValorServico(Double.valueOf(edtTosa.getText().replace(",", ".")));
                     servicoDAO.update(s);
                     break;
-                case "Massagem":
+                case MASSAGEM:
                     s.setValorServico(Double.valueOf(edtMassagem.getText().replace(",", ".")));
                     servicoDAO.update(s);
                     break;

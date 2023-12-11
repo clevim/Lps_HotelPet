@@ -12,6 +12,9 @@ import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.model.entities.Servicos;
+import com.clevervitor.hotelpet.model.enums.Services;
+import com.clevervitor.hotelpet.model.enums.Status;
+import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
 import java.awt.Image;
@@ -50,6 +53,8 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     ServicosDAO servicoDAO;
     int idAgendamentoEditando;
     private String edtSexo;
+    
+    
 
     public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Proprietario proprietario) {
         super(parent, modal);
@@ -141,33 +146,33 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         //AgendamentoControllet.atualizarTabela(grdAgendamentos);
     }
 
-    public void preencherCampos() throws ParseException{
-        
+    public void preencherCampos() throws ParseException {
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
         Date dCheckIn = formatter.parse(agendamentoSendoEditado.getDataCheckIn());
         Date dCheckOut = formatter.parse(agendamentoSendoEditado.getDataCheckOut());
-        
+
         dateCheckIn.setDate(dCheckIn);
         dateCheckOut.setDate(dCheckOut);
-        
-        for(Object obj : agendamentoSendoEditado.getServicosAdicionais()){
-            
+
+        for (Object obj : agendamentoSendoEditado.getServicosAdicionais()) {
+
             String servico = (String) obj;
-            
-            if("Banho".equals(servico)){
-             CBBanho.setSelected(true);
-            }else if("Massagem".equals(servico)){
-            CBMassagem.setSelected(true);
-            }else if("Tosa".equals(servico)){
+
+            if ("Banho".equals(servico)) {
+                CBBanho.setSelected(true);
+            } else if ("Massagem".equals(servico)) {
+                CBMassagem.setSelected(true);
+            } else if ("Tosa".equals(servico)) {
                 CBTosa.setSelected(true);
             }
         }
-        
+
         txtPetsSelecionados.setText(agendamentoSendoEditado.getPetAgendado().toString());
         propCont.atualizarTabelaDePetsInicioFrame(tblPets, proprietarioLogado.getLstPetsPossuidos());
-        
+
     }
-    
+
     public Date getMinCheckIn() {
         Calendar c = Calendar.getInstance();
 
@@ -205,16 +210,16 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         for (Servicos s : lstServ) {
             switch (s.getNomeServico()) {
-                case "Diaria":
+                case DIARIA:
                     valD = s.getValorServico().toString();
                     break;
-                case "Banho":
+                case BANHO:
                     valB = s.getValorServico().toString();
                     break;
-                case "Tosa":
+                case TOSA:
                     valT = s.getValorServico().toString();
                     break;
-                case "Massagem":
+                case MASSAGEM:
                     valM = s.getValorServico().toString();
                     break;
                 default:
@@ -231,8 +236,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                 + "<br>"
                 + "Massagem: R$" + valM + ""
                 + "</html>");
-        
-        
 
     }
 
@@ -248,15 +251,15 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     public List<Servicos> verifServicos() {
 
         if (CBBanho.isSelected()) {
-            lstSelectServi.add(servicoDAO.findByName(CBBanho.getText()));
+            lstSelectServi.add(servicoDAO.findByName(Services.BANHO));
         }
 
         if (CBTosa.isSelected()) {
-            lstSelectServi.add(servicoDAO.findByName(CBTosa.getText()));
+            lstSelectServi.add(servicoDAO.findByName(Services.TOSA));
         }
 
         if (CBMassagem.isSelected()) {
-            lstSelectServi.add(servicoDAO.findByName(CBMassagem.getText()));
+            lstSelectServi.add(servicoDAO.findByName(Services.MASSAGEM));
         }
 
         return lstSelectServi;
@@ -602,7 +605,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
     private void btnSalvarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPetActionPerformed
         // TODO add your handling code here:
-
+        
         petSelcionado = (Pet) getObjetoSelecionadoNaGrid();
 
         if (petSelcionado == null) {
@@ -613,9 +616,12 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         String dCheckIn = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckIn.getDate());
         String dCheckOut = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckOut.getDate());
+        Status status = utils.checkStatus(dateCheckIn.getDate(), dateCheckOut.getDate());
+
+        
         Set<Servicos> servs = new HashSet<>(verifServicos());
 
-        Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut,servs , proprietarioLogado, lstPetsSelecionados, 0.0);
+        Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut, servs, proprietarioLogado, lstPetsSelecionados, 0.0, status);
 
         AgendamentoController.cadastrarAgendamento(novoAgendamento);
 
@@ -638,7 +644,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
             ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Primeiro, selecione um pet da tabela");
             DialMsg.setVisible(true);
 
-        }  else {
+        } else {
             lstPetsSelecionados = petSelcionado;
         }
 

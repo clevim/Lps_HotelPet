@@ -8,6 +8,7 @@ import com.clevervitor.hotelpet.connection.DatabaseJPA;
 import com.clevervitor.hotelpet.exceptions.ServicosException;
 import com.clevervitor.hotelpet.model.dao.contracts.Dao;
 import com.clevervitor.hotelpet.model.entities.Servicos;
+import com.clevervitor.hotelpet.model.enums.Services;
 import java.util.HashSet;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class ServicosDAO extends Dao<Servicos> {
     public ServicosDAO() {
     }
 
-    public Servicos findByName(String nome) {
+    public Servicos findByName(Services nome) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
         String jpql = " SELECT s "
