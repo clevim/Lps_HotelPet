@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.clevervitor.hotelpet.view.dialogs;
+package com.clevervitor.hotelpet.view.dialogs.cadastros;
 
 import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
+import com.clevervitor.hotelpet.exceptions.PetException;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.view.FrLogin;
@@ -25,7 +26,7 @@ public class DlgCadPet extends javax.swing.JDialog {
 
     ProprietarioController propCont;
     PetController petController;
-    int idPetEditando;
+    int PetEditando;
     private String edtSexo;
     Pet petSendoEditado;
     Proprietario proprietarioLogado;
@@ -34,7 +35,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         super(parent, modal);
 
         petController = new PetController();
-        idPetEditando = -1;
+        PetEditando = -1;
         proprietarioLogado = proprietario;
         propCont = new ProprietarioController();
         initComponents();
@@ -56,12 +57,13 @@ public class DlgCadPet extends javax.swing.JDialog {
 
     public DlgCadPet(java.awt.Frame parent, boolean modal, Pet pet) {
         super(parent, modal);
+        initComponents();
 
         petController = new PetController();
-        idPetEditando = -1;
+        this.PetEditando = 1;
         proprietarioLogado = pet.getProprietario();
         propCont = new ProprietarioController();
-        initComponents();
+        petSendoEditado = pet;
 
         Image iconeTitulo = null;
         try {
@@ -73,32 +75,8 @@ public class DlgCadPet extends javax.swing.JDialog {
         setIconImage(iconeTitulo);
 
         this.habilitarCampos(true);
-        this.limparCampos();
-
-        //  petControllet.atualizarTabela(grdPets);
-    }
-
-    public DlgCadPet(java.awt.Frame parent, boolean modal, Pet pet, Integer petEditando) {
-        super(parent, modal);
-
-        petController = new PetController();
-        idPetEditando = petEditando;
-        proprietarioLogado = pet.getProprietario();
-        propCont = new ProprietarioController();
-        initComponents();
-
-        Image iconeTitulo = null;
-        try {
-            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        setIconImage(iconeTitulo);
-
-        this.habilitarCampos(true);
-        this.limparCampos();
         this.preencherCampos();
+        this.limparCampos();
 
         //  petControllet.atualizarTabela(grdPets);
     }
@@ -421,30 +399,36 @@ public class DlgCadPet extends javax.swing.JDialog {
         String sexo = null;
         proprietarioLogado = propCont.buscarProprietario(proprietarioLogado.getId());
 
-        if (rbtnMacho.isSelected()) {
-            rbtnFemea.setEnabled(false);
-            sexo = "Macho";
-        } else if (rbtnFemea.isSelected()) {
-            rbtnMacho.setEnabled(false);
-            sexo = "Femea";
-        } else if (!rbtnFemea.isSelected() && !rbtnMacho.isSelected()) {
-            ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Selecione o sexo do pet!");
-            DialMsg.setVisible(true);
-        }
+        if (PetEditando > 0) {
 
-        Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText()), edtObs.getText(), proprietarioLogado);
-
-        if (idPetEditando > 0) {
-            petController.atualizarPet(novoPet);
+            petController.atualizarPet(petSendoEditado);
         } else {
+            try{
+            if (rbtnMacho.isSelected()) {
+                rbtnFemea.setEnabled(false);
+                sexo = "Macho";
+            } else if (rbtnFemea.isSelected()) {
+                rbtnMacho.setEnabled(false);
+                sexo = "Femea";
+            } else if (!rbtnFemea.isSelected() && !rbtnMacho.isSelected()) {
+                ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Selecione o sexo do pet!");
+                DialMsg.setVisible(true);
+            }
+
+            Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText()), edtObs.getText(), proprietarioLogado);
+
             petController.cadastrarPet(novoPet);
+
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso.", "Pet salvo com sucesso!");
+            DialMsg.setVisible(true);
+            } catch (PetException e){
+                ShowMessageDialog DialMsg = new ShowMessageDialog("Erro: ", "Não foi possível salvar o pet.");
+            DialMsg.setVisible(true);
+            }
+
+            PetEditando = -1;
+            dispose();
         }
-
-        idPetEditando = -1;
-        ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Pet salvo com sucesso!");
-        DialMsg.setVisible(true);
-
-        dispose();
     }//GEN-LAST:event_btnSalvarPetActionPerformed
 
     private void rbtnMachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMachoActionPerformed

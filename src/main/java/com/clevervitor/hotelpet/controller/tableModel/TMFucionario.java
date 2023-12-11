@@ -58,8 +58,6 @@ public class TMFucionario extends AbstractTableModel {
                     return aux.getEmail();
                 case COL_ENDERECO:
                     return aux.getEndereco();
-                case COL_CARGO:
-                    return aux.getCargo();
                 case COL_TURNO:
                     return aux.getTurno();
                 case COL_SALARIO:
@@ -85,8 +83,6 @@ public class TMFucionario extends AbstractTableModel {
                 return "Email";
             case COL_ENDERECO:
                 return "Endereço";
-            case COL_CARGO:
-                return "Cargo";
             case COL_TURNO:
                 return "Truno";
             case COL_SALARIO:

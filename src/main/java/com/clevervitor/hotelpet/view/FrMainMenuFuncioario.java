@@ -10,12 +10,16 @@ import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
+import com.clevervitor.hotelpet.model.entities.Pet;
+import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadServicos;
-import com.clevervitor.hotelpet.view.dialogs.DlgInfoAgendamento;
+import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadProprietario;
+import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadServicos;
+import com.clevervitor.hotelpet.view.dialogs.info.DlgInfoAgendamento;
+import com.clevervitor.hotelpet.view.dialogs.info.DlgInfoProprietario;
 import com.clevervitor.hotelpet.view.dialogs.DlgSobre;
+import com.clevervitor.hotelpet.view.dialogs.info.DlgInfoPet;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Image;
@@ -216,6 +220,11 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             }
         ));
         tblProprietarios.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tblProprietarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProprietariosMouseClicked(evt);
+            }
+        });
         scrProprietarios.setViewportView(tblProprietarios);
 
         javax.swing.GroupLayout abaProprietariosLayout = new javax.swing.GroupLayout(abaProprietarios);
@@ -253,6 +262,11 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             }
         ));
         tblPets.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tblPets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPetsMouseClicked(evt);
+            }
+        });
         scrPets.setViewportView(tblPets);
 
         javax.swing.GroupLayout abaPetsLayout = new javax.swing.GroupLayout(abaPets);
@@ -367,8 +381,6 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         lblContato.setText(funcionarioLogado.getTel());
         lblContato.setForeground(new Color(187, 187, 187));
 
-        lblCargo.setText(funcionarioLogado.getCargo());
-        lblCargo.setForeground(new Color(187, 187, 187));
 
         lbl_img.setIcon(imgIcon);
 
@@ -390,6 +402,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame(), true);
         cadastroProp.setTitle("Cadastro");
         cadastroProp.setVisible(true);        // TODO add your handling code here:
+        
+        proprietarioCont.atualizarTabelaDeProprietarios(tblProprietarios, proprietarioCont.buscarTodosOsProprietarios());
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -422,18 +436,66 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
     private void tblAgendamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAgendamentosMouseClicked
         // TODO add your handling code here: 
-        Agendamento agendamentoSelecionado = (Agendamento) getObjetoSelecionadoNaGrid();
+        Agendamento agendamentoSelecionado = (Agendamento) getObjetoSelecionadoNaGridDeAgendamentos();
 
         if (evt.getClickCount() == 2) {
             DlgInfoAgendamento telaInfoAgendamento = new DlgInfoAgendamento(new Frame(), true, agendamentoSelecionado);
+            telaInfoAgendamento.setVisible(true);
         }
+        
+        agendamentoCont.atualizarTabelaDeAgendamentos(tblAgendamentos, agendamentoCont.buscarTodosOsAgendamentos());
     }//GEN-LAST:event_tblAgendamentosMouseClicked
 
-    private Object getObjetoSelecionadoNaGrid() {
+    private void tblProprietariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProprietariosMouseClicked
+        // TODO add your handling code here:
+        Proprietario proprietarioSelecionado = (Proprietario) getObjetoSelecionadoNaGridDeProprietarios();
+        
+        
+
+        if (evt.getClickCount() == 2) {
+            DlgInfoProprietario telaInfoProprietario = new DlgInfoProprietario(new Frame(), true, proprietarioSelecionado);
+            telaInfoProprietario.setVisible(true);
+
+        }
+        
+        proprietarioCont.atualizarTabelaDeProprietarios(tblProprietarios, proprietarioCont.buscarTodosOsProprietarios());
+    }//GEN-LAST:event_tblProprietariosMouseClicked
+
+    private void tblPetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPetsMouseClicked
+        // TODO add your handling code here:
+        
+        Pet petSelecionado = (Pet) getObjetoSelecionadoNaGridDePets();
+        
+        if(evt.getClickCount() == 2){
+            DlgInfoPet telaInfoPets = new DlgInfoPet(new Frame(), true, petSelecionado);
+            telaInfoPets.setVisible(true);
+            
+        }
+            petCont.atualizarTabelaDePets(tblPets, petCont.buscarTodosOsPets());
+        
+    }//GEN-LAST:event_tblPetsMouseClicked
+
+    private Object getObjetoSelecionadoNaGridDeAgendamentos() {
         int rowCliked = tblAgendamentos.getSelectedRow();
         Object obj = null;
         if (rowCliked >= 0) {
             obj = tblAgendamentos.getModel().getValueAt(rowCliked, -1);
+        }
+        return obj;
+    }
+    private Object getObjetoSelecionadoNaGridDeProprietarios() {
+        int rowCliked = tblProprietarios.getSelectedRow();
+        Object obj = null;
+        if (rowCliked >= 0) {
+            obj = tblProprietarios.getModel().getValueAt(rowCliked, -1);
+        }
+        return obj;
+    }
+    private Object getObjetoSelecionadoNaGridDePets() {
+        int rowCliked = tblPets.getSelectedRow();
+        Object obj = null;
+        if (rowCliked >= 0) {
+            obj = tblPets.getModel().getValueAt(rowCliked, -1);
         }
         return obj;
     }

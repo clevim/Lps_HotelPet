@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.clevervitor.hotelpet.view.dialogs;
+package com.clevervitor.hotelpet.view.dialogs.cadastros;
 
 import com.clevervitor.hotelpet.controller.AgendamentoController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;

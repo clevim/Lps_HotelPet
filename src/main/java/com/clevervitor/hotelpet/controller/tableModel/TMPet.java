@@ -7,7 +7,7 @@ package com.clevervitor.hotelpet.controller.tableModel;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.view.UI.JButtonUI;
 import com.clevervitor.hotelpet.view.UI.TableActionCellRender;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
+import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadPet;
 import java.awt.Frame;
 import java.util.List;
 import javax.swing.ImageIcon;

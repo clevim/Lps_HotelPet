@@ -12,7 +12,7 @@ import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.utils.emailBodys;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.valid.ValidateUtils;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
+import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadPet;
 import com.clevervitor.hotelpet.view.FrLogin;
 import com.clevervitor.hotelpet.view.FrMainMenuClient;
 
@@ -33,7 +33,6 @@ public class HotelPet {
         ServicosController sC = new ServicosController();
 
         //Create Func Admin
-        f.setCargo("Admin");
         f.setCpf("11111111111");
         f.setDataNasc("01/01/2023");
         f.setEmail("a");

@@ -5,7 +5,6 @@
 package com.clevervitor.hotelpet.model.entities;
 
 import com.clevervitor.hotelpet.model.enums.Status;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

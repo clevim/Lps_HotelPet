@@ -4,7 +4,7 @@
  */
 package com.clevervitor.hotelpet.view;
 
-import com.clevervitor.hotelpet.view.dialogs.DlgCadAgendamento;
+import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadAgendamento;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.controller.tableModel.TMAgendamentos;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
@@ -15,7 +15,7 @@ import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.JButtonUI;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import com.clevervitor.hotelpet.view.UI.TableActionCellRender;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
+import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadPet;
 import com.clevervitor.hotelpet.view.dialogs.DlgContato;
 import com.clevervitor.hotelpet.view.dialogs.DlgSobre;
 import java.awt.Color;

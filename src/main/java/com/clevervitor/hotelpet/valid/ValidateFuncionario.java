@@ -76,10 +76,7 @@ public class ValidateFuncionario {
         }
         funcionario.setTurno(validaFuncionario.getTurno());
 
-        if (validaFuncionario.getCargo().isEmpty()) {
-            throw new FuncionarioException("Error - O Funcionario precisa ter um cargo!.");
-        }
-        funcionario.setCargo(validaFuncionario.getCargo());
+
 
         funcionario.setNivelAcesso(validaFuncionario.getNivelAcesso());
 

@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.clevervitor.hotelpet.view.dialogs;
+package com.clevervitor.hotelpet.view.dialogs.info;
 
+import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadAgendamento;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Frame;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -40,7 +42,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
         lblDataCheckIn.setForeground(new Color(187, 187, 187));
         lblDataCheckIn.setText(agendamento.getDataCheckIn());
         lblDataCheckOut.setForeground(new Color(187, 187, 187));
-        lblDataCheckOut.setText(agendamento.getDataCheckOut());
+        lblDataCheckOut.setText(agendamento.getDataCheckOut() + ".");
     }
 
     /**
@@ -76,7 +78,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGap(0, 174, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,6 +104,12 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEditarMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblEditarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblEditarMouseExited(evt);
+            }
         });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -114,7 +122,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblEditar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(17, Short.MAX_VALUE)
+                        .addContainerGap(15, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator1)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
@@ -145,8 +153,8 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
                                         .addComponent(lblDeDono1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblDataCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                                .addGap(0, 1, Short.MAX_VALUE)))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,6 +217,18 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
             Logger.getLogger(DlgInfoAgendamento.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lblEditarMouseClicked
+
+    private void lblEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseEntered
+        // TODO add your handling code here:
+                lblEditar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+    }//GEN-LAST:event_lblEditarMouseEntered
+
+    private void lblEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseExited
+        // TODO add your handling code here:
+                        lblEditar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+    }//GEN-LAST:event_lblEditarMouseExited
 
     /**
      * @param args the command line arguments
