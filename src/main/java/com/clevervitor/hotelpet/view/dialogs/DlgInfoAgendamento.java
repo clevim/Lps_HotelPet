@@ -5,6 +5,7 @@
 package com.clevervitor.hotelpet.view.dialogs;
 
 import com.clevervitor.hotelpet.model.entities.Agendamento;
+import com.clevervitor.hotelpet.utils.utils;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
@@ -42,6 +43,9 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
         lblDataCheckIn.setText(agendamento.getDataCheckIn());
         lblDataCheckOut.setForeground(new Color(187, 187, 187));
         lblDataCheckOut.setText(agendamento.getDataCheckOut() + ".");
+        
+        lblServicos.setText(utils.ToStringServiceName(agendamento.getServicosAdicionais()));
+        lblValor.setText(Double.toString(agendamento.getValor()));
     }
 
     /**
@@ -62,7 +66,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
         lblDono = new javax.swing.JLabel();
         lblDataCheckIn = new javax.swing.JLabel();
         lblServicosContratados = new javax.swing.JLabel();
-        lblSevicos = new javax.swing.JLabel();
+        lblServicos = new javax.swing.JLabel();
         lblValorTotal = new javax.swing.JLabel();
         lblValor = new javax.swing.JLabel();
         lblValorTotal1 = new javax.swing.JLabel();
@@ -137,7 +141,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(lblServicosContratados)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblSevicos, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(lblValorTotal)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,7 +183,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblServicosContratados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblSevicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblServicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblValorTotal)
@@ -246,8 +250,8 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
     private javax.swing.JLabel lblDono;
     private javax.swing.JLabel lblEditar;
     private javax.swing.JLabel lblPet;
+    private javax.swing.JLabel lblServicos;
     private javax.swing.JLabel lblServicosContratados;
-    private javax.swing.JLabel lblSevicos;
     private javax.swing.JLabel lblValor;
     private javax.swing.JLabel lblValorTotal;
     private javax.swing.JLabel lblValorTotal1;

@@ -76,12 +76,13 @@ public class DlgCadPet extends javax.swing.JDialog {
 
         this.habilitarCampos(true);
         this.preencherCampos();
-        this.limparCampos();
 
         //  petControllet.atualizarTabela(grdPets);
     }
 
     public void preencherCampos() {
+
+        petController.buscarPet(petSendoEditado.getId());
 
         edtNome.setText(petSendoEditado.getNome());
         edtEspecie.setText(petSendoEditado.getEspecie());
@@ -399,36 +400,44 @@ public class DlgCadPet extends javax.swing.JDialog {
         String sexo = null;
         proprietarioLogado = propCont.buscarProprietario(proprietarioLogado.getId());
 
+        if (rbtnMacho.isSelected()) {
+            rbtnFemea.setEnabled(false);
+            sexo = "Macho";
+        } else if (rbtnFemea.isSelected()) {
+            rbtnMacho.setEnabled(false);
+            sexo = "Femea";
+        } else if (!rbtnFemea.isSelected() && !rbtnMacho.isSelected()) {
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Selecione o sexo do pet!");
+            DialMsg.setVisible(true);
+        }
+
         if (PetEditando > 0) {
 
-            petController.atualizarPet(petSendoEditado);
+            Pet petEditado = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText()), edtObs.getText(), proprietarioLogado);
+            
+            petEditado.setId(petSendoEditado.getId());
+            
+            petController.atualizarPet(petEditado);
+
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso.", "Pet atualizado!");
+            DialMsg.setVisible(true);
+
         } else {
-            try{
-            if (rbtnMacho.isSelected()) {
-                rbtnFemea.setEnabled(false);
-                sexo = "Macho";
-            } else if (rbtnFemea.isSelected()) {
-                rbtnMacho.setEnabled(false);
-                sexo = "Femea";
-            } else if (!rbtnFemea.isSelected() && !rbtnMacho.isSelected()) {
-                ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Selecione o sexo do pet!");
+            try {
+                Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText()), edtObs.getText(), proprietarioLogado);
+
+                petController.cadastrarPet(novoPet);
+
+                ShowMessageDialog DialMsg = new ShowMessageDialog("Oba,", " Pet salvo com sucesso!");
+                DialMsg.setVisible(true);
+            } catch (PetException e) {
+                ShowMessageDialog DialMsg = new ShowMessageDialog("Erro: ", "Não foi possível salvar o pet.");
                 DialMsg.setVisible(true);
             }
 
-            Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText()), edtObs.getText(), proprietarioLogado);
-
-            petController.cadastrarPet(novoPet);
-
-            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso.", "Pet salvo com sucesso!");
-            DialMsg.setVisible(true);
-            } catch (PetException e){
-                ShowMessageDialog DialMsg = new ShowMessageDialog("Erro: ", "Não foi possível salvar o pet.");
-            DialMsg.setVisible(true);
-            }
-
+        }
             PetEditando = -1;
             dispose();
-        }
     }//GEN-LAST:event_btnSalvarPetActionPerformed
 
     private void rbtnMachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMachoActionPerformed

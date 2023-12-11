@@ -266,8 +266,10 @@ public class DlgInfoPet extends javax.swing.JDialog {
 
     private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
         // TODO add your handling code here:
+        Pet petParaEditar = petController.buscarPet(pet.getId());
+        
         DlgCadPet telaEditarPet;
-        telaEditarPet = new DlgCadPet(new Frame(), true, pet);
+        telaEditarPet = new DlgCadPet(new Frame(), true, petParaEditar);
         telaEditarPet.setVisible(true);
     }//GEN-LAST:event_lblEditarMouseClicked
 

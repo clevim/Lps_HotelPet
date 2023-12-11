@@ -46,7 +46,7 @@ public class PetController {
         Pet novoPet = check.validaCamposEntrada(editPet);
 
         try {
-            repositorio.save(novoPet);
+            repositorio.update(novoPet);
         } catch (PetException e) {
             throw new PetException("Error - já existe um pet com este 'id'.");
         }

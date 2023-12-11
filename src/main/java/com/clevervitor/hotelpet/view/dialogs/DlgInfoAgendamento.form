@@ -82,7 +82,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblServicosContratados" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="lblSevicos" min="-2" pref="206" max="-2" attributes="0"/>
+                                          <Component id="lblServicos" min="-2" pref="206" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblValorTotal" min="-2" max="-2" attributes="0"/>
@@ -138,7 +138,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lblServicosContratados" max="32767" attributes="0"/>
-                      <Component id="lblSevicos" max="32767" attributes="0"/>
+                      <Component id="lblServicos" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -178,7 +178,7 @@
             <Property name="text" type="java.lang.String" value="Sevi&#xe7;os contratados:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblSevicos">
+        <Component class="javax.swing.JLabel" name="lblServicos">
         </Component>
         <Component class="javax.swing.JLabel" name="lblValorTotal">
           <Properties>

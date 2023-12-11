@@ -51,7 +51,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     List<Servicos> lstServ;
     List<Servicos> lstSelectServi;
     ServicosDAO servicoDAO;
-    int idAgendamentoEditando;
+    int agendamentoIsEditando;
     private String edtSexo;
 
     public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Proprietario proprietario) {
@@ -59,7 +59,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         ToolTipManager.sharedInstance().setInitialDelay(0);
         initComponents();
         AgendamentoController = new AgendamentoController();
-        idAgendamentoEditando = -1;
+        agendamentoIsEditando = -1;
         proprietarioLogado = proprietario;
         propCont = new ProprietarioController();
         petSelcionado = new Pet();
@@ -105,18 +105,21 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         initComponents();
         agendamentoSendoEditado = agendamento;
         AgendamentoController = new AgendamentoController();
-        idAgendamentoEditando = agendamento.getId();
+        agendamentoIsEditando = 1;
         proprietarioLogado = agendamento.getProprietarioResp();
         propCont = new ProprietarioController();
         petSelcionado = new Pet();
         lstSelectServi = new ArrayList<>();
+        servicoDAO = new ServicosDAO();
+        
+        
 
         lstServ = new ArrayList<>(servicoDAO.findAllSet());
         setBackground(new Color(51, 51, 51));
 
         Image iconeTitulo = null;
         try {
-            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+            iconeTitulo = ImageIO.read(getClass().getResource("/Imagens/pawprint.png"));
         } catch (IOException ex) {
             Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -155,7 +158,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         for (Object obj : agendamentoSendoEditado.getServicosAdicionais()) {
 
-            String servico = (String) obj;
+            String servico =  obj.toString();
 
             if ("Banho".equals(servico)) {
                 CBBanho.setSelected(true);
@@ -618,15 +621,29 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         Set<Servicos> servs = new HashSet<>(verifServicos());
 
+        if(agendamentoIsEditando > 0){
+            
+            Agendamento agendamentoEdit = new Agendamento(dCheckIn, dCheckOut, servs, proprietarioLogado, lstPetsSelecionados, 0.0, status);
+
+            agendamentoEdit.setId(agendamentoSendoEditado.getId());
+            
+            AgendamentoController.atualizarAgendamento(agendamentoEdit);
+            
+        } else {
+        
         Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut, servs, proprietarioLogado, lstPetsSelecionados, 0.0, status);
         try {
             novoAgendamento.setValor(utils.calcTotalAgendamento(novoAgendamento));
         } catch (ParseException ex) {
             Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         AgendamentoController.cadastrarAgendamento(novoAgendamento);
-
+        }
+        
+        agendamentoIsEditando = -1;
         dispose();
+        
     }//GEN-LAST:event_btnSalvarPetActionPerformed
 
     private Object getObjetoSelecionadoNaGrid() {

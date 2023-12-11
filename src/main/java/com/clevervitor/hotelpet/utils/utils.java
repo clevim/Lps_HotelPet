@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
@@ -194,6 +195,20 @@ public class utils {
 
     }
 
+    public static String ToStringServiceName(Set<Servicos> lstServ) {
+        StringBuilder result = new StringBuilder();
+        for (Servicos s : lstServ) {
+            result.append(utils.ServicesToString(s.getNomeServico())).append(",");
+        }
+
+        if (result.length() > 0) {
+            result.setLength(result.length() - 1);
+        }
+
+        return result.toString();
+    }
+
+    
     public static String StatusToString(Status s) {
 
         switch (s) {

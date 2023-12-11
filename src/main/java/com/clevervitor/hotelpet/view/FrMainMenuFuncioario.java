@@ -471,6 +471,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             telaInfoPets.setVisible(true);
             
         }
+            
+        
             petCont.atualizarTabelaDePets(tblPets, petCont.buscarTodosOsPets());
         
     }//GEN-LAST:event_tblPetsMouseClicked

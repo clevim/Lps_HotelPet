@@ -8,6 +8,7 @@ import com.clevervitor.hotelpet.view.dialogs.DlgCadAgendamento;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.controller.tableModel.TMAgendamentos;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
+import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
@@ -17,6 +18,8 @@ import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import com.clevervitor.hotelpet.view.UI.TableActionCellRender;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
 import com.clevervitor.hotelpet.view.dialogs.DlgContato;
+import com.clevervitor.hotelpet.view.dialogs.DlgInfoAgendamento;
+import com.clevervitor.hotelpet.view.dialogs.DlgInfoPet;
 import com.clevervitor.hotelpet.view.dialogs.DlgSobre;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -211,6 +214,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             }
         ));
         grdAgendamentos.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        grdAgendamentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                grdAgendamentosMouseClicked(evt);
+            }
+        });
         scrollAgendamentos.setViewportView(grdAgendamentos);
 
         lblAgendar.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
@@ -298,6 +306,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         ));
         grdPets.setCellSelectionEnabled(true);
         grdPets.setShowGrid(true);
+        grdPets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                grdPetsMouseClicked(evt);
+            }
+        });
         scrollPets.setViewportView(grdPets);
         grdPets.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
@@ -595,6 +608,33 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private void btnAgendarEstadiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgendarEstadiaMouseClicked
+
+    private void grdPetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grdPetsMouseClicked
+        // TODO add your handling code here:
+        Pet petSelecionado = (Pet) getObjetoSelecionadoNaGridDePets();
+
+        if (evt.getClickCount() == 2) {
+            DlgInfoPet telaInfoPet = new DlgInfoPet(new Frame(), true, petSelecionado);
+            telaInfoPet.setVisible(true);
+        }
+
+        propController.atualizarTabelaDePetsInicioFrame(grdPets, propController.buscarProprietario(proprietarioLogado.getId()).getLstPetsPossuidos());
+
+
+    }//GEN-LAST:event_grdPetsMouseClicked
+
+    private void grdAgendamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grdAgendamentosMouseClicked
+        // TODO add your handling code here:
+        Agendamento agendamentoSelecionado = (Agendamento) getObjetoSelecionadoNaGridDeAgendamentos();
+
+        if (evt.getClickCount() == 2) {
+            DlgInfoAgendamento telaInfoAgendamento = new DlgInfoAgendamento(new Frame(), true, agendamentoSelecionado);
+            telaInfoAgendamento.setVisible(true);
+        }
+
+        propController.atualizarTabelaDeAgendamentos(grdAgendamentos, propController.buscarProprietario(proprietarioLogado.getId()).getLstAgendamentos());
+
+    }//GEN-LAST:event_grdAgendamentosMouseClicked
 
     /**
      * @param args the command line arguments

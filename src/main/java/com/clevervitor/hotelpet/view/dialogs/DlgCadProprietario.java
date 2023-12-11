@@ -32,13 +32,13 @@ import static javax.swing.text.html.HTML.Attribute.DATA;
  */
 public class DlgCadProprietario extends javax.swing.JDialog {
 
-    Funcionario funcionario;
+    Funcionario funcionarioSendoEditado;
 
-    Proprietario proprietario;
+    Proprietario proprietarioSendoEditado;
     ProprietarioController proprietarioCont;
-    int proprietarioEditando = -1;
+    int proprietarioIsEditando = -1;
     FuncionarioController fucionarioCont;
-    int funcionarioEditando = -1;
+    int funcionarioIsEditando = -1;
     utils utils;
 
     public DlgCadProprietario(java.awt.Frame parent, boolean modal) {
@@ -64,7 +64,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         } else {
             JPanelAdmin.setVisible(false);
         }
-
+        
         proprietarioCont = new ProprietarioController();
         fucionarioCont = new FuncionarioController();
         utils = new utils();
@@ -96,7 +96,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             JPanelAdmin.setVisible(false);
         }
 
-        this.proprietario = prop;
+        this.proprietarioSendoEditado = prop;
+        proprietarioIsEditando = 1;
         proprietarioCont = new ProprietarioController();
         fucionarioCont = new FuncionarioController();
         utils = new utils();
@@ -131,12 +132,12 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             JPanelAdmin.setVisible(false);
         }
 
-        this.funcionario = func;
+        this.funcionarioSendoEditado = func;
         proprietarioCont = new ProprietarioController();
         fucionarioCont = new FuncionarioController();
         utils = new utils();
 
-        funcionarioEditando = 1;
+        funcionarioIsEditando = 1;
         
         PreencherCamposFuncionario();
 
@@ -145,30 +146,30 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     public void PreencherCamposProprietario() throws ParseException {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-        Date d = formatter.parse(proprietario.getDataNasc());
+        Date d = formatter.parse(proprietarioSendoEditado.getDataNasc());
 
-        edtNome.setText(proprietario.getNome());
-        edtCpf.setText(proprietario.getCpf());
+        edtNome.setText(proprietarioSendoEditado.getNome());
+        edtCpf.setText(proprietarioSendoEditado.getCpf());
         edtDataNascimento.setDate(d);
 
-        String[] end = proprietario.getEndereco().split(",");
+        String[] end = proprietarioSendoEditado.getEndereco().split(",");
         edtCidade.setText(end[0]);
         edtEstado.setText(end[1]);
 
-        edtTelefone.setText(proprietario.getTel());
+        edtTelefone.setText(proprietarioSendoEditado.getTel());
 
-        if (proprietario.getSexo().equals("F")) {
+        if (proprietarioSendoEditado.getSexo().equals("F")) {
             cbxSexo.setSelectedItem("F");
-        } else if (proprietario.getSexo().equals("M")) {
+        } else if (proprietarioSendoEditado.getSexo().equals("M")) {
             cbxSexo.setSelectedItem("M");
 
-        } else if (proprietario.getSexo().equals("Outro")) {
+        } else if (proprietarioSendoEditado.getSexo().equals("Outro")) {
             cbxSexo.setSelectedItem("Outro");
 
         }
 
-        edtEmail.setText(proprietario.getEmail());
-        String senhaReal = descriptografiaBase64Decode(proprietario.getSenha());
+        edtEmail.setText(proprietarioSendoEditado.getEmail());
+        String senhaReal = descriptografiaBase64Decode(proprietarioSendoEditado.getSenha());
         edtSenha.setText(senhaReal);
 
     }
@@ -176,41 +177,41 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     public void PreencherCamposFuncionario() throws ParseException {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-        Date d = formatter.parse(proprietario.getDataNasc());
+        Date d = formatter.parse(proprietarioSendoEditado.getDataNasc());
 
-        edtNome.setText(proprietario.getNome());
-        edtCpf.setText(proprietario.getCpf());
+        edtNome.setText(proprietarioSendoEditado.getNome());
+        edtCpf.setText(proprietarioSendoEditado.getCpf());
         edtCpf.setEnabled(false);
         edtDataNascimento.setDate(d);
 
-        String[] end = proprietario.getEndereco().split(",");
+        String[] end = proprietarioSendoEditado.getEndereco().split(",");
         edtCidade.setText(end[0]);
         edtEstado.setText(end[1]);
 
-        edtTelefone.setText(proprietario.getTel());
+        edtTelefone.setText(proprietarioSendoEditado.getTel());
 
-        if (proprietario.getSexo().equals("F")) {
+        if (proprietarioSendoEditado.getSexo().equals("F")) {
             cbxSexo.setSelectedItem("F");
-        } else if (proprietario.getSexo().equals("M")) {
+        } else if (proprietarioSendoEditado.getSexo().equals("M")) {
             cbxSexo.setSelectedItem("M");
 
-        } else if (proprietario.getSexo().equals("Outro")) {
+        } else if (proprietarioSendoEditado.getSexo().equals("Outro")) {
             cbxSexo.setSelectedItem("Outro");
 
         }
 
-        if (funcionario.getTurno().equals("Manhã")) {
+        if (funcionarioSendoEditado.getTurno().equals("Manhã")) {
             cbxTurno.setSelectedItem("Manhã");
-        } else if (funcionario.getTurno().equals("Tarde")) {
+        } else if (funcionarioSendoEditado.getTurno().equals("Tarde")) {
             cbxTurno.setSelectedItem("Tarde");
-        } else if (funcionario.getTurno().equals("Noite")) {
+        } else if (funcionarioSendoEditado.getTurno().equals("Noite")) {
             cbxTurno.setSelectedItem("Noite");
         }
 
-        edtSalario.setText(funcionario.getSalario().toString());
-        edtEmail.setText(funcionario.getEmail());
+        edtSalario.setText(funcionarioSendoEditado.getSalario().toString());
+        edtEmail.setText(funcionarioSendoEditado.getEmail());
         
-        String senhaReal = descriptografiaBase64Decode(funcionario.getSenha());
+        String senhaReal = descriptografiaBase64Decode(funcionarioSendoEditado.getSenha());
         edtSenha.setText(senhaReal);
         edtSenha.setEnabled(false);
 
@@ -454,8 +455,11 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                 Double Salario = Double.valueOf(edtSalario.getText());
 
                 Funcionario func = new Funcionario(Salario, cbxTurno.getSelectedItem().toString(), edtNome.getText(), endereco, dataNascimento, cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 1);
-                if (funcionarioEditando > 0) {
+                if (funcionarioIsEditando > 0) {
                     try {
+                        
+                        func.setId(funcionarioSendoEditado.getId());
+                        
                         fucionarioCont.atualizarFuncionario(func);
                         ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Funcioario Atualizado com sucesso!!");
                         DialMsg.setVisible(true);
@@ -479,14 +483,16 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                     }
                 }
 
-                this.funcionarioEditando = -1;
+                this.funcionarioIsEditando = -1;
 
             } else if (jRadioClient.isSelected()) {
 
                 Proprietario prop = new Proprietario(edtNome.getText(), endereco, dataNascimento, cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
 
-                if (proprietarioEditando > 0) {
+                if (proprietarioIsEditando > 0) {
                     try {
+                        
+                        prop.setId(proprietarioSendoEditado.getId());
                         proprietarioCont.atualizarProprietario(prop);
                         ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Proprietario Atualizado com sucesso!!");
                         DialMsg.setVisible(true);
@@ -507,7 +513,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                     }
                 }
 
-                this.proprietarioEditando = -1;
+                this.proprietarioIsEditando = -1;
 
             }
         } else if (!isValidEmail) {

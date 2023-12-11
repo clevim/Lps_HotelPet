@@ -77,7 +77,7 @@ public class ProprietarioController {
         Proprietario novoProprietario = check.validaCamposEntrada(editProprietario);
 
         try {
-            repositorio.save(novoProprietario);
+            repositorio.update(novoProprietario);
         } catch (ProprietarioException e) {
             throw new ProprietarioException("Error - já existe um proprietario com este 'id'.");
         }

@@ -84,5 +84,12 @@ public class Agendamento {
         }
         return txt;
     }
+    
+//    public String toStringServicos(){
+//        String txt = "";
+////        for(String str : getServicosAdicionais()){
+////            
+////        }
+//    }
 
 }
