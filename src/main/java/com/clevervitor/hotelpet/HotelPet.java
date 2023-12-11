@@ -12,7 +12,7 @@ import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.utils.emailBodys;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.valid.ValidateUtils;
-import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadPet;
+import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
 import com.clevervitor.hotelpet.view.FrLogin;
 import com.clevervitor.hotelpet.view.FrMainMenuClient;
 

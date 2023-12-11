@@ -2,11 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.clevervitor.hotelpet.view.dialogs.info;
+package com.clevervitor.hotelpet.view.dialogs;
 
 import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.model.entities.Pet;
-import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadPet;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;

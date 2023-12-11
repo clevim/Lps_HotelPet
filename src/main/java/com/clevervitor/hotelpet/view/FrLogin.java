@@ -4,7 +4,7 @@
  */
 package com.clevervitor.hotelpet.view;
 
-import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadProprietario;
+import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
