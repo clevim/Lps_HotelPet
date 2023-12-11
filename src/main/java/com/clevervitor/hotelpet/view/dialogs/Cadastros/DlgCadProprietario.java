@@ -440,6 +440,9 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dataNascimento = formatter.format(edtDataNascimento.getDate());
+        
         String endereco = edtCidade.getText() + ", " + edtEstado.getText();
         boolean isValidEmail = utils.isValidEmailAddress(edtEmail.getText());
         boolean isValidCpf = utils.isValidCpf(edtCpf.getText());
@@ -450,7 +453,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             if (jRadioFuncionario.isSelected()) {
                 Double Salario = Double.valueOf(edtSalario.getText());
 
-                Funcionario func = new Funcionario(Salario, cbxTurno.getSelectedItem().toString(), edtNome.getText(), endereco, edtDataNascimento.getDate().toString(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 1);
+                Funcionario func = new Funcionario(Salario, cbxTurno.getSelectedItem().toString(), edtNome.getText(), endereco, dataNascimento, cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 1);
                 if (funcionarioEditando > 0) {
                     try {
                         fucionarioCont.atualizarFuncionario(func);
@@ -480,7 +483,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
             } else if (jRadioClient.isSelected()) {
 
-                Proprietario prop = new Proprietario(edtNome.getText(), endereco, edtDataNascimento.getDate().toString(), cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
+                Proprietario prop = new Proprietario(edtNome.getText(), endereco, dataNascimento, cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
 
                 if (proprietarioEditando > 0) {
                     try {

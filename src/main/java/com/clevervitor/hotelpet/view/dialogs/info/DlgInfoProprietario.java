@@ -9,6 +9,7 @@ import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
+import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadProprietario;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
@@ -53,7 +54,7 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
 
     public void preencherLabels() {
         lblNomeProp.setText(proprietario.getNome());
-        lblPets.setText(proprietario.getLstPetsPossuidos().toString());
+        lblPets.setText(proprietario.getLstPetsPossuidos().size() + " Pet(s)");
         lblIdade.setText(proprietario.getDataNasc());
         lblEndereco.setText(proprietario.getEndereco() + ".");
         lblContato.setText(proprietario.getTel());
@@ -273,9 +274,13 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
 
     private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
         // TODO add your handling code here:
-        DlgCadAgendamento telaEditarProp;
-        telaEditarProp = new DlgCadAgendamento(new Frame(), true, proprietario);
+        DlgCadProprietario telaEditarProp;
+        try {
+            telaEditarProp = new DlgCadProprietario(new Frame(), true, proprietario);
         telaEditarProp.setVisible(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(DlgInfoProprietario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_lblEditarMouseClicked
 
     private void lblEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseEntered

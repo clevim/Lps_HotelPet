@@ -230,6 +230,9 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         btnAgendarEstadia.setBorder(null);
         btnAgendarEstadia.setBorderPainted(false);
         btnAgendarEstadia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgendarEstadiaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAgendarEstadiaMouseEntered(evt);
             }
@@ -527,6 +530,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         DlgCadAgendamento telaAgendamento = new DlgCadAgendamento(new Frame(), true, proprietarioLogado);
         telaAgendamento.setVisible(true);
 
+        this.proprietarioLogado = propController.buscarProprietario(proprietarioLogado.getId());
         propController.atualizarTabelaDeAgendamentos(grdAgendamentos, proprietarioLogado.getLstAgendamentos());
 
 
@@ -587,6 +591,10 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         DlgContato contato = new DlgContato(proprietarioLogado.getEmail());
         contato.setVisible(true);
     }//GEN-LAST:event_menuContatoMouseClicked
+
+    private void btnAgendarEstadiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgendarEstadiaMouseClicked
 
     /**
      * @param args the command line arguments
