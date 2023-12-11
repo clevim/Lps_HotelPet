@@ -67,7 +67,7 @@ public class DlgCadPet extends javax.swing.JDialog {
 
         Image iconeTitulo = null;
         try {
-            iconeTitulo = ImageIO.read(getClass().getResource("/Images/pawprint.png"));
+            iconeTitulo = ImageIO.read(getClass().getResource("/Imagens/pawprint.png"));
         } catch (IOException ex) {
             Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
