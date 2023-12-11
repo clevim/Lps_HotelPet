@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.clevervitor.hotelpet.view.dialogs.info;
+package com.clevervitor.hotelpet.view.dialogs;
 
-import com.clevervitor.hotelpet.controller.PetController;
-import com.clevervitor.hotelpet.model.entities.Pet;
-import com.clevervitor.hotelpet.view.dialogs.cadastros.DlgCadPet;
+import com.clevervitor.hotelpet.controller.ProprietarioController;
+import com.clevervitor.hotelpet.model.entities.Agendamento;
+import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.utils.utils;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
@@ -20,44 +21,45 @@ import javax.swing.ImageIcon;
  *
  * @author vitor
  */
-public class DlgInfoPet extends javax.swing.JDialog {
+public class DlgInfoProprietario extends javax.swing.JDialog {
 
     /**
      * Creates new form NewJDialog
      */
-    Pet pet;
-    PetController petController;
+    Proprietario proprietario;
+    ProprietarioController propController;
 
-    public DlgInfoPet(java.awt.Frame parent, boolean modal, Pet pet) {
+    public DlgInfoProprietario(java.awt.Frame parent, boolean modal, Proprietario prop) {
         super(parent, modal);
         initComponents();
 
-        this.pet = pet;
-        this.petController = new PetController();
+        this.proprietario = prop;
+        this.propController = new ProprietarioController();
 
         preencherLabels();
 
-        lblPetDe.setForeground(new Color(187, 187, 187));
-        lblDono.setForeground(new Color(187, 187, 187));
+        lblNomeProp.setForeground(new Color(187, 187, 187));
+        lblDeDono.setForeground(new Color(187, 187, 187));
+        lblPets.setForeground(new Color(187, 187, 187));
         lblNasceuEm.setForeground(new Color(187, 187, 187));
-        lblRaca.setForeground(new Color(187, 187, 187));
+        lblIdade.setForeground(new Color(187, 187, 187));
         lblResideEm.setForeground(new Color(187, 187, 187));
         lblEndereco.setForeground(new Color(187, 187, 187));
+        lblEmail.setForeground(new Color(187, 187, 187));
+        lblEmailP.setForeground(new Color(187, 187, 187));
 
     }
 
     public void preencherLabels() {
-        lblNomeProp.setText(pet.getNome());
-        lblEspecie.setText(pet.getEspecie());
-        lblSexo.setText(pet.getSexo());
-        lblRaca.setText(pet.getRaca());
-        lblDono.setText(pet.getProprietario().toString());
-        lblEndereco.setText(pet.getProprietario().getEndereco());
-        lblIdade.setText(pet.getIdade() + "anos");
-        lblPeso.setText(pet.getPeso() + "kg.");
-        
-        lblObs.setText(pet.getObs());
+        lblNomeProp.setText(proprietario.getNome());
+        lblPets.setText(proprietario.getLstPetsPossuidos().size() + " Pet(s)");
+        lblIdade.setText(proprietario.getDataNasc());
+        lblEndereco.setText(proprietario.getEndereco() + ".");
+        lblContato.setText(proprietario.getTel());
+        lblEmailP.setText(proprietario.getEmail());
 
+        propController.atualizarTabelaDeAgendamentos(tblAgendamentos, proprietario.getLstAgendamentos());
+        propController.atualizarTabelaDePetsInicioFrame(tblPets, proprietario.getLstPetsPossuidos());
 
     }
 
@@ -73,23 +75,24 @@ public class DlgInfoPet extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         lbl_img = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        lblPetDe = new javax.swing.JLabel();
+        lblDeDono = new javax.swing.JLabel();
         lblNasceuEm = new javax.swing.JLabel();
         lblNomeProp = new javax.swing.JLabel();
-        lblDono = new javax.swing.JLabel();
-        lblRaca = new javax.swing.JLabel();
+        lblPets = new javax.swing.JLabel();
+        lblIdade = new javax.swing.JLabel();
         lblResideEm = new javax.swing.JLabel();
         lblEndereco = new javax.swing.JLabel();
         lblEditar = new javax.swing.JLabel();
+        lblCtt = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblContato = new javax.swing.JLabel();
+        lblEmailP = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        lblEspecie = new javax.swing.JLabel();
-        lblSexo = new javax.swing.JLabel();
-        lblTem = new javax.swing.JLabel();
-        lblIdade = new javax.swing.JLabel();
-        lble = new javax.swing.JLabel();
-        lblPeso = new javax.swing.JLabel();
-        lblTem1 = new javax.swing.JLabel();
-        lblObs = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblAgendamentos = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblPets = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -125,9 +128,9 @@ public class DlgInfoPet extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
-        lblPetDe.setText("pet de");
+        lblDeDono.setText("dono de");
 
-        lblNasceuEm.setText("de raça");
+        lblNasceuEm.setText("parido na data ");
 
         lblResideEm.setText("e reside em");
 
@@ -144,22 +147,39 @@ public class DlgInfoPet extends javax.swing.JDialog {
             }
         });
 
-        lblEspecie.setText("jLabel1");
+        lblCtt.setText("Contato disponível:");
 
-        lblSexo.setText("jLabel1");
+        lblEmail.setText("E-mail:");
 
-        lblTem.setText("Tem");
+        tblAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
 
-        lblIdade.setText("jLabel1");
+            }
+        ));
+        jScrollPane3.setViewportView(tblAgendamentos);
 
-        lble.setText("e sua massa mede");
+        jTabbedPane2.addTab("Agendamentos", jScrollPane3);
 
-        lblPeso.setText("jLabel1");
+        tblPets.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
 
-        lblTem1.setText("Seu dono descreve seu pet como:");
+            }
+        ));
+        jScrollPane4.setViewportView(tblPets);
 
-        lblObs.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        lblObs.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        jTabbedPane2.addTab("Pets", jScrollPane4);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -170,44 +190,34 @@ public class DlgInfoPet extends javax.swing.JDialog {
                 .addComponent(lblEditar)
                 .addGap(19, 19, 19))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblCtt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblContato, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblNomeProp, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblEspecie)
+                        .addComponent(lblDeDono)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblSexo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNasceuEm)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblRaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(35, 35, 35))
+                        .addComponent(lblPets, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSeparator2)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(lblPetDe)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblDono, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblResideEm)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(lblTem)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lble)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblTem1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblObs, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(lblEmail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblEmailP, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(lblNasceuEm)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblResideEm)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,35 +226,30 @@ public class DlgInfoPet extends javax.swing.JDialog {
                 .addComponent(lblEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNomeProp, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblRaca, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNasceuEm, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPetDe)
-                                    .addComponent(lblDono, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblTem)
-                                    .addComponent(lblIdade)
-                                    .addComponent(lble)
-                                    .addComponent(lblPeso)))
-                            .addComponent(lblResideEm)
-                            .addComponent(lblEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblEspecie)
-                        .addComponent(lblSexo)))
+                    .addComponent(lblNomeProp, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDeDono)
+                    .addComponent(lblPets, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTem1)
-                    .addComponent(lblObs, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNasceuEm)
+                            .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblCtt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblContato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEmail)
+                            .addComponent(lblEmailP, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblResideEm)
+                    .addComponent(lblEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -259,7 +264,7 @@ public class DlgInfoPet extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -267,9 +272,13 @@ public class DlgInfoPet extends javax.swing.JDialog {
 
     private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
         // TODO add your handling code here:
-        DlgCadPet telaEditarPet;
-        telaEditarPet = new DlgCadPet(new Frame(), true, pet);
-        telaEditarPet.setVisible(true);
+        DlgCadProprietario telaEditarProp;
+        try {
+            telaEditarProp = new DlgCadProprietario(new Frame(), true, proprietario);
+        telaEditarProp.setVisible(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(DlgInfoProprietario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_lblEditarMouseClicked
 
     private void lblEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseEntered
@@ -280,7 +289,7 @@ public class DlgInfoPet extends javax.swing.JDialog {
 
     private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
 //
-//        String file = utils.uploadAvatar(petLogado.getId(), imgProfile, imgIcon);
+//        String file = utils.uploadAvatar(proprietarioLogado.getId(), imgProfile, imgIcon);
 //
 //        if (!file.isEmpty()) {
 //
@@ -305,23 +314,24 @@ public class DlgInfoPet extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblDono;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JLabel lblContato;
+    private javax.swing.JLabel lblCtt;
+    private javax.swing.JLabel lblDeDono;
     private javax.swing.JLabel lblEditar;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEmailP;
     private javax.swing.JLabel lblEndereco;
-    private javax.swing.JLabel lblEspecie;
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNasceuEm;
     private javax.swing.JLabel lblNomeProp;
-    private javax.swing.JLabel lblObs;
-    private javax.swing.JLabel lblPeso;
-    private javax.swing.JLabel lblPetDe;
-    private javax.swing.JLabel lblRaca;
+    private javax.swing.JLabel lblPets;
     private javax.swing.JLabel lblResideEm;
-    private javax.swing.JLabel lblSexo;
-    private javax.swing.JLabel lblTem;
-    private javax.swing.JLabel lblTem1;
     private javax.swing.JLabel lbl_img;
-    private javax.swing.JLabel lble;
+    private javax.swing.JTable tblAgendamentos;
+    private javax.swing.JTable tblPets;
     // End of variables declaration//GEN-END:variables
 }
