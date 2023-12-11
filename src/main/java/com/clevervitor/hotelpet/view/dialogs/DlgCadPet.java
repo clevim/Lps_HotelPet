@@ -263,7 +263,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         pnlDescricaoPet.setBackground(new java.awt.Color(51, 51, 51));
         pnlDescricaoPet.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descreva seu pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(153, 255, 153))); // NOI18N
 
-        edtObs.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        edtObs.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         javax.swing.GroupLayout pnlDescricaoPetLayout = new javax.swing.GroupLayout(pnlDescricaoPet);
         pnlDescricaoPet.setLayout(pnlDescricaoPetLayout);

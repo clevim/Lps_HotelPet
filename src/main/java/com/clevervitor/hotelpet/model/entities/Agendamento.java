@@ -4,8 +4,11 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -46,11 +50,11 @@ public class Agendamento {
     @JoinColumn(name = "pet_id", referencedColumnName = "id")
     private Pet PetAgendado;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "agendamento_servicos",joinColumns = @JoinColumn(name="idServicos",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name = "idAgendamento",referencedColumnName = "id"))
-    private List<Servicos> servicosAdicionais;
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name = "agendamento_servicos",joinColumns = @JoinColumn(name="idAgendamento",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name = "idServicos",referencedColumnName = "id"))
+    @EqualsAndHashCode.Exclude private Set<Servicos> servicosAdicionais;
 
-    public Agendamento(String dataCheckIn, String dataCheckOut, List<Servicos> servicosAdicionais, Proprietario proprietario, Pet pets, double valor) {
+    public Agendamento(String dataCheckIn, String dataCheckOut, Set<Servicos> servicosAdicionais, Proprietario proprietario, Pet pets, double valor) {
         this.dataCheckIn = dataCheckIn;
         this.dataCheckOut = dataCheckOut;
         this.servicosAdicionais = servicosAdicionais;
@@ -63,7 +67,7 @@ public class Agendamento {
         this.dataCheckIn = "";
         this.dataCheckOut = "";
         this.valor = 0.0;
-        this.servicosAdicionais = new ArrayList<>();
+        this.servicosAdicionais = new HashSet<Servicos>();
         this.proprietarioResp = new Proprietario();
         this.PetAgendado = new Pet();
 

@@ -8,8 +8,10 @@ import com.clevervitor.hotelpet.connection.DatabaseJPA;
 import com.clevervitor.hotelpet.exceptions.ServicosException;
 import com.clevervitor.hotelpet.model.dao.contracts.Dao;
 import com.clevervitor.hotelpet.model.entities.Servicos;
+import java.util.HashSet;
 
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -29,7 +31,7 @@ public class ServicosDAO extends Dao<Servicos> {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
         String jpql = " SELECT s "
-                + "FROM Servicos s"
+                + "FROM Servicos s LEFT JOIN FETCH s.agendamentoMarcadoServices"
                 + " WHERE s.nomeServico LIKE :nome ";
         TypedQuery qry = this.entityManager.createQuery(jpql, Servicos.class);
         qry.setParameter("nome", nome);
@@ -55,7 +57,7 @@ public class ServicosDAO extends Dao<Servicos> {
                 super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
                 Servicos s = entityManager.find(Servicos.class, id);
-
+                
                 return s;
             } catch (ServicosException e) {
                 throw new ServicosException("Servico não encontrado");
@@ -71,12 +73,29 @@ public class ServicosDAO extends Dao<Servicos> {
             super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
             jpql = " SELECT s "
-                    + " FROM Servicos s ";
+                    + " FROM Servicos s LEFT JOIN FETCH s.agendamentoMarcadoServices";
 
             qry = super.entityManager.createQuery(jpql, Servicos.class);
 
             List lstServicos = qry.getResultList();
             return lstServicos;
+        } catch (ServicosException msg) {
+            throw new ServicosException("Erro ao retornar lista de Servico.");
+        } finally {
+            super.entityManager.close();
+        }
+    }
+    
+     public Set<Servicos> findAllSet() {
+        try {
+            super.entityManager = DatabaseJPA.getInstance().getEntityManager();
+
+            jpql = " SELECT s "
+                    + " FROM Servicos s LEFT JOIN FETCH s.agendamentoMarcadoServices";
+
+            qry = super.entityManager.createQuery(jpql, Servicos.class);
+
+            return new HashSet<>( qry.getResultList());
         } catch (ServicosException msg) {
             throw new ServicosException("Erro ao retornar lista de Servico.");
         } finally {

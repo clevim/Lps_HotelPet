@@ -66,7 +66,7 @@ public class TMPet extends AbstractTableModel {
                 case COL_IDADE:
                     return aux.getIdade();
                 case COL_PESO:
-                    return aux.getPeso();
+                    return aux.getPeso().toString()+"Kg";
                 case COL_RACA:
                     return aux.getRaca();
                 case COL_SEXO:

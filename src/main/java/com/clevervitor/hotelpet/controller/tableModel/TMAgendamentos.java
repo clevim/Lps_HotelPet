@@ -6,7 +6,11 @@ package com.clevervitor.hotelpet.controller.tableModel;
 
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
+import com.clevervitor.hotelpet.model.entities.Servicos;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -54,7 +58,7 @@ public class TMAgendamentos extends AbstractTableModel {
                 case COL_DATA_CHECKOUT:
                     return aux.getDataCheckOut();
                 case COL_SERVICOS_ADICIONAIS:
-                    return aux.getStringServices();
+                    return ToStringServiceName(aux.getStringServices());
                 default:
                     break;
             }
@@ -82,5 +86,23 @@ public class TMAgendamentos extends AbstractTableModel {
         
         return "";
     }
+        
+      public String ToStringServiceName(String lstServ){
+      
+      Pattern pattern = Pattern.compile("nomeServico=([^,]+)");
+       Matcher matcher = pattern.matcher(lstServ);
+       StringBuilder result = new StringBuilder();
+       
+       while (matcher.find()) {
+            result.append(matcher.group(1)).append(",");
+        }
+      if (result.length() > 0) {
+            result.setLength(result.length() - 1);
+        }
+      
+      
+      
+      return result.toString();
+      }
     
 }

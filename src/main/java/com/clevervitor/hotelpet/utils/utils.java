@@ -141,7 +141,7 @@ public class utils {
         SimpleDateFormat formatoDMY = new SimpleDateFormat("dd/MM/yyyy");
         Calendar cIn = Calendar.getInstance();
         Calendar cOut = Calendar.getInstance();
-        List<Servicos> servs = agend.getServicosAdicionais();
+        List<Servicos> servs = (List<Servicos>) agend.getServicosAdicionais();
 
         String dateCheckIn = agend.getDataCheckIn();
         String dateCheckOut = agend.getDataCheckOut();

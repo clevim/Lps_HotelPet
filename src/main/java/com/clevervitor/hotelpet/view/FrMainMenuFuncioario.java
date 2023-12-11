@@ -227,9 +227,9 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         abaProprietariosLayout.setVerticalGroup(
             abaProprietariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(abaProprietariosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(scrProprietarios, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(scrProprietarios, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pnlComAbas.addTab("Proprietarios", abaProprietarios);
@@ -264,8 +264,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         abaPetsLayout.setVerticalGroup(
             abaPetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(abaPetsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(scrPets, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(scrPets, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
         );
 
         pnlComAbas.addTab("Pets", abaPets);
@@ -320,7 +320,6 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         jMenuBar1.add(jMenu1);
 
-        menuSobre.setForeground(new java.awt.Color(255, 255, 255));
         menuSobre.setText("Sobre");
         menuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

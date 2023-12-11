@@ -13,6 +13,7 @@ import com.clevervitor.hotelpet.model.entities.Proprietario;
 
 import java.util.List;
 import javax.persistence.TypedQuery;
+import org.hibernate.Hibernate;
 
 /**
  *
@@ -59,9 +60,10 @@ public class AgendamentoDAO extends Dao<Agendamento> {
             super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
             jpql = " SELECT f "
-                    + " FROM Agendamento f ";
+                    + " FROM Agendamento f LEFT JOIN FETCH f.servicosAdicionais  ";
 
             qry = super.entityManager.createQuery(jpql, Agendamento.class);
+            
 
             List lstAgendamentos = qry.getResultList();
             return lstAgendamentos;
@@ -82,7 +84,7 @@ public class AgendamentoDAO extends Dao<Agendamento> {
                 super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
                 Agendamento m = entityManager.find(Agendamento.class, id);
-
+                Hibernate.initialize(m.getServicosAdicionais());
                 return m;
             } catch (AgendamentoException e) {
                 throw new AgendamentoException("Agendamento não encontrado");

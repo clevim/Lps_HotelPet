@@ -4,8 +4,11 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,6 +19,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 
 /**
  *
@@ -23,6 +29,7 @@ import lombok.Data;
  */
 @Entity
 @Data
+
 public class Servicos implements Serializable {
     
     @Id
@@ -33,10 +40,13 @@ public class Servicos implements Serializable {
     
     private Double valorServico;
     
-   @ManyToMany(mappedBy = "servicosAdicionais",fetch = FetchType.EAGER)
-    private List<Agendamento> agendamentoMarcadoServices;
+   @ManyToMany(mappedBy = "servicosAdicionais")
+   @ToString.Exclude private Set<Agendamento> agendamentoMarcadoServices = new HashSet<Agendamento>();
 
     public Servicos() {
+        this.nomeServico = "";
+        this.valorServico = 0.0;
+        
     }
 
     public Servicos(String nomeServico, Double valorServico) {

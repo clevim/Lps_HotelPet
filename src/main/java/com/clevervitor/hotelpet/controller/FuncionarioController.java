@@ -57,7 +57,7 @@ public class FuncionarioController {
 
         try {
             repositorio.save(novoFuncionario);
-            emailConf.sendEmail(novoFuncionario.getEmail(), "Cadastro Hotel Pet", emBd.emailDog1("Bem vindo ao Hotel Pet"));
+            //emailConf.sendEmail(novoFuncionario.getEmail(), "Cadastro Hotel Pet", emBd.emailDog1("Bem vindo ao Hotel Pet"));
             
         } catch (FuncionarioException e) {
             throw new FuncionarioException("Error - já existe um Funcionario com este 'id'.");
@@ -76,7 +76,7 @@ public class FuncionarioController {
 
         try {
             repositorio.update(novoFuncionario);
-            emailConf.sendEmail(novoFuncionario.getEmail(), "Atualização Hotel Pet", emBd.emailDog2("Sua conta foi atualizada."));
+            //emailConf.sendEmail(novoFuncionario.getEmail(), "Atualização Hotel Pet", emBd.emailDog2("Sua conta foi atualizada."));
         } catch (FuncionarioException e) {
             throw new FuncionarioException("Error - já existe um Funcionario com este 'id'.");
         }
@@ -94,7 +94,7 @@ public class FuncionarioController {
     public void excluirFuncionario(Funcionario funcionario) {
         if (funcionario.getId() != null) {
             repositorio.delete(funcionario);
-            emailConf.sendEmail(funcionario.getEmail(), "Adeus Hotel Pet", emBd.emailCat("Sua conta foi deletada."));
+            //emailConf.sendEmail(funcionario.getEmail(), "Adeus Hotel Pet", emBd.emailCat("Sua conta foi deletada."));
         } else {
             throw new FuncionarioException("Error - Funcionario inexistente.");
         }

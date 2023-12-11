@@ -21,7 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -63,7 +65,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         servicoDAO = new ServicosDAO();
         setBackground(new Color(51, 51, 51));
 
-        lstServ = servicoDAO.findAll();
+        lstServ = new ArrayList<>(servicoDAO.findAllSet());
 
         Image iconeTitulo = null;
         try {
@@ -106,7 +108,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         petSelcionado = new Pet();
         lstSelectServi = new ArrayList<>();
 
-        lstServ = servicoDAO.findAll();
+        lstServ = new ArrayList<>(servicoDAO.findAllSet());
         setBackground(new Color(51, 51, 51));
 
         Image iconeTitulo = null;
@@ -611,8 +613,9 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         String dCheckIn = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckIn.getDate());
         String dCheckOut = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckOut.getDate());
+        Set<Servicos> servs = new HashSet<>(verifServicos());
 
-        Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut, verifServicos(), proprietarioLogado, lstPetsSelecionados, 0.0);
+        Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut,servs , proprietarioLogado, lstPetsSelecionados, 0.0);
 
         AgendamentoController.cadastrarAgendamento(novoAgendamento);
 
