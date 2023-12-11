@@ -12,7 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import lombok.Data;
@@ -39,23 +41,21 @@ public class Agendamento {
     @OneToOne
     @JoinColumn(name = "proprietarioResp_id")
     private Proprietario proprietarioResp;
+    
+    @ManyToOne
+    @JoinColumn(name = "pet_id", referencedColumnName = "id")
+    private Pet PetAgendado;
 
-    @OneToMany(mappedBy = "agendamentoMarcado")
-    @Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
-    @JoinColumn(name = "pets_id")
-    private List<Pet> lstPetsAgendados;
-
-    @OneToMany(mappedBy = "agendamentoMarcadoServices")
-    @Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
-    @JoinColumn(name = "servicos")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "agendamento_servicos",joinColumns = @JoinColumn(name="idServicos",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name = "idAgendamento",referencedColumnName = "id"))
     private List<Servicos> servicosAdicionais;
 
-    public Agendamento(String dataCheckIn, String dataCheckOut, List<Servicos> servicosAdicionais, Proprietario proprietario, List<Pet> pets, double valor) {
+    public Agendamento(String dataCheckIn, String dataCheckOut, List<Servicos> servicosAdicionais, Proprietario proprietario, Pet pets, double valor) {
         this.dataCheckIn = dataCheckIn;
         this.dataCheckOut = dataCheckOut;
         this.servicosAdicionais = servicosAdicionais;
         this.proprietarioResp = proprietario;
-        this.lstPetsAgendados = pets;
+        this.PetAgendado = pets;
         this.valor = valor;
     }
 
@@ -65,7 +65,7 @@ public class Agendamento {
         this.valor = 0.0;
         this.servicosAdicionais = new ArrayList<>();
         this.proprietarioResp = new Proprietario();
-        this.lstPetsAgendados = new ArrayList<>();
+        this.PetAgendado = new Pet();
 
     }
 

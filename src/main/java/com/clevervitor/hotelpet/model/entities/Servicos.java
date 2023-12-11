@@ -5,11 +5,15 @@
 package com.clevervitor.hotelpet.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import lombok.Data;
 
@@ -29,9 +33,8 @@ public class Servicos implements Serializable {
     
     private Double valorServico;
     
-    @ManyToOne
-    @JoinColumn(name = "lstServicosAgendados_id")
-    private Agendamento agendamentoMarcadoServices;
+   @ManyToMany(mappedBy = "servicosAdicionais",fetch = FetchType.EAGER)
+    private List<Agendamento> agendamentoMarcadoServices;
 
     public Servicos() {
     }

@@ -33,7 +33,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
     public void preencherLabels(){
         lblAgendamentoMarcado.setForeground(new Color(187,187,187));
         lblPet.setForeground(new Color(187,187,187));
-        lblPet.setText(agendamento.getLstPetsAgendados().toString());
+        lblPet.setText(agendamento.getPetAgendado().toString());
         lblAgendamentoMarcado1.setForeground(new Color(187,187,187));
         lblDeDono.setForeground(new Color(187,187,187));
         lblDono.setText(agendamento.getProprietarioResp().toString());

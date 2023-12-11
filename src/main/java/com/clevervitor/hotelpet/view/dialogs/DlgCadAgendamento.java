@@ -42,7 +42,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     AgendamentoController AgendamentoController;
     Agendamento agendamentoSendoEditado;
     Pet petSelcionado;
-    List<Pet> lstPetsSelecionados;
+    Pet lstPetsSelecionados;
     List<Servicos> lstServ;
     List<Servicos> lstSelectServi;
     ServicosDAO servicoDAO;
@@ -58,7 +58,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         proprietarioLogado = proprietario;
         propCont = new ProprietarioController();
         petSelcionado = new Pet();
-        lstPetsSelecionados = new ArrayList<>();
+        lstPetsSelecionados = new Pet();
         lstSelectServi = new ArrayList<>();
         servicoDAO = new ServicosDAO();
         setBackground(new Color(51, 51, 51));
@@ -161,7 +161,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
             }
         }
         
-        txtPetsSelecionados.setText(agendamentoSendoEditado.getLstPetsAgendados().toString());
+        txtPetsSelecionados.setText(agendamentoSendoEditado.getPetAgendado().toString());
         propCont.atualizarTabelaDePetsInicioFrame(tblPets, proprietarioLogado.getLstPetsPossuidos());
         
     }
@@ -635,12 +635,8 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
             ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Primeiro, selecione um pet da tabela");
             DialMsg.setVisible(true);
 
-        } else if (lstPetsSelecionados.contains(petSelcionado)) {
-            ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Este pet já foi selecionado.");
-            DialMsg.setVisible(true);
-
-        } else {
-            lstPetsSelecionados.add(petSelcionado);
+        }  else {
+            lstPetsSelecionados = petSelcionado;
         }
 
         txtPetsSelecionados.setText(lstPetsSelecionados.toString().replace("[", "").replace("]", ""));
@@ -656,12 +652,12 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
     private void btnRemovePetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemovePetActionPerformed
         // TODO add your handling code here:
-        if (lstPetsSelecionados.size() <= 0) {
+        if (lstPetsSelecionados == null) {
             ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Nenhum pet para remover");
             DialMsg.setVisible(true);
 
         } else {
-            lstPetsSelecionados.remove(lstPetsSelecionados.size() - 1);
+            lstPetsSelecionados = null;
         }
         txtPetsSelecionados.setText(lstPetsSelecionados.toString().replace("[", "").replace("]", ""));
         scrPets.setEnabled(true);

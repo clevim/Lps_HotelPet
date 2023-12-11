@@ -48,7 +48,7 @@ public class TMAgendamentos extends AbstractTableModel {
                 case -1:
                     return aux;
                 case COL_NOME:
-                    return aux.toStringLst(aux.getLstPetsAgendados());
+                    return aux.getPetAgendado().toString();
                 case COL_DATA_CHECKIN:
                     return aux.getDataCheckIn();
                 case COL_DATA_CHECKOUT:

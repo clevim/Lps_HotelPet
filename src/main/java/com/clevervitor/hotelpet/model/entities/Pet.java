@@ -32,13 +32,13 @@ public class Pet {
     private String sexo;
     private Double peso;
     private String obs;
-    @ManyToOne
-    @JoinColumn(name = "prorpietario_id")
-    private Proprietario proprietario;
 
     @ManyToOne
-    @JoinColumn(name = "lstPetsAgendados_id")
-    private Agendamento agendamentoMarcado;
+    @JoinColumn(name = "propietario_id")
+    private Proprietario proprietario;
+
+    @OneToMany(mappedBy = "PetAgendado")
+    private List<Agendamento> agendamentoMarcado;
 
     public Pet(String nome, String especie, String raca, Integer idade, String genero, Double peso, String obs, Proprietario dono) {
         this.nome = nome;

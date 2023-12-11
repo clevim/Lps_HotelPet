@@ -7,6 +7,7 @@ package com.clevervitor.hotelpet.utils;
 import br.com.caelum.stella.validation.CPFValidator;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.dao.ServicosDAO;
+import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Servicos;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
@@ -19,6 +20,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -96,10 +101,8 @@ public class utils {
         return m.matches();
     }
 
-    public static Servicos getServico(List<Servicos> lstServ,String nomeServico) {
+    public static Servicos getServico(List<Servicos> lstServ, String nomeServico) {
         Servicos serv = new Servicos("", 0.0);
-        
-        
 
         for (Servicos s : lstServ) {
             switch (s.getNomeServico()) {
@@ -131,6 +134,32 @@ public class utils {
         }
 
         return serv;
+    }
+
+    public static Double calcTotalAgendamento(Agendamento agend) throws ParseException {
+        Double valTotal = 0.0;
+        SimpleDateFormat formatoDMY = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cIn = Calendar.getInstance();
+        Calendar cOut = Calendar.getInstance();
+        List<Servicos> servs = agend.getServicosAdicionais();
+
+        String dateCheckIn = agend.getDataCheckIn();
+        String dateCheckOut = agend.getDataCheckOut();
+        cIn.setTime(formatoDMY.parse(dateCheckIn));
+        cOut.setTime(formatoDMY.parse(dateCheckOut));
+        int dias = cOut.get(Calendar.DAY_OF_YEAR) - cIn.get(Calendar.DAY_OF_YEAR);
+
+        int qtdBanho = dias < 7 ? 1 : (dias / 7);
+        int qtdTosa = dias < 30 ? 1 : (dias / 30);
+        int qtdMassagem = dias < 14 ? 1 : (dias / 14);
+
+        Double valDiaria = utils.getServico(servs, "Diaria").getValorServico() * dias;
+        Double valBanho = utils.getServico(servs, "Banho").getValorServico() * qtdBanho;
+        Double valTosa = utils.getServico(servs, "Tosa").getValorServico() * qtdTosa;
+        Double valMassagem = utils.getServico(servs, "Massagem").getValorServico() * qtdMassagem;
+        valTotal = (valDiaria + valBanho + valMassagem + valTosa);
+
+        return valTotal;
     }
 
 }

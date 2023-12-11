@@ -31,12 +31,6 @@ public class ValidateAgendamento {
         }
         agendamento.setDataCheckOut(validaAgendamento.getDataCheckOut());
         
-
-        if (validaAgendamento.getServicosAdicionais().isEmpty()) {
-            throw new AgendamentoException("Error - Campo vazio: 'serviços adicionais'");
-        }
-
-        agendamento.setServicosAdicionais(validaAgendamento.getServicosAdicionais());
         
         if (validaAgendamento.getProprietarioResp() == null) {
             throw new AgendamentoException("Error - Sem responsável pelo agendamento");
@@ -44,11 +38,11 @@ public class ValidateAgendamento {
 
         agendamento.setProprietarioResp(validaAgendamento.getProprietarioResp());
         
-        if (validaAgendamento.getLstPetsAgendados()== null) {
+        if (validaAgendamento.getPetAgendado()== null) {
             throw new AgendamentoException("Error - Nenhum animal agendado");
         }
 
-        agendamento.setLstPetsAgendados(validaAgendamento.getLstPetsAgendados());
+        agendamento.setPetAgendado(validaAgendamento.getPetAgendado());
         agendamento.setServicosAdicionais(validaAgendamento.getServicosAdicionais());
 
         
