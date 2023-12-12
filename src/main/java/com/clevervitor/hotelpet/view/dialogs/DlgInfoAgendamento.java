@@ -4,48 +4,63 @@
  */
 package com.clevervitor.hotelpet.view.dialogs;
 
+import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
+import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
+import java.awt.Image;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author vitor
  */
-public class DlgInfoAgendamento extends javax.swing.JDialog {
+public class DlgInfoProprietario extends javax.swing.JDialog {
 
     /**
      * Creates new form NewJDialog
      */
-    Agendamento agendamento;
+    Proprietario proprietario;
+    ProprietarioController propController;
 
-    public DlgInfoAgendamento(java.awt.Frame parent, boolean modal, Agendamento agend) {
+    public DlgInfoProprietario(java.awt.Frame parent, boolean modal, Proprietario prop) {
         super(parent, modal);
         initComponents();
 
-        this.agendamento = agend;
+        this.proprietario = prop;
+        this.propController = new ProprietarioController();
+
         preencherLabels();
+
+        lblNomeProp.setForeground(new Color(187, 187, 187));
+        lblDeDono.setForeground(new Color(187, 187, 187));
+        lblPets.setForeground(new Color(187, 187, 187));
+        lblNasceuEm.setForeground(new Color(187, 187, 187));
+        lblIdade.setForeground(new Color(187, 187, 187));
+        lblResideEm.setForeground(new Color(187, 187, 187));
+        lblEndereco.setForeground(new Color(187, 187, 187));
+        lblEmail.setForeground(new Color(187, 187, 187));
+        lblEmailP.setForeground(new Color(187, 187, 187));
+
     }
 
     public void preencherLabels() {
-        lblAgendamentoMarcado.setForeground(new Color(187, 187, 187));
-        lblPet.setForeground(new Color(187, 187, 187));
-        lblPet.setText(agendamento.getPetAgendado().toString());
-        lblAgendamentoMarcado1.setForeground(new Color(187, 187, 187));
-        lblDeDono.setForeground(new Color(187, 187, 187));
-        lblDono.setText(agendamento.getProprietarioResp().toString());
-        lblDataCheckIn.setForeground(new Color(187, 187, 187));
-        lblDataCheckIn.setText(agendamento.getDataCheckIn());
-        lblDataCheckOut.setForeground(new Color(187, 187, 187));
-        lblDataCheckOut.setText(agendamento.getDataCheckOut() + ".");
-        
-        lblServicos.setText(utils.ToStringServiceName(agendamento.getServicosAdicionais()));
-        lblValor.setText(Double.toString(agendamento.getValor()));
+        lblNomeProp.setText(proprietario.getNome());
+        lblPets.setText(proprietario.getLstPetsPossuidos().size() + " Pet(s)");
+        lblIdade.setText(proprietario.getDataNasc());
+        lblEndereco.setText(proprietario.getEndereco() + ".");
+        lblContato.setText(proprietario.getTel());
+        lblEmailP.setText(proprietario.getEmail());
+
+        propController.atualizarTabelaDeAgendamentos(tblAgendamentos, proprietario.getLstAgendamentos());
+        propController.atualizarTabelaDePetsInicioFrame(tblPets, proprietario.getLstPetsPossuidos());
+
     }
 
     /**
@@ -58,49 +73,66 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        lbl_img = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        lblAgendamentoMarcado = new javax.swing.JLabel();
         lblDeDono = new javax.swing.JLabel();
-        lblAgendamentoMarcado1 = new javax.swing.JLabel();
-        lblPet = new javax.swing.JLabel();
-        lblDono = new javax.swing.JLabel();
-        lblDataCheckIn = new javax.swing.JLabel();
-        lblServicosContratados = new javax.swing.JLabel();
-        lblServicos = new javax.swing.JLabel();
-        lblValorTotal = new javax.swing.JLabel();
-        lblValor = new javax.swing.JLabel();
-        lblValorTotal1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        lblDeDono1 = new javax.swing.JLabel();
-        lblDataCheckOut = new javax.swing.JLabel();
+        lblNasceuEm = new javax.swing.JLabel();
+        lblNomeProp = new javax.swing.JLabel();
+        lblPets = new javax.swing.JLabel();
+        lblIdade = new javax.swing.JLabel();
+        lblResideEm = new javax.swing.JLabel();
+        lblEndereco = new javax.swing.JLabel();
         lblEditar = new javax.swing.JLabel();
+        lblCtt = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblContato = new javax.swing.JLabel();
+        lblEmailP = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblAgendamentos = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblPets = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        lbl_img.setBackground(new java.awt.Color(160, 160, 160));
+        lbl_img.setForeground(new java.awt.Color(242, 242, 242));
+        lbl_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_img.setText("Update Avatar");
+        lbl_img.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        lbl_img.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_imgMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 174, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_img, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lblAgendamentoMarcado.setText("Hospedagem marcada para");
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
-        lblDeDono.setText("de dono");
+        lblDeDono.setText("dono de");
 
-        lblAgendamentoMarcado1.setText("agendada de");
+        lblNasceuEm.setText("parido na data ");
 
-        lblServicosContratados.setText("Seviços contratados:");
-
-        lblValorTotal.setText("Valor total: ");
-
-        lblValorTotal1.setText("R$");
-
-        lblDeDono1.setText("até");
+        lblResideEm.setText("e reside em");
 
         lblEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/edit (2).png"))); // NOI18N
         lblEditar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,81 +147,109 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
             }
         });
 
+        lblCtt.setText("Contato disponível:");
+
+        lblEmail.setText("E-mail:");
+
+        tblAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(tblAgendamentos);
+
+        jTabbedPane2.addTab("Agendamentos", jScrollPane3);
+
+        tblPets.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(tblPets);
+
+        jTabbedPane2.addTab("Pets", jScrollPane4);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblEditar)
+                .addGap(19, 19, 19))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblEditar))
+                        .addComponent(lblCtt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblContato, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(15, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lblAgendamentoMarcado)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblPet, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblDeDono)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblDono, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lblServicosContratados)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lblValorTotal)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblValorTotal1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lblAgendamentoMarcado1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblDataCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblDeDono1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblDataCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 1, Short.MAX_VALUE)))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addComponent(lblNomeProp, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblDeDono)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPets, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblEmail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblEmailP, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(lblNasceuEm)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblResideEm)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
                 .addComponent(lblEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPet, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblAgendamentoMarcado)
-                        .addComponent(lblDeDono)
-                        .addComponent(lblDono, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblNomeProp, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDeDono)
+                    .addComponent(lblPets, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblAgendamentoMarcado1)
-                        .addComponent(lblDataCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblDeDono1)
-                    .addComponent(lblDataCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNasceuEm)
+                            .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblCtt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblContato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEmail)
+                            .addComponent(lblEmailP, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblResideEm)
+                    .addComponent(lblEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblServicosContratados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblServicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblValorTotal)
-                    .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblValorTotal1))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,24 +272,38 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
 
     private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
         // TODO add your handling code here:
-        DlgCadAgendamento telaEditarAgendamento;
+        DlgCadProprietario telaEditarProp;
         try {
-            telaEditarAgendamento = new DlgCadAgendamento(new Frame(), true, agendamento);
-            telaEditarAgendamento.setVisible(true);
+            telaEditarProp = new DlgCadProprietario(new Frame(), true, proprietario);
+        telaEditarProp.setVisible(true);
         } catch (ParseException ex) {
-            Logger.getLogger(DlgInfoAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DlgInfoProprietario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lblEditarMouseClicked
 
     private void lblEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseEntered
         // TODO add your handling code here:
-                lblEditar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblEditar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
     }//GEN-LAST:event_lblEditarMouseEntered
 
+    private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
+//
+//        String file = utils.uploadAvatar(proprietarioLogado.getId(), imgProfile, imgIcon);
+//
+//        if (!file.isEmpty()) {
+//
+//            lbl_img.setText(null);
+//            imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
+//            lbl_img.setIcon(imgIcon);
+//            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Avatar atualizado!");
+//            DialMsg.setVisible(true);
+//        }
+    }//GEN-LAST:event_lbl_imgMouseClicked
+
     private void lblEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseExited
         // TODO add your handling code here:
-                        lblEditar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        lblEditar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
     }//GEN-LAST:event_lblEditarMouseExited
 
@@ -240,20 +314,24 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblAgendamentoMarcado;
-    private javax.swing.JLabel lblAgendamentoMarcado1;
-    private javax.swing.JLabel lblDataCheckIn;
-    private javax.swing.JLabel lblDataCheckOut;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JLabel lblContato;
+    private javax.swing.JLabel lblCtt;
     private javax.swing.JLabel lblDeDono;
-    private javax.swing.JLabel lblDeDono1;
-    private javax.swing.JLabel lblDono;
     private javax.swing.JLabel lblEditar;
-    private javax.swing.JLabel lblPet;
-    private javax.swing.JLabel lblServicos;
-    private javax.swing.JLabel lblServicosContratados;
-    private javax.swing.JLabel lblValor;
-    private javax.swing.JLabel lblValorTotal;
-    private javax.swing.JLabel lblValorTotal1;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEmailP;
+    private javax.swing.JLabel lblEndereco;
+    private javax.swing.JLabel lblIdade;
+    private javax.swing.JLabel lblNasceuEm;
+    private javax.swing.JLabel lblNomeProp;
+    private javax.swing.JLabel lblPets;
+    private javax.swing.JLabel lblResideEm;
+    private javax.swing.JLabel lbl_img;
+    private javax.swing.JTable tblAgendamentos;
+    private javax.swing.JTable tblPets;
     // End of variables declaration//GEN-END:variables
 }
