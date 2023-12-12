@@ -5,10 +5,13 @@
 package com.clevervitor.hotelpet.view.dialogs;
 
 import com.clevervitor.hotelpet.connection.loginContexto;
+import com.clevervitor.hotelpet.controller.FuncionarioController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
+import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
+import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
@@ -22,39 +25,52 @@ import javax.swing.ImageIcon;
  *
  * @author vitor
  */
-public class DlgInfoAgendamento extends javax.swing.JDialog {
-
+public class DlgInfoFuncionario extends javax.swing.JDialog {
+    
     loginContexto pessoaLogada = loginContexto.getInstance();
+    byte[] imgProfile = null;
+    ImageIcon imgIcon = null;
 
     /**
      * Creates new form NewJDialog
      */
-    Agendamento agendamento;
-    Proprietario proprietario;
-    ProprietarioController propController;
-
-    public DlgInfoAgendamento(java.awt.Frame parent, boolean modal, Agendamento agend) {
+    Funcionario funcionario;
+    FuncionarioController funcController;
+    
+    public DlgInfoFuncionario(java.awt.Frame parent, boolean modal, Funcionario func) {
         super(parent, modal);
         initComponents();
-
-        this.agendamento = agend;
-
+        
+        this.funcionario = func;
+        this.funcController = new FuncionarioController();
+        imgProfile = funcionario.getAvatar();
+        if (imgProfile != null) {
+            imgIcon = new ImageIcon(new ImageIcon(imgProfile).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
+            if (imgIcon != null) {
+                lbl_img.setText(null);
+                lbl_img.setIcon(imgIcon);
+            }
+        }
+        
         preencherLabels();
 
+        
     }
-
+    
     public void preencherLabels() {
-        String agendadoInfo = "<html>"
-                + "<p style=\"text-align: justify;\">"
-                + "<strong>Agendamento para o pet " + agendamento.getPetAgendado().getNome() + ""
-                + " de " + agendamento.getProprietarioResp().getNome() + ","
-                + " com check-in em " + agendamento.getDataCheckIn() + " e"
-                + " check-out em " + agendamento.getDataCheckOut() + ".<br /><br /></strong><strong>"
-                + "Servi&ccedil;os adicionais inclu&iacute;dos: " + utils.ToStringServiceName(agendamento.getServicosAdicionais()) + ".<br /><br />"
-                + "Valor total do agendamento: R$" + agendamento.getValor() + ".</strong></p>"
-                + "<p style=\"text-align: justify;\"><strong>Status: " + utils.StatusToString(agendamento.getStatus()) + ".</strong></p></html>";
-
-        lbAgendInfo.setText(agendadoInfo);
+        String funcionarioInfo = "<html>"
+                + "<p><strong><em>[Nome]" + funcionario.getNome() + "</em>,"
+                + " de genero <em>[Sexo]" + funcionario.getSexo() + "</em>,"
+                + " nascido(a) em <em>[DataNasc]" + funcionario.getDataNasc() + "</em>. "
+                + "Seu CPF &eacute; <em>[CPF]" + funcionario.getCpf() + "</em>. "
+                + "Com endere&ccedil;o atual em <em>[Endere&ccedil;o]" + funcionario.getEndereco() + ""
+                + "</em>.<br /><br /></strong>"
+                + "<strong>Trabalha no turno&nbsp;<em>[Turno]" + funcionario.getTurno() + "</em>&nbsp;;<br /><br />"
+                + "Pode ser contatado(a) atrav&eacute;s do e-mail <em>[email]" + funcionario.getEmail() + "</em> "
+                + "e do telefone <em>[Telefone]" + funcionario.getTel() + "</em>;<br /><br />"
+                + "Sal&aacute;rio : R$" + funcionario.getSalario() + "</strong></p></html>";
+        lbFuncInfo.setText(funcionarioInfo);
+        
     }
 
     /**
@@ -70,7 +86,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
         lblEditar = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         lbl_img = new javax.swing.JLabel();
-        lbAgendInfo = new javax.swing.JLabel();
+        lbFuncInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -101,7 +117,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
             }
         });
 
-        lbAgendInfo.setForeground(new java.awt.Color(255, 255, 255));
+        lbFuncInfo.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -113,7 +129,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbAgendInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbFuncInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblEditar))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -126,10 +142,10 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblEditar)
                     .addComponent(lbl_img, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(lbAgendInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbFuncInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,12 +167,15 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
 
     private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
         // TODO add your handling code here:
-        DlgCadAgendamento telaEditarAgendamento;
+        DlgCadProprietario telaEditarProp;
         try {
-            telaEditarAgendamento = new DlgCadAgendamento(new Frame(), true, agendamento);
-            telaEditarAgendamento.setVisible(true);
+            telaEditarProp = new DlgCadProprietario(new Frame(), true, funcionario);
+            this.setVisible(false);
+            telaEditarProp.setVisible(true);
+            this.dispose();
+            
         } catch (ParseException ex) {
-            Logger.getLogger(DlgInfoAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DlgInfoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lblEditarMouseClicked
 
@@ -166,25 +185,25 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
 
     }//GEN-LAST:event_lblEditarMouseEntered
 
+    private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
+        
+        String file = utils.uploadAvatar(funcionario.getId(), imgProfile, imgIcon);
+        
+        if (!file.isEmpty()) {
+            
+            lbl_img.setText(null);
+            imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
+            lbl_img.setIcon(imgIcon);
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Avatar atualizado!");
+            DialMsg.setVisible(true);
+        }
+    }//GEN-LAST:event_lbl_imgMouseClicked
+
     private void lblEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseExited
         // TODO add your handling code here:
         lblEditar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
     }//GEN-LAST:event_lblEditarMouseExited
-
-    private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
-        //
-        //        String file = utils.uploadAvatar(proprietarioLogado.getId(), imgProfile, imgIcon);
-        //
-        //        if (!file.isEmpty()) {
-        //
-        //            lbl_img.setText(null);
-        //            imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
-        //            lbl_img.setIcon(imgIcon);
-        //            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Avatar atualizado!");
-        //            DialMsg.setVisible(true);
-        //        }
-    }//GEN-LAST:event_lbl_imgMouseClicked
 
     /**
      * @param args the command line arguments
@@ -193,7 +212,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lbAgendInfo;
+    private javax.swing.JLabel lbFuncInfo;
     private javax.swing.JLabel lblEditar;
     private javax.swing.JLabel lbl_img;
     // End of variables declaration//GEN-END:variables

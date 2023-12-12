@@ -23,6 +23,7 @@ import static com.clevervitor.hotelpet.model.enums.Status.AGENDADO;
 import static com.clevervitor.hotelpet.model.enums.Status.ATIVO;
 import static com.clevervitor.hotelpet.model.enums.Status.FINALIZADO;
 import static com.clevervitor.hotelpet.model.enums.Status.NULL;
+import com.clevervitor.hotelpet.view.UI.FloatingButton;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
@@ -45,6 +46,7 @@ import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 //import sun.misc.BASE64Decoder;
 
@@ -54,7 +56,7 @@ import javax.swing.JPanel;
  */
 public class utils {
 
-    public String uploadAvatar(int id, byte[] imgProfile, ImageIcon imgIcon) {
+    public static String uploadAvatar(int id, byte[] imgProfile, ImageIcon imgIcon) {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
@@ -277,5 +279,15 @@ public class utils {
 
         }
 
+    }
+    
+    public ImageIcon resizeImgTolb(String imgPath,JLabel lb){   
+    return new ImageIcon(new ImageIcon(getClass().getResource(imgPath)).getImage().getScaledInstance(lb.getWidth(), lb.getHeight(), Image.SCALE_SMOOTH));
+      
+    }
+    
+    public ImageIcon resizeImgToFloatingBtn(String imgPath,FloatingButton Flbtn){   
+    return new ImageIcon(new ImageIcon(getClass().getResource(imgPath)).getImage().getScaledInstance(Flbtn.getWidth(), Flbtn.getHeight(), Image.SCALE_SMOOTH));
+      
     }
 }

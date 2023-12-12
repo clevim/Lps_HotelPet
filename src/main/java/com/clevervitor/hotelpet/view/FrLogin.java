@@ -10,6 +10,7 @@ import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.utils.utils;
 import static com.clevervitor.hotelpet.valid.ValidateUtils.descriptografiaBase64Decode;
 import com.clevervitor.hotelpet.view.UI.FloatingButton;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLayer;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -58,7 +60,7 @@ public class FrLogin extends javax.swing.JFrame {
         setIconImage(iconeTitulo);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+        
     }
 
     /**
@@ -259,6 +261,7 @@ public class FrLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnEntrar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fast-forward (3).png")));
+
     }//GEN-LAST:event_btnEntrarMouseExited
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
@@ -276,7 +279,7 @@ public class FrLogin extends javax.swing.JFrame {
                     int nivelAcesso = p.getNivelAcesso();
                     switch (nivelAcesso) {
                         case 0:
-                            
+
                             pessoaLogada.setPessoaLogada(p);
                             FrMainMenuFuncioario adminMenu = new FrMainMenuFuncioario((Funcionario) p);
                             adminMenu.setTitle("ADMIN");
@@ -286,7 +289,7 @@ public class FrLogin extends javax.swing.JFrame {
                             break;
 
                         case 1:
-                            
+
                             pessoaLogada.setPessoaLogada(p);
                             FrMainMenuFuncioario funcionarioMenu = new FrMainMenuFuncioario((Funcionario) p);
                             funcionarioMenu.setTitle("Funcionario");
@@ -296,7 +299,7 @@ public class FrLogin extends javax.swing.JFrame {
                             break;
 
                         case 2:
-                            
+
                             pessoaLogada.setPessoaLogada(p);
                             FrMainMenuClient clienteMenu = new FrMainMenuClient((Proprietario) p);
                             clienteMenu.setTitle("Cliente");

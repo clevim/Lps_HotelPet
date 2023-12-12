@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.ToolTipManager;
 
 /**
@@ -37,10 +38,12 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     FuncionarioController fucionarioCont;
     int funcionarioIsEditando = -1;
     utils utils;
+    int Show_Hide = 0;
 
     public DlgCadProprietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        edtSenha.setEchoChar('\u25cf');
         ToolTipManager.sharedInstance().setInitialDelay(0);
         Image iconeTitulo = null;
         try {
@@ -56,7 +59,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jPanelFunc.setVisible(false);
         jRadioClient.setSelected(true);
 
-        if (pessoaLogada == null && pessoaLogada.getPessoaLogada().getNivelAcesso().equals(0)) {
+        if (pessoaLogada.getPessoaLogada() != null && pessoaLogada.getPessoaLogada().getNivelAcesso().equals(0)) {
             JPanelAdmin.setVisible(true);
         } else {
             JPanelAdmin.setVisible(false);
@@ -66,6 +69,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         fucionarioCont = new FuncionarioController();
         utils = new utils();
         edtSenha.setToolTipText("Minimo de 6 caracteres!");
+        img_eye.setText(null);
+        img_eye.setIcon(utils.resizeImgTolb("/Imagens/hide_white.png", img_eye));
 
     }
 
@@ -96,7 +101,9 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         fucionarioCont = new FuncionarioController();
         utils = new utils();
         edtSenha.setToolTipText("Minimo de 6 caracteres!");
-         PreencherCamposProprietario();
+        img_eye.setText(null);
+        img_eye.setIcon(utils.resizeImgTolb("/Imagens/hide_white.png", img_eye));
+        PreencherCamposProprietario();
 
         switch (pessoaLogada.getPessoaLogada().getNivelAcesso()) {
             case 0:
@@ -114,8 +121,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             default:
                 throw new AssertionError();
         }
-
-       
 
     }
 
@@ -202,10 +207,12 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         utils = new utils();
 
         funcionarioIsEditando = 1;
-
+        edtSenha.setToolTipText("Minimo de 6 caracteres!");
+        img_eye.setText(null);
+        img_eye.setIcon(utils.resizeImgTolb("/Imagens/hide_white.png", img_eye));
         PreencherCamposFuncionario();
 
-    switch (pessoaLogada.getPessoaLogada().getNivelAcesso()) {
+        switch (pessoaLogada.getPessoaLogada().getNivelAcesso()) {
             case 0:
                 desabilitaTudo();
                 habilitaFuncAdmin();
@@ -221,9 +228,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                 throw new AssertionError();
         }
 
-
     }
-
 
     public void habilitaFuncAdmin() {
         edtCidade.setEnabled(true);
@@ -252,8 +257,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         cbxSexo.setEnabled(true);
         cbxTurno.setEnabled(true);
     }
-
-
 
     public void PreencherCamposProprietario() throws ParseException {
 
@@ -353,7 +356,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         edtEmail = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        edtSenha = new javax.swing.JTextField();
         JPanelAdmin = new javax.swing.JPanel();
         jRadioClient = new javax.swing.JRadioButton();
         jRadioFuncionario = new javax.swing.JRadioButton();
@@ -365,6 +367,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         edtCpf = new javax.swing.JFormattedTextField();
         edtTelefone = new javax.swing.JFormattedTextField();
         edtDataNascimento = new com.toedter.calendar.JDateChooser();
+        img_eye = new javax.swing.JLabel();
+        edtSenha = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
@@ -428,14 +432,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel9.setText("Senha");
         formCadProprietario.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, -1, -1));
 
-        edtSenha.setText("arrumar botao de ver senha");
-        edtSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edtSenhaActionPerformed(evt);
-            }
-        });
-        formCadProprietario.add(edtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 169, -1));
-
         JPanelAdmin.setBackground(new java.awt.Color(51, 51, 51));
         JPanelAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -463,7 +459,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         jPanelFunc.setBackground(new java.awt.Color(51, 51, 51));
         jPanelFunc.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanelFunc.add(edtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 80, -1));
+        jPanelFunc.add(edtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 90, -1));
 
         jLabel10.setForeground(new java.awt.Color(242, 242, 242));
         jLabel10.setText("Turno:");
@@ -503,6 +499,14 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         edtDataNascimento.setMinSelectableDate(new java.util.Date(-1483214285000L));
         formCadProprietario.add(edtDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 130, -1));
 
+        img_eye.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                img_eyeMouseClicked(evt);
+            }
+        });
+        formCadProprietario.add(img_eye, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 20, 20));
+        formCadProprietario.add(edtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 170, -1));
+
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
 
         btnCancelar.setText("Cancelar");
@@ -526,7 +530,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(formCadProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+            .addComponent(formCadProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -541,10 +545,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void edtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edtSenhaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
 
@@ -567,7 +567,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                 Double Salario = Double.valueOf(edtSalario.getText());
 
                 Funcionario func = new Funcionario(Salario, cbxTurno.getSelectedItem().toString(), edtNome.getText(), endereco, dataNascimento, cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 1);
-                
+
                 if (funcionarioIsEditando > 0) {
                     try {
 
@@ -660,6 +660,19 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxTurnoActionPerformed
 
+    private void img_eyeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_img_eyeMouseClicked
+        if (Show_Hide == 0) {
+            edtSenha.setEchoChar((char) 0);
+            img_eye.setIcon(utils.resizeImgTolb("/Imagens/show_white.png", img_eye));
+            Show_Hide = 1;
+        } else if (Show_Hide == 1) {
+            edtSenha.setEchoChar('\u25cf');
+            img_eye.setIcon(utils.resizeImgTolb("/Imagens/hide_white.png", img_eye));
+            Show_Hide = 0;
+        }
+
+    }//GEN-LAST:event_img_eyeMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -677,9 +690,10 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     private javax.swing.JTextField edtEstado;
     private javax.swing.JTextField edtNome;
     private javax.swing.JFormattedTextField edtSalario;
-    private javax.swing.JTextField edtSenha;
+    private javax.swing.JPasswordField edtSenha;
     private javax.swing.JFormattedTextField edtTelefone;
     private javax.swing.JPanel formCadProprietario;
+    private javax.swing.JLabel img_eye;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

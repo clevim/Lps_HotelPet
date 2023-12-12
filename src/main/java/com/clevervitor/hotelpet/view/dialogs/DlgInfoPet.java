@@ -52,12 +52,18 @@ public class DlgInfoPet extends javax.swing.JDialog {
     }
 
     public void preencherLabels() {
-//        lblNomeProp.setText(proprietario.getNome());
-//        lblPets.setText(proprietario.getLstPetsPossuidos().size() + " Pet(s)");
-//        lblIdade.setText(proprietario.getDataNasc());
-//        lblEndereco.setText(proprietario.getEndereco() + ".");
-//        lblContato.setText(proprietario.getTel());
-//        lblEmailP.setText(proprietario.getEmail());
+        String petInfo = "<html>"
+                + "<p style=\"text-align: justify;\"><strong>O Pet " + pet.getNome() + ","
+                + " de " + pet.getIdade() + " ano(s),"
+                + " &eacute; " + pet.getSexo() + ""
+                + " e pertence &agrave; esp&eacute;cie " + pet.getEspecie() + ","
+                + " da ra&ccedil;a " + pet.getRaca() + "."
+                + " Possui peso de " + pet.getPeso() + "Kg."
+                + "<br /><br /></strong><strong>"
+                + "Observa&ccedil;&otilde;es: " + pet.getObs() + " ;"
+                + "<br /><br />Seu propriet&aacute;rio &eacute; o(a) " + pet.getProprietario().getNome() + ".<br /></strong></p></html>";
+
+        lbPetInfo.setText(petInfo);
 
         List<Agendamento> lstAgenFilt = new ArrayList<>();
 
@@ -66,7 +72,7 @@ public class DlgInfoPet extends javax.swing.JDialog {
                 lstAgenFilt.add(a);
             }
         }
-        lstAgenFilt = lstAgenFilt.isEmpty() ? new ArrayList<>():lstAgenFilt;
+        lstAgenFilt = lstAgenFilt.isEmpty() ? new ArrayList<>() : lstAgenFilt;
         propController.atualizarTabelaDeAgendamentos(tblAgendamentos, lstAgenFilt);
 
 //        propController.atualizarTabelaDePetsInicioFrame(tblPets, proprietario.getLstPetsPossuidos());
@@ -88,7 +94,7 @@ public class DlgInfoPet extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblAgendamentos = new javax.swing.JTable();
         lbl_img = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lbPetInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -134,7 +140,7 @@ public class DlgInfoPet extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("jLabel1");
+        lbPetInfo.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -146,7 +152,7 @@ public class DlgInfoPet extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbPetInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblEditar))
                     .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,7 +166,7 @@ public class DlgInfoPet extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblEditar)
                     .addComponent(lbl_img, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbPetInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,11 +231,11 @@ public class DlgInfoPet extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JLabel lbPetInfo;
     private javax.swing.JLabel lblEditar;
     private javax.swing.JLabel lbl_img;
     private javax.swing.JTable tblAgendamentos;

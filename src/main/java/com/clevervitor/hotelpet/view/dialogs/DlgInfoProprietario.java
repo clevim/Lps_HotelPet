@@ -9,6 +9,7 @@ import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
+import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
@@ -25,7 +26,8 @@ import javax.swing.ImageIcon;
 public class DlgInfoProprietario extends javax.swing.JDialog {
 
     loginContexto pessoaLogada = loginContexto.getInstance();
-
+  byte[] imgProfile = null;
+    ImageIcon imgIcon = null;
     /**
      * Creates new form NewJDialog
      */
@@ -38,20 +40,32 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
 
         this.proprietario = prop;
         this.propController = new ProprietarioController();
+         imgProfile = proprietario.getAvatar();
+        if (imgProfile != null) {
+            imgIcon = new ImageIcon(new ImageIcon(imgProfile).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_DEFAULT));
+            if (imgIcon != null) {
+                lbl_img.setText(null);
+                lbl_img.setIcon(imgIcon);
+            }
+        }
 
         preencherLabels();
-
-
-
+ 
     }
 
     public void preencherLabels() {
-//        lblNomeProp.setText(proprietario.getNome());
-//        lblPets.setText(proprietario.getLstPetsPossuidos().size() + " Pet(s)");
-//        lblIdade.setText(proprietario.getDataNasc());
-//        lblEndereco.setText(proprietario.getEndereco() + ".");
-//        lblContato.setText(proprietario.getTel());
-//        lblEmailP.setText(proprietario.getEmail());
+String proprietarioInfo = "<html>\n"
+                + "<p style=\"text-align: justify;\"><strong>" + proprietario.getNome() + ", "
+                + "de genero "+proprietario.getSexo()+","
+                + " nascido(a) em "+proprietario.getDataNasc()+"."
+                + " Seu CPF &eacute; "+proprietario.getCpf()+"."
+                + " Com endere&ccedil;o atual em "+proprietario.getEndereco()+""
+                + ".<br /><br /></strong><strong>"
+                + "Possui "+proprietario.getLstPetsPossuidos().size()+" Pet(s);<br /><br />"
+                + "Pode ser contatado(a) atrav&eacute;s do e-mail "+proprietario.getEmail()+"</em>"
+                + " e do telefone "+proprietario.getTel()+".</strong></p></html>";
+
+lbPropInfo.setText(proprietarioInfo);
 
         propController.atualizarTabelaDeAgendamentos(tblAgendamentos, proprietario.getLstAgendamentos());
         propController.atualizarTabelaDePetsInicioFrame(tblPets, proprietario.getLstPetsPossuidos());
@@ -76,7 +90,7 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
         jScrollPane4 = new javax.swing.JScrollPane();
         tblPets = new javax.swing.JTable();
         lbl_img = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lbPropInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -137,7 +151,7 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("jLabel1");
+        lbPropInfo.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -149,7 +163,7 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbPropInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblEditar))
                     .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,7 +177,7 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblEditar)
                     .addComponent(lbl_img, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbPropInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -209,17 +223,17 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
     }//GEN-LAST:event_lblEditarMouseEntered
 
     private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
-//
-//        String file = utils.uploadAvatar(proprietarioLogado.getId(), imgProfile, imgIcon);
-//
-//        if (!file.isEmpty()) {
-//
-//            lbl_img.setText(null);
-//            imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
-//            lbl_img.setIcon(imgIcon);
-//            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Avatar atualizado!");
-//            DialMsg.setVisible(true);
-//        }
+
+        String file = utils.uploadAvatar(proprietario.getId(), imgProfile, imgIcon);
+
+        if (!file.isEmpty()) {
+
+            lbl_img.setText(null);
+            imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
+            lbl_img.setIcon(imgIcon);
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Avatar atualizado!");
+            DialMsg.setVisible(true);
+        }
     }//GEN-LAST:event_lbl_imgMouseClicked
 
     private void lblEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseExited
@@ -233,12 +247,12 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JLabel lbPropInfo;
     private javax.swing.JLabel lblEditar;
     private javax.swing.JLabel lbl_img;
     private javax.swing.JTable tblAgendamentos;
