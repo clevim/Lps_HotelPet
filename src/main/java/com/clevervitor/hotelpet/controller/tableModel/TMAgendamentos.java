@@ -7,6 +7,7 @@ package com.clevervitor.hotelpet.controller.tableModel;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Servicos;
+import com.clevervitor.hotelpet.model.enums.Services;
 import com.clevervitor.hotelpet.utils.utils;
 import java.util.List;
 import java.util.Set;
@@ -96,7 +97,9 @@ public class TMAgendamentos extends AbstractTableModel {
     public String ToStringServiceName(Set<Servicos> lstServ) {
         StringBuilder result = new StringBuilder();
         for (Servicos s : lstServ) {
-            result.append(utils.ServicesToString(s.getNomeServico())).append(",");
+            if (!s.getNomeServico().equals(Services.DIARIA)) {
+                result.append(utils.ServicesToString(s.getNomeServico())).append(",");
+            }
         }
 
         if (result.length() > 0) {

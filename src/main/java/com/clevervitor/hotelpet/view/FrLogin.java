@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.view;
 
+import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
@@ -29,6 +30,8 @@ import javax.swing.ToolTipManager;
  * @author clevs
  */
 public class FrLogin extends javax.swing.JFrame {
+
+    loginContexto pessoaLogada = loginContexto.getInstance();
 
     /**
      * Creates new form FrLogin
@@ -248,6 +251,7 @@ public class FrLogin extends javax.swing.JFrame {
                     int nivelAcesso = p.getNivelAcesso();
                     switch (nivelAcesso) {
                         case 0:
+                            pessoaLogada.setPessoaLogada(p);
                             FrMainMenuFuncioario adminMenu = new FrMainMenuFuncioario((Funcionario) p);
                             adminMenu.setTitle("ADMIN");
                             adminMenu.setVisible(true);
@@ -256,6 +260,7 @@ public class FrLogin extends javax.swing.JFrame {
                             break;
 
                         case 1:
+                            pessoaLogada.setPessoaLogada(p);
                             FrMainMenuFuncioario funcionarioMenu = new FrMainMenuFuncioario((Funcionario) p);
                             funcionarioMenu.setTitle("Funcionario");
                             funcionarioMenu.setVisible(true);
@@ -264,6 +269,7 @@ public class FrLogin extends javax.swing.JFrame {
                             break;
 
                         case 2:
+                            pessoaLogada.setPessoaLogada(p);
                             FrMainMenuClient clienteMenu = new FrMainMenuClient((Proprietario) p);
                             clienteMenu.setTitle("Cliente");
                             clienteMenu.setVisible(true);

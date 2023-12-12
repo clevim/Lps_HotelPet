@@ -5,6 +5,7 @@
 package com.clevervitor.hotelpet.view.dialogs;
 
 import com.clevervitor.hotelpet.connection.GEmailSender;
+import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.emailBodys;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
@@ -14,7 +15,7 @@ import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
  * @author clevs
  */
 public class DlgContato extends javax.swing.JDialog {
-
+loginContexto pessoaLogada = loginContexto.getInstance();
     GEmailSender gSender;
     emailBodys emBds;
 
@@ -23,13 +24,13 @@ public class DlgContato extends javax.swing.JDialog {
      *
      * @param Email
      */
-    public DlgContato(String Email) {
+    public DlgContato() {
 
         gSender = new GEmailSender();
         emBds = new emailBodys();
 
         initComponents();
-        edtFromEmail.setText(Email);
+        edtFromEmail.setText(pessoaLogada.getPessoaLogada().getEmail());
     }
 
     /**
@@ -199,7 +200,7 @@ public class DlgContato extends javax.swing.JDialog {
 
         try {
             gSender.sendEmailContato(edtFromEmail.getText(), "Contato Cliente", emBds.emailCat(msg));
-            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Eniado Com sucesso");
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Enviado Com sucesso");
             DialMsg.setVisible(true);
             edtEmail.disable();
             edtFromEmail.disable();

@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.view.dialogs;
 
+import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.controller.AgendamentoController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.controller.ServicosController;
@@ -13,6 +14,10 @@ import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.model.entities.Servicos;
 import com.clevervitor.hotelpet.model.enums.Services;
+import static com.clevervitor.hotelpet.model.enums.Services.BANHO;
+import static com.clevervitor.hotelpet.model.enums.Services.DIARIA;
+import static com.clevervitor.hotelpet.model.enums.Services.MASSAGEM;
+import static com.clevervitor.hotelpet.model.enums.Services.TOSA;
 import com.clevervitor.hotelpet.model.enums.Status;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
@@ -35,6 +40,8 @@ import javax.swing.JOptionPane;
 import javax.swing.Popup;
 import javax.swing.PopupFactory;
 import javax.swing.ToolTipManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -52,7 +59,8 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     List<Servicos> lstSelectServi;
     ServicosDAO servicoDAO;
     int agendamentoIsEditando;
-    private String edtSexo;
+
+    loginContexto pessoaLogada = loginContexto.getInstance();
 
     public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Proprietario proprietario) {
         super(parent, modal);
@@ -111,8 +119,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         petSelcionado = new Pet();
         lstSelectServi = new ArrayList<>();
         servicoDAO = new ServicosDAO();
-        
-        
 
         lstServ = new ArrayList<>(servicoDAO.findAllSet());
         setBackground(new Color(51, 51, 51));
@@ -125,10 +131,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         }
 
         setIconImage(iconeTitulo);
-
-        this.habilitarCampos(true);
-        this.preencherCampos();
-
         Calendar c = Calendar.getInstance();
 
         Date minCheckIN = c.getTime();
@@ -143,31 +145,148 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         dateCheckIn.getDateEditor().setDate(minCheckIN);
         dateCheckOut.getDateEditor().setDate(minCheckout);
+        this.habilitarCampos(true);
+        this.preencherCampos();
 
         //AgendamentoControllet.atualizarTabela(grdAgendamentos);
+        switch (pessoaLogada.getPessoaLogada().getNivelAcesso()) {
+            case 0:
+                desabilitaTudo();
+                habilitaAgeAdmin();
+                break;
+            case 1:
+                desabilitaTudo();
+                habilitaAgeFuncionario();
+                break;
+            case 2:
+                desabilitaTudo();
+                habilitaAgeProprietario();
+                break;
+            default:
+                throw new AssertionError();
+        }
+
+    }
+
+    public void desabilitaTudo() {
+
+        dateCheckIn.setEnabled(false);
+        dateCheckOut.setEnabled(false);
+        CBBanho.setEnabled(false);
+        CBTosa.setEnabled(false);
+        CBMassagem.setEnabled(false);
+        btnAddPet.setEnabled(false);
+        btnRemovePet.setEnabled(false);
+        scrPets.setEnabled(false);
+
+    }
+
+    public void habilitaAgeAdmin() {
+        dateCheckIn.setEnabled(true);
+        dateCheckOut.setEnabled(true);
+        CBBanho.setEnabled(true);
+        CBTosa.setEnabled(true);
+        CBMassagem.setEnabled(true);
+        btnAddPet.setEnabled(true);
+        btnRemovePet.setEnabled(true);
+        scrPets.setEnabled(true);
+    }
+
+    public void habilitaAgeFuncionario() {
+        if (agendamentoSendoEditado.getStatus() == Status.FINALIZADO) {
+            dateCheckIn.setEnabled(false);
+            dateCheckOut.setEnabled(false);
+            CBBanho.setEnabled(false);
+            CBTosa.setEnabled(false);
+            CBMassagem.setEnabled(false);
+            btnAddPet.setEnabled(false);
+            btnRemovePet.setEnabled(false);
+            scrPets.setEnabled(false);
+        }
+        if (agendamentoSendoEditado.getStatus() == Status.AGENDADO) {
+            dateCheckIn.setEnabled(true);
+            dateCheckOut.setEnabled(true);
+            CBBanho.setEnabled(true);
+            CBTosa.setEnabled(true);
+            CBMassagem.setEnabled(true);
+            btnAddPet.setEnabled(true);
+            btnRemovePet.setEnabled(true);
+            scrPets.setEnabled(true);
+        }
+        if (agendamentoSendoEditado.getStatus() == Status.ATIVO) {
+            dateCheckIn.setEnabled(false);
+            dateCheckOut.setEnabled(true);
+            CBBanho.setEnabled(true);
+            CBTosa.setEnabled(true);
+            CBMassagem.setEnabled(true);
+            btnAddPet.setEnabled(false);
+            btnRemovePet.setEnabled(false);
+            scrPets.setEnabled(false);
+        }
+    }
+
+    public void habilitaAgeProprietario() {
+        if (agendamentoSendoEditado.getStatus() == Status.FINALIZADO) {
+            dateCheckIn.setEnabled(false);
+            dateCheckOut.setEnabled(false);
+            CBBanho.setEnabled(false);
+            CBTosa.setEnabled(false);
+            CBMassagem.setEnabled(false);
+            btnAddPet.setEnabled(false);
+            btnRemovePet.setEnabled(false);
+            scrPets.setEnabled(false);
+        }
+        if (agendamentoSendoEditado.getStatus() == Status.AGENDADO) {
+            dateCheckIn.setEnabled(true);
+            dateCheckOut.setEnabled(true);
+            CBBanho.setEnabled(true);
+            CBTosa.setEnabled(true);
+            CBMassagem.setEnabled(true);
+            btnAddPet.setEnabled(true);
+            btnRemovePet.setEnabled(true);
+            scrPets.setEnabled(true);
+        }
+        if (agendamentoSendoEditado.getStatus() == Status.ATIVO) {
+            dateCheckIn.setEnabled(false);
+            dateCheckOut.setEnabled(true);
+            CBBanho.setEnabled(true);
+            CBTosa.setEnabled(true);
+            CBMassagem.setEnabled(true);
+            btnAddPet.setEnabled(false);
+            btnRemovePet.setEnabled(false);
+            scrPets.setEnabled(false);
+        }
+
     }
 
     public void preencherCampos() throws ParseException {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-        Date dCheckIn = formatter.parse(agendamentoSendoEditado.getDataCheckIn());
-        Date dCheckOut = formatter.parse(agendamentoSendoEditado.getDataCheckOut());
+        Date dCheckIn = new SimpleDateFormat("dd/MM/yyyy").parse(agendamentoSendoEditado.getDataCheckIn());
+        Date dCheckOut = new SimpleDateFormat("dd/MM/yyyy").parse(agendamentoSendoEditado.getDataCheckOut());
 
         dateCheckIn.setDate(dCheckIn);
         dateCheckOut.setDate(dCheckOut);
 
-        for (Object obj : agendamentoSendoEditado.getServicosAdicionais()) {
+        for (Servicos s : agendamentoSendoEditado.getServicosAdicionais()) {
 
-            String servico =  obj.toString();
-
-            if ("Banho".equals(servico)) {
-                CBBanho.setSelected(true);
-            } else if ("Massagem".equals(servico)) {
-                CBMassagem.setSelected(true);
-            } else if ("Tosa".equals(servico)) {
-                CBTosa.setSelected(true);
+            switch (s.getNomeServico()) {
+                case DIARIA:
+                    break;
+                case BANHO:
+                    CBBanho.setSelected(true);
+                    break;
+                case TOSA:
+                    CBTosa.setSelected(true);
+                    break;
+                case MASSAGEM:
+                    CBMassagem.setSelected(true);
+                    break;
+                default:
+                    throw new AssertionError();
             }
         }
+        petSelcionado = agendamentoSendoEditado.getPetAgendado();
+        lstPetsSelecionados = petSelcionado;
 
         txtPetsSelecionados.setText(agendamentoSendoEditado.getPetAgendado().toString());
         propCont.atualizarTabelaDePetsInicioFrame(tblPets, proprietarioLogado.getLstPetsPossuidos());
@@ -425,6 +544,23 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         dateCheckIn.setDateFormatString("dd/MM/yyyy");
         dateCheckIn.setMaxSelectableDate(new java.util.Date(253370779270000L));
         dateCheckIn.setMinSelectableDate(getMinCheckIn());
+        dateCheckIn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dateCheckInMouseClicked(evt);
+            }
+        });
+        dateCheckIn.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                dateCheckInInputMethodTextChanged(evt);
+            }
+        });
+        dateCheckIn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateCheckInPropertyChange(evt);
+            }
+        });
 
         dateCheckOut.setDate(getMinCheckOut());
         dateCheckOut.setDateFormatString("dd/MM/yyyy");
@@ -607,43 +743,47 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     private void btnSalvarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPetActionPerformed
         // TODO add your handling code here:
 
-        petSelcionado = (Pet) getObjetoSelecionadoNaGrid();
-
-        if (petSelcionado == null) {
-            ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Primeiro, selecione um pet para ser hospedado");
-            DialMsg.setVisible(true);
-
-        }
-
         String dCheckIn = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckIn.getDate());
         String dCheckOut = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckOut.getDate());
         Status status = utils.checkStatus(dateCheckIn.getDate(), dateCheckOut.getDate());
 
         Set<Servicos> servs = new HashSet<>(verifServicos());
 
-        if(agendamentoIsEditando > 0){
-            
+        if (agendamentoIsEditando > 0) {
+
             Agendamento agendamentoEdit = new Agendamento(dCheckIn, dCheckOut, servs, proprietarioLogado, lstPetsSelecionados, 0.0, status);
 
             agendamentoEdit.setId(agendamentoSendoEditado.getId());
-            
+
             AgendamentoController.atualizarAgendamento(agendamentoEdit);
-            
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Agendamento Atualizado!!");
+            DialMsg.setVisible(true);
+
         } else {
-        
-        Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut, servs, proprietarioLogado, lstPetsSelecionados, 0.0, status);
-        try {
-            novoAgendamento.setValor(utils.calcTotalAgendamento(novoAgendamento));
-        } catch (ParseException ex) {
-            Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+
+            petSelcionado = (Pet) getObjetoSelecionadoNaGrid();
+
+            if (petSelcionado == null) {
+                ShowMessageDialog DialMsg = new ShowMessageDialog("Atenção", "Primeiro, selecione um pet para ser hospedado");
+                DialMsg.setVisible(true);
+
+            }
+
+            Agendamento novoAgendamento = new Agendamento(dCheckIn, dCheckOut, servs, proprietarioLogado, lstPetsSelecionados, 0.0, status);
+            try {
+                novoAgendamento.setValor(utils.calcTotalAgendamento(novoAgendamento));
+            } catch (ParseException ex) {
+                Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            AgendamentoController.cadastrarAgendamento(novoAgendamento);
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Agendamento Feito");
+            DialMsg.setVisible(true);
         }
-        
-        AgendamentoController.cadastrarAgendamento(novoAgendamento);
-        }
-        
+
         agendamentoIsEditando = -1;
         dispose();
-        
+
     }//GEN-LAST:event_btnSalvarPetActionPerformed
 
     private Object getObjetoSelecionadoNaGrid() {
@@ -654,6 +794,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         }
         return obj;
     }
+
 
     private void btnAddPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPetActionPerformed
         // TODO add your handling code here:
@@ -707,6 +848,40 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     private void pnlServicesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServicesMouseEntered
 
     }//GEN-LAST:event_pnlServicesMouseEntered
+
+    private void dateCheckInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateCheckInMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateCheckInMouseClicked
+
+    private void dateCheckInInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_dateCheckInInputMethodTextChanged
+        Calendar c = Calendar.getInstance();
+
+        c.setTime(dateCheckIn.getDate());
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        Date minCheckout = c.getTime();
+        c.add(Calendar.DAY_OF_YEAR, 29);
+        Date maxCheckout = c.getTime();
+
+        dateCheckOut.setMinSelectableDate(minCheckout);
+        dateCheckOut.setMaxSelectableDate(maxCheckout);
+
+        dateCheckOut.getDateEditor().setDate(minCheckout);
+    }//GEN-LAST:event_dateCheckInInputMethodTextChanged
+
+    private void dateCheckInPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateCheckInPropertyChange
+        Calendar c = Calendar.getInstance();
+
+        c.setTime(dateCheckIn.getDate());
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        Date minCheckout = c.getTime();
+        c.add(Calendar.DAY_OF_YEAR, 29);
+        Date maxCheckout = c.getTime();
+
+        dateCheckOut.setMinSelectableDate(minCheckout);
+        dateCheckOut.setMaxSelectableDate(maxCheckout);
+
+        dateCheckOut.getDateEditor().setDate(minCheckout);        // TODO add your handling code here:
+    }//GEN-LAST:event_dateCheckInPropertyChange
 
     /**
      * @param args the command line arguments

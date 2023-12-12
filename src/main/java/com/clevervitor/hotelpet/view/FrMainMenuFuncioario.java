@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.view;
 
+import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.controller.AgendamentoController;
 import com.clevervitor.hotelpet.controller.FuncionarioController;
 import com.clevervitor.hotelpet.controller.PetController;
@@ -35,6 +36,7 @@ import javax.swing.ImageIcon;
  */
 public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
+    loginContexto pessoaLogada = loginContexto.getInstance();
     /**
      * Creates new form mainMenu
      */
@@ -50,8 +52,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     public FrMainMenuFuncioario(Funcionario funcionario) {
         initComponents();
 
-        this.funcionarioLogado = funcionario;
         this.funcionarioCont = new FuncionarioController();
+        this.funcionarioLogado = funcionarioCont.buscarFuncionario(pessoaLogada.getPessoaLogada().getId());
         this.agendamentoCont = new AgendamentoController();
         this.petCont = new PetController();
         this.proprietarioCont = new ProprietarioController();
@@ -74,6 +76,9 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             }
         }
         habilitarCampos();
+        if (pessoaLogada.getPessoaLogada().getNivelAcesso() != 0) {
+            menuConfig.setVisible(false);
+        }
     }
 
     /**
@@ -87,12 +92,16 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         pnlInfo = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
-        lblContato = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
-        lblDocumento = new javax.swing.JLabel();
         lblBemVindo = new javax.swing.JLabel();
-        lblCargo = new javax.swing.JLabel();
         lbl_img = new javax.swing.JLabel();
+        lblTurno = new javax.swing.JLabel();
+        lblEndereco = new javax.swing.JLabel();
+        lblDocumeto = new javax.swing.JLabel();
+        lblContato1 = new javax.swing.JLabel();
+        lbTurnoFunc = new javax.swing.JLabel();
+        lbDocFunc = new javax.swing.JLabel();
+        lbEndFunc = new javax.swing.JLabel();
+        lbContFunc = new javax.swing.JLabel();
         pnlControleGeral = new javax.swing.JPanel();
         pnlComAbas = new javax.swing.JTabbedPane();
         abaAgendamentos = new javax.swing.JScrollPane();
@@ -106,13 +115,9 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        menuConfig = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         menuSobre = new javax.swing.JMenu();
 
@@ -126,33 +131,12 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         lblNome.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
         lblNome.setForeground(new java.awt.Color(242, 242, 242));
-        lblNome.setText("Nome");
-        pnlInfo.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 37, -1, -1));
-
-        lblContato.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
-        lblContato.setForeground(new java.awt.Color(242, 242, 242));
-        lblContato.setText("Contato:");
-        pnlInfo.add(lblContato, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 117, -1, -1));
-
-        lblEmail.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
-        lblEmail.setForeground(new java.awt.Color(242, 242, 242));
-        lblEmail.setText("Email:");
-        pnlInfo.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 71, -1, -1));
-
-        lblDocumento.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
-        lblDocumento.setForeground(new java.awt.Color(242, 242, 242));
-        lblDocumento.setText("Doc. :");
-        pnlInfo.add(lblDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 94, -1, -1));
+        pnlInfo.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 37, 230, 30));
 
         lblBemVindo.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
         lblBemVindo.setForeground(new java.awt.Color(242, 242, 242));
-        lblBemVindo.setText("Seja bem-vindo de volta,");
+        lblBemVindo.setText("Seja bem-vindo novamente,");
         pnlInfo.add(lblBemVindo, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 37, -1, -1));
-
-        lblCargo.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
-        lblCargo.setForeground(new java.awt.Color(242, 242, 242));
-        lblCargo.setText("Cargo:");
-        pnlInfo.add(lblCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 140, -1, -1));
 
         lbl_img.setForeground(new java.awt.Color(242, 242, 242));
         lbl_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -164,6 +148,38 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             }
         });
         pnlInfo.add(lbl_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 37, 111, 118));
+
+        lblTurno.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        lblTurno.setForeground(new java.awt.Color(242, 242, 242));
+        lblTurno.setText("Turno:");
+        pnlInfo.add(lblTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
+
+        lblEndereco.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        lblEndereco.setForeground(new java.awt.Color(242, 242, 242));
+        lblEndereco.setText("Endereço:");
+        pnlInfo.add(lblEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+
+        lblDocumeto.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        lblDocumeto.setForeground(new java.awt.Color(242, 242, 242));
+        lblDocumeto.setText("Doc.:");
+        pnlInfo.add(lblDocumeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
+
+        lblContato1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        lblContato1.setForeground(new java.awt.Color(242, 242, 242));
+        lblContato1.setText("Contato:");
+        pnlInfo.add(lblContato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, -1));
+
+        lbTurnoFunc.setForeground(new java.awt.Color(255, 255, 255));
+        pnlInfo.add(lbTurnoFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 440, 20));
+
+        lbDocFunc.setForeground(new java.awt.Color(255, 255, 255));
+        pnlInfo.add(lbDocFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 440, 20));
+
+        lbEndFunc.setForeground(new java.awt.Color(255, 255, 255));
+        pnlInfo.add(lbEndFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 440, 20));
+
+        lbContFunc.setForeground(new java.awt.Color(255, 255, 255));
+        pnlInfo.add(lbContFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 440, 20));
 
         pnlControleGeral.setBackground(new java.awt.Color(51, 51, 51));
         pnlControleGeral.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controle", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Nuport", 1, 18), new java.awt.Color(242, 242, 242))); // NOI18N
@@ -231,7 +247,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         abaProprietarios.setLayout(abaProprietariosLayout);
         abaProprietariosLayout.setHorizontalGroup(
             abaProprietariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrProprietarios, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+            .addComponent(scrProprietarios, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
         abaProprietariosLayout.setVerticalGroup(
             abaProprietariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +289,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         abaPets.setLayout(abaPetsLayout);
         abaPetsLayout.setHorizontalGroup(
             abaPetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrPets, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+            .addComponent(scrPets, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
         abaPetsLayout.setVerticalGroup(
             abaPetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +300,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         pnlComAbas.addTab("Pets", abaPets);
 
-        pnlControleGeral.add(pnlComAbas, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 40, 648, 221));
+        pnlControleGeral.add(pnlComAbas, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 40, 770, 221));
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -297,19 +313,6 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             }
         });
         jMenu3.add(jMenuItem2);
-
-        jMenu4.setText("Relatorios");
-
-        jMenuItem3.setText("Pets");
-        jMenu4.add(jMenuItem3);
-
-        jMenuItem4.setText("Reservas");
-        jMenu4.add(jMenuItem4);
-
-        jMenuItem5.setText("Proprietarios");
-        jMenu4.add(jMenuItem5);
-
-        jMenu3.add(jMenu4);
         jMenu3.add(jSeparator1);
 
         jMenuItem1.setText("Logout");
@@ -322,7 +325,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu1.setText("Configurações");
+        menuConfig.setText("Configurações");
 
         jMenuItem6.setText("Atualizar Valores");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -330,9 +333,9 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem6);
+        menuConfig.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuConfig);
 
         menuSobre.setText("Sobre");
         menuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -348,7 +351,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+            .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
             .addComponent(pnlControleGeral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -369,18 +372,20 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         lblBemVindo.setForeground(new Color(187, 187, 187));
 
-        lblNome.setText(funcionarioLogado.getNome());
+        lblNome.setText(funcionarioLogado.getNome()+"!");
         lblNome.setForeground(new Color(187, 187, 187));
 
-        lblEmail.setText(funcionarioLogado.getEmail());
-        lblEmail.setForeground(new Color(187, 187, 187));
+        lbEndFunc.setText(funcionarioLogado.getEndereco());
+        lbEndFunc.setForeground(new Color(187, 187, 187));
 
-        lblDocumento.setText(funcionarioLogado.getCpf());
-        lblDocumento.setForeground(new Color(187, 187, 187));
+        lbDocFunc.setText(funcionarioLogado.getCpf());
+        lbDocFunc.setForeground(new Color(187, 187, 187));
 
-        lblContato.setText(funcionarioLogado.getTel());
-        lblContato.setForeground(new Color(187, 187, 187));
-
+        lbContFunc.setText(funcionarioLogado.getTel());
+        lbContFunc.setForeground(new Color(187, 187, 187));
+        
+        lbTurnoFunc.setText(funcionarioLogado.getTurno());
+        lbTurnoFunc.setForeground(new Color(187, 187, 187));
 
         lbl_img.setIcon(imgIcon);
 
@@ -402,7 +407,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         DlgCadProprietario cadastroProp = new DlgCadProprietario(new Frame(), true);
         cadastroProp.setTitle("Cadastro");
         cadastroProp.setVisible(true);        // TODO add your handling code here:
-        
+
         proprietarioCont.atualizarTabelaDeProprietarios(tblProprietarios, proprietarioCont.buscarTodosOsProprietarios());
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -442,39 +447,36 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             DlgInfoAgendamento telaInfoAgendamento = new DlgInfoAgendamento(new Frame(), true, agendamentoSelecionado);
             telaInfoAgendamento.setVisible(true);
         }
-        
+
         agendamentoCont.atualizarTabelaDeAgendamentos(tblAgendamentos, agendamentoCont.buscarTodosOsAgendamentos());
     }//GEN-LAST:event_tblAgendamentosMouseClicked
 
     private void tblProprietariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProprietariosMouseClicked
         // TODO add your handling code here:
         Proprietario proprietarioSelecionado = (Proprietario) getObjetoSelecionadoNaGridDeProprietarios();
-        
-        
 
         if (evt.getClickCount() == 2) {
             DlgInfoProprietario telaInfoProprietario = new DlgInfoProprietario(new Frame(), true, proprietarioSelecionado);
             telaInfoProprietario.setVisible(true);
 
         }
-        
+
         proprietarioCont.atualizarTabelaDeProprietarios(tblProprietarios, proprietarioCont.buscarTodosOsProprietarios());
     }//GEN-LAST:event_tblProprietariosMouseClicked
 
     private void tblPetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPetsMouseClicked
         // TODO add your handling code here:
-        
+
         Pet petSelecionado = (Pet) getObjetoSelecionadoNaGridDePets();
-        
-        if(evt.getClickCount() == 2){
+
+        if (evt.getClickCount() == 2) {
             DlgInfoPet telaInfoPets = new DlgInfoPet(new Frame(), true, petSelecionado);
             telaInfoPets.setVisible(true);
-            
+
         }
-            
-        
-            petCont.atualizarTabelaDePets(tblPets, petCont.buscarTodosOsPets());
-        
+
+        petCont.atualizarTabelaDePets(tblPets, petCont.buscarTodosOsPets());
+
     }//GEN-LAST:event_tblPetsMouseClicked
 
     private Object getObjetoSelecionadoNaGridDeAgendamentos() {
@@ -485,6 +487,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         }
         return obj;
     }
+
     private Object getObjetoSelecionadoNaGridDeProprietarios() {
         int rowCliked = tblProprietarios.getSelectedRow();
         Object obj = null;
@@ -493,6 +496,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         }
         return obj;
     }
+
     private Object getObjetoSelecionadoNaGridDePets() {
         int rowCliked = tblPets.getSelectedRow();
         Object obj = null;
@@ -509,24 +513,24 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JScrollPane abaAgendamentos;
     private javax.swing.JPanel abaPets;
     private javax.swing.JPanel abaProprietarios;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JLabel lbContFunc;
+    private javax.swing.JLabel lbDocFunc;
+    private javax.swing.JLabel lbEndFunc;
+    private javax.swing.JLabel lbTurnoFunc;
     private javax.swing.JLabel lblBemVindo;
-    private javax.swing.JLabel lblCargo;
-    private javax.swing.JLabel lblContato;
-    private javax.swing.JLabel lblDocumento;
-    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblContato1;
+    private javax.swing.JLabel lblDocumeto;
+    private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblTurno;
     private javax.swing.JLabel lbl_img;
+    private javax.swing.JMenu menuConfig;
     private javax.swing.JMenu menuSobre;
     private javax.swing.JTabbedPane pnlComAbas;
     private javax.swing.JPanel pnlControleGeral;

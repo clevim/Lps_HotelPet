@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.view.dialogs;
 
+import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.exceptions.PetException;
@@ -30,6 +31,7 @@ public class DlgCadPet extends javax.swing.JDialog {
     private String edtSexo;
     Pet petSendoEditado;
     Proprietario proprietarioLogado;
+    loginContexto pessoaLogada = loginContexto.getInstance();
 
     public DlgCadPet(java.awt.Frame parent, boolean modal, Proprietario proprietario) {
         super(parent, modal);
@@ -78,6 +80,72 @@ public class DlgCadPet extends javax.swing.JDialog {
         this.preencherCampos();
 
         //  petControllet.atualizarTabela(grdPets);
+        
+      switch (pessoaLogada.getPessoaLogada().getNivelAcesso()) {
+            case 0:
+                desabilitaTudo();
+                habilitaPetAdmin();
+                break;
+            case 1:
+                desabilitaTudo();
+                habilitaPetFuncionario();
+                break;
+            case 2:
+                desabilitaTudo();
+                habilitaPetProprietario();
+                break;
+            default:
+                throw new AssertionError();
+        }
+
+       
+
+    }
+
+    public void desabilitaTudo() {
+        edtEspecie.setEnabled(false);
+        edtIdade.setEnabled(false);
+        edtNome.setEnabled(false);
+        edtObs.setEnabled(false);
+        edtPeso.setEnabled(false);
+        edtRaca.setEnabled(false);
+        rbtnMacho.setEnabled(false);
+        rbtnFemea.setEnabled(false);
+
+
+    }
+
+    public void habilitaPetAdmin() {
+        edtEspecie.setEnabled(true);
+        edtIdade.setEnabled(true);
+        edtNome.setEnabled(true);
+        edtObs.setEnabled(true);
+        edtPeso.setEnabled(true);
+        edtRaca.setEnabled(true);
+        rbtnMacho.setEnabled(true);
+        rbtnFemea.setEnabled(true);
+    }
+
+    public void habilitaPetFuncionario() {
+       edtEspecie.setEnabled(false);
+        edtIdade.setEnabled(true);
+        edtNome.setEnabled(false);
+        edtObs.setEnabled(true);
+        edtPeso.setEnabled(true);
+        edtRaca.setEnabled(false);
+        rbtnMacho.setEnabled(false);
+        rbtnFemea.setEnabled(false);
+    }
+
+    public void habilitaPetProprietario() {
+    edtEspecie.setEnabled(false);
+        edtIdade.setEnabled(true);
+        edtNome.setEnabled(true);
+        edtObs.setEnabled(true);
+        edtPeso.setEnabled(true);
+        edtRaca.setEnabled(false);
+        rbtnMacho.setEnabled(false);
+        rbtnFemea.setEnabled(false);
     }
 
     public void preencherCampos() {

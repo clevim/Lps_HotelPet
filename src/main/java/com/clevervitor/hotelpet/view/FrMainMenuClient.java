@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.view;
 
+import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadAgendamento;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.controller.tableModel.TMAgendamentos;
@@ -46,7 +47,7 @@ import javax.swing.JOptionPane;
  * @author clevs
  */
 public class FrMainMenuClient extends javax.swing.JDialog {
-
+loginContexto pessoaLogada = loginContexto.getInstance();
     /**
      * Creates new form mainMenu
      */
@@ -84,8 +85,8 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         setIconImage(iconeTitulo);
 
-        this.proprietarioLogado = (Proprietario) proprietario;
         this.propController = new ProprietarioController();
+        this.proprietarioLogado = propController.buscarProprietario(pessoaLogada.getPessoaLogada().getId());
 
         imgProfile = proprietarioLogado.getAvatar();
         if (imgProfile != null) {
@@ -601,7 +602,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     }//GEN-LAST:event_menuSobreMouseClicked
 
     private void menuContatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuContatoMouseClicked
-        DlgContato contato = new DlgContato(proprietarioLogado.getEmail());
+        DlgContato contato = new DlgContato();
         contato.setVisible(true);
     }//GEN-LAST:event_menuContatoMouseClicked
 
