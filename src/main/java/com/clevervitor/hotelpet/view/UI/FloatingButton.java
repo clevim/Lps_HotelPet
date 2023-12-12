@@ -30,14 +30,14 @@ public class FloatingButton extends JButton {
     private Color colorOver;
     private Color colorClick;
     private Color borderColor;
-    private int raio;
+    private int raio = 100;
 
     public FloatingButton() {
         //Iniciando cores
         setColor(Color.WHITE);
         colorOver= Color.BLUE;
         colorClick= Color.RED;
-        borderColor= Color.GREEN;
+        borderColor= Color.WHITE;
         setContentAreaFilled(false);
         
         

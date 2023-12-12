@@ -14,9 +14,7 @@ import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
-import com.clevervitor.hotelpet.view.UI.JButtonUI;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
-import com.clevervitor.hotelpet.view.UI.TableActionCellRender;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
 import com.clevervitor.hotelpet.view.dialogs.DlgContato;
 import com.clevervitor.hotelpet.view.dialogs.DlgInfoAgendamento;
@@ -64,14 +62,12 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         utils = new utils();
 
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietario.getLstPetsPossuidos());
-        grdPets.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
 
         //com.clevervitor.hotelpet.view.UI.TableActionCellRender[Table.cellRenderer,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=javax.swing.border.EmptyBorder@61a30083,flags=25165832,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=,verticalAlignment=CENTER,verticalTextPosition=CENTER]
         lblNome.setForeground(Color.WHITE);
         lblEndereco.setForeground(Color.WHITE);
         lblDocumeto.setForeground(Color.WHITE);
         lblContato.setForeground(Color.WHITE);
-        lblAgendar.setForeground(Color.WHITE);
 
         scrollPets.getViewport().setBackground(new Color(51, 51, 51));
         scrollAgendamentos.getViewport().setBackground(new Color(250, 250, 250));
@@ -126,6 +122,9 @@ loginContexto pessoaLogada = loginContexto.getInstance();
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         pnlCliente = new javax.swing.JPanel();
         lblNomeCliente = new javax.swing.JLabel();
         lblContatoCliente = new javax.swing.JLabel();
@@ -138,8 +137,7 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         pnlAgendamentos = new javax.swing.JPanel();
         scrollAgendamentos = new javax.swing.JScrollPane();
         grdAgendamentos = new javax.swing.JTable();
-        lblAgendar = new javax.swing.JLabel();
-        btnAgendarEstadia = new javax.swing.JButton();
+        btnAgendar = new com.clevervitor.hotelpet.view.UI.FloatingButton();
         pnlPetsCliente = new javax.swing.JPanel();
         scrollPets = new javax.swing.JScrollPane();
         grdPets = new javax.swing.JTable();
@@ -165,6 +163,12 @@ loginContexto pessoaLogada = loginContexto.getInstance();
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        jMenu1.setText("File");
+        jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar2.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -222,36 +226,14 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         });
         scrollAgendamentos.setViewportView(grdAgendamentos);
 
-        lblAgendar.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        lblAgendar.setForeground(new java.awt.Color(242, 242, 242));
-        lblAgendar.setText("Agendar");
-        lblAgendar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAgendar.setBorder(null);
+        btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ezgif.com-resize_2.gif"))); // NOI18N
+        btnAgendar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblAgendarMouseEntered(evt);
+                btnAgendarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblAgendarMouseExited(evt);
-            }
-        });
-
-        btnAgendarEstadia.setBackground(new java.awt.Color(51, 51, 51));
-        btnAgendarEstadia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/iconAgendarEstadia32.png"))); // NOI18N
-        btnAgendarEstadia.setBorder(null);
-        btnAgendarEstadia.setBorderPainted(false);
-        btnAgendarEstadia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgendarEstadiaMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgendarEstadiaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAgendarEstadiaMouseExited(evt);
-            }
-        });
-        btnAgendarEstadia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgendarEstadiaActionPerformed(evt);
+                btnAgendarMouseExited(evt);
             }
         });
 
@@ -261,28 +243,19 @@ loginContexto pessoaLogada = loginContexto.getInstance();
             pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAgendamentosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlAgendamentosLayout.createSequentialGroup()
-                        .addComponent(scrollAgendamentos)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
-                        .addGap(0, 928, Short.MAX_VALUE)
-                        .addGroup(pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
-                                .addComponent(btnAgendarEstadia)
-                                .addGap(37, 37, 37))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
-                                .addComponent(lblAgendar)
-                                .addGap(23, 23, 23))))))
+                .addComponent(scrollAgendamentos, javax.swing.GroupLayout.DEFAULT_SIZE, 997, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
         pnlAgendamentosLayout.setVerticalGroup(
             pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAgendarEstadia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(btnAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(scrollAgendamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -532,39 +505,6 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         return obj;
     }
 
-    private void btnAgendarEstadiaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaMouseEntered
-        // TODO add your handling code here:
-        btnAgendarEstadia.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-
-    }//GEN-LAST:event_btnAgendarEstadiaMouseEntered
-
-    private void btnAgendarEstadiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaActionPerformed
-        // TODO add your handling code here:
-        DlgCadAgendamento telaAgendamento = new DlgCadAgendamento(new Frame(), true, proprietarioLogado);
-        telaAgendamento.setVisible(true);
-
-        this.proprietarioLogado = propController.buscarProprietario(proprietarioLogado.getId());
-        propController.atualizarTabelaDeAgendamentos(grdAgendamentos, proprietarioLogado.getLstAgendamentos());
-
-
-    }//GEN-LAST:event_btnAgendarEstadiaActionPerformed
-
-    private void lblAgendarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAgendarMouseEntered
-        // TODO add your handling code here:
-        lblAgendar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_lblAgendarMouseEntered
-
-    private void lblAgendarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAgendarMouseExited
-        // TODO add your handling code here:
-        lblAgendar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_lblAgendarMouseExited
-
-    private void btnAgendarEstadiaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaMouseExited
-        // TODO add your handling code here:
-        btnAgendarEstadia.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_btnAgendarEstadiaMouseExited
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         FrLogin TLogin = new FrLogin();
         TLogin.setTitle("Login");
@@ -606,10 +546,6 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         contato.setVisible(true);
     }//GEN-LAST:event_menuContatoMouseClicked
 
-    private void btnAgendarEstadiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarEstadiaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgendarEstadiaMouseClicked
-
     private void grdPetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grdPetsMouseClicked
         // TODO add your handling code here:
         Pet petSelecionado = (Pet) getObjetoSelecionadoNaGridDePets();
@@ -634,26 +570,45 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         }
 
         propController.atualizarTabelaDeAgendamentos(grdAgendamentos, propController.buscarProprietario(proprietarioLogado.getId()).getLstAgendamentos());
-
     }//GEN-LAST:event_grdAgendamentosMouseClicked
+
+    private void btnAgendarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarMouseExited
+        // TODO add your handling code here:
+        btnAgendar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dog-house (2).png")));
+        
+    }//GEN-LAST:event_btnAgendarMouseExited
+
+    private void btnAgendarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarMouseEntered
+        // TODO add your handling code here:
+        btnAgendar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ezgif.com-resize_2.gif")));
+
+        }
+
+        private void btnAgendarMouseExited() {
+            // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgendarMouseEntered
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgendarEstadia;
+    private com.clevervitor.hotelpet.view.UI.FloatingButton btnAgendar;
     private javax.swing.JTable grdAgendamentos;
     private javax.swing.JTable grdPets;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JLabel lblAgendar;
     private javax.swing.JLabel lblContato;
     private javax.swing.JLabel lblContatoCliente;
     private javax.swing.JLabel lblDocCliente;

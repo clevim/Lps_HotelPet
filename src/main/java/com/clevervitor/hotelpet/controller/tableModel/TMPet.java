@@ -5,8 +5,7 @@
 package com.clevervitor.hotelpet.controller.tableModel;
 
 import com.clevervitor.hotelpet.model.entities.Pet;
-import com.clevervitor.hotelpet.view.UI.JButtonUI;
-import com.clevervitor.hotelpet.view.UI.TableActionCellRender;
+
 import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
 import java.awt.Frame;
 import java.util.List;
@@ -24,7 +23,6 @@ public class TMPet extends AbstractTableModel {
     private List lista;
     private Pet petDaLista;
 
-    private JButtonUI btnEditar = new JButtonUI();
     private final int COL_NOME = 0;
     private final int COL_RACA = 1;
     private final int COL_IDADE = 2;

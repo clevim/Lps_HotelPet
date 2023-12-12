@@ -58,8 +58,7 @@ public class FrLogin extends javax.swing.JFrame {
         setIconImage(iconeTitulo);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
-        
+
     }
 
     /**
@@ -137,11 +136,7 @@ public class FrLogin extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/logoBranca.png"))); // NOI18N
 
         btnEntrar.setBorder(null);
-        btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fast-forward (3).png"))); // NOI18N
-        btnEntrar.setBorderColor(new java.awt.Color(255, 255, 255));
-        btnEntrar.setColor(new java.awt.Color(102, 102, 102));
-        btnEntrar.setRaio(100);
         btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEntrarMouseEntered(evt);
@@ -160,10 +155,6 @@ public class FrLogin extends javax.swing.JFrame {
         panLogin.setLayout(panLoginLayout);
         panLoginLayout.setHorizontalGroup(
             panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panLoginLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,23 +163,27 @@ public class FrLogin extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panLoginLayout.createSequentialGroup()
                         .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(lblCriarConta)
                                 .addGroup(panLoginLayout.createSequentialGroup()
                                     .addComponent(lblPassword)
                                     .addGap(198, 198, 198)))
-                            .addComponent(edtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100))))
+                            .addComponent(edtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))))
+            .addGroup(panLoginLayout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panLoginLayout.setVerticalGroup(
             panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(lblLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,14 +191,14 @@ public class FrLogin extends javax.swing.JFrame {
                         .addComponent(edtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPassword)
-                        .addGap(9, 9, 9)
-                        .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
-                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)))
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCriarConta)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -253,6 +248,19 @@ public class FrLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_edtPasswordActionPerformed
 
+    private void btnEntrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseEntered
+        // TODO add your handling code here:
+        btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ezgif.com-resize (1).gif"))); // NOI18N
+
+    }//GEN-LAST:event_btnEntrarMouseEntered
+
+    private void btnEntrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseExited
+        // TODO add your handling code here:
+        btnEntrar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fast-forward (3).png")));
+    }//GEN-LAST:event_btnEntrarMouseExited
+
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
         String login = edtLogin.getText();
@@ -268,6 +276,7 @@ public class FrLogin extends javax.swing.JFrame {
                     int nivelAcesso = p.getNivelAcesso();
                     switch (nivelAcesso) {
                         case 0:
+                            
                             pessoaLogada.setPessoaLogada(p);
                             FrMainMenuFuncioario adminMenu = new FrMainMenuFuncioario((Funcionario) p);
                             adminMenu.setTitle("ADMIN");
@@ -277,6 +286,7 @@ public class FrLogin extends javax.swing.JFrame {
                             break;
 
                         case 1:
+                            
                             pessoaLogada.setPessoaLogada(p);
                             FrMainMenuFuncioario funcionarioMenu = new FrMainMenuFuncioario((Funcionario) p);
                             funcionarioMenu.setTitle("Funcionario");
@@ -286,6 +296,7 @@ public class FrLogin extends javax.swing.JFrame {
                             break;
 
                         case 2:
+                            
                             pessoaLogada.setPessoaLogada(p);
                             FrMainMenuClient clienteMenu = new FrMainMenuClient((Proprietario) p);
                             clienteMenu.setTitle("Cliente");
@@ -308,19 +319,8 @@ public class FrLogin extends javax.swing.JFrame {
             ShowMessageDialog DialMsg = new ShowMessageDialog("Incorreto", "Email incorreto! Tente novamente.");
             DialMsg.setVisible(true);
         }
+
     }//GEN-LAST:event_btnEntrarActionPerformed
-
-    private void btnEntrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseEntered
-        // TODO add your handling code here:
-        btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ezgif.com-resize (1).gif")));
-    }//GEN-LAST:event_btnEntrarMouseEntered
-
-    private void btnEntrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseExited
-        // TODO add your handling code here:
-        btnEntrar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fast-forward (3).png")));
-    }//GEN-LAST:event_btnEntrarMouseExited
 
     /**
      * @param args the command line arguments
