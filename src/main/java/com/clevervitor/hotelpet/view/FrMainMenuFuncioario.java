@@ -112,6 +112,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         abaPets = new javax.swing.JPanel();
         scrPets = new javax.swing.JScrollPane();
         tblPets = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblFuncionarios = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -196,13 +198,13 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         tblAgendamentos.setForeground(new java.awt.Color(255, 255, 255));
         tblAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         tblAgendamentos.setSelectionForeground(new java.awt.Color(255, 255, 255));
@@ -226,13 +228,13 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         tblProprietarios.setForeground(new java.awt.Color(255, 255, 255));
         tblProprietarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         tblProprietarios.setSelectionForeground(new java.awt.Color(255, 255, 255));
@@ -268,13 +270,13 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         tblPets.setForeground(new java.awt.Color(255, 255, 255));
         tblPets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         tblPets.setSelectionForeground(new java.awt.Color(255, 255, 255));
@@ -300,7 +302,22 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         pnlComAbas.addTab("Pets", abaPets);
 
-        pnlControleGeral.add(pnlComAbas, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 40, 770, 221));
+        tblFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tblFuncionarios);
+
+        pnlComAbas.addTab("Funcionarios", jScrollPane1);
+
+        pnlControleGeral.add(pnlComAbas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 770, 221));
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -392,6 +409,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         agendamentoCont.atualizarTabelaDeAgendamentos(tblAgendamentos, agendamentoCont.buscarTodosOsAgendamentos());
         proprietarioCont.atualizarTabelaDeProprietarios(tblProprietarios, proprietarioCont.buscarTodosOsProprietarios());
         petCont.atualizarTabelaDePets(tblPets, petCont.buscarTodosOsPets());
+        funcionarioCont.atualizarTabelaDeFuncionario(tblFuncionarios, funcionarioCont.buscarTodosOsFuncionarios());
 
     }
 
@@ -518,6 +536,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lbContFunc;
     private javax.swing.JLabel lbDocFunc;
@@ -538,6 +557,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JScrollPane scrPets;
     private javax.swing.JScrollPane scrProprietarios;
     private javax.swing.JTable tblAgendamentos;
+    private javax.swing.JTable tblFuncionarios;
     private javax.swing.JTable tblPets;
     private javax.swing.JTable tblProprietarios;
     // End of variables declaration//GEN-END:variables

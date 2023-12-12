@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author vitor
  */
-public class TMFucionario extends AbstractTableModel {
+public class TMFuncionario extends AbstractTableModel {
 
     private List lista;
 
@@ -25,7 +25,7 @@ public class TMFucionario extends AbstractTableModel {
     private final int COL_ENDERECO = 5;
     private final int COL_SALARIO = 6;
 
-    public TMFucionario(List lstFuncionarios) {
+    public TMFuncionario(List lstFuncionarios) {
         this.lista = lstFuncionarios;
     }
 

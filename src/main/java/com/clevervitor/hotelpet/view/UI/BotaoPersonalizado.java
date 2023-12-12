@@ -38,39 +38,39 @@ public class BotaoPersonalizado extends JButton {
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setUI(new BasicButtonUI() {
 
-            @Override
-            protected void paintText(Graphics grphcs, AbstractButton ab, Rectangle rctngl, String string) {
-                int width = getWidth();
-                int height = getHeight();
-                BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-                Graphics2D g2 = img.createGraphics();
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                //  Create Gradient Color
-                float f[] = new float[]{0f, 0.5f, 1f};
-                Color colors[] = new Color[]{new Color(12, 192, 108), new Color(255, 230, 25), new Color(255, 250, 210)};
-                LinearGradientPaint gra = new LinearGradientPaint(0, 0, width, height, f, colors, MultipleGradientPaint.CycleMethod.REFLECT);
-                Shape out = new Rectangle(0, 0, width, height);
-                Shape in = new Rectangle(tamBorda, tamBorda, width - tamBorda * 2, height - tamBorda * 2);
-                Area area = new Area(out);
-                area.subtract(new Area(in));
-                g2.setPaint(gra);
-                g2.fill(area);
-                //  Create Text String
-                g2.setFont(getFont());
-                FontMetrics ft = g2.getFontMetrics();
-                Rectangle2D r2 = ft.getStringBounds(getText(), g2);
-                double x = (width - r2.getWidth()) / 2;
-                double y = (height - r2.getHeight()) / 2;
-                g2.drawString(string, (int) rctngl.x, (int) (y + ft.getAscent()));
-                //  Create Animation when pressed
-                if (pressedPoint != null) {
-                    g2.setColor(Color.WHITE);
-                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
-                    g2.fillOval((int) (pressedPoint.x - animatSize / 2), (int) (pressedPoint.y - animatSize / 2), (int) animatSize, (int) animatSize);
-                }
-                g2.dispose();
-                grphcs.drawImage(img, 0, 0, null);
-            }
+//            @Override
+//            protected void paintText(Graphics grphcs, AbstractButton ab, Rectangle rctngl, String string) {
+//                int width = getWidth();
+//                int height = getHeight();
+//                BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+//                Graphics2D g2 = img.createGraphics();
+//                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//                //  Create Gradient Color
+//                float f[] = new float[]{0f, 0.5f, 1f};
+//                Color colors[] = new Color[]{new Color(12, 192, 108), new Color(255, 230, 25), new Color(255, 250, 210)};
+//                LinearGradientPaint gra = new LinearGradientPaint(0, 0, width, height, f, colors, MultipleGradientPaint.CycleMethod.REFLECT);
+//                Shape out = new Rectangle(0, 0, width, height);
+//                Shape in = new Rectangle(tamBorda, tamBorda, width - tamBorda * 2, height - tamBorda * 2);
+//                Area area = new Area(out);
+//                area.subtract(new Area(in));
+//                g2.setPaint(gra);
+//                g2.fill(area);
+//                //  Create Text String
+//                g2.setFont(getFont());
+//                FontMetrics ft = g2.getFontMetrics();
+//                Rectangle2D r2 = ft.getStringBounds(getText(), g2);
+//                double x = (width - r2.getWidth()) / 2;
+//                double y = (height - r2.getHeight()) / 2;
+//                g2.drawString(string, (int) rctngl.x, (int) (y + ft.getAscent()));
+//                //  Create Animation when pressed
+//                if (pressedPoint != null) {
+//                    g2.setColor(Color.WHITE);
+//                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
+//                    g2.fillOval((int) (pressedPoint.x - animatSize / 2), (int) (pressedPoint.y - animatSize / 2), (int) animatSize, (int) animatSize);
+//                }
+//                g2.dispose();
+//                grphcs.drawImage(img, 0, 0, null);
+//            }
         });
         addMouseListener(new MouseAdapter() {
             @Override

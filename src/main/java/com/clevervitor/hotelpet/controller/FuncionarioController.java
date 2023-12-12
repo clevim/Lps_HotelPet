@@ -5,6 +5,8 @@
 package com.clevervitor.hotelpet.controller;
 
 import com.clevervitor.hotelpet.connection.GEmailSender;
+import com.clevervitor.hotelpet.controller.tableModel.TMAgendamentos;
+import com.clevervitor.hotelpet.controller.tableModel.TMFuncionario;
 import com.clevervitor.hotelpet.controller.tableModel.TMPet;
 import com.clevervitor.hotelpet.controller.tableModel.TMProprietario;
 import com.clevervitor.hotelpet.exceptions.FuncionarioException;
@@ -48,6 +50,11 @@ public class FuncionarioController {
         return entityManager;
     }
 
+    public void atualizarTabelaDeFuncionario(JTable grd, List<Funcionario> lst) {
+        TMFuncionario tableModel = new TMFuncionario(lst);
+        grd.setModel(tableModel);
+    }
+    
     public void cadastrarFuncionario(Funcionario cadFuncionario) {
 
         ValidateFuncionario check = new ValidateFuncionario();
