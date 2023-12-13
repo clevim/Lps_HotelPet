@@ -4,6 +4,8 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
+import com.clevervitor.hotelpet.model.enums.Sexo;
+import com.clevervitor.hotelpet.model.enums.Turno;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,21 +26,21 @@ public class Funcionario extends Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Double salario;
-    private String turno;
+    private Turno turno;
 
     public Funcionario() {
         super();
         this.salario = 0.0;
-        this.turno = "";
+        this.turno = Turno.NULL;
 
     }
 
-    public Funcionario(Double Salario, String turno) {
+    public Funcionario(Double Salario, Turno turno) {
         this.salario = Salario;
         this.turno = turno;
     }
 
-    public Funcionario(Double Salario, String turno, String nome, String endereco, String DataNasc, String sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
+    public Funcionario(Double Salario, Turno turno, String nome, String endereco, String DataNasc, Sexo sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
         super(nome, endereco, DataNasc, sexo, tel, email, cpf, senha, nivelAcesso);
         this.salario = Salario;
         this.turno = turno;

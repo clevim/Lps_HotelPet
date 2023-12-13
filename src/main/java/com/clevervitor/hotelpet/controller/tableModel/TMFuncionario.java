@@ -6,6 +6,7 @@ package com.clevervitor.hotelpet.controller.tableModel;
 
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pet;
+import com.clevervitor.hotelpet.utils.utils;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -19,11 +20,10 @@ public class TMFuncionario extends AbstractTableModel {
 
     private final int COL_NOME = 0;
     private final int COL_CPF = 1;
-    private final int COL_CARGO = 2;
-    private final int COL_TURNO = 3;
-    private final int COL_EMAIL = 4;
-    private final int COL_ENDERECO = 5;
-    private final int COL_SALARIO = 6;
+    private final int COL_TURNO = 2;
+    private final int COL_EMAIL = 3;
+    private final int COL_ENDERECO = 4;
+    private final int COL_SALARIO = 5;
 
     public TMFuncionario(List lstFuncionarios) {
         this.lista = lstFuncionarios;
@@ -36,7 +36,7 @@ public class TMFuncionario extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 6;
     }
 
     @Override
@@ -59,9 +59,9 @@ public class TMFuncionario extends AbstractTableModel {
                 case COL_ENDERECO:
                     return aux.getEndereco();
                 case COL_TURNO:
-                    return aux.getTurno();
+                    return utils.TurnoToString(aux.getTurno());
                 case COL_SALARIO:
-                    return aux.getSalario();
+                    return "R$ "+aux.getSalario();
                 default:
                     break;
             }
@@ -84,7 +84,7 @@ public class TMFuncionario extends AbstractTableModel {
             case COL_ENDERECO:
                 return "Endereço";
             case COL_TURNO:
-                return "Truno";
+                return "Turno";
             case COL_SALARIO:
                 return "Salario(R$)";
             default:

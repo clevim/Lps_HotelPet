@@ -8,6 +8,7 @@ import br.com.caelum.stella.validation.CPFValidator;
 import com.clevervitor.hotelpet.connection.GEmailSender;
 import com.clevervitor.hotelpet.controller.AgendamentoController;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
+import com.clevervitor.hotelpet.model.dao.PetDAO;
 import com.clevervitor.hotelpet.model.dao.ServicosDAO;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
@@ -18,11 +19,17 @@ import static com.clevervitor.hotelpet.model.enums.Services.DIARIA;
 import static com.clevervitor.hotelpet.model.enums.Services.MASSAGEM;
 import static com.clevervitor.hotelpet.model.enums.Services.NULL;
 import static com.clevervitor.hotelpet.model.enums.Services.TOSA;
+import com.clevervitor.hotelpet.model.enums.Sexo;
 import com.clevervitor.hotelpet.model.enums.Status;
 import static com.clevervitor.hotelpet.model.enums.Status.AGENDADO;
 import static com.clevervitor.hotelpet.model.enums.Status.ATIVO;
 import static com.clevervitor.hotelpet.model.enums.Status.FINALIZADO;
 import static com.clevervitor.hotelpet.model.enums.Status.NULL;
+import com.clevervitor.hotelpet.model.enums.Turno;
+import static com.clevervitor.hotelpet.model.enums.Turno.MANHA;
+import static com.clevervitor.hotelpet.model.enums.Turno.NOITE;
+import static com.clevervitor.hotelpet.model.enums.Turno.NULL;
+import static com.clevervitor.hotelpet.model.enums.Turno.TARDE;
 import com.clevervitor.hotelpet.view.UI.FloatingButton;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import jakarta.mail.internet.AddressException;
@@ -72,6 +79,30 @@ public class utils {
             imgProfile = bos.toByteArray();
 
             PessoaDAO p = new PessoaDAO();
+
+            p.updateAvatar(id, imgProfile);
+
+        } catch (Exception e) {
+        }
+        return filename;
+    }
+    
+        public static String uploadAvatarPet(int id, byte[] imgProfile, ImageIcon imgIcon) {
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        String filename = f.getAbsolutePath();
+        try {
+            File img = new File(filename);
+            FileInputStream fis = new FileInputStream(img);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                bos.write(buf, 0, readNum);
+            }
+            imgProfile = bos.toByteArray();
+
+            PetDAO p = new PetDAO();
 
             p.updateAvatar(id, imgProfile);
 
@@ -222,6 +253,75 @@ public class utils {
                 return "Ativo";
             case FINALIZADO:
                 return "Finalizado";
+
+            default:
+                throw new AssertionError();
+        }
+
+    }
+    
+      public static String TurnoToString(Turno t) {
+
+         switch (t) {
+            case NULL:
+                return "";
+            case MANHA:
+                return "Manhã";
+            case TARDE:
+                return "Tarde";
+            case NOITE:
+                return "Noite";
+            default:
+                throw new AssertionError();
+        }
+
+    }
+      
+        public static Turno StringToTurno(String t) {
+
+         switch (t) {
+            case "":
+                return Turno.NULL;
+            case "Manhã":
+                return Turno.MANHA;
+            case "Tarde":
+                return Turno.TARDE;
+            case "Noite":
+                return Turno.NOITE;
+            default:
+                throw new AssertionError();
+        }
+
+    }
+        
+              public static String SexoToString(Sexo s) {
+
+         switch (s) {
+            case NAOIDENT:
+                return "Não Informar";
+            case F:
+                return "Feminino";
+            case M:
+                return "Masculino";
+            case NULL:
+                return "";
+            default:
+                throw new AssertionError();
+        }
+
+    }
+      
+        public static Sexo StringToSexo(String s) {
+
+         switch (s) {
+            case "Não Informar":
+                return Sexo.NAOIDENT;
+            case "Feminino":
+                return Sexo.F;
+            case "Masculino":
+                return Sexo.M;
+            case "":
+                return Sexo.NULL;
 
             default:
                 throw new AssertionError();

@@ -63,6 +63,7 @@ public class ValidatePet {
             throw new PetException("Error - Campo vazio: 'Proprietario'");
         }
         pet.setProprietario(validaPet.getProprietario());
+        pet.setAvatarPet(validaPet.getAvatarPet());
 
         return pet;
     }

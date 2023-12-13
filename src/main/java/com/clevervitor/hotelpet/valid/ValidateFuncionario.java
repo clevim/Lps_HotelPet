@@ -7,6 +7,8 @@ package com.clevervitor.hotelpet.valid;
 //import br.com.caelum.stella.validation.CPFValidator;
 import com.clevervitor.hotelpet.exceptions.FuncionarioException;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
+import com.clevervitor.hotelpet.model.enums.Sexo;
+import com.clevervitor.hotelpet.model.enums.Turno;
 import static com.clevervitor.hotelpet.valid.ValidateUtils.criptografiaBase64Encoder;
 
 /**
@@ -37,7 +39,7 @@ public class ValidateFuncionario {
 
         funcionario.setDataNasc(validaFuncionario.getDataNasc());
 
-        if (validaFuncionario.getSexo().isEmpty()) {
+        if (validaFuncionario.getSexo() == Sexo.NULL) {
             throw new FuncionarioException("Error - Campo vazio: 'sexo'.");
         }
 
@@ -71,7 +73,7 @@ public class ValidateFuncionario {
         }
         funcionario.setSalario(validaFuncionario.getSalario());
 
-        if (validaFuncionario.getTurno().isEmpty()) {
+        if (validaFuncionario.getTurno()== Turno.NULL) {
             throw new FuncionarioException("Error - O Funcionario não possui turno?.");
         }
         funcionario.setTurno(validaFuncionario.getTurno());

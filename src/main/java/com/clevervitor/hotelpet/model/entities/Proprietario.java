@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
+import com.clevervitor.hotelpet.model.enums.Sexo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -39,7 +40,7 @@ public class Proprietario extends Pessoa {
         super();
     }
 
-    public Proprietario(String nome, String endereco, String dataNasc, String sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
+    public Proprietario(String nome, String endereco, String dataNasc, Sexo sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
         super(nome, endereco, dataNasc, sexo, tel, email, cpf, senha, nivelAcesso);
     }
 

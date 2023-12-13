@@ -145,9 +145,6 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         menuAdicionarPet = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuContato = new javax.swing.JMenu();
@@ -171,6 +168,7 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         jMenuBar2.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Menu Principal");
         setBackground(new java.awt.Color(51, 51, 51));
         setForeground(new java.awt.Color(51, 51, 51));
         setResizable(false);
@@ -401,26 +399,6 @@ loginContexto pessoaLogada = loginContexto.getInstance();
             }
         });
         jMenu3.add(menuAdicionarPet);
-
-        jMenu5.setText("Relatorios");
-
-        jMenuItem2.setText("Hospedagem");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem2);
-
-        jMenuItem3.setText("Pets");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem3);
-
-        jMenu3.add(jMenu5);
         jMenu3.add(jSeparator1);
 
         jMenuItem1.setText("Logout");
@@ -512,14 +490,6 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
 
         String file = utils.uploadAvatar(proprietarioLogado.getId(), imgProfile, imgIcon);
@@ -601,12 +571,9 @@ loginContexto pessoaLogada = loginContexto.getInstance();
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblContato;

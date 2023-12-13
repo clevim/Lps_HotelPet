@@ -5,10 +5,15 @@
 package com.clevervitor.hotelpet.view.dialogs;
 
 import com.clevervitor.hotelpet.connection.loginContexto;
+import com.clevervitor.hotelpet.controller.AgendamentoController;
+import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
+import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
+import com.clevervitor.hotelpet.view.UI.ShowConfirmDialog;
+import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
@@ -31,14 +36,28 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
      */
     Agendamento agendamento;
     Proprietario proprietario;
-    ProprietarioController propController;
+    AgendamentoController ageController;
+    Pet pet;
+    byte[] imgProfile = null;
+    ImageIcon imgIcon = null;
 
     public DlgInfoAgendamento(java.awt.Frame parent, boolean modal, Agendamento agend) {
         super(parent, modal);
         initComponents();
 
         this.agendamento = agend;
-
+        utils utils = new utils();
+        lblEditar.setIcon(utils.resizeImgTolb("/Imagens/edit_white.png", lblEditar));
+        lblDel.setIcon(utils.resizeImgTolb("/Imagens/delete_white.png", lblDel));
+        this.pet = new PetController().buscarAgendamento(agendamento.getPetAgendado().getId());
+        imgProfile = pet.getAvatarPet();
+        if (imgProfile != null) {
+            imgIcon = new ImageIcon(new ImageIcon(imgProfile).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_DEFAULT));
+            if (imgIcon != null) {
+                lbl_img.setText(null);
+                lbl_img.setIcon(imgIcon);
+            }
+        }
         preencherLabels();
 
     }
@@ -67,28 +86,17 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        lblEditar = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         lbl_img = new javax.swing.JLabel();
         lbAgendInfo = new javax.swing.JLabel();
+        lblEditar = new javax.swing.JLabel();
+        lblDel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Info Agendamento");
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-
-        lblEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/edit (2).png"))); // NOI18N
-        lblEditar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblEditarMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblEditarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblEditarMouseExited(evt);
-            }
-        });
 
         lbl_img.setBackground(new java.awt.Color(160, 160, 160));
         lbl_img.setForeground(new java.awt.Color(242, 242, 242));
@@ -103,6 +111,30 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
 
         lbAgendInfo.setForeground(new java.awt.Color(255, 255, 255));
 
+        lblEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEditarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblEditarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblEditarMouseExited(evt);
+            }
+        });
+
+        lblDel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblDelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblDelMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -113,23 +145,31 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbAgendInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbAgendInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblEditar))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblEditar)
-                    .addComponent(lbl_img, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(lbAgendInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbl_img, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .addComponent(lbAgendInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, 0))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(lblDel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,10 +189,37 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
+    private void lblDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseClicked
+               ShowConfirmDialog DialMsg = new ShowConfirmDialog("Atenção", "Deseja Excluir Agendamento}?");
+       var op =  DialMsg.showDialog();
+       
+       if(op){
+           ageController.excluirAgendamento(agendamento);
+           this.dispose();
+       }
+    }//GEN-LAST:event_lblDelMouseClicked
+
+    private void lblDelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseEntered
         // TODO add your handling code here:
+        lblDel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+    }//GEN-LAST:event_lblDelMouseEntered
+
+    private void lblDelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseExited
+        // TODO add your handling code here:
+        lblDel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+    }//GEN-LAST:event_lblDelMouseExited
+
+    private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
+
+    }//GEN-LAST:event_lbl_imgMouseClicked
+
+    private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
+
         DlgCadAgendamento telaEditarAgendamento;
         try {
+            this.dispose();
             telaEditarAgendamento = new DlgCadAgendamento(new Frame(), true, agendamento);
             telaEditarAgendamento.setVisible(true);
         } catch (ParseException ex) {
@@ -162,29 +229,11 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
 
     private void lblEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseEntered
         // TODO add your handling code here:
-        lblEditar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
     }//GEN-LAST:event_lblEditarMouseEntered
 
     private void lblEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseExited
         // TODO add your handling code here:
-        lblEditar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-
     }//GEN-LAST:event_lblEditarMouseExited
-
-    private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
-        //
-        //        String file = utils.uploadAvatar(proprietarioLogado.getId(), imgProfile, imgIcon);
-        //
-        //        if (!file.isEmpty()) {
-        //
-        //            lbl_img.setText(null);
-        //            imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
-        //            lbl_img.setIcon(imgIcon);
-        //            ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Avatar atualizado!");
-        //            DialMsg.setVisible(true);
-        //        }
-    }//GEN-LAST:event_lbl_imgMouseClicked
 
     /**
      * @param args the command line arguments
@@ -194,6 +243,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lbAgendInfo;
+    private javax.swing.JLabel lblDel;
     private javax.swing.JLabel lblEditar;
     private javax.swing.JLabel lbl_img;
     // End of variables declaration//GEN-END:variables

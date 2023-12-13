@@ -11,6 +11,7 @@ import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
+import com.clevervitor.hotelpet.view.UI.ShowConfirmDialog;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -26,7 +27,7 @@ import javax.swing.ImageIcon;
  * @author vitor
  */
 public class DlgInfoFuncionario extends javax.swing.JDialog {
-    
+
     loginContexto pessoaLogada = loginContexto.getInstance();
     byte[] imgProfile = null;
     ImageIcon imgIcon = null;
@@ -36,11 +37,11 @@ public class DlgInfoFuncionario extends javax.swing.JDialog {
      */
     Funcionario funcionario;
     FuncionarioController funcController;
-    
+
     public DlgInfoFuncionario(java.awt.Frame parent, boolean modal, Funcionario func) {
         super(parent, modal);
         initComponents();
-        
+
         this.funcionario = func;
         this.funcController = new FuncionarioController();
         imgProfile = funcionario.getAvatar();
@@ -51,26 +52,27 @@ public class DlgInfoFuncionario extends javax.swing.JDialog {
                 lbl_img.setIcon(imgIcon);
             }
         }
-        
+        utils utils = new utils();
+        lblEditar.setIcon(utils.resizeImgTolb("/Imagens/edit_white.png", lblEditar));
+        lblDel.setIcon(utils.resizeImgTolb("/Imagens/delete_white.png", lblDel));
         preencherLabels();
 
-        
     }
-    
+
     public void preencherLabels() {
         String funcionarioInfo = "<html>"
-                + "<p><strong><em>[Nome]" + funcionario.getNome() + "</em>,"
-                + " de genero <em>[Sexo]" + funcionario.getSexo() + "</em>,"
-                + " nascido(a) em <em>[DataNasc]" + funcionario.getDataNasc() + "</em>. "
-                + "Seu CPF &eacute; <em>[CPF]" + funcionario.getCpf() + "</em>. "
-                + "Com endere&ccedil;o atual em <em>[Endere&ccedil;o]" + funcionario.getEndereco() + ""
-                + "</em>.<br /><br /></strong>"
-                + "<strong>Trabalha no turno&nbsp;<em>[Turno]" + funcionario.getTurno() + "</em>&nbsp;;<br /><br />"
-                + "Pode ser contatado(a) atrav&eacute;s do e-mail <em>[email]" + funcionario.getEmail() + "</em> "
-                + "e do telefone <em>[Telefone]" + funcionario.getTel() + "</em>;<br /><br />"
+                + "<p><strong>" + funcionario.getNome() + ","
+                + " de genero " + utils.SexoToString(funcionario.getSexo()) + ","
+                + " nascido(a) em " + funcionario.getDataNasc() + ". "
+                + "Seu CPF &eacute; " + funcionario.getCpf() + ". "
+                + "Com endere&ccedil;o atual em " + funcionario.getEndereco() + ""
+                + ".<br /><br /></strong>"
+                + "<strong>Trabalha no turno&nbsp;" + utils.TurnoToString(funcionario.getTurno()) + "&nbsp;;<br /><br />"
+                + "Pode ser contatado(a) atrav&eacute;s do e-mail " + funcionario.getEmail() + ""
+                + "e do telefone " + funcionario.getTel() + ".<br /><br />"
                 + "Sal&aacute;rio : R$" + funcionario.getSalario() + "</strong></p></html>";
         lbFuncInfo.setText(funcionarioInfo);
-        
+
     }
 
     /**
@@ -83,28 +85,17 @@ public class DlgInfoFuncionario extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        lblEditar = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         lbl_img = new javax.swing.JLabel();
         lbFuncInfo = new javax.swing.JLabel();
+        lblEditar = new javax.swing.JLabel();
+        lblDel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Info Funcionario");
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-
-        lblEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/edit (2).png"))); // NOI18N
-        lblEditar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblEditarMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblEditarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblEditarMouseExited(evt);
-            }
-        });
 
         lbl_img.setBackground(new java.awt.Color(160, 160, 160));
         lbl_img.setForeground(new java.awt.Color(242, 242, 242));
@@ -119,46 +110,78 @@ public class DlgInfoFuncionario extends javax.swing.JDialog {
 
         lbFuncInfo.setForeground(new java.awt.Color(255, 255, 255));
 
+        lblEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEditarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblEditarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblEditarMouseExited(evt);
+            }
+        });
+
+        lblDel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblDelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblDelMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSeparator2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbFuncInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblEditar))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbFuncInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(lblEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblDel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblEditar)
-                    .addComponent(lbl_img, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(lbFuncInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbl_img, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .addComponent(lbFuncInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(lblEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(lblDel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -169,11 +192,11 @@ public class DlgInfoFuncionario extends javax.swing.JDialog {
         // TODO add your handling code here:
         DlgCadProprietario telaEditarProp;
         try {
+            this.dispose();
             telaEditarProp = new DlgCadProprietario(new Frame(), true, funcionario);
             this.setVisible(false);
             telaEditarProp.setVisible(true);
-            this.dispose();
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(DlgInfoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -186,11 +209,11 @@ public class DlgInfoFuncionario extends javax.swing.JDialog {
     }//GEN-LAST:event_lblEditarMouseEntered
 
     private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
-        
+
         String file = utils.uploadAvatar(funcionario.getId(), imgProfile, imgIcon);
-        
+
         if (!file.isEmpty()) {
-            
+
             lbl_img.setText(null);
             imgIcon = new ImageIcon(new ImageIcon(file).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
             lbl_img.setIcon(imgIcon);
@@ -205,6 +228,24 @@ public class DlgInfoFuncionario extends javax.swing.JDialog {
 
     }//GEN-LAST:event_lblEditarMouseExited
 
+    private void lblDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseClicked
+        ShowConfirmDialog DialMsg = new ShowConfirmDialog("Atenção", "Deseja Excluir Funcionario}?");
+       var op =  DialMsg.showDialog();
+       
+       if(op){
+       funcController.excluirFuncionario(funcionario);
+       this.dispose();
+       }
+    }//GEN-LAST:event_lblDelMouseClicked
+
+    private void lblDelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblDelMouseEntered
+
+    private void lblDelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblDelMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -213,6 +254,7 @@ public class DlgInfoFuncionario extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lbFuncInfo;
+    private javax.swing.JLabel lblDel;
     private javax.swing.JLabel lblEditar;
     private javax.swing.JLabel lbl_img;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.model.entities;
 
+import com.clevervitor.hotelpet.model.enums.Sexo;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ public class Pessoa {
     private String nome;
     private String endereco; // "concat cidade estado"
     private String dataNasc; // "10-12-1997"
-    private String sexo;
+    private Sexo sexo;
     private String tel;
     private String email;
     private String cpf;
@@ -46,7 +47,7 @@ public class Pessoa {
 
     }
 
-    public Pessoa(String nome, String endereco, String DataNasc, String sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
+    public Pessoa(String nome, String endereco, String DataNasc, Sexo sexo, String tel, String email, String cpf, String senha, Integer nivelAcesso) {
         this.nome = nome;
         this.endereco = endereco;
         this.dataNasc = DataNasc;

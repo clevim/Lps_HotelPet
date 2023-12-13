@@ -6,11 +6,13 @@ package com.clevervitor.hotelpet.model.dao;
 
 import com.clevervitor.hotelpet.connection.DatabaseJPA;
 import com.clevervitor.hotelpet.exceptions.PetException;
+import com.clevervitor.hotelpet.exceptions.ProprietarioException;
 import java.util.List;
 import lombok.Data;
 import com.clevervitor.hotelpet.model.entities.Pet;
 
 import com.clevervitor.hotelpet.model.dao.contracts.Dao;
+import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -79,6 +81,31 @@ public class PetDAO extends Dao<Pet> {
                 return m;
             } catch (PetException e) {
                 throw new PetException("Pet não encontrado");
+            } finally {
+                entityManager.close();
+            }
+        }
+
+    }
+    
+        public void updateAvatar(int id, byte[] imgProfile) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        if (id < 0) {
+            throw new ProprietarioException("Este Pessoa não existe.");
+        } else {
+
+            try {
+                super.entityManager = DatabaseJPA.getInstance().getEntityManager();
+
+                Pet p = entityManager.find(Pet.class, id);
+
+                p.setAvatarPet(imgProfile);
+
+                this.entityManager.getTransaction().begin();
+                this.entityManager.merge(p);
+                this.entityManager.getTransaction().commit();
+            } catch (ProprietarioException e) {
+                throw new ProprietarioException("Pessoa não encontrado");
             } finally {
                 entityManager.close();
             }

@@ -82,6 +82,7 @@ public class FrLogin extends javax.swing.JFrame {
         btnEntrar = new com.clevervitor.hotelpet.view.UI.FloatingButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
         setBackground(new java.awt.Color(51, 51, 51));
         setResizable(false);
 
@@ -198,7 +199,6 @@ public class FrLogin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panLoginLayout.createSequentialGroup()
                         .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCriarConta)
                 .addContainerGap(34, Short.MAX_VALUE))
         );

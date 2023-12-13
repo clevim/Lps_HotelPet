@@ -213,7 +213,6 @@ public class DlgCadPet extends javax.swing.JDialog {
         edtIdade = new javax.swing.JTextField();
         lblEspecie = new javax.swing.JLabel();
         edtEspecie = new javax.swing.JTextField();
-        edtPeso = new javax.swing.JTextField();
         lblPeso = new javax.swing.JLabel();
         rbtnMacho = new javax.swing.JRadioButton();
         rbtnFemea = new javax.swing.JRadioButton();
@@ -224,48 +223,52 @@ public class DlgCadPet extends javax.swing.JDialog {
         btnCancelarPet = new javax.swing.JButton();
         pnlDescricaoPet = new javax.swing.JPanel();
         edtObs = new javax.swing.JTextField();
+        edtPeso = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
+        setTitle("Cadastro Pet");
         setBackground(new java.awt.Color(51, 51, 51));
 
         panFormulario.setBackground(new java.awt.Color(51, 51, 51));
+        panFormulario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNome.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblNome.setForeground(new java.awt.Color(242, 242, 242));
         lblNome.setText("Nome:");
+        panFormulario.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 19, -1, -1));
 
         edtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtNomeActionPerformed(evt);
             }
         });
+        panFormulario.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 16, 207, -1));
 
         lblIdade.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblIdade.setForeground(new java.awt.Color(242, 242, 242));
         lblIdade.setText("Idade:");
+        panFormulario.add(lblIdade, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 19, -1, -1));
 
         edtIdade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtIdadeActionPerformed(evt);
             }
         });
+        panFormulario.add(edtIdade, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 16, 60, -1));
 
         lblEspecie.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblEspecie.setForeground(new java.awt.Color(242, 242, 242));
         lblEspecie.setText("Especie:");
-
-        edtPeso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edtPesoActionPerformed(evt);
-            }
-        });
+        panFormulario.add(lblEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 60, -1, -1));
+        panFormulario.add(edtEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 57, 207, -1));
 
         lblPeso.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblPeso.setForeground(new java.awt.Color(242, 242, 242));
         lblPeso.setText("Peso:");
+        panFormulario.add(lblPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 102, -1, -1));
 
         rbtnMacho.setBackground(new java.awt.Color(51, 51, 51));
         rbtnMacho.setForeground(new java.awt.Color(242, 242, 242));
@@ -275,6 +278,7 @@ public class DlgCadPet extends javax.swing.JDialog {
                 rbtnMachoActionPerformed(evt);
             }
         });
+        panFormulario.add(rbtnMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 39, -1, -1));
 
         rbtnFemea.setBackground(new java.awt.Color(51, 51, 51));
         rbtnFemea.setForeground(new java.awt.Color(242, 242, 242));
@@ -284,14 +288,18 @@ public class DlgCadPet extends javax.swing.JDialog {
                 rbtnFemeaActionPerformed(evt);
             }
         });
+        panFormulario.add(rbtnFemea, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 66, -1, -1));
 
         lblRaca.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblRaca.setForeground(new java.awt.Color(242, 242, 242));
         lblRaca.setText("Raça:");
+        panFormulario.add(lblRaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 60, -1, -1));
+        panFormulario.add(edtRaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 57, 104, -1));
 
         lblSexo.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         lblSexo.setForeground(new java.awt.Color(242, 242, 242));
         lblSexo.setText("Sexo:");
+        panFormulario.add(lblSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 16, -1, -1));
 
         btnSalvarPet.setText("Salvar");
         btnSalvarPet.addActionListener(new java.awt.event.ActionListener() {
@@ -299,6 +307,7 @@ public class DlgCadPet extends javax.swing.JDialog {
                 btnSalvarPetActionPerformed(evt);
             }
         });
+        panFormulario.add(btnSalvarPet, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 347, -1, -1));
 
         btnCancelarPet.setText("Cancelar");
         btnCancelarPet.addActionListener(new java.awt.event.ActionListener() {
@@ -306,6 +315,7 @@ public class DlgCadPet extends javax.swing.JDialog {
                 btnCancelarPetActionPerformed(evt);
             }
         });
+        panFormulario.add(btnCancelarPet, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 347, -1, -1));
 
         pnlDescricaoPet.setBackground(new java.awt.Color(51, 51, 51));
         pnlDescricaoPet.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descreva seu pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(153, 255, 153))); // NOI18N
@@ -329,84 +339,10 @@ public class DlgCadPet extends javax.swing.JDialog {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout panFormularioLayout = new javax.swing.GroupLayout(panFormulario);
-        panFormulario.setLayout(panFormularioLayout);
-        panFormularioLayout.setHorizontalGroup(
-            panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNome)
-                    .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblEspecie, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblPeso)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panFormularioLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(lblIdade))
-                    .addGroup(panFormularioLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lblRaca)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edtRaca, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtnMacho)
-                    .addComponent(lblSexo)
-                    .addComponent(rbtnFemea))
-                .addGap(93, 93, 93))
-            .addGroup(panFormularioLayout.createSequentialGroup()
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panFormularioLayout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(btnSalvarPet)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnCancelarPet))
-                    .addComponent(pnlDescricaoPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        panFormularioLayout.setVerticalGroup(
-            panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panFormularioLayout.createSequentialGroup()
-                        .addComponent(lblSexo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbtnMacho)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbtnFemea))
-                    .addGroup(panFormularioLayout.createSequentialGroup()
-                        .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNome)
-                            .addComponent(lblIdade)
-                            .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(edtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEspecie)
-                            .addComponent(lblRaca)
-                            .addComponent(edtRaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPeso))
-                .addGap(18, 18, 18)
-                .addComponent(pnlDescricaoPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 24, Short.MAX_VALUE)
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvarPet)
-                    .addComponent(btnCancelarPet))
-                .addContainerGap())
-        );
+        panFormulario.add(pnlDescricaoPet, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+
+        edtPeso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        panFormulario.add(edtPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 140, -1));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -430,12 +366,12 @@ public class DlgCadPet extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1)))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -455,7 +391,8 @@ public class DlgCadPet extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(panFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -481,9 +418,10 @@ public class DlgCadPet extends javax.swing.JDialog {
 
         if (PetEditando > 0) {
 
-            Pet petEditado = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText()), edtObs.getText(), proprietarioLogado);
+            Pet petEditado = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText().replace(",", ".")), edtObs.getText(), proprietarioLogado);
             
             petEditado.setId(petSendoEditado.getId());
+            petEditado.setAvatarPet(petSendoEditado.getAvatarPet());
             
             petController.atualizarPet(petEditado);
 
@@ -492,7 +430,7 @@ public class DlgCadPet extends javax.swing.JDialog {
 
         } else {
             try {
-                Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText()), edtObs.getText(), proprietarioLogado);
+                Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText().replace(",", ".")), edtObs.getText(), proprietarioLogado);
 
                 petController.cadastrarPet(novoPet);
 
@@ -512,10 +450,6 @@ public class DlgCadPet extends javax.swing.JDialog {
         // TODO add your handling code here:
         rbtnFemea.setSelected(false);
     }//GEN-LAST:event_rbtnMachoActionPerformed
-
-    private void edtPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtPesoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edtPesoActionPerformed
 
     private void edtIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtIdadeActionPerformed
         // TODO add your handling code here:
@@ -547,7 +481,7 @@ public class DlgCadPet extends javax.swing.JDialog {
     private javax.swing.JTextField edtIdade;
     private javax.swing.JTextField edtNome;
     private javax.swing.JTextField edtObs;
-    private javax.swing.JTextField edtPeso;
+    private javax.swing.JFormattedTextField edtPeso;
     private javax.swing.JTextField edtRaca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

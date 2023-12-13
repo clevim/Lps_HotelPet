@@ -424,6 +424,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         jCheckBox1.setText("jCheckBox1");
 
+        setTitle("Agendar");
         setBackground(new java.awt.Color(51, 51, 51));
         setForeground(new java.awt.Color(51, 51, 51));
 
@@ -544,23 +545,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         dateCheckIn.setDateFormatString("dd/MM/yyyy");
         dateCheckIn.setMaxSelectableDate(new java.util.Date(253370779270000L));
         dateCheckIn.setMinSelectableDate(getMinCheckIn());
-        dateCheckIn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dateCheckInMouseClicked(evt);
-            }
-        });
-        dateCheckIn.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                dateCheckInInputMethodTextChanged(evt);
-            }
-        });
-        dateCheckIn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                dateCheckInPropertyChange(evt);
-            }
-        });
 
         dateCheckOut.setDate(getMinCheckOut());
         dateCheckOut.setDateFormatString("dd/MM/yyyy");

@@ -9,6 +9,8 @@ import com.clevervitor.hotelpet.controller.ServicosController;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
+import com.clevervitor.hotelpet.model.enums.Sexo;
+import com.clevervitor.hotelpet.model.enums.Turno;
 import com.clevervitor.hotelpet.utils.emailBodys;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.valid.ValidateUtils;
@@ -41,9 +43,9 @@ public class HotelPet {
         f.setNome("ADMIN");
         f.setSalario(10000.00);
         f.setSenha("a");
-        f.setSexo("Masculino");
+        f.setSexo(Sexo.M);
         f.setTel("3299999999");
-        f.setTurno("Diurno");
+        f.setTurno(Turno.MANHA);
 
         p = pDao.findByEmail(f.getEmail());
 

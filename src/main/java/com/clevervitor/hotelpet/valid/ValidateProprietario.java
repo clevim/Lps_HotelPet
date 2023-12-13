@@ -6,6 +6,7 @@ package com.clevervitor.hotelpet.valid;
 
 import com.clevervitor.hotelpet.exceptions.ProprietarioException;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.enums.Sexo;
 import static com.clevervitor.hotelpet.valid.ValidateUtils.criptografiaBase64Encoder;
 
 /**
@@ -36,7 +37,7 @@ public class ValidateProprietario {
 
         proprietario.setDataNasc(validaProprietario.getDataNasc());
 
-        if (validaProprietario.getSexo().isEmpty()) {
+        if (validaProprietario.getSexo()== Sexo.NULL) {
             throw new ProprietarioException("Error - Campo vazio: 'sexo'.");
         }
 

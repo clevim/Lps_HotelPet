@@ -60,7 +60,7 @@ public class AgendamentoDAO extends Dao<Agendamento> {
         try {
             super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-            jpql = " SELECT f "
+            jpql = " SELECT DISTINCT f "
                     + " FROM Agendamento f LEFT JOIN FETCH f.servicosAdicionais  ";
 
             qry = super.entityManager.createQuery(jpql, Agendamento.class);

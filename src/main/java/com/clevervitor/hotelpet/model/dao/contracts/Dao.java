@@ -44,7 +44,7 @@ public abstract class Dao<T> implements IDao<T> {
     public boolean delete(T obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
-        this.entityManager.remove(obj);
+        this.entityManager.remove(entityManager.merge(obj));
         this.entityManager.getTransaction().commit();
         this.entityManager.close();
         return true;

@@ -9,6 +9,8 @@ import com.clevervitor.hotelpet.controller.FuncionarioController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.enums.Sexo;
+import com.clevervitor.hotelpet.model.enums.Turno;
 import com.clevervitor.hotelpet.utils.utils;
 import static com.clevervitor.hotelpet.valid.ValidateUtils.descriptografiaBase64Decode;
 import com.clevervitor.hotelpet.view.FrLogin;
@@ -43,6 +45,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     public DlgCadProprietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        initializeComboBox();
         edtSenha.setEchoChar('\u25cf');
         ToolTipManager.sharedInstance().setInitialDelay(0);
         Image iconeTitulo = null;
@@ -74,9 +77,20 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
     }
 
+    public void initializeComboBox() {
+        cbxTurno.addItem(utils.TurnoToString(Turno.MANHA));
+        cbxTurno.addItem(utils.TurnoToString(Turno.TARDE));
+        cbxTurno.addItem(utils.TurnoToString(Turno.NOITE));
+        cbxSexo.addItem(utils.SexoToString(Sexo.F));
+        cbxSexo.addItem(utils.SexoToString(Sexo.M));
+        cbxSexo.addItem(utils.SexoToString(Sexo.NAOIDENT));
+
+    }
+
     public DlgCadProprietario(java.awt.Frame parent, boolean modal, Proprietario prop) throws ParseException {
         super(parent, modal);
         initComponents();
+        initializeComboBox();
         ToolTipManager.sharedInstance().setInitialDelay(0);
         Image iconeTitulo = null;
         try {
@@ -184,6 +198,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     public DlgCadProprietario(java.awt.Frame parent, boolean modal, Funcionario func) throws ParseException {
         super(parent, modal);
         initComponents();
+        initializeComboBox();
         ToolTipManager.sharedInstance().setInitialDelay(0);
         Image iconeTitulo = null;
         try {
@@ -273,16 +288,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         edtTelefone.setText(proprietarioSendoEditado.getTel());
 
-        if (proprietarioSendoEditado.getSexo().equals("F")) {
-            cbxSexo.setSelectedItem("F");
-        } else if (proprietarioSendoEditado.getSexo().equals("M")) {
-            cbxSexo.setSelectedItem("M");
-
-        } else if (proprietarioSendoEditado.getSexo().equals("Outro")) {
-            cbxSexo.setSelectedItem("Outro");
-
-        }
-
+        cbxSexo.setSelectedItem(utils.SexoToString(proprietarioSendoEditado.getSexo()));
         edtEmail.setText(proprietarioSendoEditado.getEmail());
         String senhaReal = descriptografiaBase64Decode(proprietarioSendoEditado.getSenha());
         edtSenha.setText(senhaReal);
@@ -292,36 +298,23 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     public void PreencherCamposFuncionario() throws ParseException {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-        Date d = formatter.parse(proprietarioSendoEditado.getDataNasc());
+        Date d = formatter.parse(funcionarioSendoEditado.getDataNasc());
 
-        edtNome.setText(proprietarioSendoEditado.getNome());
-        edtCpf.setText(proprietarioSendoEditado.getCpf());
+        edtNome.setText(funcionarioSendoEditado.getNome());
+        edtCpf.setText(funcionarioSendoEditado.getCpf());
         edtCpf.setEnabled(false);
         edtDataNascimento.setDate(d);
 
-        String[] end = proprietarioSendoEditado.getEndereco().split(",");
+        String[] end = funcionarioSendoEditado.getEndereco().split(",");
         edtCidade.setText(end[0]);
         edtEstado.setText(end[1]);
 
-        edtTelefone.setText(proprietarioSendoEditado.getTel());
+        edtTelefone.setText(funcionarioSendoEditado.getTel());
 
-        if (proprietarioSendoEditado.getSexo().equals("F")) {
-            cbxSexo.setSelectedItem("F");
-        } else if (proprietarioSendoEditado.getSexo().equals("M")) {
-            cbxSexo.setSelectedItem("M");
 
-        } else if (proprietarioSendoEditado.getSexo().equals("Outro")) {
-            cbxSexo.setSelectedItem("Outro");
+        cbxSexo.setSelectedItem(utils.SexoToString(funcionarioSendoEditado.getSexo()));
 
-        }
-
-        if (funcionarioSendoEditado.getTurno().equals("Manhã")) {
-            cbxTurno.setSelectedItem("Manhã");
-        } else if (funcionarioSendoEditado.getTurno().equals("Tarde")) {
-            cbxTurno.setSelectedItem("Tarde");
-        } else if (funcionarioSendoEditado.getTurno().equals("Noite")) {
-            cbxTurno.setSelectedItem("Noite");
-        }
+        cbxTurno.setSelectedItem(utils.TurnoToString(funcionarioSendoEditado.getTurno()));
 
         edtSalario.setText(funcionarioSendoEditado.getSalario().toString());
         edtEmail.setText(funcionarioSendoEditado.getEmail());
@@ -374,6 +367,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro Pessoa");
 
         formCadProprietario.setBackground(new java.awt.Color(51, 51, 51));
         formCadProprietario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(242, 242, 242))); // NOI18N
@@ -418,8 +412,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel7.setText("Sexo:");
         formCadProprietario.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 107, -1, -1));
 
-        cbxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M", "Outro" }));
-        formCadProprietario.add(cbxSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 130, -1, -1));
+        formCadProprietario.add(cbxSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 130, 120, -1));
 
         jLabel8.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(242, 242, 242));
@@ -459,6 +452,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         jPanelFunc.setBackground(new java.awt.Color(51, 51, 51));
         jPanelFunc.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        edtSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jPanelFunc.add(edtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 90, -1));
 
         jLabel10.setForeground(new java.awt.Color(242, 242, 242));
@@ -469,7 +464,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel12.setText("Salario:");
         jPanelFunc.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
 
-        cbxTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manhã", "Tarde", "Noite" }));
         cbxTurno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTurnoActionPerformed(evt);
@@ -564,9 +558,9 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         if (isValidCpf && isValidEmail && isValidPass) {
 
             if (jRadioFuncionario.isSelected()) {
-                Double Salario = Double.valueOf(edtSalario.getText());
+                Double Salario = Double.valueOf(edtSalario.getText().replace(",", "."));
 
-                Funcionario func = new Funcionario(Salario, cbxTurno.getSelectedItem().toString(), edtNome.getText(), endereco, dataNascimento, cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 1);
+                Funcionario func = new Funcionario(Salario, utils.StringToTurno(cbxTurno.getSelectedItem().toString()), edtNome.getText(), endereco, dataNascimento, utils.StringToSexo(cbxSexo.getSelectedItem().toString()), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 1);
 
                 if (funcionarioIsEditando > 0) {
                     try {
@@ -600,7 +594,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
             } else if (jRadioClient.isSelected()) {
 
-                Proprietario prop = new Proprietario(edtNome.getText(), endereco, dataNascimento, cbxSexo.getSelectedItem().toString(), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
+                Proprietario prop = new Proprietario(edtNome.getText(), endereco, dataNascimento, utils.StringToSexo(cbxSexo.getSelectedItem().toString()), edtTelefone.getText(), edtEmail.getText(), edtCpf.getText(), edtSenha.getText(), 2);
 
                 if (proprietarioIsEditando > 0) {
                     try {

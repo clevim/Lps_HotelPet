@@ -9,6 +9,7 @@ import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
+import com.clevervitor.hotelpet.view.UI.ShowConfirmDialog;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -26,7 +27,7 @@ import javax.swing.ImageIcon;
 public class DlgInfoProprietario extends javax.swing.JDialog {
 
     loginContexto pessoaLogada = loginContexto.getInstance();
-  byte[] imgProfile = null;
+    byte[] imgProfile = null;
     ImageIcon imgIcon = null;
     /**
      * Creates new form NewJDialog
@@ -40,7 +41,7 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
 
         this.proprietario = prop;
         this.propController = new ProprietarioController();
-         imgProfile = proprietario.getAvatar();
+        imgProfile = proprietario.getAvatar();
         if (imgProfile != null) {
             imgIcon = new ImageIcon(new ImageIcon(imgProfile).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_DEFAULT));
             if (imgIcon != null) {
@@ -48,24 +49,26 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
                 lbl_img.setIcon(imgIcon);
             }
         }
-
+        utils utils = new utils();
+        lblEditar.setIcon(utils.resizeImgTolb("/Imagens/edit_white.png", lblEditar));
+        lblDel.setIcon(utils.resizeImgTolb("/Imagens/delete_white.png", lblDel));
         preencherLabels();
- 
+
     }
 
     public void preencherLabels() {
-String proprietarioInfo = "<html>\n"
+        String proprietarioInfo = "<html>\n"
                 + "<p style=\"text-align: justify;\"><strong>" + proprietario.getNome() + ", "
-                + "de genero "+proprietario.getSexo()+","
-                + " nascido(a) em "+proprietario.getDataNasc()+"."
-                + " Seu CPF &eacute; "+proprietario.getCpf()+"."
-                + " Com endere&ccedil;o atual em "+proprietario.getEndereco()+""
+                + "de genero " + utils.SexoToString(proprietario.getSexo()) + ","
+                + " nascido(a) em " + proprietario.getDataNasc() + "."
+                + " Seu CPF &eacute; " + proprietario.getCpf() + "."
+                + " Com endere&ccedil;o atual em " + proprietario.getEndereco() + ""
                 + ".<br /><br /></strong><strong>"
-                + "Possui "+proprietario.getLstPetsPossuidos().size()+" Pet(s);<br /><br />"
-                + "Pode ser contatado(a) atrav&eacute;s do e-mail "+proprietario.getEmail()+"</em>"
-                + " e do telefone "+proprietario.getTel()+".</strong></p></html>";
+                + "Possui " + proprietario.getLstPetsPossuidos().size() + " Pet(s);<br /><br />"
+                + "Pode ser contatado(a) atrav&eacute;s do e-mail " + proprietario.getEmail() + "</em>"
+                + " e do telefone " + proprietario.getTel() + ".</strong></p></html>";
 
-lbPropInfo.setText(proprietarioInfo);
+        lbPropInfo.setText(proprietarioInfo);
 
         propController.atualizarTabelaDeAgendamentos(tblAgendamentos, proprietario.getLstAgendamentos());
         propController.atualizarTabelaDePetsInicioFrame(tblPets, proprietario.getLstPetsPossuidos());
@@ -82,48 +85,22 @@ lbPropInfo.setText(proprietarioInfo);
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        lblEditar = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblAgendamentos = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblPets = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblAgendamentos = new javax.swing.JTable();
         lbl_img = new javax.swing.JLabel();
         lbPropInfo = new javax.swing.JLabel();
+        lblEditar = new javax.swing.JLabel();
+        lblDel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Info Proprietario");
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-
-        lblEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/edit (2).png"))); // NOI18N
-        lblEditar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblEditarMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblEditarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblEditarMouseExited(evt);
-            }
-        });
-
-        tblAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane3.setViewportView(tblAgendamentos);
-
-        jTabbedPane2.addTab("Agendamentos", jScrollPane3);
 
         tblPets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,6 +117,21 @@ lbPropInfo.setText(proprietarioInfo);
 
         jTabbedPane2.addTab("Pets", jScrollPane4);
 
+        tblAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(tblAgendamentos);
+
+        jTabbedPane2.addTab("Agendamentos", jScrollPane3);
+
         lbl_img.setBackground(new java.awt.Color(160, 160, 160));
         lbl_img.setForeground(new java.awt.Color(242, 242, 242));
         lbl_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -153,6 +145,30 @@ lbPropInfo.setText(proprietarioInfo);
 
         lbPropInfo.setForeground(new java.awt.Color(255, 255, 255));
 
+        lblEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEditarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblEditarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblEditarMouseExited(evt);
+            }
+        });
+
+        lblDel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblDelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblDelMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -163,9 +179,11 @@ lbPropInfo.setText(proprietarioInfo);
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbPropInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbPropInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblEditar))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -175,9 +193,13 @@ lbPropInfo.setText(proprietarioInfo);
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblEditar)
                     .addComponent(lbl_img, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(lbPropInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbPropInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(lblDel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,25 +224,21 @@ lbPropInfo.setText(proprietarioInfo);
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
+    private void lblDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseClicked
+                ShowConfirmDialog DialMsg = new ShowConfirmDialog("Atenção", "Deseja Excluir Proprietario}?");
+       var op =  DialMsg.showDialog();
+       
+       if(op){
+       propController.excluirPet(proprietario);
+       this.dispose();
+       }
+    }//GEN-LAST:event_lblDelMouseClicked
+
+    private void lblDelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseEntered
         // TODO add your handling code here:
-        DlgCadProprietario telaEditarProp;
-        try {
-            telaEditarProp = new DlgCadProprietario(new Frame(), true, proprietario);
-            this.setVisible(false);
-            telaEditarProp.setVisible(true);
-            this.dispose();
+        lblDel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        } catch (ParseException ex) {
-            Logger.getLogger(DlgInfoProprietario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_lblEditarMouseClicked
-
-    private void lblEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseEntered
-        // TODO add your handling code here:
-        lblEditar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-    }//GEN-LAST:event_lblEditarMouseEntered
+    }//GEN-LAST:event_lblDelMouseEntered
 
     private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
 
@@ -236,10 +254,32 @@ lbPropInfo.setText(proprietarioInfo);
         }
     }//GEN-LAST:event_lbl_imgMouseClicked
 
+    private void lblDelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseExited
+        // TODO add your handling code here:
+        lblDel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+    }//GEN-LAST:event_lblDelMouseExited
+
+    private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
+        // TODO add your handling code here:
+        DlgCadProprietario telaEditarProp;
+        try {
+            this.dispose();
+            telaEditarProp = new DlgCadProprietario(new Frame(), true, proprietario);
+            this.setVisible(false);
+            telaEditarProp.setVisible(true);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(DlgInfoProprietario.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_lblEditarMouseClicked
+
+    private void lblEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblEditarMouseEntered
+
     private void lblEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseExited
         // TODO add your handling code here:
-        lblEditar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-
     }//GEN-LAST:event_lblEditarMouseExited
 
     /**
@@ -253,6 +293,7 @@ lbPropInfo.setText(proprietarioInfo);
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel lbPropInfo;
+    private javax.swing.JLabel lblDel;
     private javax.swing.JLabel lblEditar;
     private javax.swing.JLabel lbl_img;
     private javax.swing.JTable tblAgendamentos;

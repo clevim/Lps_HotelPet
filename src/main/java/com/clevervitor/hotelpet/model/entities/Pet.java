@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.Data;
@@ -32,6 +33,9 @@ public class Pet {
     private String sexo;
     private Double peso;
     private String obs;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB", nullable = true)
+    private byte[] avatarPet;
 
     @ManyToOne
     @JoinColumn(name = "propietario_id")
@@ -62,6 +66,7 @@ public class Pet {
         this.peso = 0.0;
         this.obs = "";
         this.proprietario = new Proprietario();
+        this.avatarPet = null;
 
     }
 
@@ -78,5 +83,9 @@ public class Pet {
             txt += pet.getNome() + " | " + pet.getRaca();
         }
         return txt;
+    }
+    
+    public byte[] getImage() {
+        return avatarPet;
     }
 }
