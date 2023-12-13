@@ -9,6 +9,7 @@ import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
+import com.clevervitor.hotelpet.view.FrMainMenuClient;
 import com.clevervitor.hotelpet.view.UI.ShowConfirmDialog;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
@@ -52,13 +53,16 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
         utils utils = new utils();
         lblEditar.setIcon(utils.resizeImgTolb("/Imagens/edit_white.png", lblEditar));
         lblDel.setIcon(utils.resizeImgTolb("/Imagens/delete_white.png", lblDel));
+        lblAcess.setIcon(utils.resizeImgTolb("/Imagens/accessibility_white.png", lblAcess));
 
         preencherLabels();
 
-    lblEditar.setVisible(false);
+        lblEditar.setVisible(false);
         lblDel.setVisible(false);
+        lblAcess.setVisible(false);
         lblEditar.setEnabled(false);
         lblDel.setEnabled(false);
+        lblAcess.setEnabled(false);
         visibilityActions(pessoaLogada.getPessoaLogada().getNivelAcesso());
 
     }
@@ -70,18 +74,24 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
                 lblDel.setVisible(true);
                 lblEditar.setEnabled(true);
                 lblDel.setEnabled(true);
+                lblAcess.setVisible(true);
+                lblAcess.setEnabled(true);
                 break;
             case 1:
                 lblEditar.setVisible(true);
                 lblDel.setVisible(false);
                 lblEditar.setEnabled(true);
                 lblDel.setEnabled(false);
+                lblAcess.setVisible(true);
+                lblAcess.setEnabled(true);
                 break;
             case 2:
                 lblEditar.setVisible(true);
                 lblDel.setVisible(true);
                 lblEditar.setEnabled(true);
                 lblDel.setEnabled(true);
+                lblAcess.setVisible(false);
+                lblAcess.setEnabled(false);
                 break;
             default:
                 throw new AssertionError();
@@ -128,6 +138,7 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
         lbPropInfo = new javax.swing.JLabel();
         lblEditar = new javax.swing.JLabel();
         lblDel = new javax.swing.JLabel();
+        lblAcess = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Info Proprietario");
@@ -202,6 +213,18 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
             }
         });
 
+        lblAcess.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAcessMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblAcessMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblAcessMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -216,7 +239,8 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAcess, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -228,11 +252,12 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbl_img, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                     .addComponent(lbPropInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)
                         .addComponent(lblDel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)))
+                        .addGap(13, 13, 13)
+                        .addComponent(lblAcess, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -258,13 +283,13 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseClicked
-                ShowConfirmDialog DialMsg = new ShowConfirmDialog("Atenção", "Deseja Excluir Proprietario}?");
-       var op =  DialMsg.showDialog();
-       
-       if(op){
-       propController.excluirPet(proprietario);
-       this.dispose();
-       }
+        ShowConfirmDialog DialMsg = new ShowConfirmDialog("Atenção", "Deseja Excluir Proprietario}?");
+        var op = DialMsg.showDialog();
+
+        if (op) {
+            propController.excluirPet(proprietario);
+            this.dispose();
+        }
     }//GEN-LAST:event_lblDelMouseClicked
 
     private void lblDelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseEntered
@@ -315,6 +340,23 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblEditarMouseExited
 
+    private void lblAcessMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcessMouseClicked
+        FrMainMenuClient clienteMenu = new FrMainMenuClient((Proprietario) proprietario);
+        clienteMenu.setTitle("Cliente");
+        clienteMenu.setVisible(true);
+     
+        
+        this.dispose();
+    }//GEN-LAST:event_lblAcessMouseClicked
+
+    private void lblAcessMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcessMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblAcessMouseEntered
+
+    private void lblAcessMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcessMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblAcessMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -326,6 +368,7 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel lbPropInfo;
+    private javax.swing.JLabel lblAcess;
     private javax.swing.JLabel lblDel;
     private javax.swing.JLabel lblEditar;
     private javax.swing.JLabel lbl_img;

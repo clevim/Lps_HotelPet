@@ -45,7 +45,8 @@ import javax.swing.JOptionPane;
  * @author clevs
  */
 public class FrMainMenuClient extends javax.swing.JDialog {
-loginContexto pessoaLogada = loginContexto.getInstance();
+
+    loginContexto pessoaLogada = loginContexto.getInstance();
     /**
      * Creates new form mainMenu
      */
@@ -82,7 +83,12 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         setIconImage(iconeTitulo);
 
         this.propController = new ProprietarioController();
-        this.proprietarioLogado = propController.buscarProprietario(pessoaLogada.getPessoaLogada().getId());
+
+        if (pessoaLogada.getPessoaLogada().getNivelAcesso() != 2) {
+            this.proprietarioLogado = proprietario;
+        } else {
+            this.proprietarioLogado = propController.buscarProprietario(pessoaLogada.getPessoaLogada().getId());
+        }
 
         imgProfile = proprietarioLogado.getAvatar();
         if (imgProfile != null) {
@@ -90,6 +96,14 @@ loginContexto pessoaLogada = loginContexto.getInstance();
             if (imgIcon != null) {
                 lbl_img.setText(null);
             }
+        }
+
+        if (pessoaLogada.getPessoaLogada().getNivelAcesso() != 2) {
+            mnLogout.setVisible(false);
+            mnLogout.setEnabled(false);
+        } else {
+            mnLogout.setVisible(true);
+            mnLogout.setEnabled(true);
         }
 
         habilitarCampos(true);
@@ -146,7 +160,7 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         jMenu3 = new javax.swing.JMenu();
         menuAdicionarPet = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mnLogout = new javax.swing.JMenuItem();
         menuContato = new javax.swing.JMenu();
         menuSobre = new javax.swing.JMenu();
 
@@ -406,13 +420,13 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         jMenu3.add(menuAdicionarPet);
         jMenu3.add(jSeparator1);
 
-        jMenuItem1.setText("Logout");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mnLogout.setText("Logout");
+        mnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mnLogoutActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        jMenu3.add(mnLogout);
 
         jMenuBar1.add(jMenu3);
 
@@ -488,12 +502,12 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         return obj;
     }
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLogoutActionPerformed
         FrLogin TLogin = new FrLogin();
         TLogin.setTitle("Login");
         TLogin.setVisible(true);
         this.dispose();         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mnLogoutActionPerformed
 
     private void lbl_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseClicked
 
@@ -551,7 +565,7 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         // TODO add your handling code here:
         btnAgendar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dog-house (2).png")));
-        
+
     }//GEN-LAST:event_btnAgendarMouseExited
 
     private void btnAgendarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarMouseEntered
@@ -559,10 +573,10 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         btnAgendar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ezgif.com-resize_2.gif")));
 
-        }
+    }
 
-        private void btnAgendarMouseExited() {
-            // TODO add your handling code here:
+    private void btnAgendarMouseExited() {
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnAgendarMouseEntered
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
@@ -586,7 +600,6 @@ loginContexto pessoaLogada = loginContexto.getInstance();
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblContato;
@@ -601,6 +614,7 @@ loginContexto pessoaLogada = loginContexto.getInstance();
     private javax.swing.JMenuItem menuAdicionarPet;
     private javax.swing.JMenu menuContato;
     private javax.swing.JMenu menuSobre;
+    private javax.swing.JMenuItem mnLogout;
     private javax.swing.JPanel pnlAgendamentos;
     private javax.swing.JPanel pnlCliente;
     private javax.swing.JPanel pnlPetsCliente;

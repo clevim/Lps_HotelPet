@@ -419,8 +419,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         CBBanho = new javax.swing.JCheckBox();
         CBTosa = new javax.swing.JCheckBox();
         CBMassagem = new javax.swing.JCheckBox();
-        lblValor = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -545,6 +543,11 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         dateCheckIn.setDateFormatString("dd/MM/yyyy");
         dateCheckIn.setMaxSelectableDate(new java.util.Date(253370779270000L));
         dateCheckIn.setMinSelectableDate(getMinCheckIn());
+        dateCheckIn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateCheckInPropertyChange(evt);
+            }
+        });
 
         dateCheckOut.setDate(getMinCheckOut());
         dateCheckOut.setDateFormatString("dd/MM/yyyy");
@@ -638,10 +641,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        lblValor.setText("jLabel2");
-
-        jLabel2.setText("Valor:");
-
         javax.swing.GroupLayout panFormularioLayout = new javax.swing.GroupLayout(panFormulario);
         panFormulario.setLayout(panFormularioLayout);
         panFormularioLayout.setHorizontalGroup(
@@ -670,10 +669,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                     .addComponent(lblCheckIn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panFormularioLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnlServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblServicos))
                 .addGap(121, 121, 121))
@@ -696,11 +691,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnlServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblValor)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addComponent(pnlDescricaoPet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -884,14 +875,12 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser dateCheckOut;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCheckIn;
     private javax.swing.JLabel lblCheckOut;
     private javax.swing.JLabel lblServicos;
-    private javax.swing.JLabel lblValor;
     private javax.swing.JPanel panFormulario;
     private javax.swing.JPanel pnlDescricaoPet;
     private javax.swing.JPanel pnlServices;

@@ -87,11 +87,6 @@
                   </Group>
                   <EmptySpace pref="94" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblValor" min="-2" pref="98" max="-2" attributes="0"/>
-                      </Group>
                       <Component id="pnlServices" min="-2" max="-2" attributes="0"/>
                       <Component id="lblServicos" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -120,12 +115,7 @@
                       </Group>
                       <Component id="pnlServices" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblValor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="pnlDescricaoPet" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -356,6 +346,9 @@
               <Connection code="getMinCheckIn()" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="dateCheckInPropertyChange"/>
+          </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="dateCheckOut">
           <Properties>
@@ -508,16 +501,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="lblValor">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Valor:"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
