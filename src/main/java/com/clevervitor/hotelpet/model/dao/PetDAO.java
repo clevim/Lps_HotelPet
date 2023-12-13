@@ -76,7 +76,13 @@ public class PetDAO extends Dao<Pet> {
             try {
                 super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-                Pet m = entityManager.find(Pet.class, id);
+                jpql = " SELECT p "
+                        + " FROM Pet p LEFT JOIN FETCH p.agendamentoMarcado WHERE p.id = :id";
+
+                qry = super.entityManager.createQuery(jpql, Pet.class);
+                qry.setParameter("id", id);
+
+                Pet m = qry.getResultList().get(0);
 
                 return m;
             } catch (PetException e) {
@@ -87,8 +93,8 @@ public class PetDAO extends Dao<Pet> {
         }
 
     }
-    
-        public void updateAvatar(int id, byte[] imgProfile) {
+
+    public void updateAvatar(int id, byte[] imgProfile) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         if (id < 0) {
             throw new ProprietarioException("Este Pessoa não existe.");

@@ -264,7 +264,7 @@ public class DlgInfoPet extends javax.swing.JDialog {
 
         if (op) {
 
-            if (pet.getAgendamentoMarcado() != null) {
+            if (pet.getAgendamentoMarcado().size() != 0) {
 
                 List<Agendamento> agendamentosAtivos = pet.getAgendamentoMarcado();
                 for (Agendamento agendamento : agendamentosAtivos) {
