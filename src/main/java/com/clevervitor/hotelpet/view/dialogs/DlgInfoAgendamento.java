@@ -58,7 +58,40 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
                 lbl_img.setIcon(imgIcon);
             }
         }
+
+        
         preencherLabels();
+        lblEditar.setVisible(false);
+        lblDel.setVisible(false);
+        lblEditar.setEnabled(false);
+        lblDel.setEnabled(false);
+        visibilityActions(pessoaLogada.getPessoaLogada().getNivelAcesso());
+
+    }
+
+    public void visibilityActions(Integer NivelAcesso) {
+        switch (NivelAcesso) {
+            case 0:
+                lblEditar.setVisible(true);
+                lblDel.setVisible(true);
+                lblEditar.setEnabled(true);
+                lblDel.setEnabled(true);
+                break;
+            case 1:
+                lblEditar.setVisible(true);
+                lblDel.setVisible(true);
+                lblEditar.setEnabled(true);
+                lblDel.setEnabled(true);
+                break;
+            case 2:
+                lblEditar.setVisible(true);
+                lblDel.setVisible(false);
+                lblEditar.setEnabled(true);
+                lblDel.setEnabled(false);
+                break;
+            default:
+                throw new AssertionError();
+        }
 
     }
 
@@ -190,13 +223,13 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseClicked
-               ShowConfirmDialog DialMsg = new ShowConfirmDialog("Atenção", "Deseja Excluir Agendamento}?");
-       var op =  DialMsg.showDialog();
-       
-       if(op){
-           ageController.excluirAgendamento(agendamento);
-           this.dispose();
-       }
+        ShowConfirmDialog DialMsg = new ShowConfirmDialog("Atenção", "Deseja Excluir Agendamento}?");
+        var op = DialMsg.showDialog();
+
+        if (op) {
+            ageController.excluirAgendamento(agendamento);
+            this.dispose();
+        }
     }//GEN-LAST:event_lblDelMouseClicked
 
     private void lblDelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseEntered

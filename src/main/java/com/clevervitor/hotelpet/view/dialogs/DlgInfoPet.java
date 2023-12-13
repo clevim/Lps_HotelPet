@@ -61,7 +61,40 @@ public class DlgInfoPet extends javax.swing.JDialog {
         utils utils = new utils();
         lblDel.setIcon(utils.resizeImgTolb("/Imagens/delete_white.png", lblDel));
         lblEditar.setIcon(utils.resizeImgTolb("/Imagens/edit_white.png", lblEditar));
+
         preencherLabels();
+
+    lblEditar.setVisible(false);
+        lblDel.setVisible(false);
+        lblEditar.setEnabled(false);
+        lblDel.setEnabled(false);
+        visibilityActions(pessoaLogada.getPessoaLogada().getNivelAcesso());
+
+    }
+
+    public void visibilityActions(Integer NivelAcesso) {
+        switch (NivelAcesso) {
+            case 0:
+                lblEditar.setVisible(true);
+                lblDel.setVisible(true);
+                lblEditar.setEnabled(true);
+                lblDel.setEnabled(true);
+                break;
+            case 1:
+                lblEditar.setVisible(true);
+                lblDel.setVisible(true);
+                lblEditar.setEnabled(true);
+                lblDel.setEnabled(true);
+                break;
+            case 2:
+                lblEditar.setVisible(true);
+                lblDel.setVisible(true);
+                lblEditar.setEnabled(true);
+                lblDel.setEnabled(true);
+                break;
+            default:
+                throw new AssertionError();
+        }
 
     }
 

@@ -12,6 +12,7 @@ import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.model.enums.Sexo;
 import com.clevervitor.hotelpet.model.enums.Turno;
 import com.clevervitor.hotelpet.utils.utils;
+import com.clevervitor.hotelpet.valid.ValidatePessoa;
 import static com.clevervitor.hotelpet.valid.ValidateUtils.descriptografiaBase64Decode;
 import com.clevervitor.hotelpet.view.FrLogin;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
@@ -311,7 +312,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         edtTelefone.setText(funcionarioSendoEditado.getTel());
 
-
         cbxSexo.setSelectedItem(utils.SexoToString(funcionarioSendoEditado.getSexo()));
 
         cbxTurno.setSelectedItem(utils.TurnoToString(funcionarioSendoEditado.getTurno()));
@@ -549,13 +549,27 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         // TODO add your handling code here:
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String dataNascimento = formatter.format(edtDataNascimento.getDate());
+        boolean ExistCpf = false;
+        boolean ExistEmail = false;
 
         String endereco = edtCidade.getText() + ", " + edtEstado.getText();
         boolean isValidEmail = utils.isValidEmailAddress(edtEmail.getText());
         boolean isValidCpf = utils.isValidCpf(edtCpf.getText());
         boolean isValidPass = utils.isValidPassword(edtSenha.getText());
+        
+        ExistEmail = new ValidatePessoa().ValidaFormPessoaEmail(edtEmail.getText(), -1);
+        ExistCpf = new ValidatePessoa().ValidaFormPessoaCpf(edtCpf.getText(), -1);
+        
+        if (funcionarioIsEditando > 0) {
+            ExistEmail = new ValidatePessoa().ValidaFormPessoaEmail(edtEmail.getText(), funcionarioSendoEditado.getId());
+            ExistCpf = new ValidatePessoa().ValidaFormPessoaCpf(edtCpf.getText(), funcionarioSendoEditado.getId());
+        }
+        if (proprietarioIsEditando > 0) {
+            ExistEmail = new ValidatePessoa().ValidaFormPessoaEmail(edtEmail.getText(), proprietarioSendoEditado.getId());
+            ExistCpf = new ValidatePessoa().ValidaFormPessoaCpf(edtCpf.getText(), proprietarioSendoEditado.getId());
+        }
 
-        if (isValidCpf && isValidEmail && isValidPass) {
+        if (isValidCpf && isValidEmail && isValidPass && !ExistCpf && !ExistEmail) {
 
             if (jRadioFuncionario.isSelected()) {
                 Double Salario = Double.valueOf(edtSalario.getText().replace(",", "."));
@@ -625,17 +639,27 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             }
         } else if (!isValidEmail) {
             edtEmail.setText(null);
-            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Email Invalido");
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Email Invalido!");
             DialMsg.setVisible(true);
         } else if (!isValidPass) {
             edtSenha.setText(null);
-            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Senha Invalida");
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Senha Invalida!");
             DialMsg.setVisible(true);
         } else if (!isValidCpf) {
             edtCpf.setText(null);
-            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Cpf Invalido");
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Cpf Invalido!");
             DialMsg.setVisible(true);
-        }
+        } else if (ExistCpf || ExistEmail) {
+            if(ExistCpf){
+            edtCpf.setText(null);
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Cpf já cadastrado!");
+            DialMsg.setVisible(true);
+            }else if(ExistEmail){
+            edtEmail.setText(null);
+            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Email já cadastrado !");
+            DialMsg.setVisible(true);
+            }
+        } 
 
 
     }//GEN-LAST:event_btnSalvarActionPerformed
