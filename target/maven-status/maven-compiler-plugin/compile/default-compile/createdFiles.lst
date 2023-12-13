@@ -5,6 +5,7 @@ com/clevervitor/hotelpet/exceptions/ProprietarioException.class
 com/clevervitor/hotelpet/view/FrMainMenuClient$1.class
 com/clevervitor/hotelpet/view/FrMainMenuFuncioario$2.class
 com/clevervitor/hotelpet/HotelPet.class
+com/clevervitor/hotelpet/view/FrMainMenuClient$10.class
 com/clevervitor/hotelpet/view/dialogs/DlgInfoProprietario$2.class
 com/clevervitor/hotelpet/view/UI/ShowMessageDialog$1.class
 com/clevervitor/hotelpet/valid/ValidateFuncionario.class
