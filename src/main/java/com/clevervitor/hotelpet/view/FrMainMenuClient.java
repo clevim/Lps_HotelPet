@@ -234,6 +234,11 @@ loginContexto pessoaLogada = loginContexto.getInstance();
                 btnAgendarMouseExited(evt);
             }
         });
+        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgendarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlAgendamentosLayout = new javax.swing.GroupLayout(pnlAgendamentos);
         pnlAgendamentos.setLayout(pnlAgendamentosLayout);
@@ -559,6 +564,14 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         private void btnAgendarMouseExited() {
             // TODO add your handling code here:
     }//GEN-LAST:event_btnAgendarMouseEntered
+
+    private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
+               DlgCadAgendamento telaAgendamento = new DlgCadAgendamento(new Frame(), true, proprietarioLogado);
+        telaAgendamento.setVisible(true);
+
+        this.proprietarioLogado = propController.buscarProprietario(proprietarioLogado.getId());
+        propController.atualizarTabelaDeAgendamentos(grdAgendamentos, proprietarioLogado.getLstAgendamentos());
+    }//GEN-LAST:event_btnAgendarActionPerformed
 
     /**
      * @param args the command line arguments
