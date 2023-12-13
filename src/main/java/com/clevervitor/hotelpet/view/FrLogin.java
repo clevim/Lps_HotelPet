@@ -301,7 +301,7 @@ public class FrLogin extends javax.swing.JFrame {
                         case 2:
 
                             pessoaLogada.setPessoaLogada(p);
-                            FrMainMenuClient clienteMenu = new FrMainMenuClient((Proprietario) p);
+                            FrMainMenuClient clienteMenu = new FrMainMenuClient(new Frame(), true, (Proprietario) p);
                             clienteMenu.setTitle("Cliente");
                             clienteMenu.setVisible(true);
                             dispose();

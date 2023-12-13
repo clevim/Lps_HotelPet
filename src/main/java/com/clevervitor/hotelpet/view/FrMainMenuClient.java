@@ -56,7 +56,9 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     byte[] imgProfile = null;
     ImageIcon imgIcon = null;
 
-    public FrMainMenuClient(Proprietario proprietario) {
+    public FrMainMenuClient(java.awt.Frame parent, boolean modal, Proprietario proprietario) {
+                super(parent, modal);
+
         initComponents();
 
         propController = new ProprietarioController();
@@ -477,6 +479,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         DlgCadPet telaCadPet = new DlgCadPet(new Frame(), true, proprietarioLogado);
         telaCadPet.setTitle("Cadastro Pet");
         telaCadPet.setVisible(true);
+        telaCadPet.setAlwaysOnTop(true);
 
         proprietarioLogado = propController.buscarProprietario(proprietarioLogado.getId());
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietarioLogado.getLstPetsPossuidos());

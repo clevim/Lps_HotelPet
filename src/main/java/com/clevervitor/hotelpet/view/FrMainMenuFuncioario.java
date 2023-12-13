@@ -490,6 +490,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         }
 
         proprietarioCont.atualizarTabelaDeProprietarios(tblProprietarios, proprietarioCont.buscarTodosOsProprietarios());
+        petCont.atualizarTabelaDePets(tblPets, petCont.buscarTodosOsPets());
+        agendamentoCont.atualizarTabelaDeAgendamentos(tblAgendamentos, agendamentoCont.buscarTodosOsAgendamentos());
     }//GEN-LAST:event_tblProprietariosMouseClicked
 
     private void tblPetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPetsMouseClicked

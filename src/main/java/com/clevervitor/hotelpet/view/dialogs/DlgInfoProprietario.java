@@ -5,6 +5,7 @@
 package com.clevervitor.hotelpet.view.dialogs;
 
 import com.clevervitor.hotelpet.connection.loginContexto;
+import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
@@ -16,6 +17,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +38,9 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
      */
     Proprietario proprietario;
     ProprietarioController propController;
-
+    
+    
+    
     public DlgInfoProprietario(java.awt.Frame parent, boolean modal, Proprietario prop) {
         super(parent, modal);
         initComponents();
@@ -65,6 +70,8 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
         lblAcess.setEnabled(false);
         visibilityActions(pessoaLogada.getPessoaLogada().getNivelAcesso());
 
+        
+        
     }
 
     public void visibilityActions(Integer NivelAcesso) {
@@ -341,12 +348,16 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
     }//GEN-LAST:event_lblEditarMouseExited
 
     private void lblAcessMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcessMouseClicked
-        FrMainMenuClient clienteMenu = new FrMainMenuClient((Proprietario) proprietario);
+        FrMainMenuClient clienteMenu = new FrMainMenuClient(new Frame(), true, (Proprietario) proprietario);
         clienteMenu.setTitle("Cliente");
         clienteMenu.setVisible(true);
-     
         
-        this.dispose();
+        PetController petC = new PetController();
+        
+        propController.atualizarTabelaDePetsInicioFrame(tblPets, proprietario.getLstPetsPossuidos());
+            propController.atualizarTabelaDeAgendamentos(tblAgendamentos, proprietario.getLstAgendamentos());
+        
+        
     }//GEN-LAST:event_lblAcessMouseClicked
 
     private void lblAcessMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcessMouseEntered
