@@ -545,6 +545,11 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         dateCheckIn.setDateFormatString("dd/MM/yyyy");
         dateCheckIn.setMaxSelectableDate(new java.util.Date(253370779270000L));
         dateCheckIn.setMinSelectableDate(getMinCheckIn());
+        dateCheckIn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateCheckInPropertyChange(evt);
+            }
+        });
 
         dateCheckOut.setDate(getMinCheckOut());
         dateCheckOut.setDateFormatString("dd/MM/yyyy");

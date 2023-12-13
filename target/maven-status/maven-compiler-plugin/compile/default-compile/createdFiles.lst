@@ -35,6 +35,7 @@ com/clevervitor/hotelpet/connection/loginContexto.class
 com/clevervitor/hotelpet/view/dialogs/DlgInfoAgendamento.class
 com/clevervitor/hotelpet/view/dialogs/DlgInfoPet$3.class
 com/clevervitor/hotelpet/view/dialogs/DlgInfoFuncionario$2.class
+com/clevervitor/hotelpet/view/dialogs/DlgInfoProprietario$4.class
 com/clevervitor/hotelpet/view/FrMainMenuClient.class
 com/clevervitor/hotelpet/model/entities/Pessoa.class
 com/clevervitor/hotelpet/controller/PetController.class
@@ -67,6 +68,7 @@ com/clevervitor/hotelpet/view/FrLogin$2.class
 com/clevervitor/hotelpet/valid/ValidateUtils.class
 com/clevervitor/hotelpet/connection/DatabaseJPA.class
 com/clevervitor/hotelpet/view/dialogs/DlgSobre.class
+com/clevervitor/hotelpet/view/dialogs/DlgCadAgendamento$10.class
 com/clevervitor/hotelpet/view/FrMainMenuFuncioario$6.class
 com/clevervitor/hotelpet/view/FrMainMenuFuncioario$9.class
 com/clevervitor/hotelpet/model/entities/Servicos.class

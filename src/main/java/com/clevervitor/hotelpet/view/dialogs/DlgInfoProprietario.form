@@ -59,6 +59,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblDel" min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="lblEditar" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="lblAcess" min="-2" pref="28" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jTabbedPane2" alignment="0" min="-2" pref="639" max="-2" attributes="0"/>
@@ -75,11 +76,12 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lbl_img" alignment="0" pref="118" max="32767" attributes="0"/>
                       <Component id="lbPropInfo" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="lblEditar" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Component id="lblDel" min="-2" pref="30" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                          <Component id="lblAcess" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -191,6 +193,13 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblDelMouseClicked"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblDelMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblDelMouseExited"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAcess">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblAcessMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblAcessMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblAcessMouseExited"/>
           </Events>
         </Component>
       </SubComponents>
