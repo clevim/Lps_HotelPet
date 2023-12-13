@@ -11,6 +11,7 @@ import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.enums.Status;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowConfirmDialog;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
@@ -45,6 +46,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
+        ageController = new AgendamentoController();
         this.agendamento = agend;
         utils utils = new utils();
         lblEditar.setIcon(utils.resizeImgTolb("/Imagens/edit_white.png", lblEditar));
@@ -227,8 +229,15 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
         var op = DialMsg.showDialog();
 
         if (op) {
-            ageController.excluirAgendamento(agendamento);
-            this.dispose();
+            if (agendamento.getStatus().equals(Status.AGENDADO)) {
+
+                            ageController.excluirAgendamento(agendamento);
+                            this.dispose();
+                        
+                    } else {
+                        ShowMessageDialog msgC = new ShowMessageDialog("Erro", "Não é possível excluir agendamentos ATIVOS ou FINALIZADOS.");
+                        msgC.setVisible(true);
+                    }
         }
     }//GEN-LAST:event_lblDelMouseClicked
 

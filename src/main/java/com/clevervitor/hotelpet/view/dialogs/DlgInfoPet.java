@@ -10,6 +10,7 @@ import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.enums.Status;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowConfirmDialog;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
@@ -64,7 +65,7 @@ public class DlgInfoPet extends javax.swing.JDialog {
 
         preencherLabels();
 
-    lblEditar.setVisible(false);
+        lblEditar.setVisible(false);
         lblDel.setVisible(false);
         lblEditar.setEnabled(false);
         lblDel.setEnabled(false);
@@ -258,14 +259,37 @@ public class DlgInfoPet extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseClicked
-                ShowConfirmDialog DialMsg = new ShowConfirmDialog("Atenção", "Deseja Excluir Pet}?");
-       var op =  DialMsg.showDialog();
-       
-       if(op){
-           
-       petController.excluirPet(pet);
-       this.dispose();
-       }
+        ShowConfirmDialog DialMsg = new ShowConfirmDialog("Atenção", "Deseja Excluir Pet}?");
+        var op = DialMsg.showDialog();
+
+        if (op) {
+
+            if (pet.getAgendamentoMarcado() != null) {
+
+                List<Agendamento> agendamentosAtivos = pet.getAgendamentoMarcado();
+                for (Agendamento agendamento : agendamentosAtivos) {
+                    if (agendamento.getStatus().equals(Status.AGENDADO)) {
+                        ShowConfirmDialog msg = new ShowConfirmDialog("Atenção", "Este pet possui um agendamento marcado. Deseja excluir o pet mesmo assim?");
+                        var ops = msg.showDialog();
+                        if (ops) {
+
+                            petController.excluirPet(pet);
+                            this.dispose();
+                        }
+                    } else {
+                        ShowMessageDialog msgC = new ShowMessageDialog("Erro", "Não é possível excluir este pet, pois precisamos dos seus dados.");
+                        msgC.setVisible(true);
+                    }
+
+                }
+
+            } else {
+                petController.excluirPet(pet);
+                this.dispose();
+            }
+        }
+
+
     }//GEN-LAST:event_lblDelMouseClicked
 
     private void lblDelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDelMouseEntered
