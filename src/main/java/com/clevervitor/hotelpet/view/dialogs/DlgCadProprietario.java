@@ -78,15 +78,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
     }
 
-    public void initializeComboBox() {
-        cbxTurno.addItem(utils.TurnoToString(Turno.MANHA));
-        cbxTurno.addItem(utils.TurnoToString(Turno.TARDE));
-        cbxTurno.addItem(utils.TurnoToString(Turno.NOITE));
-        cbxSexo.addItem(utils.SexoToString(Sexo.F));
-        cbxSexo.addItem(utils.SexoToString(Sexo.M));
-        cbxSexo.addItem(utils.SexoToString(Sexo.NAOIDENT));
-
-    }
+    
 
     public DlgCadProprietario(java.awt.Frame parent, boolean modal, Proprietario prop) throws ParseException {
         super(parent, modal);
@@ -136,6 +128,66 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             default:
                 throw new AssertionError();
         }
+
+    }
+    
+    public DlgCadProprietario(java.awt.Frame parent, boolean modal, Funcionario func) throws ParseException {
+        super(parent, modal);
+        initComponents();
+        initializeComboBox();
+        ToolTipManager.sharedInstance().setInitialDelay(0);
+        Image iconeTitulo = null;
+        try {
+            iconeTitulo = ImageIO.read(getClass().getResource("/Imagens/pawprint.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        setIconImage(iconeTitulo);
+        String TName = parent.getTitle();
+        boolean ParentWin = false;
+
+        jPanelFunc.setVisible(true);
+        jRadioFuncionario.setSelected(true);
+        jRadioClient.setSelected(false);
+        JPanelAdmin.setVisible(false);
+
+        this.funcionarioSendoEditado = func;
+        proprietarioCont = new ProprietarioController();
+        fucionarioCont = new FuncionarioController();
+        utils = new utils();
+
+        funcionarioIsEditando = 1;
+        edtSenha.setToolTipText("Minimo de 6 caracteres!");
+        img_eye.setText(null);
+        img_eye.setIcon(utils.resizeImgTolb("/Imagens/hide_white.png", img_eye));
+        PreencherCamposFuncionario();
+
+        switch (pessoaLogada.getPessoaLogada().getNivelAcesso()) {
+            case 0:
+                desabilitaTudo();
+                habilitaFuncAdmin();
+                break;
+            case 1:
+                desabilitaTudo();
+                habilitaFuncFuncionario();
+                break;
+            case 2:
+                desabilitaTudo();
+                break;
+            default:
+                throw new AssertionError();
+        }
+
+    }
+
+    public void initializeComboBox() {
+        cbxTurno.addItem(utils.TurnoToString(Turno.MANHA));
+        cbxTurno.addItem(utils.TurnoToString(Turno.TARDE));
+        cbxTurno.addItem(utils.TurnoToString(Turno.NOITE));
+        cbxSexo.addItem(utils.SexoToString(Sexo.F));
+        cbxSexo.addItem(utils.SexoToString(Sexo.M));
+        cbxSexo.addItem(utils.SexoToString(Sexo.NAOIDENT));
 
     }
 
@@ -196,56 +248,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         cbxTurno.setEnabled(true);
     }
 
-    public DlgCadProprietario(java.awt.Frame parent, boolean modal, Funcionario func) throws ParseException {
-        super(parent, modal);
-        initComponents();
-        initializeComboBox();
-        ToolTipManager.sharedInstance().setInitialDelay(0);
-        Image iconeTitulo = null;
-        try {
-            iconeTitulo = ImageIO.read(getClass().getResource("/Imagens/pawprint.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(FrLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        setIconImage(iconeTitulo);
-        String TName = parent.getTitle();
-        boolean ParentWin = false;
-
-        jPanelFunc.setVisible(true);
-        jRadioFuncionario.setSelected(true);
-        jRadioClient.setSelected(false);
-        JPanelAdmin.setVisible(false);
-
-        this.funcionarioSendoEditado = func;
-        proprietarioCont = new ProprietarioController();
-        fucionarioCont = new FuncionarioController();
-        utils = new utils();
-
-        funcionarioIsEditando = 1;
-        edtSenha.setToolTipText("Minimo de 6 caracteres!");
-        img_eye.setText(null);
-        img_eye.setIcon(utils.resizeImgTolb("/Imagens/hide_white.png", img_eye));
-        PreencherCamposFuncionario();
-
-        switch (pessoaLogada.getPessoaLogada().getNivelAcesso()) {
-            case 0:
-                desabilitaTudo();
-                habilitaFuncAdmin();
-                break;
-            case 1:
-                desabilitaTudo();
-                habilitaFuncFuncionario();
-                break;
-            case 2:
-                desabilitaTudo();
-                break;
-            default:
-                throw new AssertionError();
-        }
-
-    }
-
+    
     public void habilitaFuncAdmin() {
         edtCidade.setEnabled(true);
         edtCpf.setEnabled(true);

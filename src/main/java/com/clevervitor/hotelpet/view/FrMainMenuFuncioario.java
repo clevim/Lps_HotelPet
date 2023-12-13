@@ -26,6 +26,7 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Image;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -118,6 +119,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuConfig = new javax.swing.JMenu();
@@ -135,7 +137,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         lblNome.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
         lblNome.setForeground(new java.awt.Color(242, 242, 242));
-        pnlInfo.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 230, 30));
+        pnlInfo.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 360, 30));
 
         lblBemVindo.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
         lblBemVindo.setForeground(new java.awt.Color(242, 242, 242));
@@ -151,27 +153,27 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
                 lbl_imgMouseClicked(evt);
             }
         });
-        pnlInfo.add(lbl_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 37, 111, 118));
+        pnlInfo.add(lbl_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 111, 118));
 
         lblTurno.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblTurno.setForeground(new java.awt.Color(242, 242, 242));
         lblTurno.setText("Turno:");
-        pnlInfo.add(lblTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
+        pnlInfo.add(lblTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
 
         lblEndereco.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblEndereco.setForeground(new java.awt.Color(242, 242, 242));
         lblEndereco.setText("Endereço:");
-        pnlInfo.add(lblEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+        pnlInfo.add(lblEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
 
         lblDocumeto.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblDocumeto.setForeground(new java.awt.Color(242, 242, 242));
         lblDocumeto.setText("Doc.:");
-        pnlInfo.add(lblDocumeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
+        pnlInfo.add(lblDocumeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
 
         lblContato1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblContato1.setForeground(new java.awt.Color(242, 242, 242));
         lblContato1.setText("Contato:");
-        pnlInfo.add(lblContato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, -1));
+        pnlInfo.add(lblContato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
 
         lbTurnoFunc.setForeground(new java.awt.Color(255, 255, 255));
         pnlInfo.add(lbTurnoFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 440, 20));
@@ -339,6 +341,14 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
             }
         });
         jMenu3.add(jMenuItem2);
+
+        jMenuItem3.setText("Editar perfil");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
         jMenu3.add(jSeparator1);
 
         jMenuItem1.setText("Logout");
@@ -377,16 +387,15 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
             .addComponent(pnlControleGeral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(pnlInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnlControleGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlControleGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -521,6 +530,22 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         funcionarioCont.atualizarTabelaDeFuncionario(tblFuncionarios, funcionarioCont.buscarTodosOsFuncionarios());
     }//GEN-LAST:event_tblFuncionariosMouseClicked
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+
+            DlgCadProprietario telaEditarPerfil = new DlgCadProprietario(new Frame(), true, funcionarioLogado);
+            telaEditarPerfil.setVisible(true);
+            
+            habilitarCampos();
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(FrMainMenuClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     private Object getObjetoSelecionadoNaGridDeAgendamentos() {
         int rowCliked = tblAgendamentos.getSelectedRow();
         Object obj = null;
@@ -569,6 +594,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lbContFunc;

@@ -16,6 +16,7 @@ import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
+import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
 import com.clevervitor.hotelpet.view.dialogs.DlgContato;
 import com.clevervitor.hotelpet.view.dialogs.DlgInfoAgendamento;
 import com.clevervitor.hotelpet.view.dialogs.DlgInfoPet;
@@ -29,6 +30,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.logging.Level;
@@ -108,11 +110,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             mnLogout.setEnabled(true);
         }
 
-        habilitarCampos(true);
+        preencherLabels();
 
     }
 
-    public void habilitarCampos(boolean flag) {
+    public void preencherLabels() {
         lblNomeCliente.setText(proprietarioLogado.getNome() + "!");
         lblNomeCliente.setForeground(Color.WHITE);
         lblEnderecoCliente.setText(proprietarioLogado.getEndereco());
@@ -137,10 +139,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         pnlCliente = new javax.swing.JPanel();
         lblNomeCliente = new javax.swing.JLabel();
         lblContatoCliente = new javax.swing.JLabel();
@@ -161,27 +159,11 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         menuAdicionarPet = new javax.swing.JMenuItem();
+        mnEditarPerfil = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnLogout = new javax.swing.JMenuItem();
         menuContato = new javax.swing.JMenu();
         menuSobre = new javax.swing.JMenu();
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jMenu1.setText("File");
-        jMenuBar2.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar2.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menu Principal");
@@ -420,6 +402,14 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             }
         });
         jMenu3.add(menuAdicionarPet);
+
+        mnEditarPerfil.setText("Editar perfil");
+        mnEditarPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnEditarPerfilActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnEditarPerfil);
         jMenu3.add(jSeparator1);
 
         mnLogout.setText("Logout");
@@ -590,6 +580,21 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         propController.atualizarTabelaDeAgendamentos(grdAgendamentos, proprietarioLogado.getLstAgendamentos());
     }//GEN-LAST:event_btnAgendarActionPerformed
 
+    private void mnEditarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnEditarPerfilActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            DlgCadProprietario telaEditarPerfil = new DlgCadProprietario(new Frame(), true, proprietarioLogado);
+            telaEditarPerfil.setVisible(true);
+            
+            preencherLabels();
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(FrMainMenuClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_mnEditarPerfilActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -598,12 +603,8 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private com.clevervitor.hotelpet.view.UI.FloatingButton btnAgendar;
     private javax.swing.JTable grdAgendamentos;
     private javax.swing.JTable grdPets;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblContato;
     private javax.swing.JLabel lblContatoCliente;
@@ -617,6 +618,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private javax.swing.JMenuItem menuAdicionarPet;
     private javax.swing.JMenu menuContato;
     private javax.swing.JMenu menuSobre;
+    private javax.swing.JMenuItem mnEditarPerfil;
     private javax.swing.JMenuItem mnLogout;
     private javax.swing.JPanel pnlAgendamentos;
     private javax.swing.JPanel pnlCliente;
