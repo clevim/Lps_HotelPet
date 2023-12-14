@@ -741,7 +741,11 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         if (agendamentoIsEditando > 0) {
 
             Agendamento agendamentoEdit = new Agendamento(dCheckIn, dCheckOut, servs, proprietarioLogado, lstPetsSelecionados, 0.0, status);
-
+            try {
+                agendamentoEdit.setValor(utils.calcTotalAgendamento(agendamentoEdit));
+            } catch (ParseException ex) {
+                Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+            }
             agendamentoEdit.setId(agendamentoSendoEditado.getId());
 
             AgendamentoController.atualizarAgendamento(agendamentoEdit);

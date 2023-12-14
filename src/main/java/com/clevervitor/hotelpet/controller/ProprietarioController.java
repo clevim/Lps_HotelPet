@@ -13,6 +13,7 @@ import com.clevervitor.hotelpet.model.dao.ProprietarioDAO;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroProprietario;
 import com.clevervitor.hotelpet.valid.ValidateProprietario;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -92,6 +93,10 @@ public class ProprietarioController {
         return (List<Proprietario>) this.repositorio.findAll();
     }
 
+    public List<Proprietario> buscarTodosOsProprietariosFiltrados(FiltroProprietario filter) {
+        return (List<Proprietario>) this.repositorio.findAllFilter(filter);
+    }
+    
     public void excluirPet(Proprietario proprietario) {
         if (proprietario.getId() != null) {
             repositorio.delete(proprietario);

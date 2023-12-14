@@ -13,10 +13,18 @@ import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroAgendamento;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroFuncionario;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroPet;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroProprietario;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
 import com.clevervitor.hotelpet.view.dialogs.DlgCadServicos;
+import com.clevervitor.hotelpet.view.dialogs.DlgFilterAgendamento;
+import com.clevervitor.hotelpet.view.dialogs.DlgFilterFuncionario;
+import com.clevervitor.hotelpet.view.dialogs.DlgFilterPet;
+import com.clevervitor.hotelpet.view.dialogs.DlgFilterProprietario;
 import com.clevervitor.hotelpet.view.dialogs.DlgInfoAgendamento;
 import com.clevervitor.hotelpet.view.dialogs.DlgInfoFuncionario;
 import com.clevervitor.hotelpet.view.dialogs.DlgInfoProprietario;
@@ -80,6 +88,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         if (pessoaLogada.getPessoaLogada().getNivelAcesso() != 0) {
             menuConfig.setVisible(false);
         }
+
+        lbFilter.setIcon(utils.resizeImgTolb("/Imagens/filter_white.png", lbFilter));
     }
 
     /**
@@ -115,6 +125,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         tblPets = new javax.swing.JTable();
         abaAgendamentos = new javax.swing.JScrollPane();
         tblAgendamentos = new javax.swing.JTable();
+        lbFilter = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -328,6 +339,14 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         pnlControleGeral.add(pnlComAbas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 770, 221));
 
+        lbFilter.setText("jLabel1");
+        lbFilter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbFilterMouseClicked(evt);
+            }
+        });
+        pnlControleGeral.add(lbFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, 30, 30));
+
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jMenu3.setText("Menu");
@@ -398,7 +417,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         lblBemVindo.setForeground(new Color(187, 187, 187));
 
-        lblNome.setText(funcionarioLogado.getNome()+"!");
+        lblNome.setText(funcionarioLogado.getNome() + "!");
         lblNome.setForeground(new Color(187, 187, 187));
 
         lbEndFunc.setText(funcionarioLogado.getEndereco());
@@ -409,7 +428,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         lbContFunc.setText(funcionarioLogado.getTel());
         lbContFunc.setForeground(new Color(187, 187, 187));
-        
+
         lbTurnoFunc.setText(utils.TurnoToString(funcionarioLogado.getTurno()));
         lbTurnoFunc.setForeground(new Color(187, 187, 187));
 
@@ -436,7 +455,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         cadastroProp.setVisible(true);        // TODO add your handling code here:
 
         proprietarioCont.atualizarTabelaDeProprietarios(tblProprietarios, proprietarioCont.buscarTodosOsProprietarios());
-         funcionarioCont.atualizarTabelaDeFuncionario(tblFuncionarios, funcionarioCont.buscarTodosOsFuncionarios());
+        funcionarioCont.atualizarTabelaDeFuncionario(tblFuncionarios, funcionarioCont.buscarTodosOsFuncionarios());
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -508,7 +527,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     }//GEN-LAST:event_tblPetsMouseClicked
 
     private void tblFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFuncionariosMouseClicked
-         Funcionario funcSelecionado = (Funcionario) getObjetoSelecionadoNaGridDeFuncionarios();
+        Funcionario funcSelecionado = (Funcionario) getObjetoSelecionadoNaGridDeFuncionarios();
 
         if (evt.getClickCount() == 2) {
             DlgInfoFuncionario telaInfoFunc = new DlgInfoFuncionario(new Frame(), true, funcSelecionado);
@@ -518,6 +537,51 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         funcionarioCont.atualizarTabelaDeFuncionario(tblFuncionarios, funcionarioCont.buscarTodosOsFuncionarios());
     }//GEN-LAST:event_tblFuncionariosMouseClicked
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+
+            DlgCadProprietario telaEditarPerfil = new DlgCadProprietario(new Frame(), true, funcionarioLogado);
+            telaEditarPerfil.setVisible(true);
+
+            habilitarCampos();
+
+        } catch (ParseException ex) {
+            Logger.getLogger(FrMainMenuClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void lbFilterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbFilterMouseClicked
+        //FILTRO AQUI
+
+        switch (pnlComAbas.getSelectedIndex()) {
+            case 0:
+                DlgFilterFuncionario filFunc = new DlgFilterFuncionario(new Frame(), true);
+                FiltroFuncionario filterFunc = filFunc.showDialog();
+                funcionarioCont.atualizarTabelaDeFuncionario(tblFuncionarios, funcionarioCont.buscarTodosOsFuncionariosFiltrado(filterFunc));
+                break;
+            case 1:
+                DlgFilterProprietario filProp = new DlgFilterProprietario(new Frame(), true);
+                FiltroProprietario filterProp = filProp.showDialog();
+                proprietarioCont.atualizarTabelaDeProprietarios(tblProprietarios, proprietarioCont.buscarTodosOsProprietariosFiltrados(filterProp));
+                break;
+            case 2:
+                DlgFilterPet filPet = new DlgFilterPet(new Frame(), true);
+                FiltroPet filterPet = filPet.showDialog();
+                petCont.atualizarTabelaDePets(tblPets, petCont.buscarTodosOsPetsFiltrado(filterPet));
+                break;
+            case 3:
+                DlgFilterAgendamento filAge = new DlgFilterAgendamento(new Frame(), true);
+                FiltroAgendamento filterAge = filAge.showDialog();
+                agendamentoCont.atualizarTabelaDeAgendamentos(tblAgendamentos, agendamentoCont.buscarTodosOsAgendamentosFiltrados(filterAge));
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }//GEN-LAST:event_lbFilterMouseClicked
 
     private Object getObjetoSelecionadoNaGridDeAgendamentos() {
         int rowCliked = tblAgendamentos.getSelectedRow();
@@ -536,8 +600,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         }
         return obj;
     }
-    
-     private Object getObjetoSelecionadoNaGridDeFuncionarios() {
+
+    private Object getObjetoSelecionadoNaGridDeFuncionarios() {
         int rowCliked = tblFuncionarios.getSelectedRow();
         Object obj = null;
         if (rowCliked >= 0) {
@@ -572,6 +636,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     private javax.swing.JLabel lbContFunc;
     private javax.swing.JLabel lbDocFunc;
     private javax.swing.JLabel lbEndFunc;
+    private javax.swing.JLabel lbFilter;
     private javax.swing.JLabel lbTurnoFunc;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblContato1;
