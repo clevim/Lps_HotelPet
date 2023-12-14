@@ -9,6 +9,8 @@ import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.emailBodys;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
+import java.awt.Color;
+import java.awt.Cursor;
 
 /**
  *
@@ -29,6 +31,8 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         gSender = new GEmailSender();
         emBds = new emailBodys();
 
+        setTitle("Contato");
+        
         initComponents();
         edtFromEmail.setText(pessoaLogada.getPessoaLogada().getEmail());
     }
@@ -52,7 +56,7 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         edtEmail = new javax.swing.JTextArea();
         edtFromEmail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        BntSend = new javax.swing.JButton();
+        btnEnviar = new com.clevervitor.hotelpet.view.UI.FloatingButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Contato");
@@ -61,7 +65,7 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Fira Sans", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,7 +89,7 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         );
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefones", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Fira Sans", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Telefones", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,7 +134,7 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         );
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enviar Email", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Fira Sans", 0, 13), new java.awt.Color(242, 242, 242))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enviar Email", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(242, 242, 242))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(242, 242, 242));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -145,13 +149,25 @@ loginContexto pessoaLogada = loginContexto.getInstance();
         jLabel1.setText("Remetente:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 25, -1, -1));
 
-        BntSend.setText("Enviar");
-        BntSend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BntSendActionPerformed(evt);
+        btnEnviar.setBorder(null);
+        btnEnviar.setForeground(new java.awt.Color(51, 51, 51));
+        btnEnviar.setText("Atualizar");
+        btnEnviar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        btnEnviar.setRaio(30);
+        btnEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEnviarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEnviarMouseExited(evt);
             }
         });
-        jPanel2.add(BntSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 226, -1, -1));
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 82, 28));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,16 +180,31 @@ loginContexto pessoaLogada = loginContexto.getInstance();
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BntSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BntSendActionPerformed
+    private void btnEnviarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseEntered
+        // TODO add your handling code here:
+        btnEnviar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnEnviar.setBorderColor(new Color(51, 204, 204));
+        btnEnviar.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_btnEnviarMouseEntered
 
+    private void btnEnviarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseExited
+        // TODO add your handling code here:
+        btnEnviar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        btnEnviar.setBorderColor(new Color(255, 255, 255));
+        btnEnviar.setForeground(new Color(51, 51, 51));
+    }//GEN-LAST:event_btnEnviarMouseExited
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        // TODO add your handling code here:
         String msg = edtFromEmail.getText() + "<br>" + edtEmail.getText();
 
         try {
@@ -187,11 +218,11 @@ loginContexto pessoaLogada = loginContexto.getInstance();
             DialMsg.setVisible(true);
         }
 
-    }//GEN-LAST:event_BntSendActionPerformed
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BntSend;
+    private com.clevervitor.hotelpet.view.UI.FloatingButton btnEnviar;
     private javax.swing.JTextArea edtEmail;
     private javax.swing.JTextField edtFromEmail;
     private javax.swing.JLabel jLabel1;

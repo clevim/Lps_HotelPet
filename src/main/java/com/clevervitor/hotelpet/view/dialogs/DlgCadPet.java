@@ -12,6 +12,8 @@ import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.view.FrLogin;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -219,11 +221,11 @@ public class DlgCadPet extends javax.swing.JDialog {
         lblRaca = new javax.swing.JLabel();
         edtRaca = new javax.swing.JTextField();
         lblSexo = new javax.swing.JLabel();
-        btnSalvarPet = new javax.swing.JButton();
-        btnCancelarPet = new javax.swing.JButton();
         pnlDescricaoPet = new javax.swing.JPanel();
         edtObs = new javax.swing.JTextField();
         edtPeso = new javax.swing.JFormattedTextField();
+        btnSalvar = new com.clevervitor.hotelpet.view.UI.FloatingButton();
+        btnCancel = new com.clevervitor.hotelpet.view.UI.FloatingButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -301,24 +303,8 @@ public class DlgCadPet extends javax.swing.JDialog {
         lblSexo.setText("Sexo:");
         panFormulario.add(lblSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 16, -1, -1));
 
-        btnSalvarPet.setText("Salvar");
-        btnSalvarPet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarPetActionPerformed(evt);
-            }
-        });
-        panFormulario.add(btnSalvarPet, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 347, -1, -1));
-
-        btnCancelarPet.setText("Cancelar");
-        btnCancelarPet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarPetActionPerformed(evt);
-            }
-        });
-        panFormulario.add(btnCancelarPet, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 347, -1, -1));
-
         pnlDescricaoPet.setBackground(new java.awt.Color(51, 51, 51));
-        pnlDescricaoPet.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descreva seu pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(153, 255, 153))); // NOI18N
+        pnlDescricaoPet.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descreva seu pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(51, 204, 204))); // NOI18N
 
         edtObs.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
@@ -343,6 +329,47 @@ public class DlgCadPet extends javax.swing.JDialog {
 
         edtPeso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         panFormulario.add(edtPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 140, -1));
+
+        btnSalvar.setBorder(null);
+        btnSalvar.setForeground(new java.awt.Color(51, 51, 51));
+        btnSalvar.setText("Salvar");
+        btnSalvar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        btnSalvar.setRaio(30);
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseExited(evt);
+            }
+        });
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+        panFormulario.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 82, 28));
+
+        btnCancel.setBorder(null);
+        btnCancel.setForeground(new java.awt.Color(51, 51, 51));
+        btnCancel.setText("Cancelar");
+        btnCancel.setColor(new java.awt.Color(153, 153, 153));
+        btnCancel.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        btnCancel.setRaio(30);
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelMouseExited(evt);
+            }
+        });
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        panFormulario.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, 83, 28));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -399,9 +426,40 @@ public class DlgCadPet extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPetActionPerformed
+    private void rbtnMachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMachoActionPerformed
         // TODO add your handling code here:
+        rbtnFemea.setSelected(false);
+    }//GEN-LAST:event_rbtnMachoActionPerformed
 
+    private void edtIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtIdadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtIdadeActionPerformed
+
+    private void edtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtNomeActionPerformed
+
+    private void rbtnFemeaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFemeaActionPerformed
+        // TODO add your handling code here:
+        rbtnMacho.setSelected(false);
+    }//GEN-LAST:event_rbtnFemeaActionPerformed
+
+    private void btnSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseEntered
+        // TODO add your handling code here:
+        btnSalvar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnSalvar.setBorderColor(new Color(51,204,204));
+        btnSalvar.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_btnSalvarMouseEntered
+
+    private void btnSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseExited
+        // TODO add your handling code here:
+        btnSalvar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        btnSalvar.setBorderColor(new Color(255,255,255));
+        btnSalvar.setForeground(new Color(51,51,51));
+    }//GEN-LAST:event_btnSalvarMouseExited
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
         String sexo = null;
         proprietarioLogado = propCont.buscarProprietario(proprietarioLogado.getId());
 
@@ -444,38 +502,35 @@ public class DlgCadPet extends javax.swing.JDialog {
         }
             PetEditando = -1;
             dispose();
-    }//GEN-LAST:event_btnSalvarPetActionPerformed
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void rbtnMachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMachoActionPerformed
+    private void btnCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseEntered
         // TODO add your handling code here:
-        rbtnFemea.setSelected(false);
-    }//GEN-LAST:event_rbtnMachoActionPerformed
+        btnCancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnCancel.setBorderColor(new Color(51,204,204));
+        btnCancel.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_btnCancelMouseEntered
 
-    private void edtIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtIdadeActionPerformed
+    private void btnCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_edtIdadeActionPerformed
+        btnCancel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        btnCancel.setBorderColor(new Color(255,255,255));
+        btnCancel.setForeground(new Color(51,51,51));
+    }//GEN-LAST:event_btnCancelMouseExited
 
-    private void edtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtNomeActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_edtNomeActionPerformed
-
-    private void rbtnFemeaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFemeaActionPerformed
-        // TODO add your handling code here:
-        rbtnMacho.setSelected(false);
-    }//GEN-LAST:event_rbtnFemeaActionPerformed
-
-    private void btnCancelarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPetActionPerformed
         limparCampos();
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarPetActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelarPet;
-    private javax.swing.JButton btnSalvarPet;
+    private com.clevervitor.hotelpet.view.UI.FloatingButton btnCancel;
+    private com.clevervitor.hotelpet.view.UI.FloatingButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField edtEspecie;
     private javax.swing.JTextField edtIdade;

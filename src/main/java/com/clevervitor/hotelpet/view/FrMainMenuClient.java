@@ -59,7 +59,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     ImageIcon imgIcon = null;
 
     public FrMainMenuClient(java.awt.Frame parent, boolean modal, Proprietario proprietario) {
-                super(parent, modal);
+        super(parent, modal);
 
         initComponents();
 
@@ -70,9 +70,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         //com.clevervitor.hotelpet.view.UI.TableActionCellRender[Table.cellRenderer,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=javax.swing.border.EmptyBorder@61a30083,flags=25165832,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=,verticalAlignment=CENTER,verticalTextPosition=CENTER]
         lblNome.setForeground(Color.WHITE);
-        lblEndereco.setForeground(Color.WHITE);
-        lblDocumeto.setForeground(Color.WHITE);
-        lblContato.setForeground(Color.WHITE);
 
         scrollPets.getViewport().setBackground(new Color(51, 51, 51));
         scrollAgendamentos.getViewport().setBackground(new Color(250, 250, 250));
@@ -110,19 +107,22 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             mnLogout.setEnabled(true);
         }
 
+        btnAgendar.setToolTipText("Agendar hospedagem");
+
         preencherLabels();
 
     }
 
     public void preencherLabels() {
-        lblNomeCliente.setText(proprietarioLogado.getNome() + "!");
         lblNomeCliente.setForeground(Color.WHITE);
-        lblEnderecoCliente.setText(proprietarioLogado.getEndereco());
         lblEnderecoCliente.setForeground(Color.WHITE);
-        lblDocCliente.setText(proprietarioLogado.getCpf());
         lblDocCliente.setForeground(Color.WHITE);
-        lblContatoCliente.setText(proprietarioLogado.getTel());
         lblContatoCliente.setForeground(Color.WHITE);
+
+        lblNomeCliente.setText(proprietarioLogado.getNome() + "!");
+        lblEnderecoCliente.setText("End.: " + proprietarioLogado.getEndereco());
+        lblDocCliente.setText("Cpf: " + proprietarioLogado.getCpf());
+        lblContatoCliente.setText("Telefone: " + proprietarioLogado.getTel());
         lbl_img.setIcon(imgIcon);
 
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietarioLogado.getLstPetsPossuidos());
@@ -141,13 +141,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         pnlCliente = new javax.swing.JPanel();
         lblNomeCliente = new javax.swing.JLabel();
-        lblContatoCliente = new javax.swing.JLabel();
-        lblDocCliente = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
-        lblDocumeto = new javax.swing.JLabel();
-        lblContato = new javax.swing.JLabel();
-        lblEndereco = new javax.swing.JLabel();
-        lblEnderecoCliente = new javax.swing.JLabel();
         pnlAgendamentos = new javax.swing.JPanel();
         scrollAgendamentos = new javax.swing.JScrollPane();
         grdAgendamentos = new javax.swing.JTable();
@@ -156,6 +150,10 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         scrollPets = new javax.swing.JScrollPane();
         grdPets = new javax.swing.JTable();
         lbl_img = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblContatoCliente = new javax.swing.JLabel();
+        lblDocCliente = new javax.swing.JLabel();
+        lblEnderecoCliente = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         menuAdicionarPet = new javax.swing.JMenuItem();
@@ -173,31 +171,15 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         pnlCliente.setBackground(new java.awt.Color(51, 51, 51));
 
-        lblNomeCliente.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 24)); // NOI18N
+        lblNomeCliente.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
         lblNomeCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        lblContatoCliente.setFont(new java.awt.Font("Microsoft YaHei UI Light", 1, 14)); // NOI18N
-
-        lblNome.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 24)); // NOI18N
+        lblNome.setFont(new java.awt.Font("Ebrima", 0, 24)); // NOI18N
         lblNome.setForeground(new java.awt.Color(242, 242, 242));
         lblNome.setText("Seja bem-vindo novamente,");
 
-        lblDocumeto.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
-        lblDocumeto.setForeground(new java.awt.Color(242, 242, 242));
-        lblDocumeto.setText("Doc.:");
-
-        lblContato.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
-        lblContato.setForeground(new java.awt.Color(242, 242, 242));
-        lblContato.setText("Contato:");
-
-        lblEndereco.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
-        lblEndereco.setForeground(new java.awt.Color(242, 242, 242));
-        lblEndereco.setText("Endereço:");
-
-        lblEnderecoCliente.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
-
         pnlAgendamentos.setBackground(new java.awt.Color(51, 51, 51));
-        pnlAgendamentos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus agendamentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(204, 204, 204))); // NOI18N
+        pnlAgendamentos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus agendamentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Ebrima", 0, 24), new java.awt.Color(204, 204, 204))); // NOI18N
         pnlAgendamentos.setForeground(new java.awt.Color(204, 204, 204));
 
         scrollAgendamentos.setBackground(new java.awt.Color(160, 160, 160));
@@ -223,7 +205,9 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         scrollAgendamentos.setViewportView(grdAgendamentos);
 
         btnAgendar.setBorder(null);
-        btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ezgif.com-resize_2.gif"))); // NOI18N
+        btnAgendar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/dog-house (2).png"))); // NOI18N
+        btnAgendar.setFocusPainted(false);
         btnAgendar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAgendarMouseEntered(evt);
@@ -244,25 +228,24 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAgendamentosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollAgendamentos, javax.swing.GroupLayout.DEFAULT_SIZE, 997, Short.MAX_VALUE)
+                .addComponent(scrollAgendamentos)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(23, 23, 23))
         );
         pnlAgendamentosLayout.setVerticalGroup(
             pnlAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAgendamentosLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(btnAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(scrollAgendamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pnlPetsCliente.setBackground(new java.awt.Color(51, 51, 51));
-        pnlPetsCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus pets", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(255, 204, 0))); // NOI18N
+        pnlPetsCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus pets", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Ebrima", 1, 24), new java.awt.Color(51, 204, 204))); // NOI18N
 
         scrollPets.setBorder(null);
 
@@ -313,13 +296,32 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         lbl_img.setBackground(new java.awt.Color(160, 160, 160));
         lbl_img.setForeground(new java.awt.Color(242, 242, 242));
         lbl_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_img.setText("Update Avatar");
+        lbl_img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/edit (2).png"))); // NOI18N
         lbl_img.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         lbl_img.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_imgMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbl_imgMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbl_imgMouseExited(evt);
+            }
         });
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setLayout(new java.awt.GridLayout(3, 0, 0, 1));
+
+        lblContatoCliente.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        jPanel1.add(lblContatoCliente);
+
+        lblDocCliente.setFont(new java.awt.Font("Ebrima", 0, 12)); // NOI18N
+        jPanel1.add(lblDocCliente);
+
+        lblEnderecoCliente.setBackground(new java.awt.Color(51, 51, 51));
+        lblEnderecoCliente.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        jPanel1.add(lblEnderecoCliente);
 
         javax.swing.GroupLayout pnlClienteLayout = new javax.swing.GroupLayout(pnlCliente);
         pnlCliente.setLayout(pnlClienteLayout);
@@ -327,64 +329,43 @@ public class FrMainMenuClient extends javax.swing.JDialog {
             pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlAgendamentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlPetsCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlClienteLayout.createSequentialGroup()
+            .addGroup(pnlClienteLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlClienteLayout.createSequentialGroup()
-                        .addComponent(lblEndereco)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblEnderecoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(261, 261, 261))
-                    .addGroup(pnlClienteLayout.createSequentialGroup()
-                        .addComponent(lblDocumeto)
+                        .addComponent(lblNome)
                         .addGap(5, 5, 5)
-                        .addComponent(lblDocCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlClienteLayout.createSequentialGroup()
-                        .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlClienteLayout.createSequentialGroup()
-                                .addComponent(lblNome)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlClienteLayout.createSequentialGroup()
-                                .addComponent(lblContato)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblContatoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         pnlClienteLayout.setVerticalGroup(
             pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlClienteLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlClienteLayout.createSequentialGroup()
+                        .addContainerGap(23, Short.MAX_VALUE)
                         .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblDocumeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblDocCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEnderecoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblContato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblContatoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))
+                    .addGroup(pnlClienteLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(lbl_img, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(pnlAgendamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlPetsCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(160, 160, 160));
+        jMenuBar1.setBackground(new java.awt.Color(40, 40, 40));
         jMenuBar1.setBorder(null);
+        jMenuBar1.setForeground(new java.awt.Color(51, 51, 51));
         jMenuBar1.setToolTipText("");
 
         jMenu3.setForeground(new java.awt.Color(255, 255, 255));
@@ -564,6 +545,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private void btnAgendarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarMouseEntered
         // TODO add your handling code here:
         btnAgendar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnAgendar.setFocusPainted(false);
         btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ezgif.com-resize_2.gif")));
 
     }
@@ -573,7 +555,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAgendarMouseEntered
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
-       DlgCadAgendamento telaAgendamento = new DlgCadAgendamento(new Frame(), true, proprietarioLogado);
+        DlgCadAgendamento telaAgendamento = new DlgCadAgendamento(new Frame(), true, proprietarioLogado);
         telaAgendamento.setVisible(true);
 
         this.proprietarioLogado = propController.buscarProprietario(proprietarioLogado.getId());
@@ -586,14 +568,26 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
             DlgCadProprietario telaEditarPerfil = new DlgCadProprietario(new Frame(), true, proprietarioLogado);
             telaEditarPerfil.setVisible(true);
-            
+
             preencherLabels();
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(FrMainMenuClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_mnEditarPerfilActionPerformed
+
+    private void lbl_imgMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseEntered
+        // TODO add your handling code here:
+        lbl_img.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+    }//GEN-LAST:event_lbl_imgMouseEntered
+
+    private void lbl_imgMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseExited
+        // TODO add your handling code here:
+        lbl_img.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+    }//GEN-LAST:event_lbl_imgMouseExited
 
     /**
      * @param args the command line arguments
@@ -605,12 +599,10 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     private javax.swing.JTable grdPets;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JLabel lblContato;
     private javax.swing.JLabel lblContatoCliente;
     private javax.swing.JLabel lblDocCliente;
-    private javax.swing.JLabel lblDocumeto;
-    private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblEnderecoCliente;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNomeCliente;

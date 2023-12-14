@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -99,6 +100,11 @@ public class FrLogin extends javax.swing.JFrame {
                 edtLoginActionPerformed(evt);
             }
         });
+        edtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                edtLoginKeyPressed(evt);
+            }
+        });
 
         lblPassword.setForeground(new java.awt.Color(242, 242, 242));
         lblPassword.setText("Senha:");
@@ -133,6 +139,11 @@ public class FrLogin extends javax.swing.JFrame {
         edtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtPasswordActionPerformed(evt);
+            }
+        });
+        edtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                edtPasswordKeyPressed(evt);
             }
         });
 
@@ -324,6 +335,20 @@ public class FrLogin extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void edtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtPasswordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnEntrar.doClick();
+        }
+    }//GEN-LAST:event_edtPasswordKeyPressed
+
+    private void edtLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtLoginKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnEntrar.doClick();
+        }
+    }//GEN-LAST:event_edtLoginKeyPressed
 
     /**
      * @param args the command line arguments

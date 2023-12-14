@@ -16,6 +16,8 @@ import com.clevervitor.hotelpet.valid.ValidatePessoa;
 import static com.clevervitor.hotelpet.valid.ValidateUtils.descriptografiaBase64Decode;
 import com.clevervitor.hotelpet.view.FrLogin;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Image;
 import java.io.IOException;
 import java.text.ParseException;
@@ -46,6 +48,10 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     public DlgCadProprietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setBackground(new Color(51, 51, 51));
+        
+        setTitle("Cadastro de Proprietário");
+
         initializeComboBox();
         edtSenha.setEchoChar('\u25cf');
         ToolTipManager.sharedInstance().setInitialDelay(0);
@@ -78,11 +84,13 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
     }
 
-    
-
     public DlgCadProprietario(java.awt.Frame parent, boolean modal, Proprietario prop) throws ParseException {
         super(parent, modal);
         initComponents();
+        setBackground(new Color(51, 51, 51));
+
+
+        
         initializeComboBox();
         ToolTipManager.sharedInstance().setInitialDelay(0);
         Image iconeTitulo = null;
@@ -103,6 +111,10 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         JPanelAdmin.setVisible(false);
 
         this.proprietarioSendoEditado = prop;
+        
+        setTitle("Edição de cadastro de " + prop.getNome());
+
+        
         proprietarioIsEditando = 1;
         proprietarioCont = new ProprietarioController();
         fucionarioCont = new FuncionarioController();
@@ -130,10 +142,12 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         }
 
     }
-    
+
     public DlgCadProprietario(java.awt.Frame parent, boolean modal, Funcionario func) throws ParseException {
         super(parent, modal);
         initComponents();
+        setBackground(new Color(51, 51, 51));
+
         initializeComboBox();
         ToolTipManager.sharedInstance().setInitialDelay(0);
         Image iconeTitulo = null;
@@ -153,6 +167,10 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         JPanelAdmin.setVisible(false);
 
         this.funcionarioSendoEditado = func;
+        
+        setTitle("Edição de cadastro de " + func.getNome());
+        
+        
         proprietarioCont = new ProprietarioController();
         fucionarioCont = new FuncionarioController();
         utils = new utils();
@@ -248,7 +266,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         cbxTurno.setEnabled(true);
     }
 
-    
     public void habilitaFuncAdmin() {
         edtCidade.setEnabled(true);
         edtCpf.setEnabled(true);
@@ -365,12 +382,12 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         edtDataNascimento = new com.toedter.calendar.JDateChooser();
         img_eye = new javax.swing.JLabel();
         edtSenha = new javax.swing.JPasswordField();
-        jPanel3 = new javax.swing.JPanel();
-        btnCancelar = new javax.swing.JButton();
-        btnSalvar = new javax.swing.JButton();
+        btnCancel = new com.clevervitor.hotelpet.view.UI.FloatingButton();
+        btnSalvar = new com.clevervitor.hotelpet.view.UI.FloatingButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Pessoa");
+        setBackground(new java.awt.Color(51, 51, 51));
 
         formCadProprietario.setBackground(new java.awt.Color(51, 51, 51));
         formCadProprietario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 1, 24), new java.awt.Color(242, 242, 242))); // NOI18N
@@ -484,10 +501,15 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         formCadProprietario.add(edtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 160, -1));
 
         try {
-            edtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+            edtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        edtTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtTelefoneActionPerformed(evt);
+            }
+        });
         formCadProprietario.add(edtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 160, -1));
 
         edtDataNascimento.setDateFormatString("dd/MM/yyyy");
@@ -504,49 +526,113 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         formCadProprietario.add(img_eye, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 20, 20));
         formCadProprietario.add(edtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 170, -1));
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+        btnCancel.setBorder(null);
+        btnCancel.setForeground(new java.awt.Color(51, 51, 51));
+        btnCancel.setText("Cancelar");
+        btnCancel.setColor(new java.awt.Color(153, 153, 153));
+        btnCancel.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        btnCancel.setRaio(30);
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelMouseExited(evt);
             }
         });
-        jPanel3.add(btnCancelar);
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
+        btnSalvar.setBorder(null);
+        btnSalvar.setForeground(new java.awt.Color(51, 51, 51));
         btnSalvar.setText("Salvar");
+        btnSalvar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        btnSalvar.setRaio(30);
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseExited(evt);
+            }
+        });
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnSalvar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(formCadProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(209, 209, 209))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(formCadProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void jRadioFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioFuncionarioActionPerformed
+        jRadioClient.setSelected(false);
+        jPanelFunc.setVisible(true);
+    }//GEN-LAST:event_jRadioFuncionarioActionPerformed
 
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    private void jRadioClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioClientActionPerformed
+        jRadioFuncionario.setSelected(false);
+        jPanelFunc.setVisible(false);
+    }//GEN-LAST:event_jRadioClientActionPerformed
+
+    private void cbxTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTurnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxTurnoActionPerformed
+
+    private void img_eyeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_img_eyeMouseClicked
+        if (Show_Hide == 0) {
+            edtSenha.setEchoChar((char) 0);
+            img_eye.setIcon(utils.resizeImgTolb("/Imagens/show_white.png", img_eye));
+            Show_Hide = 1;
+        } else if (Show_Hide == 1) {
+            edtSenha.setEchoChar('\u25cf');
+            img_eye.setIcon(utils.resizeImgTolb("/Imagens/hide_white.png", img_eye));
+            Show_Hide = 0;
+        }
+
+    }//GEN-LAST:event_img_eyeMouseClicked
+
+    private void btnSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseEntered
+        // TODO add your handling code here:
+        btnSalvar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnSalvar.setBorderColor(new Color(153, 153, 153));
+        btnSalvar.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_btnSalvarMouseEntered
+
+    private void btnSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseExited
+        // TODO add your handling code here:
+        btnSalvar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        btnSalvar.setBorderColor(new Color(255, 255, 255));
+        btnSalvar.setForeground(new Color(51, 51, 51));
+    }//GEN-LAST:event_btnSalvarMouseExited
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
@@ -559,10 +645,10 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         boolean isValidEmail = utils.isValidEmailAddress(edtEmail.getText());
         boolean isValidCpf = utils.isValidCpf(edtCpf.getText());
         boolean isValidPass = utils.isValidPassword(edtSenha.getText());
-        
+
         ExistEmail = new ValidatePessoa().ValidaFormPessoaEmail(edtEmail.getText(), -1);
         ExistCpf = new ValidatePessoa().ValidaFormPessoaCpf(edtCpf.getText(), -1);
-        
+
         if (funcionarioIsEditando > 0) {
             ExistEmail = new ValidatePessoa().ValidaFormPessoaEmail(edtEmail.getText(), funcionarioSendoEditado.getId());
             ExistCpf = new ValidatePessoa().ValidaFormPessoaCpf(edtCpf.getText(), funcionarioSendoEditado.getId());
@@ -653,46 +739,41 @@ public class DlgCadProprietario extends javax.swing.JDialog {
             ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Cpf Invalido!");
             DialMsg.setVisible(true);
         } else if (ExistCpf || ExistEmail) {
-            if(ExistCpf){
-            edtCpf.setText(null);
-            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Cpf já cadastrado!");
-            DialMsg.setVisible(true);
-            }else if(ExistEmail){
-            edtEmail.setText(null);
-            ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Email já cadastrado !");
-            DialMsg.setVisible(true);
+            if (ExistCpf) {
+                edtCpf.setText(null);
+                ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Cpf já cadastrado!");
+                DialMsg.setVisible(true);
+            } else if (ExistEmail) {
+                edtEmail.setText(null);
+                ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "Email já cadastrado !");
+                DialMsg.setVisible(true);
             }
-        } 
-
+        }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void jRadioFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioFuncionarioActionPerformed
-        jRadioClient.setSelected(false);
-        jPanelFunc.setVisible(true);
-    }//GEN-LAST:event_jRadioFuncionarioActionPerformed
-
-    private void jRadioClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioClientActionPerformed
-        jRadioFuncionario.setSelected(false);
-        jPanelFunc.setVisible(false);
-    }//GEN-LAST:event_jRadioClientActionPerformed
-
-    private void cbxTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTurnoActionPerformed
+    private void btnCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxTurnoActionPerformed
+        btnCancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnCancel.setBorderColor(new Color(51, 204, 204));
+        btnCancel.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_btnCancelMouseEntered
 
-    private void img_eyeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_img_eyeMouseClicked
-        if (Show_Hide == 0) {
-            edtSenha.setEchoChar((char) 0);
-            img_eye.setIcon(utils.resizeImgTolb("/Imagens/show_white.png", img_eye));
-            Show_Hide = 1;
-        } else if (Show_Hide == 1) {
-            edtSenha.setEchoChar('\u25cf');
-            img_eye.setIcon(utils.resizeImgTolb("/Imagens/hide_white.png", img_eye));
-            Show_Hide = 0;
-        }
+    private void btnCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseExited
+        // TODO add your handling code here:
+        btnCancel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        btnCancel.setBorderColor(new Color(255, 255, 255));
+        btnCancel.setForeground(new Color(51, 51, 51));
+    }//GEN-LAST:event_btnCancelMouseExited
 
-    }//GEN-LAST:event_img_eyeMouseClicked
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void edtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtTelefoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -700,8 +781,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanelAdmin;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnSalvar;
+    private com.clevervitor.hotelpet.view.UI.FloatingButton btnCancel;
+    private com.clevervitor.hotelpet.view.UI.FloatingButton btnSalvar;
     private javax.swing.JComboBox<String> cbxSexo;
     private javax.swing.JComboBox<String> cbxTurno;
     private javax.swing.JTextField edtCidade;
@@ -726,7 +807,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelFunc;
     private javax.swing.JRadioButton jRadioClient;
     private javax.swing.JRadioButton jRadioFuncionario;

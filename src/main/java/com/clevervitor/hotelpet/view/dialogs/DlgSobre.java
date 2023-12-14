@@ -16,6 +16,8 @@ public class DlgSobre extends javax.swing.JDialog {
     public DlgSobre(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        setTitle("Sobre o Pet Hotel");
     }
 
     /**
@@ -40,11 +42,11 @@ public class DlgSobre extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/logoBranca.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, -10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(242, 242, 242));
         jLabel2.setText("<html>\n<body>\n    <p><em><b>Desenvolvido por Cléver e Vitor para a Disciplina de LPS</b></em></p><br>\n    <p>Este Sistema de Gestão para Hotel Pet, criado por Cléver e Vitor como parte da disciplina de Linguagens de Programação e Sistemas, oferece uma solução prática e eficiente para gerenciar as operações diárias de um hotel dedicado a animais de estimação.</p>\n</body>\n</html>"); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 147, 378, 129));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 380, 129));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
