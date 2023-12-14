@@ -186,7 +186,7 @@ public class DlgInfoProprietario extends javax.swing.JDialog {
         lbl_img.setBackground(new java.awt.Color(160, 160, 160));
         lbl_img.setForeground(new java.awt.Color(242, 242, 242));
         lbl_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_img.setText("Update Avatar");
+        lbl_img.setText("Carregar Imagem");
         lbl_img.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         lbl_img.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

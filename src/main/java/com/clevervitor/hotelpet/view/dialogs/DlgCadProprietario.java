@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.view.dialogs;
 
+import com.clevervitor.hotelpet.connection.GEmailSender;
 import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.controller.FuncionarioController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
@@ -11,6 +12,7 @@ import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.model.enums.Sexo;
 import com.clevervitor.hotelpet.model.enums.Turno;
+import com.clevervitor.hotelpet.utils.emailBodys;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.valid.ValidatePessoa;
 import static com.clevervitor.hotelpet.valid.ValidateUtils.descriptografiaBase64Decode;
@@ -44,12 +46,14 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     int funcionarioIsEditando = -1;
     utils utils;
     int Show_Hide = 0;
+    GEmailSender sendertest = new GEmailSender();
+    emailBodys emBd = new emailBodys();
 
     public DlgCadProprietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setBackground(new Color(51, 51, 51));
-        
+
         setTitle("Cadastro de Proprietário");
 
         initializeComboBox();
@@ -89,8 +93,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         initComponents();
         setBackground(new Color(51, 51, 51));
 
-
-        
         initializeComboBox();
         ToolTipManager.sharedInstance().setInitialDelay(0);
         Image iconeTitulo = null;
@@ -111,10 +113,9 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         JPanelAdmin.setVisible(false);
 
         this.proprietarioSendoEditado = prop;
-        
+
         setTitle("Edição de cadastro de " + prop.getNome());
 
-        
         proprietarioIsEditando = 1;
         proprietarioCont = new ProprietarioController();
         fucionarioCont = new FuncionarioController();
@@ -167,10 +168,9 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         JPanelAdmin.setVisible(false);
 
         this.funcionarioSendoEditado = func;
-        
+
         setTitle("Edição de cadastro de " + func.getNome());
-        
-        
+
         proprietarioCont = new ProprietarioController();
         fucionarioCont = new FuncionarioController();
         utils = new utils();
@@ -663,6 +663,11 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                         fucionarioCont.atualizarFuncionario(func);
                         ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Funcioario Atualizado com sucesso!!");
                         DialMsg.setVisible(true);
+                        try {
+                            sendertest.sendEmail(func.getEmail(), "Sua Conta teve mudanças!", emBd.emailCat("Seu perfil foi atualizado!"));
+                        } catch (Exception ex) {
+                            System.err.println(ex);;
+                        }
 
                         dispose();
 
@@ -676,6 +681,11 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                         fucionarioCont.cadastrarFuncionario(func);
                         ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Funcioario Cadastrado com sucesso!!");
                         DialMsg.setVisible(true);
+                        try {
+                            sendertest.sendEmail(func.getEmail(), "Bem Vindo a familia!", emBd.emailDog2("Seja Bem vindo" + func.getNome() + "!"));
+                        } catch (Exception ex) {
+                            System.err.println(ex);;
+                        }
                         dispose();
                     } catch (Exception e) {
                         ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
@@ -696,6 +706,11 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                         proprietarioCont.atualizarProprietario(prop);
                         ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Proprietario Atualizado com sucesso!!");
                         DialMsg.setVisible(true);
+                        try {
+                            sendertest.sendEmail(prop.getEmail(), "Sua Conta teve mudanças!", emBd.emailCat("Seu perfil foi atualizado!"));
+                        } catch (Exception ex) {
+                            System.err.println(ex);;
+                        }
                         dispose();
                     } catch (Exception e) {
                         ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");
@@ -706,6 +721,11 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                         proprietarioCont.cadastrarProprietario(prop);
                         ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Proprietario Cadastrado com sucesso!!");
                         DialMsg.setVisible(true);
+                        try {
+                            sendertest.sendEmail(prop.getEmail(), "Bem Vindo a familia!", emBd.emailDog1("Seja Bem vindo" + prop.getNome() + "!"));
+                        } catch (Exception ex) {
+                            System.err.println(ex);;
+                        }
                         dispose();
                     } catch (Exception e) {
                         ShowMessageDialog DialMsg = new ShowMessageDialog("Erro", "!!!Falha ao cadastrar!!!");

@@ -57,16 +57,9 @@ public class HotelPet {
         TLogin.setTitle("Login");
         TLogin.setVisible(true);
 
-        GEmailSender sendertest = new GEmailSender();
 
-        emailBodys emBd = new emailBodys();
         sC.initServicos();
 
-        //emBd.emailComprovante(null);
-        //sendertest.sendEmail("vitorpereiroli@gmail.com", "Hotel pet Comprovante de Reserva", emBd.emailComprovante(null));
-        //sendertest.sendEmail("vitorpereiroli@gmail.com", "Hotel pet html 1", emBd.emailCat("TESTE GATO"));
-//            sendertest.sendEmail("vitorpereiroli@gmail.com", "Hotel pet html 2", emBd.emailDog1("TESTE DOG 1"));
-//            sendertest.sendEmail("vitorpereiroli@gmail.com", "Hotel pet html 3", emBd.emailDog2("TESTE DOG 2"));
 
 
 //----------------------------------------Permanece no Main depois--------------------------

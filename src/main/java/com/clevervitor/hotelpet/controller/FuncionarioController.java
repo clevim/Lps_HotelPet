@@ -15,6 +15,7 @@ import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroFuncionario;
 import com.clevervitor.hotelpet.utils.emailBodys;
 import com.clevervitor.hotelpet.valid.ValidateFuncionario;
 import java.util.List;
@@ -71,6 +72,10 @@ public class FuncionarioController {
 
     public List<Funcionario> buscarTodosOsFuncionarios() {
         return (List<Funcionario>) this.repositorio.findAll();
+    }
+    
+    public List<Funcionario> buscarTodosOsFuncionariosFiltrado(FiltroFuncionario filter) {
+        return (List<Funcionario>) this.repositorio.findAllFilter(filter);
     }
 
     public void atualizarFuncionario(Funcionario editFuncionario) {

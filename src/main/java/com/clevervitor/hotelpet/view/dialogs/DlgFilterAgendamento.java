@@ -4,11 +4,31 @@
  */
 package com.clevervitor.hotelpet.view.dialogs;
 
+import com.clevervitor.hotelpet.controller.AgendamentoController;
+import com.clevervitor.hotelpet.model.entities.Agendamento;
+import com.clevervitor.hotelpet.model.entities.Pet;
+import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroAgendamento;
+import com.clevervitor.hotelpet.model.enums.Services;
+import com.clevervitor.hotelpet.model.enums.Status;
+import com.clevervitor.hotelpet.utils.utils;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author ifmaker
  */
 public class DlgFilterAgendamento extends javax.swing.JDialog {
+
+    FiltroAgendamento filter;
+    AgendamentoController ageCtlr = new AgendamentoController();
+    List<Pet> lstPets = new ArrayList<>();
+    List<Proprietario> lstProp = new ArrayList<>();
 
     /**
      * Creates new form DlgFilterAgendamento
@@ -16,6 +36,26 @@ public class DlgFilterAgendamento extends javax.swing.JDialog {
     public DlgFilterAgendamento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        List<Agendamento> lstage = ageCtlr.buscarTodosOsAgendamentos();
+
+        for (Agendamento a : lstage) {
+
+            if (!lstPets.contains(a.getPetAgendado().getNome())) {
+                lstPets.add(a.getPetAgendado());
+            }
+            if (!lstProp.contains(a.getProprietarioResp().getNome())) {
+                lstProp.add(a.getProprietarioResp());
+            }
+
+        }
+        preenchereCampos();
+        limparCampos();
+
+    }
+
+    public FiltroAgendamento showDialog() {
+        this.setVisible(true);
+        return filter;
     }
 
     /**
@@ -28,74 +68,120 @@ public class DlgFilterAgendamento extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cbxPetAgendado = new javax.swing.JComboBox<>();
+        cbxPropAgendado = new javax.swing.JComboBox<>();
+        dateCheckIn = new com.toedter.calendar.JDateChooser();
+        dateCheckOut = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnLimpar = new javax.swing.JButton();
         btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Filtro Agendamento");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtros", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setText("jTextField1");
+        cbxPetAgendado.setEnabled(false);
 
-        jTextField2.setText("jTextField2");
+        cbxPropAgendado.setEnabled(false);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dateCheckIn.setBackground(new java.awt.Color(160, 160, 160));
+        dateCheckIn.setForeground(new java.awt.Color(255, 255, 255));
+        dateCheckIn.setDate(getMinCheckIn());
+        dateCheckIn.setDateFormatString("dd/MM/yyyy");
+        dateCheckIn.setEnabled(false);
+        dateCheckIn.setMaxSelectableDate(null);
+        dateCheckIn.setMinSelectableDate(getMinCheckIn());
+        dateCheckIn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateCheckInPropertyChange(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dateCheckOut.setDate(getMinCheckOut());
+        dateCheckOut.setDateFormatString("dd/MM/yyyy");
+        dateCheckOut.setEnabled(false);
+        dateCheckOut.setMaxSelectableDate(getMaxCheckOut());
+        dateCheckOut.setMinSelectableDate(getMinCheckOut());
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Data Check In");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Data Check Out");
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Pet:");
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Proprietario:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cbxPetAgendado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
                 .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cbxPropAgendado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(cbxPetAgendado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxPropAgendado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         btnFiltrar.setText("Filtrar");
+        btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -134,23 +220,95 @@ public class DlgFilterAgendamento extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void dateCheckInPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateCheckInPropertyChange
+
+    }//GEN-LAST:event_dateCheckInPropertyChange
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_btnLimparActionPerformed
+    public void preenchereCampos() {
+
+        for (Pet s : lstPets) {
+            cbxPetAgendado.addItem(s.getNome());
+        }
+        for (Proprietario s : lstProp) {
+            cbxPropAgendado.addItem(s.getNome());
+        }
+
+    }
+
+    public void limparCampos() {
+        dateCheckIn.setDate(null);
+        dateCheckOut.setDate(null);
+        cbxPetAgendado.setSelectedItem(null);
+        cbxPropAgendado.setSelectedItem(null);
+        filter = new FiltroAgendamento();
+    }
+    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        Integer petId = -1;
+        Integer propId = -1;
+        String dCheckIn = dateCheckIn.getDate() == null ? "" : new SimpleDateFormat("dd/MM/yyyy").format(dateCheckIn.getDate());
+        String dCheckOut = dateCheckOut.getDate() == null ? "" : new SimpleDateFormat("dd/MM/yyyy").format(dateCheckOut.getDate());
+
+        for (Pet p : lstPets) {
+            if (cbxPetAgendado.getSelectedItem() != null && p.getNome().compareTo(cbxPetAgendado.getSelectedItem().toString()) == 0) {
+                petId = p.getId();
+            }
+        }
+
+        for (Proprietario prop : lstProp) {
+            if (cbxPropAgendado.getSelectedItem() != null && prop.getNome().compareTo(cbxPropAgendado.getSelectedItem().toString()) == 0) {
+                propId = prop.getId();
+            }
+        }
+
+        filter = new FiltroAgendamento(dCheckIn, dCheckOut, petId, propId);
+        this.dispose();
+    }//GEN-LAST:event_btnFiltrarActionPerformed
+    public Date getMinCheckIn() {
+        Calendar c = Calendar.getInstance();
+
+        Date minCheckin = c.getTime();
+
+        return minCheckin;
+    }
+
+    public Date getMinCheckOut() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        Date minCheckout = c.getTime();
+
+        return minCheckout;
+    }
+
+    public Date getMaxCheckOut() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_YEAR, 30);
+        Date maxCheckout = c.getTime();
+
+        return maxCheckout;
+    }
     /**
      * @param args the command line arguments
      */
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> cbxPetAgendado;
+    private javax.swing.JComboBox<String> cbxPropAgendado;
+    private com.toedter.calendar.JDateChooser dateCheckIn;
+    private com.toedter.calendar.JDateChooser dateCheckOut;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,6 +20,10 @@ import static com.clevervitor.hotelpet.model.enums.Services.MASSAGEM;
 import static com.clevervitor.hotelpet.model.enums.Services.NULL;
 import static com.clevervitor.hotelpet.model.enums.Services.TOSA;
 import com.clevervitor.hotelpet.model.enums.Sexo;
+import static com.clevervitor.hotelpet.model.enums.Sexo.F;
+import static com.clevervitor.hotelpet.model.enums.Sexo.M;
+import static com.clevervitor.hotelpet.model.enums.Sexo.NAOIDENT;
+import static com.clevervitor.hotelpet.model.enums.Sexo.NULL;
 import com.clevervitor.hotelpet.model.enums.Status;
 import static com.clevervitor.hotelpet.model.enums.Status.AGENDADO;
 import static com.clevervitor.hotelpet.model.enums.Status.ATIVO;
@@ -277,6 +281,23 @@ public class utils {
 
     }
       
+            public static Integer TurnoToInt(Turno t) {
+
+         switch (t) {
+            case NULL:
+                return 0;
+            case MANHA:
+                return 1;
+            case TARDE:
+                return 2;
+            case NOITE:
+                return 3;
+            default:
+                throw new AssertionError();
+        }
+
+    }
+      
         public static Turno StringToTurno(String t) {
 
          switch (t) {
@@ -310,6 +331,24 @@ public class utils {
         }
 
     }
+              
+                      
+              public static Integer SexoToInt(Sexo s) {
+
+         switch (s) {
+            case NAOIDENT:
+                return 1;
+            case F:
+                return 2;
+            case M:
+                return 3;
+            case NULL:
+                return 0;
+            default:
+                throw new AssertionError();
+        }
+
+    }
       
         public static Sexo StringToSexo(String s) {
 
@@ -328,6 +367,8 @@ public class utils {
         }
 
     }
+        
+        
 
     public static String ServicesToString(Services s) {
 

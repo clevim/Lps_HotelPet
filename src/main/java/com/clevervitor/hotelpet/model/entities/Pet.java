@@ -37,7 +37,7 @@ public class Pet {
     @Column(columnDefinition = "LONGBLOB", nullable = true)
     private byte[] avatarPet;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "propietario_id")
     private Proprietario proprietario;
 

@@ -12,6 +12,7 @@ import com.clevervitor.hotelpet.model.dao.AgendamentoDAO;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroAgendamento;
 import com.clevervitor.hotelpet.valid.ValidateAgendamento;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -75,6 +76,10 @@ public class AgendamentoController {
 
     public List<Agendamento> buscarTodosOsAgendamentos() {
         return (List<Agendamento>) this.repositorio.findAll();
+    }
+    
+    public List<Agendamento> buscarTodosOsAgendamentosFiltrados(FiltroAgendamento filter) {
+        return (List<Agendamento>) this.repositorio.findAllFilter(filter);
     }
 
     public Agendamento buscarAgendamentoPorProprietario(Proprietario proprietario) {

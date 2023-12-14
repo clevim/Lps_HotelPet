@@ -476,7 +476,7 @@ public class DlgCadPet extends javax.swing.JDialog {
 
         if (PetEditando > 0) {
 
-            Pet petEditado = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText().replace(",", ".")), edtObs.getText(), proprietarioLogado);
+            Pet petEditado = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.valueOf(edtIdade.getText()), sexo, Double.valueOf(edtPeso.getText().replace(",", ".")), edtObs.getText(), proprietarioLogado);
             
             petEditado.setId(petSendoEditado.getId());
             petEditado.setAvatarPet(petSendoEditado.getAvatarPet());
@@ -488,7 +488,7 @@ public class DlgCadPet extends javax.swing.JDialog {
 
         } else {
             try {
-                Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.parseInt(edtIdade.getText()), sexo, Double.parseDouble(edtPeso.getText().replace(",", ".")), edtObs.getText(), proprietarioLogado);
+                Pet novoPet = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.valueOf(edtIdade.getText()), sexo, Double.valueOf(edtPeso.getText().replace(",", ".")), edtObs.getText(), proprietarioLogado);
 
                 petController.cadastrarPet(novoPet);
 

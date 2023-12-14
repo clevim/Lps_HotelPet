@@ -4,6 +4,7 @@
  */
 package com.clevervitor.hotelpet.view.dialogs;
 
+import com.clevervitor.hotelpet.connection.GEmailSender;
 import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.controller.AgendamentoController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
@@ -19,6 +20,7 @@ import static com.clevervitor.hotelpet.model.enums.Services.DIARIA;
 import static com.clevervitor.hotelpet.model.enums.Services.MASSAGEM;
 import static com.clevervitor.hotelpet.model.enums.Services.TOSA;
 import com.clevervitor.hotelpet.model.enums.Status;
+import com.clevervitor.hotelpet.utils.emailBodys;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
 import java.awt.Color;
@@ -60,6 +62,8 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     List<Servicos> lstSelectServi;
     ServicosDAO servicoDAO;
     int agendamentoIsEditando;
+    GEmailSender sendertest = new GEmailSender();
+        emailBodys emBd = new emailBodys();
 
     loginContexto pessoaLogada = loginContexto.getInstance();
 
@@ -70,9 +74,9 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         AgendamentoController = new AgendamentoController();
         agendamentoIsEditando = -1;
         proprietarioLogado = proprietario;
-        
+
         setTitle("Edição de agendamento de " + proprietarioLogado.getNome());
-        
+
         propCont = new ProprietarioController();
         petSelcionado = new Pet();
         lstPetsSelecionados = new Pet();
@@ -839,19 +843,20 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     private void btnSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseEntered
         // TODO add your handling code here:
         btnSalvar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnSalvar.setBorderColor(new Color(51,204,204));
-        btnSalvar.setForeground(new Color(255,255,255));
+        btnSalvar.setBorderColor(new Color(51, 204, 204));
+        btnSalvar.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnSalvarMouseEntered
 
     private void btnSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseExited
         // TODO add your handling code here:
         btnSalvar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        btnSalvar.setBorderColor(new Color(255,255,255));
-        btnSalvar.setForeground(new Color(51,51,51));
+        btnSalvar.setBorderColor(new Color(255, 255, 255));
+        btnSalvar.setForeground(new Color(51, 51, 51));
     }//GEN-LAST:event_btnSalvarMouseExited
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
+        
         String dCheckIn = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckIn.getDate());
         String dCheckOut = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckOut.getDate());
         Status status = utils.checkStatus(dateCheckIn.getDate(), dateCheckOut.getDate());
@@ -861,12 +866,21 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         if (agendamentoIsEditando > 0) {
 
             Agendamento agendamentoEdit = new Agendamento(dCheckIn, dCheckOut, servs, proprietarioLogado, lstPetsSelecionados, 0.0, status);
-
+            try {
+                agendamentoEdit.setValor(utils.calcTotalAgendamento(agendamentoEdit));
+            } catch (ParseException ex) {
+                Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+            }
             agendamentoEdit.setId(agendamentoSendoEditado.getId());
 
             AgendamentoController.atualizarAgendamento(agendamentoEdit);
             ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Agendamento Atualizado!!");
             DialMsg.setVisible(true);
+                        try {
+                sendertest.sendEmail(agendamentoEdit.getProprietarioResp().getEmail(), "Comprovante de mudanças no agendamento!", emBd.emailComprovante(agendamentoEdit));
+            } catch (ParseException ex) {
+                Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } else {
 
@@ -888,6 +902,13 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
             AgendamentoController.cadastrarAgendamento(novoAgendamento);
             ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Agendamento Feito");
             DialMsg.setVisible(true);
+            
+            try {
+                sendertest.sendEmail(novoAgendamento.getProprietarioResp().getEmail(), "Comprovante de agendamento!", emBd.emailComprovante(novoAgendamento));
+            } catch (ParseException ex) {
+                Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ 
         }
 
         agendamentoIsEditando = -1;
@@ -903,16 +924,16 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
     private void btnCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseEntered
         // TODO add your handling code here:
-       btnCancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnCancel.setBorderColor(new Color(51,204,204));
-        btnCancel.setForeground(new Color(255,255,255));
+        btnCancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnCancel.setBorderColor(new Color(51, 204, 204));
+        btnCancel.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnCancelMouseEntered
 
     private void btnCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseExited
         // TODO add your handling code here:
         btnCancel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        btnCancel.setBorderColor(new Color(255,255,255));
-        btnCancel.setForeground(new Color(51,51,51));
+        btnCancel.setBorderColor(new Color(255, 255, 255));
+        btnCancel.setForeground(new Color(51, 51, 51));
     }//GEN-LAST:event_btnCancelMouseExited
 
     /**

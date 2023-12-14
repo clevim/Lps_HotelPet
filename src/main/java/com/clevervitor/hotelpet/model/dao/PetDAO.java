@@ -14,6 +14,7 @@ import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.dao.contracts.Dao;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroPet;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -59,6 +60,88 @@ public class PetDAO extends Dao<Pet> {
 
             List lstPets = qry.getResultList();
             return lstPets;
+        } catch (PetException msg) {
+            throw new PetException("Erro ao retornar lista de Pets.");
+        } finally {
+            super.entityManager.close();
+        }
+    }
+    
+ public List<Pet> findAllFilter(FiltroPet filter) { 
+        try { 
+            super.entityManager = DatabaseJPA.getInstance().getEntityManager(); 
+ 
+            jpql = "SELECT p " 
+                    + "FROM Pet p " 
+                    + "WHERE 1=1 "; 
+ 
+            if (filter.getNome() != null && !filter.getNome().isEmpty()) { 
+                jpql += "AND UPPER(p.nome) LIKE UPPER(:nome) "; 
+            } 
+ 
+            if (filter.getRaca() != null && !filter.getRaca().isEmpty()) { 
+                jpql += "AND UPPER(p.raca) LIKE UPPER(:raca) "; 
+            } 
+ 
+            if (filter.getProprietario_id() != null && filter.getProprietario_id() != -1) { 
+                jpql += "AND p.propietario_id == :proprietario_id "; 
+            } 
+ 
+            if (filter.getPesoIn() != null && !filter.getPesoIn().isEmpty()) { 
+                jpql += "AND p.peso >= :pesoIn "; 
+            } 
+ 
+            if (filter.getPesoOut() != null && !filter.getPesoOut().isEmpty()) { 
+                jpql += "AND p.peso <= :pesoOut "; 
+            } 
+ 
+            if (filter.getIdadeIn() != null && !filter.getIdadeIn().isEmpty()) { 
+                jpql += "AND p.idade >= :idadeIn "; 
+            } 
+ 
+            if (filter.getIdadeOut() != null && !filter.getIdadeOut().isEmpty()) { 
+                jpql += "AND p.idade <= :idadeOut "; 
+            } 
+ 
+            if (filter.getEspecie() != null && !filter.getEspecie().isEmpty()) { 
+                jpql += "AND UPPER(p.especie) LIKE UPPER(:especie) "; 
+            } 
+ 
+            qry = super.entityManager.createQuery(jpql, Pet.class); 
+            if (filter.getNome() != null && !filter.getNome().isEmpty()) { 
+                qry.setParameter("nome", "%" + filter.getNome() + "%"); 
+            } 
+ 
+            if (filter.getRaca() != null && !filter.getRaca().isEmpty()) { 
+                qry.setParameter("raca", "%" + filter.getRaca() + "%"); 
+            } 
+ 
+            if (filter.getProprietario_id() != null && filter.getProprietario_id() != -1) { 
+                qry.setParameter("proprietario_id", filter.getProprietario_id()); 
+            } 
+ 
+            if (filter.getPesoIn() != null && !filter.getPesoIn().isEmpty()) { 
+                qry.setParameter("pesoIn", Double.valueOf(filter.getPesoIn())); 
+            } 
+ 
+            if (filter.getPesoOut() != null && !filter.getPesoOut().isEmpty()) { 
+                qry.setParameter("pesoOut", Double.valueOf(filter.getPesoOut())); 
+            } 
+ 
+            if (filter.getIdadeIn() != null && !filter.getIdadeIn().isEmpty()) { 
+                qry.setParameter("idadeIn", Integer.valueOf(filter.getIdadeIn())); 
+            } 
+ 
+            if (filter.getIdadeOut() != null && !filter.getIdadeOut().isEmpty()) { 
+                qry.setParameter("idadeOut", Integer.valueOf(filter.getIdadeOut())); 
+            } 
+ 
+            if (filter.getEspecie() != null && !filter.getEspecie().isEmpty()) { 
+                qry.setParameter("especie", "%" + filter.getEspecie() + "%"); 
+            } 
+ 
+            List lstPets = qry.getResultList(); 
+            return lstPets; 
         } catch (PetException msg) {
             throw new PetException("Erro ao retornar lista de Pets.");
         } finally {

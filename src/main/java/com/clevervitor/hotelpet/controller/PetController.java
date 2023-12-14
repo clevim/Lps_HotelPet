@@ -10,6 +10,7 @@ import com.clevervitor.hotelpet.model.dao.PetDAO;
 import com.clevervitor.hotelpet.model.entities.Agendamento;
 import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroPet;
 import com.clevervitor.hotelpet.valid.ValidatePet;
 import java.util.List;
 import javax.swing.JTable;
@@ -69,6 +70,10 @@ public class PetController {
     public List<Pet> buscarTodosOsPets() {
         return (List<Pet>) this.repositorio.findAll();
     }
+    
+      public List<Pet> buscarTodosOsPetsFiltrado(FiltroPet filter) {
+        return (List<Pet>) this.repositorio.findAllFilter(filter);
+    }
 
     /*public void atualizarTabela(JTable grd) {
         List<Object> lst = repositorio.findAll();
@@ -78,6 +83,7 @@ public class PetController {
     }*/
 
     public void excluirPet(Pet pet) {
+        pet.getProprietario().getLstPetsPossuidos().remove(pet);
         if (pet.getId() != null) {
             repositorio.delete(pet);
         } else {

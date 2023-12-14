@@ -699,7 +699,7 @@ public class emailBodys {
 
     public String emailComprovante(Agendamento reserva) throws ParseException {
         Date d = new Date();
-        List<Servicos> servs = (List<Servicos>) reserva.getServicosAdicionais();
+        List<Servicos> servs =  new ArrayList<>(reserva.getServicosAdicionais());
 //        List<Servicos> servs = new ArrayList<>();
 //        servs.add(new Servicos("Diaria", 10.00));
 //        servs.add(new Servicos("Massagem", 20.00));

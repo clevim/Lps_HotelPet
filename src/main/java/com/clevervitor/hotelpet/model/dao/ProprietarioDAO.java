@@ -9,6 +9,7 @@ import com.clevervitor.hotelpet.exceptions.ProprietarioException;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 
 import com.clevervitor.hotelpet.model.dao.contracts.Dao;
+import com.clevervitor.hotelpet.model.entities.filtros.FiltroProprietario;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -45,10 +46,52 @@ public class ProprietarioDAO extends Dao<Proprietario> {
         try {
             super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-            jpql = " SELECT f "
-                    + " FROM Proprietario f ";
+            jpql = " SELECT p "
+                    + " FROM Proprietario p";
 
             qry = super.entityManager.createQuery(jpql, Proprietario.class);
+
+            List lstProprietarios = qry.getResultList();
+            return lstProprietarios;
+        } catch (ProprietarioException msg) {
+            throw new ProprietarioException("Erro ao retornar lista de Proprietarios.");
+        } finally {
+            super.entityManager.close();
+        }
+    }
+
+    public List<Proprietario> findAllFilter(FiltroProprietario filter) {
+        try {
+            super.entityManager = DatabaseJPA.getInstance().getEntityManager();
+
+            jpql = "SELECT p "
+                    + "FROM Proprietario p "
+                    + "WHERE 1=1 ";
+
+            if (filter.getNome() != null && !filter.getNome().isEmpty()) {
+                jpql += "AND UPPER(p.nome) LIKE UPPER(:nome) ";
+            }
+
+            if (filter.getEmail() != null && !filter.getEmail().isEmpty()) {
+                jpql += "AND UPPER(p.email) LIKE UPPER(:email) ";
+            }
+
+            if (filter.getEndereco() != null && !filter.getEndereco().isEmpty()) {
+                jpql += "AND UPPER(p.endereco) LIKE UPPER(:endereco) ";
+            }
+
+            qry = super.entityManager.createQuery(jpql, Proprietario.class);
+            if (filter.getNome() != null && !filter.getNome().isEmpty()) {
+                qry.setParameter("nome", "%" + filter.getNome() + "%");
+            }
+
+            if (filter.getEmail() != null && !filter.getEmail().isEmpty()) {
+                qry.setParameter("email", "%" + filter.getEmail() + "%");
+            }
+
+            if (filter.getEndereco() != null && !filter.getEndereco().isEmpty()) {
+                qry.setParameter("endereco", "%" + filter.getEndereco() + "%");
+            }
 
             List lstProprietarios = qry.getResultList();
             return lstProprietarios;
