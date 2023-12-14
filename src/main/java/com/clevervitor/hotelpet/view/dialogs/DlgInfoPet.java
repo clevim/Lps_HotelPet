@@ -340,10 +340,14 @@ public class DlgInfoPet extends javax.swing.JDialog {
 
     private void lblEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseEntered
         // TODO add your handling code here:
+        lblEditar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
     }//GEN-LAST:event_lblEditarMouseEntered
 
     private void lblEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseExited
         // TODO add your handling code here:
+        lblEditar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
     }//GEN-LAST:event_lblEditarMouseExited
 
     /**

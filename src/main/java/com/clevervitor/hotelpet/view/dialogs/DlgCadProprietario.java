@@ -370,8 +370,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         edtEmail = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         JPanelAdmin = new javax.swing.JPanel();
-        jRadioClient = new javax.swing.JRadioButton();
-        jRadioFuncionario = new javax.swing.JRadioButton();
         jPanelFunc = new javax.swing.JPanel();
         edtSalario = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -384,6 +382,8 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         edtSenha = new javax.swing.JPasswordField();
         btnCancel = new com.clevervitor.hotelpet.view.UI.FloatingButton();
         btnSalvar = new com.clevervitor.hotelpet.view.UI.FloatingButton();
+        jRadioClient = new javax.swing.JRadioButton();
+        jRadioFuncionario = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Pessoa");
@@ -397,42 +397,42 @@ public class DlgCadProprietario extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(242, 242, 242));
         jLabel1.setText("Nome:");
-        formCadProprietario.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 55, -1, -1));
+        formCadProprietario.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
         formCadProprietario.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 78, 284, -1));
 
         jLabel2.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(242, 242, 242));
         jLabel2.setText("CPF:");
-        formCadProprietario.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 55, -1, -1));
+        formCadProprietario.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(242, 242, 242));
         jLabel3.setText("Data de Nascimento:");
-        formCadProprietario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 55, 130, -1));
+        formCadProprietario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 150, -1));
 
         jLabel4.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(242, 242, 242));
         jLabel4.setText("Cidade:");
-        formCadProprietario.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 107, -1, -1));
+        formCadProprietario.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
         formCadProprietario.add(edtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 130, 128, -1));
 
         jLabel5.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(242, 242, 242));
         jLabel5.setText("Estado:");
-        formCadProprietario.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 107, -1, -1));
+        formCadProprietario.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
         formCadProprietario.add(edtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 130, 138, -1));
 
         jLabel6.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(242, 242, 242));
         jLabel6.setText("Telefone:");
-        formCadProprietario.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 107, -1, -1));
+        formCadProprietario.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(242, 242, 242));
         jLabel7.setText("Sexo:");
-        formCadProprietario.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 107, -1, -1));
+        formCadProprietario.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, -1, -1));
 
-        formCadProprietario.add(cbxSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 130, 120, -1));
+        formCadProprietario.add(cbxSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 70, -1));
 
         jLabel8.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(242, 242, 242));
@@ -447,27 +447,6 @@ public class DlgCadProprietario extends javax.swing.JDialog {
 
         JPanelAdmin.setBackground(new java.awt.Color(51, 51, 51));
         JPanelAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jRadioClient.setBackground(new java.awt.Color(51, 51, 51));
-        jRadioClient.setForeground(new java.awt.Color(242, 242, 242));
-        jRadioClient.setText("Cliente");
-        jRadioClient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioClientActionPerformed(evt);
-            }
-        });
-        JPanelAdmin.add(jRadioClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
-
-        jRadioFuncionario.setBackground(new java.awt.Color(51, 51, 51));
-        jRadioFuncionario.setForeground(new java.awt.Color(242, 242, 242));
-        jRadioFuncionario.setText("Funcioario");
-        jRadioFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioFuncionarioActionPerformed(evt);
-            }
-        });
-        JPanelAdmin.add(jRadioFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 27, -1, -1));
-
         formCadProprietario.add(JPanelAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
 
         jPanelFunc.setBackground(new java.awt.Color(51, 51, 51));
@@ -545,6 +524,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                 btnCancelActionPerformed(evt);
             }
         });
+        formCadProprietario.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 83, 28));
 
         btnSalvar.setBorder(null);
         btnSalvar.setForeground(new java.awt.Color(51, 51, 51));
@@ -564,29 +544,39 @@ public class DlgCadProprietario extends javax.swing.JDialog {
                 btnSalvarActionPerformed(evt);
             }
         });
+        formCadProprietario.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 82, 28));
+
+        jRadioClient.setBackground(new java.awt.Color(51, 51, 51));
+        jRadioClient.setForeground(new java.awt.Color(242, 242, 242));
+        jRadioClient.setText("Cliente");
+        jRadioClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioClientActionPerformed(evt);
+            }
+        });
+        formCadProprietario.add(jRadioClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+
+        jRadioFuncionario.setBackground(new java.awt.Color(51, 51, 51));
+        jRadioFuncionario.setForeground(new java.awt.Color(242, 242, 242));
+        jRadioFuncionario.setText("Funcioario");
+        jRadioFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioFuncionarioActionPerformed(evt);
+            }
+        });
+        formCadProprietario.add(jRadioFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formCadProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(209, 209, 209))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(formCadProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(formCadProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(formCadProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -623,7 +613,7 @@ public class DlgCadProprietario extends javax.swing.JDialog {
     private void btnSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseEntered
         // TODO add your handling code here:
         btnSalvar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnSalvar.setBorderColor(new Color(153, 153, 153));
+        btnSalvar.setBorderColor(new Color(51, 204, 204));
         btnSalvar.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnSalvarMouseEntered
 

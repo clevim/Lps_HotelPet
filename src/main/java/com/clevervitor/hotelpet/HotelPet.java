@@ -38,7 +38,7 @@ public class HotelPet {
         f.setCpf("11111111111");
         f.setDataNasc("01/01/2023");
         f.setEmail("a");
-        f.setEndereco("ADMINADMIN");
+        f.setEndereco("ADMIN, ADMIN");
         f.setNivelAcesso(0);
         f.setNome("ADMIN");
         f.setSalario(10000.00);
