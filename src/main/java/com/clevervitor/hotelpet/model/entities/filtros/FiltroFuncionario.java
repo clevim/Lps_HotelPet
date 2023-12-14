@@ -30,13 +30,12 @@ public class FiltroFuncionario {
     }
 
     public FiltroFuncionario() {
-        
+
         this.nome = "";
         this.email = "";
         this.endereco = "";
         this.salarioIn = "";
         this.salarioOut = "";
     }
-    
-    
+
 }

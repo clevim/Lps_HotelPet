@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.clevervitor.hotelpet.view.dialogs;
+package com.clevervitor.hotelpet.view.dialogs.Infos;
 
+import com.clevervitor.hotelpet.view.dialogs.Cadastros.DlgCadPet;
 import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.controller.PetController;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
@@ -184,6 +185,7 @@ public class DlgInfoPet extends javax.swing.JDialog {
 
         lbPetInfo.setForeground(new java.awt.Color(255, 255, 255));
 
+        lblDel.setEnabled(false);
         lblDel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblDelMouseClicked(evt);

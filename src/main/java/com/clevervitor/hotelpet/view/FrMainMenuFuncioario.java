@@ -19,17 +19,17 @@ import com.clevervitor.hotelpet.model.entities.filtros.FiltroPet;
 import com.clevervitor.hotelpet.model.entities.filtros.FiltroProprietario;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadServicos;
-import com.clevervitor.hotelpet.view.dialogs.DlgFilterAgendamento;
-import com.clevervitor.hotelpet.view.dialogs.DlgFilterFuncionario;
-import com.clevervitor.hotelpet.view.dialogs.DlgFilterPet;
-import com.clevervitor.hotelpet.view.dialogs.DlgFilterProprietario;
-import com.clevervitor.hotelpet.view.dialogs.DlgInfoAgendamento;
-import com.clevervitor.hotelpet.view.dialogs.DlgInfoFuncionario;
-import com.clevervitor.hotelpet.view.dialogs.DlgInfoProprietario;
+import com.clevervitor.hotelpet.view.dialogs.Cadastros.DlgCadProprietario;
+import com.clevervitor.hotelpet.view.dialogs.Cadastros.DlgCadServicos;
+import com.clevervitor.hotelpet.view.dialogs.Filtros.DlgFilterAgendamento;
+import com.clevervitor.hotelpet.view.dialogs.Filtros.DlgFilterFuncionario;
+import com.clevervitor.hotelpet.view.dialogs.Filtros.DlgFilterPet;
+import com.clevervitor.hotelpet.view.dialogs.Filtros.DlgFilterProprietario;
+import com.clevervitor.hotelpet.view.dialogs.Infos.DlgInfoAgendamento;
+import com.clevervitor.hotelpet.view.dialogs.Infos.DlgInfoFuncionario;
+import com.clevervitor.hotelpet.view.dialogs.Infos.DlgInfoProprietario;
 import com.clevervitor.hotelpet.view.dialogs.DlgSobre;
-import com.clevervitor.hotelpet.view.dialogs.DlgInfoPet;
+import com.clevervitor.hotelpet.view.dialogs.Infos.DlgInfoPet;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
@@ -63,9 +63,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     public FrMainMenuFuncioario(Funcionario funcionario) {
         initComponents();
 
-        setBackground(new Color(51,51,51));
-       
-        
+        setBackground(new Color(51, 51, 51));
+
         this.funcionarioCont = new FuncionarioController();
         this.funcionarioLogado = funcionarioCont.buscarFuncionario(pessoaLogada.getPessoaLogada().getId());
         this.agendamentoCont = new AgendamentoController();
@@ -93,7 +92,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         if (pessoaLogada.getPessoaLogada().getNivelAcesso() != 0) {
             menuConfig.setVisible(false);
         }
-         lbFilter.setIcon(utils.resizeImgTolb("/Imagens/filter_white.png", lbFilter));
+        lbFilter.setIcon(utils.resizeImgTolb("/Imagens/filter_white.png", lbFilter));
     }
 
     /**
@@ -468,7 +467,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         lblBemVindo.setForeground(new Color(187, 187, 187));
 
-        lblNome.setText(funcionarioLogado.getNome()+"!");
+        lblNome.setText(funcionarioLogado.getNome() + "!");
         lblNome.setForeground(new Color(187, 187, 187));
 
         lbEndFunc.setText("Endereço: " + funcionarioLogado.getEndereco());
@@ -479,7 +478,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
         lbContFunc.setText("Tel: " + funcionarioLogado.getTel());
         lbContFunc.setForeground(new Color(187, 187, 187));
-        
+
         lbTurnoFunc.setText("Turno: " + utils.TurnoToString(funcionarioLogado.getTurno()));
         lbTurnoFunc.setForeground(new Color(187, 187, 187));
 
@@ -506,7 +505,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         cadastroProp.setVisible(true);        // TODO add your handling code here:
 
         proprietarioCont.atualizarTabelaDeProprietarios(tblProprietarios, proprietarioCont.buscarTodosOsProprietarios());
-         funcionarioCont.atualizarTabelaDeFuncionario(tblFuncionarios, funcionarioCont.buscarTodosOsFuncionarios());
+        funcionarioCont.atualizarTabelaDeFuncionario(tblFuncionarios, funcionarioCont.buscarTodosOsFuncionarios());
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -580,7 +579,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     }//GEN-LAST:event_tblPetsMouseClicked
 
     private void tblFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFuncionariosMouseClicked
-         Funcionario funcSelecionado = (Funcionario) getObjetoSelecionadoNaGridDeFuncionarios();
+        Funcionario funcSelecionado = (Funcionario) getObjetoSelecionadoNaGridDeFuncionarios();
 
         if (evt.getClickCount() == 2) {
             DlgInfoFuncionario telaInfoFunc = new DlgInfoFuncionario(new Frame(), true, funcSelecionado);
@@ -598,13 +597,13 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
             DlgCadProprietario telaEditarPerfil = new DlgCadProprietario(new Frame(), true, funcionarioLogado);
             telaEditarPerfil.setVisible(true);
-            
+
             habilitarCampos();
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(FrMainMenuClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void lbl_imgMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseEntered
@@ -614,7 +613,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
 
     private void lbl_imgMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imgMouseExited
         // TODO add your handling code here:
-                lbl_img.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        lbl_img.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
     }//GEN-LAST:event_lbl_imgMouseExited
 
@@ -631,7 +630,7 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
     }//GEN-LAST:event_pnlComAbasMouseClicked
 
     private void lbFilterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbFilterMouseClicked
-                switch (pnlComAbas.getSelectedIndex()) {
+        switch (pnlComAbas.getSelectedIndex()) {
             case 0:
                 DlgFilterFuncionario filFunc = new DlgFilterFuncionario(new Frame(), true);
                 FiltroFuncionario filterFunc = filFunc.showDialog();
@@ -682,8 +681,8 @@ public class FrMainMenuFuncioario extends javax.swing.JDialog {
         }
         return obj;
     }
-    
-     private Object getObjetoSelecionadoNaGridDeFuncionarios() {
+
+    private Object getObjetoSelecionadoNaGridDeFuncionarios() {
         int rowCliked = tblFuncionarios.getSelectedRow();
         Object obj = null;
         if (rowCliked >= 0) {

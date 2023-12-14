@@ -11,11 +11,12 @@ import com.clevervitor.hotelpet.model.entities.Pessoa;
  * @author clevs
  */
 public class loginContexto {
+
     private static loginContexto instancia = null;
     private Pessoa pessoaLogada;
 
     private loginContexto() {
-        // Inicialização de atributos, se necessário
+
     }
 
     public static loginContexto getInstance() {

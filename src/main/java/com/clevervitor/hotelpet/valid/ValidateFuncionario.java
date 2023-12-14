@@ -73,12 +73,10 @@ public class ValidateFuncionario {
         }
         funcionario.setSalario(validaFuncionario.getSalario());
 
-        if (validaFuncionario.getTurno()== Turno.NULL) {
+        if (validaFuncionario.getTurno() == Turno.NULL) {
             throw new FuncionarioException("Error - O Funcionario não possui turno?.");
         }
         funcionario.setTurno(validaFuncionario.getTurno());
-
-
 
         funcionario.setNivelAcesso(validaFuncionario.getNivelAcesso());
 

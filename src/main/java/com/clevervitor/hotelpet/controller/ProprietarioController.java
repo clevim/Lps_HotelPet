@@ -33,18 +33,6 @@ public class ProprietarioController {
         repositorio = new ProprietarioDAO();
     }
 
-//    public EntityManager getEntityManager() {
-//        EntityManagerFactory factory = null;
-//        EntityManager entityManager = null;
-//
-//        try {
-//            factory = Persistence.createEntityManagerFactory("hotelPet");
-//            entityManager = factory.createEntityManager();
-//        } finally {
-//            factory.close();
-//        }
-//        return entityManager;
-//    }
     public void atualizarTabelaDeProprietarios(JTable grd, List<Proprietario> lst) {
         TMProprietario tableModel = new TMProprietario(lst);
         grd.setModel(tableModel);
@@ -96,7 +84,7 @@ public class ProprietarioController {
     public List<Proprietario> buscarTodosOsProprietariosFiltrados(FiltroProprietario filter) {
         return (List<Proprietario>) this.repositorio.findAllFilter(filter);
     }
-    
+
     public void excluirPet(Proprietario proprietario) {
         if (proprietario.getId() != null) {
             repositorio.delete(proprietario);
@@ -104,12 +92,5 @@ public class ProprietarioController {
             throw new ProprietarioException("Error - Pet inexistente.");
         }
     }
-    /*
-    public void atualizarTabela(JTable grd) {
-        List<Object> lst = repositorio.findAll();
 
-        TMCadPet tmPet = new TMCadPet(lst);
-        grd.setModel(tmPet);
-    }
-     */
 }

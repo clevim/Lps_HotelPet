@@ -32,8 +32,6 @@ public class ShowMessageDialog extends javax.swing.JDialog {
         jButton1.setHorizontalTextPosition(SwingConstants.CENTER);
 
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

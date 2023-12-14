@@ -77,7 +77,7 @@ public class AgendamentoController {
     public List<Agendamento> buscarTodosOsAgendamentos() {
         return (List<Agendamento>) this.repositorio.findAll();
     }
-    
+
     public List<Agendamento> buscarTodosOsAgendamentosFiltrados(FiltroAgendamento filter) {
         return (List<Agendamento>) this.repositorio.findAllFilter(filter);
     }

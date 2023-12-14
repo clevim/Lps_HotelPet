@@ -699,19 +699,13 @@ public class emailBodys {
 
     public String emailComprovante(Agendamento reserva) throws ParseException {
         Date d = new Date();
-        List<Servicos> servs =  new ArrayList<>(reserva.getServicosAdicionais());
-//        List<Servicos> servs = new ArrayList<>();
-//        servs.add(new Servicos("Diaria", 10.00));
-//        servs.add(new Servicos("Massagem", 20.00));
+        List<Servicos> servs = new ArrayList<>(reserva.getServicosAdicionais());
 
         String dataAtual = formatoDMYHM.format(d);
         String nomeProp = reserva.getProprietarioResp().getNome();
         String nomePet = reserva.getPetAgendado().getNome();
         String dateCheckIn = reserva.getDataCheckIn();
         String dateCheckOut = reserva.getDataCheckOut();
-//            String nomeProp = "Vitor";
-//            String dateCheckIn = "01/01/2000";
-//            String dateCheckOut = "06/01/2000";
 
         cIn.setTime(formatoDMY.parse(dateCheckIn));
         cOut.setTime(formatoDMY.parse(dateCheckOut));

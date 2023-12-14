@@ -12,6 +12,7 @@ import lombok.Data;
  */
 @Data
 public class FiltroProprietario {
+
     public String nome;
     public String email;
     public String endereco;
@@ -30,7 +31,5 @@ public class FiltroProprietario {
         this.endereco = "";
         this.sexo = "";
     }
-    
-    
-    
+
 }

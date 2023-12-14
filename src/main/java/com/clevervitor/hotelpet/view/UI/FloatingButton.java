@@ -35,37 +35,28 @@ public class FloatingButton extends JButton {
     public FloatingButton() {
         //Iniciando cores
         setColor(Color.WHITE);
-        colorOver= Color.BLUE;
-        colorClick= Color.RED;
-        borderColor= Color.WHITE;
+        colorOver = Color.BLUE;
+        colorClick = Color.RED;
+        borderColor = Color.WHITE;
         setContentAreaFilled(false);
-        
-        
-        
+
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
-        
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
         //Pintando borda
         g2.setColor(borderColor);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), raio, raio);
         g2.setColor(getBackground());
-        
+
         //Borda de 2px
-        
-        
-        
         super.paintComponent(g);
     }
-    
-    
-    
-    
-  
+
     public boolean isOver() {
         return over;
     }
@@ -147,7 +138,5 @@ public class FloatingButton extends JButton {
     public void setRaio(int raio) {
         this.raio = raio;
     }
-    
-   
 
 }

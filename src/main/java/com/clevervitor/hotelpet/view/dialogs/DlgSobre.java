@@ -16,7 +16,7 @@ public class DlgSobre extends javax.swing.JDialog {
     public DlgSobre(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         setTitle("Sobre o Pet Hotel");
     }
 

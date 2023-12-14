@@ -17,7 +17,6 @@ public class ValidateAgendamento {
     public Agendamento validaCamposEntrada(Agendamento validaAgendamento) {
         Agendamento agendamento = new Agendamento();
 
-
         agendamento.setId(validaAgendamento.getId());
 
         if (validaAgendamento.getDataCheckIn().isEmpty()) {

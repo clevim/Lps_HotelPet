@@ -9,7 +9,7 @@ package com.clevervitor.hotelpet.model.enums;
  * @author clevs
  */
 public enum Sexo {
-    
-    NULL,NAOIDENT,F,M;
-    
+
+    NULL, NAOIDENT, F, M;
+
 }

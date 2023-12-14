@@ -11,7 +11,9 @@ import javax.swing.SwingConstants;
  * @author clevs
  */
 public class ShowConfirmDialog extends javax.swing.JDialog {
+
     Boolean result;
+
     /**
      * Creates new form ShowMessageDialog
      *
@@ -29,15 +31,12 @@ public class ShowConfirmDialog extends javax.swing.JDialog {
         edtMsg.setHorizontalAlignment(SwingConstants.CENTER);
         edtMsg.setHorizontalTextPosition(SwingConstants.CENTER);
 
-
     }
-    
-    public Boolean showDialog(){
+
+    public Boolean showDialog() {
         setVisible(true);
         return result;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -147,7 +146,7 @@ public class ShowConfirmDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimActionPerformed
-       result = true;        
+        result = true;
         this.dispose();
     }//GEN-LAST:event_btnSimActionPerformed
 

@@ -37,7 +37,7 @@ public class ValidateProprietario {
 
         proprietario.setDataNasc(validaProprietario.getDataNasc());
 
-        if (validaProprietario.getSexo()== Sexo.NULL) {
+        if (validaProprietario.getSexo() == Sexo.NULL) {
             throw new ProprietarioException("Error - Campo vazio: 'sexo'.");
         }
 
@@ -66,12 +66,8 @@ public class ValidateProprietario {
         }
         proprietario.setSenha(criptografiaBase64Encoder(validaProprietario.getSenha()));
 
-//        if (validaProprietario.getLstPetsPossuidos() == null) {
-//            throw new ProprietarioException("Error - O proprietário não possui pets cadastrados.");
-//        }
         proprietario.setLstPetsPossuidos(validaProprietario.getLstPetsPossuidos());
 
-        //Proprietário pode ser cadastrado sem nenhuma hospedagem marcada
         proprietario.setLstAgendamentos(validaProprietario.getLstAgendamentos());
 
         proprietario.setNivelAcesso(validaProprietario.getNivelAcesso());

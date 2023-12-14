@@ -31,8 +31,8 @@ public class Pessoa {
     protected Integer id;
 
     private String nome;
-    private String endereco; // "concat cidade estado"
-    private String dataNasc; // "10-12-1997"
+    private String endereco;
+    private String dataNasc;
     private Sexo sexo;
     private String tel;
     private String email;

@@ -41,8 +41,8 @@ public class FuncionarioDAO extends Dao<Funcionario> {
         return lst;
 
     }
-    
-     public List<Funcionario> findAllFilter(FiltroFuncionario filter) {
+
+    public List<Funcionario> findAllFilter(FiltroFuncionario filter) {
         try {
             super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
@@ -68,27 +68,26 @@ public class FuncionarioDAO extends Dao<Funcionario> {
             }
 
             qry = super.entityManager.createQuery(jpql, Funcionario.class);
-            
-                    if (filter.getNome() != null && !filter.getNome().isEmpty()) {
-            qry.setParameter("nome", "%" + filter.getNome() + "%");
-        }
 
-        if (filter.getEmail() != null && !filter.getEmail().isEmpty()) {
-            qry.setParameter("email", "%" + filter.getEmail() + "%");
-        }
+            if (filter.getNome() != null && !filter.getNome().isEmpty()) {
+                qry.setParameter("nome", "%" + filter.getNome() + "%");
+            }
 
-        if (filter.getEndereco() != null && !filter.getEndereco().isEmpty()) {
-            qry.setParameter("endereco", "%" + filter.getEndereco() + "%");
-        }
+            if (filter.getEmail() != null && !filter.getEmail().isEmpty()) {
+                qry.setParameter("email", "%" + filter.getEmail() + "%");
+            }
 
-        if (filter.getSalarioIn() != null && !filter.getSalarioIn().isEmpty()) {
-            qry.setParameter("salarioIn", Double.valueOf(filter.getSalarioIn()));
-        }
+            if (filter.getEndereco() != null && !filter.getEndereco().isEmpty()) {
+                qry.setParameter("endereco", "%" + filter.getEndereco() + "%");
+            }
 
-        if (filter.getSalarioOut() != null && !filter.getSalarioOut().isEmpty()) {
-            qry.setParameter("salarioOut", Double.valueOf(filter.getSalarioOut()));
-        }
+            if (filter.getSalarioIn() != null && !filter.getSalarioIn().isEmpty()) {
+                qry.setParameter("salarioIn", Double.valueOf(filter.getSalarioIn()));
+            }
 
+            if (filter.getSalarioOut() != null && !filter.getSalarioOut().isEmpty()) {
+                qry.setParameter("salarioOut", Double.valueOf(filter.getSalarioOut()));
+            }
 
             List lstFuncionarios = qry.getResultList();
             return lstFuncionarios;

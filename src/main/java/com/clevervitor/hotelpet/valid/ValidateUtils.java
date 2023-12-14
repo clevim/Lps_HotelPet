@@ -27,7 +27,7 @@ public class ValidateUtils {
                 }
             }
         } catch (Exception e) {
-            // Trate exceções aqui, se necessário
+
             throw new Exception("Ocorreu um erro ao validar o login.");
         }
 

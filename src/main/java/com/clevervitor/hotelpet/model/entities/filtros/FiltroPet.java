@@ -13,7 +13,6 @@ import lombok.Data;
 @Data
 public class FiltroPet {
 
-    
     public String nome;
     public String raca;
     public Integer proprietario_id;
@@ -23,7 +22,7 @@ public class FiltroPet {
     public String idadeIn;
     public String idadeOut;
     public String especie;
-    
+
     public FiltroPet(String nome, String raça, Integer proprietario_id, String pesoIn, String pesoOut, String idadeIn, String idadeOut, String especie) {
         this.nome = nome;
         this.raca = raça;
@@ -34,8 +33,8 @@ public class FiltroPet {
         this.idadeOut = idadeOut;
         this.especie = especie;
     }
-    
-   public FiltroPet() {
+
+    public FiltroPet() {
         this.nome = "";
         this.raca = "";
         this.proprietario_id = -1;
@@ -46,5 +45,5 @@ public class FiltroPet {
         this.idadeOut = "";
         this.especie = "";
     }
-    
+
 }

@@ -61,7 +61,7 @@ public class TMFuncionario extends AbstractTableModel {
                 case COL_TURNO:
                     return utils.TurnoToString(aux.getTurno());
                 case COL_SALARIO:
-                    return "R$ "+aux.getSalario();
+                    return "R$ " + aux.getSalario();
                 default:
                     break;
             }

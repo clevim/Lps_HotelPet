@@ -90,8 +90,8 @@ public class utils {
         }
         return filename;
     }
-    
-        public static String uploadAvatarPet(int id, byte[] imgProfile, ImageIcon imgIcon) {
+
+    public static String uploadAvatarPet(int id, byte[] imgProfile, ImageIcon imgIcon) {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
@@ -139,7 +139,6 @@ public class utils {
 
     public static boolean isValidPassword(String password) {
 
-        // Regex to check valid password.
         String regex = "(?=\\S+$).{5,20}$";
 
         Pattern p = Pattern.compile(regex);
@@ -245,7 +244,6 @@ public class utils {
         return result.toString();
     }
 
-    
     public static String StatusToString(Status s) {
 
         switch (s) {
@@ -263,10 +261,10 @@ public class utils {
         }
 
     }
-    
-      public static String TurnoToString(Turno t) {
 
-         switch (t) {
+    public static String TurnoToString(Turno t) {
+
+        switch (t) {
             case NULL:
                 return "";
             case MANHA:
@@ -280,10 +278,10 @@ public class utils {
         }
 
     }
-      
-            public static Integer TurnoToInt(Turno t) {
 
-         switch (t) {
+    public static Integer TurnoToInt(Turno t) {
+
+        switch (t) {
             case NULL:
                 return 0;
             case MANHA:
@@ -297,10 +295,10 @@ public class utils {
         }
 
     }
-      
-        public static Turno StringToTurno(String t) {
 
-         switch (t) {
+    public static Turno StringToTurno(String t) {
+
+        switch (t) {
             case "":
                 return Turno.NULL;
             case "Manhã":
@@ -314,10 +312,10 @@ public class utils {
         }
 
     }
-        
-              public static String SexoToString(Sexo s) {
 
-         switch (s) {
+    public static String SexoToString(Sexo s) {
+
+        switch (s) {
             case NAOIDENT:
                 return "Não Informar";
             case F:
@@ -331,11 +329,10 @@ public class utils {
         }
 
     }
-              
-                      
-              public static Integer SexoToInt(Sexo s) {
 
-         switch (s) {
+    public static Integer SexoToInt(Sexo s) {
+
+        switch (s) {
             case NAOIDENT:
                 return 1;
             case F:
@@ -349,10 +346,10 @@ public class utils {
         }
 
     }
-      
-        public static Sexo StringToSexo(String s) {
 
-         switch (s) {
+    public static Sexo StringToSexo(String s) {
+
+        switch (s) {
             case "Não Informar":
                 return Sexo.NAOIDENT;
             case "Feminino":
@@ -367,8 +364,6 @@ public class utils {
         }
 
     }
-        
-        
 
     public static String ServicesToString(Services s) {
 
@@ -421,14 +416,14 @@ public class utils {
         }
 
     }
-    
-    public ImageIcon resizeImgTolb(String imgPath,JLabel lb){   
-    return new ImageIcon(new ImageIcon(getClass().getResource(imgPath)).getImage().getScaledInstance(lb.getWidth(), lb.getHeight(), Image.SCALE_SMOOTH));
-      
+
+    public ImageIcon resizeImgTolb(String imgPath, JLabel lb) {
+        return new ImageIcon(new ImageIcon(getClass().getResource(imgPath)).getImage().getScaledInstance(lb.getWidth(), lb.getHeight(), Image.SCALE_SMOOTH));
+
     }
-    
-    public ImageIcon resizeImgToFloatingBtn(String imgPath,FloatingButton Flbtn){   
-    return new ImageIcon(new ImageIcon(getClass().getResource(imgPath)).getImage().getScaledInstance(Flbtn.getWidth(), Flbtn.getHeight(), Image.SCALE_SMOOTH));
-      
+
+    public ImageIcon resizeImgToFloatingBtn(String imgPath, FloatingButton Flbtn) {
+        return new ImageIcon(new ImageIcon(getClass().getResource(imgPath)).getImage().getScaledInstance(Flbtn.getWidth(), Flbtn.getHeight(), Image.SCALE_SMOOTH));
+
     }
 }

@@ -9,5 +9,5 @@ package com.clevervitor.hotelpet.model.enums;
  * @author clevs
  */
 public enum Turno {
-    NULL,MANHA,TARDE,NOITE;
+    NULL, MANHA, TARDE, NOITE;
 }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.clevervitor.hotelpet.view.dialogs;
+package com.clevervitor.hotelpet.view.dialogs.Cadastros;
 
 import com.clevervitor.hotelpet.model.dao.ServicosDAO;
 import com.clevervitor.hotelpet.model.entities.Servicos;
@@ -29,9 +29,9 @@ public class DlgCadServicos extends javax.swing.JDialog {
     public DlgCadServicos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         setTitle("Atualizar serviços");
-        
+
         servicoDAO = new ServicosDAO();
         lstServ = servicoDAO.findAll();
         this.preencher();

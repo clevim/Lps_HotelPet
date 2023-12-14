@@ -23,7 +23,7 @@ public class ValidatePessoa {
 
             for (Pessoa p : lstPess) {
                 int i = p.getEmail().compareTo(email);
-                if (p.getEmail().compareTo(email) ==0) {
+                if (p.getEmail().compareTo(email) == 0) {
                     return true;
                 }
 
@@ -31,9 +31,9 @@ public class ValidatePessoa {
         } else {
             List<Pessoa> lstPess = pDAO.findAll();
             Pessoa per = pDAO.find(id);
-            if (per.getEmail().compareTo(email) !=0) {
+            if (per.getEmail().compareTo(email) != 0) {
                 for (Pessoa p : lstPess) {
-                    if (p.getEmail().compareTo(email) ==0) {
+                    if (p.getEmail().compareTo(email) == 0) {
                         return true;
                     }
                 }
@@ -48,7 +48,7 @@ public class ValidatePessoa {
             List<Pessoa> lstPess = pDAO.findAll();
 
             for (Pessoa p : lstPess) {
-                
+
                 int i = p.getCpf().compareTo(cpf);
                 if (p.getCpf().compareTo(cpf) == 0) {
                     return true;

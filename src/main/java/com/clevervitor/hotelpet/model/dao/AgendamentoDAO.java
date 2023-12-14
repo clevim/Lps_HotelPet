@@ -56,8 +56,8 @@ public class AgendamentoDAO extends Dao<Agendamento> {
         return lst;
 
     }
-    
-       public List<Agendamento> findAllFilter(FiltroAgendamento filter) {
+
+    public List<Agendamento> findAllFilter(FiltroAgendamento filter) {
         try {
             super.entityManager = DatabaseJPA.getInstance().getEntityManager();
 

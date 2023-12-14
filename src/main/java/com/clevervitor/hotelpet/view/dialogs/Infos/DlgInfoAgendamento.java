@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.clevervitor.hotelpet.view.dialogs;
+package com.clevervitor.hotelpet.view.dialogs.Infos;
 
+import com.clevervitor.hotelpet.view.dialogs.Cadastros.DlgCadAgendamento;
 import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.controller.AgendamentoController;
 import com.clevervitor.hotelpet.controller.PetController;
@@ -158,6 +159,7 @@ public class DlgInfoAgendamento extends javax.swing.JDialog {
             }
         });
 
+        lblDel.setEnabled(false);
         lblDel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblDelMouseClicked(evt);

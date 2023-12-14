@@ -35,7 +35,7 @@ public class FiltroAgendamento {
         this.dataCheckOut = "";
         this.Servicos = "";
         this.Status = "";
-        this.PetAgendado_id= -1;
+        this.PetAgendado_id = -1;
         this.PropAgendado_id = -1;
     }
 

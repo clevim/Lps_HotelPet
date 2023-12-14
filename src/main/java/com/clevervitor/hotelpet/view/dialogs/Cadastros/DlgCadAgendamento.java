@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.clevervitor.hotelpet.view.dialogs;
+package com.clevervitor.hotelpet.view.dialogs.Cadastros;
 
 import com.clevervitor.hotelpet.connection.GEmailSender;
 import com.clevervitor.hotelpet.connection.loginContexto;
@@ -63,7 +63,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     ServicosDAO servicoDAO;
     int agendamentoIsEditando;
     GEmailSender sendertest = new GEmailSender();
-        emailBodys emBd = new emailBodys();
+    emailBodys emBd = new emailBodys();
 
     loginContexto pessoaLogada = loginContexto.getInstance();
 
@@ -112,7 +112,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
         dateCheckIn.getDateEditor().setDate(minCheckIN);
         dateCheckOut.getDateEditor().setDate(minCheckout);
-        //  AgendamentoControllet.atualizarTabela(grdAgendamentos);
+
     }
 
     public DlgCadAgendamento(java.awt.Frame parent, boolean modal, Agendamento agendamento) throws ParseException {
@@ -156,7 +156,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
         this.habilitarCampos(true);
         this.preencherCampos();
 
-        //AgendamentoControllet.atualizarTabela(grdAgendamentos);
         switch (pessoaLogada.getPessoaLogada().getNivelAcesso()) {
             case 0:
                 desabilitaTudo();
@@ -368,8 +367,6 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
     }
 
     public void limparCampos() {
-//        dateCheckIn.setDate(null);
-//        dateCheckOut.setDate(null);
         CBBanho.setSelected(false);
         CBTosa.setSelected(false);
         CBMassagem.setSelected(false);
@@ -856,7 +853,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-        
+
         String dCheckIn = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckIn.getDate());
         String dCheckOut = new SimpleDateFormat("dd/MM/yyyy").format(dateCheckOut.getDate());
         Status status = utils.checkStatus(dateCheckIn.getDate(), dateCheckOut.getDate());
@@ -876,7 +873,7 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
             AgendamentoController.atualizarAgendamento(agendamentoEdit);
             ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Agendamento Atualizado!!");
             DialMsg.setVisible(true);
-                        try {
+            try {
                 sendertest.sendEmail(agendamentoEdit.getProprietarioResp().getEmail(), "Comprovante de mudanças no agendamento!", emBd.emailComprovante(agendamentoEdit));
             } catch (ParseException ex) {
                 Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
@@ -902,13 +899,13 @@ public class DlgCadAgendamento extends javax.swing.JDialog {
             AgendamentoController.cadastrarAgendamento(novoAgendamento);
             ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso", "Agendamento Feito");
             DialMsg.setVisible(true);
-            
+
             try {
                 sendertest.sendEmail(novoAgendamento.getProprietarioResp().getEmail(), "Comprovante de agendamento!", emBd.emailComprovante(novoAgendamento));
             } catch (ParseException ex) {
                 Logger.getLogger(DlgCadAgendamento.class.getName()).log(Level.SEVERE, null, ex);
             }
- 
+
         }
 
         agendamentoIsEditando = -1;

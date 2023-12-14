@@ -5,7 +5,7 @@
 package com.clevervitor.hotelpet.view;
 
 import com.clevervitor.hotelpet.connection.loginContexto;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
+import com.clevervitor.hotelpet.view.dialogs.Cadastros.DlgCadProprietario;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
 import com.clevervitor.hotelpet.model.entities.Funcionario;
 import com.clevervitor.hotelpet.model.entities.Pessoa;
@@ -61,7 +61,7 @@ public class FrLogin extends javax.swing.JFrame {
         setIconImage(iconeTitulo);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+
     }
 
     /**

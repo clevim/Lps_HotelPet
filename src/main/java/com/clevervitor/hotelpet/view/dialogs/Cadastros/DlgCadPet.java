@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.clevervitor.hotelpet.view.dialogs;
+package com.clevervitor.hotelpet.view.dialogs.Cadastros;
 
 import com.clevervitor.hotelpet.connection.loginContexto;
 import com.clevervitor.hotelpet.controller.PetController;
@@ -56,7 +56,6 @@ public class DlgCadPet extends javax.swing.JDialog {
         this.habilitarCampos(true);
         this.limparCampos();
 
-        //  petControllet.atualizarTabela(grdPets);
     }
 
     public DlgCadPet(java.awt.Frame parent, boolean modal, Pet pet) {
@@ -81,9 +80,7 @@ public class DlgCadPet extends javax.swing.JDialog {
         this.habilitarCampos(true);
         this.preencherCampos();
 
-        //  petControllet.atualizarTabela(grdPets);
-        
-      switch (pessoaLogada.getPessoaLogada().getNivelAcesso()) {
+        switch (pessoaLogada.getPessoaLogada().getNivelAcesso()) {
             case 0:
                 desabilitaTudo();
                 habilitaPetAdmin();
@@ -100,8 +97,6 @@ public class DlgCadPet extends javax.swing.JDialog {
                 throw new AssertionError();
         }
 
-       
-
     }
 
     public void desabilitaTudo() {
@@ -113,7 +108,6 @@ public class DlgCadPet extends javax.swing.JDialog {
         edtRaca.setEnabled(false);
         rbtnMacho.setEnabled(false);
         rbtnFemea.setEnabled(false);
-
 
     }
 
@@ -129,7 +123,7 @@ public class DlgCadPet extends javax.swing.JDialog {
     }
 
     public void habilitaPetFuncionario() {
-       edtEspecie.setEnabled(false);
+        edtEspecie.setEnabled(false);
         edtIdade.setEnabled(true);
         edtNome.setEnabled(false);
         edtObs.setEnabled(true);
@@ -140,7 +134,7 @@ public class DlgCadPet extends javax.swing.JDialog {
     }
 
     public void habilitaPetProprietario() {
-    edtEspecie.setEnabled(false);
+        edtEspecie.setEnabled(false);
         edtIdade.setEnabled(true);
         edtNome.setEnabled(true);
         edtObs.setEnabled(true);
@@ -447,15 +441,15 @@ public class DlgCadPet extends javax.swing.JDialog {
     private void btnSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseEntered
         // TODO add your handling code here:
         btnSalvar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnSalvar.setBorderColor(new Color(51,204,204));
-        btnSalvar.setForeground(new Color(255,255,255));
+        btnSalvar.setBorderColor(new Color(51, 204, 204));
+        btnSalvar.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnSalvarMouseEntered
 
     private void btnSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseExited
         // TODO add your handling code here:
         btnSalvar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        btnSalvar.setBorderColor(new Color(255,255,255));
-        btnSalvar.setForeground(new Color(51,51,51));
+        btnSalvar.setBorderColor(new Color(255, 255, 255));
+        btnSalvar.setForeground(new Color(51, 51, 51));
     }//GEN-LAST:event_btnSalvarMouseExited
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -477,10 +471,10 @@ public class DlgCadPet extends javax.swing.JDialog {
         if (PetEditando > 0) {
 
             Pet petEditado = new Pet(edtNome.getText(), edtEspecie.getText(), edtRaca.getText(), Integer.valueOf(edtIdade.getText()), sexo, Double.valueOf(edtPeso.getText().replace(",", ".")), edtObs.getText(), proprietarioLogado);
-            
+
             petEditado.setId(petSendoEditado.getId());
             petEditado.setAvatarPet(petSendoEditado.getAvatarPet());
-            
+
             petController.atualizarPet(petEditado);
 
             ShowMessageDialog DialMsg = new ShowMessageDialog("Sucesso.", "Pet atualizado!");
@@ -500,22 +494,22 @@ public class DlgCadPet extends javax.swing.JDialog {
             }
 
         }
-            PetEditando = -1;
-            dispose();
+        PetEditando = -1;
+        dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseEntered
         // TODO add your handling code here:
         btnCancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnCancel.setBorderColor(new Color(51,204,204));
-        btnCancel.setForeground(new Color(255,255,255));
+        btnCancel.setBorderColor(new Color(51, 204, 204));
+        btnCancel.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnCancelMouseEntered
 
     private void btnCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseExited
         // TODO add your handling code here:
         btnCancel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        btnCancel.setBorderColor(new Color(255,255,255));
-        btnCancel.setForeground(new Color(51,51,51));
+        btnCancel.setBorderColor(new Color(255, 255, 255));
+        btnCancel.setForeground(new Color(51, 51, 51));
     }//GEN-LAST:event_btnCancelMouseExited
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed

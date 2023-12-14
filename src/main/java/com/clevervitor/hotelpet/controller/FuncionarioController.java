@@ -55,7 +55,7 @@ public class FuncionarioController {
         TMFuncionario tableModel = new TMFuncionario(lst);
         grd.setModel(tableModel);
     }
-    
+
     public void cadastrarFuncionario(Funcionario cadFuncionario) {
 
         ValidateFuncionario check = new ValidateFuncionario();
@@ -73,7 +73,7 @@ public class FuncionarioController {
     public List<Funcionario> buscarTodosOsFuncionarios() {
         return (List<Funcionario>) this.repositorio.findAll();
     }
-    
+
     public List<Funcionario> buscarTodosOsFuncionariosFiltrado(FiltroFuncionario filter) {
         return (List<Funcionario>) this.repositorio.findAllFilter(filter);
     }

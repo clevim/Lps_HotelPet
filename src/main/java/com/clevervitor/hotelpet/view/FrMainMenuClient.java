@@ -5,7 +5,7 @@
 package com.clevervitor.hotelpet.view;
 
 import com.clevervitor.hotelpet.connection.loginContexto;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadAgendamento;
+import com.clevervitor.hotelpet.view.dialogs.Cadastros.DlgCadAgendamento;
 import com.clevervitor.hotelpet.controller.ProprietarioController;
 import com.clevervitor.hotelpet.controller.tableModel.TMAgendamentos;
 import com.clevervitor.hotelpet.model.dao.PessoaDAO;
@@ -15,11 +15,11 @@ import com.clevervitor.hotelpet.model.entities.Pet;
 import com.clevervitor.hotelpet.model.entities.Proprietario;
 import com.clevervitor.hotelpet.utils.utils;
 import com.clevervitor.hotelpet.view.UI.ShowMessageDialog;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadPet;
-import com.clevervitor.hotelpet.view.dialogs.DlgCadProprietario;
+import com.clevervitor.hotelpet.view.dialogs.Cadastros.DlgCadPet;
+import com.clevervitor.hotelpet.view.dialogs.Cadastros.DlgCadProprietario;
 import com.clevervitor.hotelpet.view.dialogs.DlgContato;
-import com.clevervitor.hotelpet.view.dialogs.DlgInfoAgendamento;
-import com.clevervitor.hotelpet.view.dialogs.DlgInfoPet;
+import com.clevervitor.hotelpet.view.dialogs.Infos.DlgInfoAgendamento;
+import com.clevervitor.hotelpet.view.dialogs.Infos.DlgInfoPet;
 import com.clevervitor.hotelpet.view.dialogs.DlgSobre;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -69,7 +69,6 @@ public class FrMainMenuClient extends javax.swing.JDialog {
 
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietario.getLstPetsPossuidos());
 
-        //com.clevervitor.hotelpet.view.UI.TableActionCellRender[Table.cellRenderer,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=javax.swing.border.EmptyBorder@61a30083,flags=25165832,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=,verticalAlignment=CENTER,verticalTextPosition=CENTER]
         lblNome.setForeground(Color.WHITE);
 
         scrollPets.getViewport().setBackground(new Color(51, 51, 51));
@@ -125,8 +124,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
         lblDocCliente.setText("Cpf: " + proprietarioLogado.getCpf());
         lblContatoCliente.setText("Telefone: " + proprietarioLogado.getTel());
         lbl_img.setIcon(imgIcon);
-        
-        
+
         propController.atualizarTabelaDePetsInicioFrame(grdPets, proprietarioLogado.getLstPetsPossuidos());
         propController.atualizarTabelaDeAgendamentos(grdAgendamentos, proprietarioLogado.getLstAgendamentos());
 
@@ -507,7 +505,7 @@ public class FrMainMenuClient extends javax.swing.JDialog {
     }//GEN-LAST:event_menuSobreMouseClicked
 
     private void menuContatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuContatoMouseClicked
-        DlgContato contato = new DlgContato();
+        DlgContato contato = new DlgContato(new Frame(), true);
         contato.setVisible(true);
     }//GEN-LAST:event_menuContatoMouseClicked
 

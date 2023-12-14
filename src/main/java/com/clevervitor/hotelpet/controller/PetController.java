@@ -70,17 +70,10 @@ public class PetController {
     public List<Pet> buscarTodosOsPets() {
         return (List<Pet>) this.repositorio.findAll();
     }
-    
-      public List<Pet> buscarTodosOsPetsFiltrado(FiltroPet filter) {
+
+    public List<Pet> buscarTodosOsPetsFiltrado(FiltroPet filter) {
         return (List<Pet>) this.repositorio.findAllFilter(filter);
     }
-
-    /*public void atualizarTabela(JTable grd) {
-        List<Object> lst = repositorio.findAll();
-        
-        TMCadPet tmPet = new TMCadPet(lst);
-        grd.setModel(tmPet);
-    }*/
 
     public void excluirPet(Pet pet) {
         pet.getProprietario().getLstPetsPossuidos().remove(pet);

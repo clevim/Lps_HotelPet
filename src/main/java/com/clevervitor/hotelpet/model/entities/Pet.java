@@ -84,7 +84,7 @@ public class Pet {
         }
         return txt;
     }
-    
+
     public byte[] getImage() {
         return avatarPet;
     }
