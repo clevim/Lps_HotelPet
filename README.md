@@ -19,7 +19,7 @@ O sistema será utilizado para gerenciar um hotel para pets. Permitirá o cadast
 ![WhatsApp Image 2023-10-12 at 20 55 05](https://github.com/clevim/Lps_HotelPet/assets/14027055/1d9316b0-266d-42e8-a9bc-5f50d8dfb2ed)
 
 # Diagrama de Classe V1.0
-![image](https://github.com/clevim/Lps_HotelPet/assets/14027055/ef91b580-f5bc-4c2c-886d-e240e4c12bb1)
+![image](https://github.com/clevim/Lps_HotelPet/assets/14027055/f251c26a-3c40-43a5-864f-79d2ca82d314)
 
 
 
